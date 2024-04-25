@@ -1,0 +1,93 @@
+site_name: uORF4u
+
+
+repo_url: https://github.com/art-egorov/uorf4u.git
+edit_uri: ''  #disables edit button
+
+
+theme:
+    name: material
+    custom_dir: docs/material
+    favicon: assets/images/favicon.png
+    palette:
+    # Palette toggle for light mode
+      - scheme: default
+        primary: grey
+        accent: yellow
+    icon:
+      logo: uorf4u_logo
+
+    features:
+        - content.code.annotate
+        - announce.dismiss
+        - navigation.tabs
+        - toc.integrate
+        - header.autohide
+
+extra_css:
+- css/material.css
+- css/mkdocstrings.css
+
+
+nav:
+  - Home: index.md
+  - Example-driven guide: ExampleDrivenGuide/cmd_guide.md
+  - Parameters:
+    - Command-line parameters: Parameters/cmd_parameters.md
+    - Configuration file parameters: Parameters/config_parameters.md
+  - API:
+    - Usage examples: API/usage_examples.md
+    - uorf4u.data_processing: API/package_data_processing.md
+    - uorf4u.manager: API/package_manager.md
+    - uorf4u.drawing: API/package_drawing.md
+    - uorf4u.methods: API/package_methods.md
+  - Version log: VersionLog/versions.md
+
+markdown_extensions:
+ - admonition
+ - footnotes
+ - pymdownx.emoji
+ - pymdownx.magiclink
+ - pymdownx.snippets:
+     check_paths: true
+ - pymdownx.superfences
+ - pymdownx.tabbed:
+     alternate_style: true
+ - pymdownx.tasklist
+ - pymdownx.highlight
+
+
+plugins:
+ - search
+ - markdown-exec
+ - section-index
+ - autorefs
+ - mkdocstrings:
+    custom_templates: ./docs/templates
+    watch:
+       - uorf4u
+    handlers:
+      python:
+        options:
+          docstring_style: google
+          docstring_options:
+            ignore_init_summary: no
+            
+          separate_signature: False
+          show_signature_annotation: True
+          show_source: True
+          show_root_heading: False
+          show_root_full_path: True
+          show_object_full_path: False
+          show_category_heading: False
+          merge_init_into_class: False
+          docstring_section_style: list
+ - exclude:
+        glob:
+            - assets/images/favicon.png
+
+extra:
+  generator: false
+  analytics:
+    provider: google
+    property: G-MD28PTNXBF

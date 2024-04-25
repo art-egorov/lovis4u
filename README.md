@@ -19,7 +19,7 @@
 
 #### Output example: 
 
-<img  src="docs/img/output_example_advanced_multiple_regions.png" width="100%"/>
+<img  src="docs/img/output_example_advanced_multiple_regions_labeled.png" width="100%"/>
 
 ## Installation 🛠️
 

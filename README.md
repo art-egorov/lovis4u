@@ -6,10 +6,12 @@
 
 **LoVis4u** is a bioinformatics tool for **Lo**ci **Vis**ualisation.
 
+**Supported input**: Genbank, gff3 with sequence    
+**Supported output**: Static vector graphics (pdf)   
 **Programming language:** Python3   
 **OS:** MacOS, Linux  
-**Python dependencies:** biopython, bcbio-gff, scipy, configs, argparse, pandas, distinctipy, matplotlib, seaborn, reportlab.  
-**Python version:** >= 3.7  
+**Python dependencies:** biopython, bcbio-gff, scipy, configs, argparse, pandas, distinctipy, matplotlib, seaborn, reportlab  
+**Python version:** >= 3.9  
 **OS-level dependencies:** MMseqs2 (included in the package)  
 **License:** WTFPL  
 **Version:** 0.0.2 (April 2024)

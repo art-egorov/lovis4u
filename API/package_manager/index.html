@@ -881,25 +881,14 @@
   
       <p>An Image object holds canvas;.</p>
 
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>canvas</code></td>
-          <td>
-                <code><span title="reportlab.pdfgen.canvas.Canvas">Canvas</span></code>
-          </td>
-          <td><p>canvas object of the reportlab library.</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Attributes:</b></p>
+  <ul>
+      <li class="field-body">
+        <b>canvas</b>
+            (<code><span title="reportlab.pdfgen.canvas.Canvas">Canvas</span></code>)
+        – <p>canvas object of the reportlab library.</p>
+      </li>
+  </ul>
 
 
         <details class="quote">
@@ -994,49 +983,28 @@
   
       <p>Create a Canvas object.</p>
 
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>filename</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td><p>path and name of the output pdf.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>width</code></td>
-          <td>
-                <code>float</code>
-          </td>
-          <td><p>width of the canvas.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>height</code></td>
-          <td>
-                <code>float</code>
-          </td>
-          <td><p>height of the pdf.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Parameters:</b></p>
+  <ul>
+    
+      <li class="field-body">
+        <b>filename</b>
+            (<code>str</code>)
+ – <p>path and name of the output pdf.</p>
+      </li>
+     
+      <li class="field-body">
+        <b>width</b>
+            (<code>float</code>)
+ – <p>width of the canvas.</p>
+      </li>
+     
+      <li class="field-body">
+        <b>height</b>
+            (<code>float</code>)
+ – <p>height of the pdf.</p>
+      </li>
+     
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -1085,23 +1053,13 @@
   
       <p>Save canvas as a pdf file.</p>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>None</code>
-          </td>
-          <td><p>None</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+            <code>None</code>
+        – <p>None</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -1153,40 +1111,25 @@
       <p>Canvas manager object responsible for preprocessing data for visualisation and interaction between visualisation
     and raw data.</p>
 
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>layout</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>Defines size and coordinate system of a canvas.</p></td>
-        </tr>
-        <tr>
-          <td><code>tracks</code></td>
-          <td>
-                <code>list</code>
-          </td>
-          <td><p>List containing Track objects each of them represents visualisation unit (e.g. particular locus).</p></td>
-        </tr>
-        <tr>
-          <td><code>cross_tracks</code></td>
-          <td>
-                <code>list</code>
-          </td>
-          <td><p>List containing CrossTrack objects each of them represents visualisation unit that
-interacts with multiple regular Track objects.</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Attributes:</b></p>
+  <ul>
+      <li class="field-body">
+        <b>layout</b>
+            (<code>dict</code>)
+        – <p>Defines size and coordinate system of a canvas.</p>
+      </li>
+      <li class="field-body">
+        <b>tracks</b>
+            (<code>list</code>)
+        – <p>List containing Track objects each of them represents visualisation unit (e.g. particular locus).</p>
+      </li>
+      <li class="field-body">
+        <b>cross_tracks</b>
+            (<code>list</code>)
+        – <p>List containing CrossTrack objects each of them represents visualisation unit that
+interacts with multiple regular Track objects.</p>
+      </li>
+  </ul>
       <div class="highlight"><pre><span></span><code>prms (Parameters): Parameters&#39; class object that holds config and cmd arguments.
 </code></pre></div>
 
@@ -1633,29 +1576,16 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Create a CanvasManager object.</p>
 
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>parameters</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
-          </td>
-          <td><p>Parameters' class object that holds config and cmd arguments.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Parameters:</b></p>
+  <ul>
+    
+      <li class="field-body">
+        <b>parameters</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>)
+ – <p>Parameters' class object that holds config and cmd arguments.</p>
+      </li>
+     
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -1700,47 +1630,24 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Add categories color legend tracks to your canvas.</p>
 
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>loci</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Loci" href="../package_data_processing/#lovis4u.DataProcessing.Loci">Loci</a></code>
-          </td>
-          <td><p>Loci object with information about sequences and features.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Parameters:</b></p>
+  <ul>
+    
+      <li class="field-body">
+        <b>loci</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Loci" href="../package_data_processing/#lovis4u.DataProcessing.Loci">Loci</a></code>)
+ – <p>Loci object with information about sequences and features.</p>
+      </li>
+     
+  </ul>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>None</code>
-          </td>
-          <td><p>None</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+            <code>None</code>
+        – <p>None</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -1816,23 +1723,13 @@ interacts with multiple regular Track objects.</p></td>
 
 
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>None</code>
-          </td>
-          <td><p>None</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+            <code>None</code>
+        – <p>None</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -1899,47 +1796,24 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Add loci tracks to your canvas.</p>
 
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>loci</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Loci" href="../package_data_processing/#lovis4u.DataProcessing.Loci">Loci</a></code>
-          </td>
-          <td><p>Loci object with information about sequences and features.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Parameters:</b></p>
+  <ul>
+    
+      <li class="field-body">
+        <b>loci</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Loci" href="../package_data_processing/#lovis4u.DataProcessing.Loci">Loci</a></code>)
+ – <p>Loci object with information about sequences and features.</p>
+      </li>
+     
+  </ul>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>None</code>
-          </td>
-          <td><p>None</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+            <code>None</code>
+        – <p>None</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -2008,23 +1882,13 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Add scale line tracks to your canvas.</p>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>None</code>
-          </td>
-          <td><p>None</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+            <code>None</code>
+        – <p>None</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -2083,47 +1947,24 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Define canvas' layout based on input loci.</p>
 
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>loci</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Loci" href="../package_data_processing/#lovis4u.DataProcessing.Loci">Loci</a></code>
-          </td>
-          <td><p>Loci object with information about sequences and features.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Parameters:</b></p>
+  <ul>
+    
+      <li class="field-body">
+        <b>loci</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Loci" href="../package_data_processing/#lovis4u.DataProcessing.Loci">Loci</a></code>)
+ – <p>Loci object with information about sequences and features.</p>
+      </li>
+     
+  </ul>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>None</code>
-          </td>
-          <td><p>None</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+            <code>None</code>
+        – <p>None</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -2266,47 +2107,24 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Plot all added tracks and save the plot as pdf.</p>
 
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>filename</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td><p>filename for the output pdf.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Parameters:</b></p>
+  <ul>
+    
+      <li class="field-body">
+        <b>filename</b>
+            (<code>str</code>)
+ – <p>filename for the output pdf.</p>
+      </li>
+     
+  </ul>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>None</code>
-          </td>
-          <td><p>None</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+            <code>None</code>
+        – <p>None</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -2401,39 +2219,24 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>A CategoriesColorLegendLoader object prepares data for a categories color legend track Drawing object.</p>
 
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>prms</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
-          </td>
-          <td><p>Parameters' class object.</p></td>
-        </tr>
-        <tr>
-          <td><code>layout</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
-        </tr>
-        <tr>
-          <td><code>track_data</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>Track specific data that will be sent to the Drawing module.</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Attributes:</b></p>
+  <ul>
+      <li class="field-body">
+        <b>prms</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>)
+        – <p>Parameters' class object.</p>
+      </li>
+      <li class="field-body">
+        <b>layout</b>
+            (<code>dict</code>)
+        – <p>Layout built by CanvasManager's define_layout() method.</p>
+      </li>
+      <li class="field-body">
+        <b>track_data</b>
+            (<code>dict</code>)
+        – <p>Track specific data that will be sent to the Drawing module.</p>
+      </li>
+  </ul>
 
 
         <details class="quote">
@@ -2684,29 +2487,16 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Create a CategoriesColorLegendLoader object.</p>
 
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>parameters</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
-          </td>
-          <td><p>Parameters' class object that holds config and cmd arguments.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Parameters:</b></p>
+  <ul>
+    
+      <li class="field-body">
+        <b>parameters</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>)
+ – <p>Parameters' class object that holds config and cmd arguments.</p>
+      </li>
+     
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -2745,22 +2535,12 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Calculate track height to define layout.</p>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-<th>Name</th>        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-<td><code>float</code></td>          <td>
-          </td>
-          <td><p>track height.</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+<b>float</b>        – <p>track height.</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -2819,22 +2599,12 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Initialise a ColorLegendVis track object.</p>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-          </td>
-          <td><p>lovis4u.Drawing.LocusVis | None: visualisation track.</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+        – <p>lovis4u.Drawing.LocusVis | None: visualisation track.</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -2891,50 +2661,27 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Prepare ScaleLoader specific data.</p>
 
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>layout</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
-        </tr>
-        <tr>
-          <td><code>loci</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Loci" href="../package_data_processing/#lovis4u.DataProcessing.Loci">Loci</a></code>
-          </td>
-          <td><p>Loci object with information about sequences and features.</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Attributes:</b></p>
+  <ul>
+      <li class="field-body">
+        <b>layout</b>
+            (<code>dict</code>)
+        – <p>Layout built by CanvasManager's define_layout() method.</p>
+      </li>
+      <li class="field-body">
+        <b>loci</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Loci" href="../package_data_processing/#lovis4u.DataProcessing.Loci">Loci</a></code>)
+        – <p>Loci object with information about sequences and features.</p>
+      </li>
+  </ul>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>None</code>
-          </td>
-          <td><p>None</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+            <code>None</code>
+        – <p>None</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -3073,39 +2820,24 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Parent class for tracks loaders.</p>
 
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>prms</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
-          </td>
-          <td><p>Parameters' class object.</p></td>
-        </tr>
-        <tr>
-          <td><code>layout</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
-        </tr>
-        <tr>
-          <td><code>track_data</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>Track specific data that will be sent to the Drawing module.</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Attributes:</b></p>
+  <ul>
+      <li class="field-body">
+        <b>prms</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>)
+        – <p>Parameters' class object.</p>
+      </li>
+      <li class="field-body">
+        <b>layout</b>
+            (<code>dict</code>)
+        – <p>Layout built by CanvasManager's define_layout() method.</p>
+      </li>
+      <li class="field-body">
+        <b>track_data</b>
+            (<code>dict</code>)
+        – <p>Track specific data that will be sent to the Drawing module.</p>
+      </li>
+  </ul>
 
 
         <details class="quote">
@@ -3232,29 +2964,16 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Parent's constructor for creating a Loader class object.</p>
 
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>parameters</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
-          </td>
-          <td><p>Parameters' class object that holds config and cmd arguments.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Parameters:</b></p>
+  <ul>
+    
+      <li class="field-body">
+        <b>parameters</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>)
+ – <p>Parameters' class object that holds config and cmd arguments.</p>
+      </li>
+     
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -3297,23 +3016,13 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Empty parent's method for track height calculation.</p>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>None</code>
-          </td>
-          <td><p>None</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+            <code>None</code>
+        – <p>None</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -3352,23 +3061,13 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Empty parent's method for track initialisation.</p>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>None</code>
-          </td>
-          <td><p>None</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+            <code>None</code>
+        – <p>None</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -3407,23 +3106,13 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Empty parent's method for data preparation.</p>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>None</code>
-          </td>
-          <td><p>None</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+            <code>None</code>
+        – <p>None</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -3474,39 +3163,24 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>A LocusLoader object prepares data for a Locus track Drawing object.</p>
 
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>prms</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
-          </td>
-          <td><p>Parameters' class object.</p></td>
-        </tr>
-        <tr>
-          <td><code>layout</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
-        </tr>
-        <tr>
-          <td><code>track_data</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>Track specific data that will be sent to the Drawing module.</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Attributes:</b></p>
+  <ul>
+      <li class="field-body">
+        <b>prms</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>)
+        – <p>Parameters' class object.</p>
+      </li>
+      <li class="field-body">
+        <b>layout</b>
+            (<code>dict</code>)
+        – <p>Layout built by CanvasManager's define_layout() method.</p>
+      </li>
+      <li class="field-body">
+        <b>track_data</b>
+            (<code>dict</code>)
+        – <p>Track specific data that will be sent to the Drawing module.</p>
+      </li>
+  </ul>
 
 
         <details class="quote">
@@ -4117,29 +3791,16 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Create a LocusLoader object.</p>
 
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>parameters</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
-          </td>
-          <td><p>Parameters' class object that holds config and cmd arguments.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Parameters:</b></p>
+  <ul>
+    
+      <li class="field-body">
+        <b>parameters</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>)
+ – <p>Parameters' class object that holds config and cmd arguments.</p>
+      </li>
+     
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -4178,23 +3839,13 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Calculate track height to define layout.</p>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-<th>Name</th>        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-<td><code>float</code></td>          <td>
-                <code>float</code>
-          </td>
-          <td><p>track height.</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+<b>float</b>(            <code>float</code>
+)        – <p>track height.</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -4259,22 +3910,12 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Initialise a LocusVis track object.</p>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-          </td>
-          <td><p>lovis4u.Drawing.LocusVis: visualisation track.</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+        – <p>lovis4u.Drawing.LocusVis: visualisation track.</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -4319,50 +3960,27 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Prepare LocusLoader specific data.</p>
 
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>locus</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Locus" href="../package_data_processing/#lovis4u.DataProcessing.Locus">Locus</a></code>
-          </td>
-          <td><p>corresponding locus object.</p></td>
-        </tr>
-        <tr>
-          <td><code>layout</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Attributes:</b></p>
+  <ul>
+      <li class="field-body">
+        <b>locus</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Locus" href="../package_data_processing/#lovis4u.DataProcessing.Locus">Locus</a></code>)
+        – <p>corresponding locus object.</p>
+      </li>
+      <li class="field-body">
+        <b>layout</b>
+            (<code>dict</code>)
+        – <p>Layout built by CanvasManager's define_layout() method.</p>
+      </li>
+  </ul>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>None</code>
-          </td>
-          <td><p>None</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+            <code>None</code>
+        – <p>None</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -4873,25 +4491,14 @@ interacts with multiple regular Track objects.</p></td>
 
 
 
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>args</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>dictionary that holds all arguments.</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Attributes:</b></p>
+  <ul>
+      <li class="field-body">
+        <b>args</b>
+            (<code>dict</code>)
+        – <p>dictionary that holds all arguments.</p>
+      </li>
+  </ul>
 
 
         <details class="quote">
@@ -5289,23 +4896,13 @@ interacts with multiple regular Track objects.</p></td>
 <p>Arguments
     path (str): path to a config file or name (only standard available at this moment).</p>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>None</code>
-          </td>
-          <td><p>None</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+            <code>None</code>
+        – <p>None</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -5414,23 +5011,13 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Load fonts.</p>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>None</code>
-          </td>
-          <td><p>None</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+            <code>None</code>
+        – <p>None</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -5485,23 +5072,13 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Load palette file.</p>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>None</code>
-          </td>
-          <td><p>None</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+            <code>None</code>
+        – <p>None</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -5550,23 +5127,13 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Parse command-line args</p>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>None</code>
-          </td>
-          <td><p>None</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+            <code>None</code>
+        – <p>None</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -5745,39 +5312,24 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>A LocusLoader object prepares data for a Scale track Drawing object.</p>
 
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>prms</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
-          </td>
-          <td><p>Parameters' class object.</p></td>
-        </tr>
-        <tr>
-          <td><code>layout</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
-        </tr>
-        <tr>
-          <td><code>track_data</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>Track specific data that will be sent to the Drawing module.</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Attributes:</b></p>
+  <ul>
+      <li class="field-body">
+        <b>prms</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>)
+        – <p>Parameters' class object.</p>
+      </li>
+      <li class="field-body">
+        <b>layout</b>
+            (<code>dict</code>)
+        – <p>Layout built by CanvasManager's define_layout() method.</p>
+      </li>
+      <li class="field-body">
+        <b>track_data</b>
+            (<code>dict</code>)
+        – <p>Track specific data that will be sent to the Drawing module.</p>
+      </li>
+  </ul>
 
 
         <details class="quote">
@@ -5988,29 +5540,16 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Create a ScaleLoader object.</p>
 
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>parameters</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
-          </td>
-          <td><p>Parameters' class object that holds config and cmd arguments.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Parameters:</b></p>
+  <ul>
+    
+      <li class="field-body">
+        <b>parameters</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>)
+ – <p>Parameters' class object that holds config and cmd arguments.</p>
+      </li>
+     
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -6049,22 +5588,12 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Calculate track height to define layout.</p>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-<th>Name</th>        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-<td><code>float</code></td>          <td>
-          </td>
-          <td><p>track height.</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+<b>float</b>        – <p>track height.</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -6121,22 +5650,12 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Initialise a ScaleVis track object.</p>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-          </td>
-          <td><p>lovis4u.Drawing.LocusVis: visualisation track.</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+        – <p>lovis4u.Drawing.LocusVis: visualisation track.</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>
@@ -6181,43 +5700,22 @@ interacts with multiple regular Track objects.</p></td>
   
       <p>Prepare ScaleLoader specific data.</p>
 
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>layout</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Attributes:</b></p>
+  <ul>
+      <li class="field-body">
+        <b>layout</b>
+            (<code>dict</code>)
+        – <p>Layout built by CanvasManager's define_layout() method.</p>
+      </li>
+  </ul>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>None</code>
-          </td>
-          <td><p>None</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+            <code>None</code>
+        – <p>None</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Manager.py</code></summary>

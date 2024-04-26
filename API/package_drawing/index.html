@@ -744,39 +744,24 @@
   
       <p>ColorLegend track object that handles visualisation of legend to feature's category colors.</p>
 
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>layout</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
-        </tr>
-        <tr>
-          <td><code>track_data</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>a dictionary with prepared track specific data.</p></td>
-        </tr>
-        <tr>
-          <td><code>prms</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
-          </td>
-          <td><p>Parameters' class object.</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Attributes:</b></p>
+  <ul>
+      <li class="field-body">
+        <b>layout</b>
+            (<code>dict</code>)
+        – <p>Layout built by CanvasManager's define_layout() method.</p>
+      </li>
+      <li class="field-body">
+        <b>track_data</b>
+            (<code>dict</code>)
+        – <p>a dictionary with prepared track specific data.</p>
+      </li>
+      <li class="field-body">
+        <b>prms</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
+        – <p>Parameters' class object.</p>
+      </li>
+  </ul>
 
 
         <details class="quote">
@@ -907,49 +892,28 @@
   
       <p>Create a ColorLegend object.</p>
 
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>layout</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>track_data</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>a dictionary with prepared track specific data.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>parameters</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
-          </td>
-          <td><p>Parameters' class object.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Parameters:</b></p>
+  <ul>
+    
+      <li class="field-body">
+        <b>layout</b>
+            (<code>dict</code>)
+ – <p>Layout built by CanvasManager's define_layout() method.</p>
+      </li>
+     
+      <li class="field-body">
+        <b>track_data</b>
+            (<code>dict</code>)
+ – <p>a dictionary with prepared track specific data.</p>
+      </li>
+     
+      <li class="field-body">
+        <b>parameters</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
+ – <p>Parameters' class object.</p>
+      </li>
+     
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Drawing.py</code></summary>
@@ -994,47 +958,24 @@
   
       <p>Draw a ColorLegend track.</p>
 
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>canvas</code></td>
-          <td>
-                <code><span title="reportlab.pdfgen.canvas.Canvas">Canvas</span></code>
-          </td>
-          <td><p>a canvas object.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Parameters:</b></p>
+  <ul>
+    
+      <li class="field-body">
+        <b>canvas</b>
+            (<code><span title="reportlab.pdfgen.canvas.Canvas">Canvas</span></code>)
+ – <p>a canvas object.</p>
+      </li>
+     
+  </ul>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>None</code>
-          </td>
-          <td><p>None</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+            <code>None</code>
+        – <p>None</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Drawing.py</code></summary>
@@ -1121,39 +1062,24 @@
   
       <p>Parent class for Cross-Tracks visualisation.</p>
 
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>layout</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
-        </tr>
-        <tr>
-          <td><code>tracks</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>List with track objects participated in CrossTrack.</p></td>
-        </tr>
-        <tr>
-          <td><code>prms</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
-          </td>
-          <td><p>Parameters' class object.</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Attributes:</b></p>
+  <ul>
+      <li class="field-body">
+        <b>layout</b>
+            (<code>dict</code>)
+        – <p>Layout built by CanvasManager's define_layout() method.</p>
+      </li>
+      <li class="field-body">
+        <b>tracks</b>
+            (<code>dict</code>)
+        – <p>List with track objects participated in CrossTrack.</p>
+      </li>
+      <li class="field-body">
+        <b>prms</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
+        – <p>Parameters' class object.</p>
+      </li>
+  </ul>
 
 
         <details class="quote">
@@ -1254,39 +1180,24 @@
   
       <p>Parent's constructor for creating a CrossTrack object.</p>
 
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>layout</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
-        </tr>
-        <tr>
-          <td><code>tracks</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>List with track objects participated in CrossTrack.</p></td>
-        </tr>
-        <tr>
-          <td><code>parameters</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
-          </td>
-          <td><p>Parameters' class object.</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Attributes:</b></p>
+  <ul>
+      <li class="field-body">
+        <b>layout</b>
+            (<code>dict</code>)
+        – <p>Layout built by CanvasManager's define_layout() method.</p>
+      </li>
+      <li class="field-body">
+        <b>tracks</b>
+            (<code>dict</code>)
+        – <p>List with track objects participated in CrossTrack.</p>
+      </li>
+      <li class="field-body">
+        <b>parameters</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
+        – <p>Parameters' class object.</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Drawing.py</code></summary>
@@ -1333,46 +1244,23 @@
   
       <p>Empy parent's method for cross track drawing.</p>
 
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>canvas</code></td>
-          <td>
-                <code><span title="reportlab.pdfgen.canvas.Canvas">Canvas</span></code>
-          </td>
-          <td><p>a canvas object.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Parameters:</b></p>
+  <ul>
+    
+      <li class="field-body">
+        <b>canvas</b>
+            (<code><span title="reportlab.pdfgen.canvas.Canvas">Canvas</span></code>)
+ – <p>a canvas object.</p>
+      </li>
+     
+  </ul>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-          </td>
-          <td><p>None</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+        – <p>None</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Drawing.py</code></summary>
@@ -1429,39 +1317,24 @@
   
       <p>Track that handle visualisation of homology lines between homologous features on neighbours' loci.</p>
 
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>layout</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
-        </tr>
-        <tr>
-          <td><code>tracks</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>List with track objects participated in CrossTrack.</p></td>
-        </tr>
-        <tr>
-          <td><code>prms</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
-          </td>
-          <td><p>Parameters' class object.</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Attributes:</b></p>
+  <ul>
+      <li class="field-body">
+        <b>layout</b>
+            (<code>dict</code>)
+        – <p>Layout built by CanvasManager's define_layout() method.</p>
+      </li>
+      <li class="field-body">
+        <b>tracks</b>
+            (<code>dict</code>)
+        – <p>List with track objects participated in CrossTrack.</p>
+      </li>
+      <li class="field-body">
+        <b>prms</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
+        – <p>Parameters' class object.</p>
+      </li>
+  </ul>
 
 
         <details class="quote">
@@ -1714,39 +1587,24 @@
   
       <p>Create a HomologyTrack.</p>
 
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>layout</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
-        </tr>
-        <tr>
-          <td><code>tracks</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>List with track objects participated in CrossTrack.</p></td>
-        </tr>
-        <tr>
-          <td><code>parameters</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
-          </td>
-          <td><p>Parameters' class object.</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Attributes:</b></p>
+  <ul>
+      <li class="field-body">
+        <b>layout</b>
+            (<code>dict</code>)
+        – <p>Layout built by CanvasManager's define_layout() method.</p>
+      </li>
+      <li class="field-body">
+        <b>tracks</b>
+            (<code>dict</code>)
+        – <p>List with track objects participated in CrossTrack.</p>
+      </li>
+      <li class="field-body">
+        <b>parameters</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
+        – <p>Parameters' class object.</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Drawing.py</code></summary>
@@ -1789,47 +1647,24 @@
   
       <p>Draw HomologyTrack on canvas.</p>
 
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>canvas</code></td>
-          <td>
-                <code><span title="reportlab.pdfgen.canvas.Canvas">Canvas</span></code>
-          </td>
-          <td><p>a canvas object.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Parameters:</b></p>
+  <ul>
+    
+      <li class="field-body">
+        <b>canvas</b>
+            (<code><span title="reportlab.pdfgen.canvas.Canvas">Canvas</span></code>)
+ – <p>a canvas object.</p>
+      </li>
+     
+  </ul>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>None</code>
-          </td>
-          <td><p>None</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+            <code>None</code>
+        – <p>None</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Drawing.py</code></summary>
@@ -2042,39 +1877,24 @@
   
       <p>LocusVis track object that handles each locus visualisation.</p>
 
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>layout</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
-        </tr>
-        <tr>
-          <td><code>track_data</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>a dictionary with prepared track specific data.</p></td>
-        </tr>
-        <tr>
-          <td><code>prms</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
-          </td>
-          <td><p>Parameters' class object.</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Attributes:</b></p>
+  <ul>
+      <li class="field-body">
+        <b>layout</b>
+            (<code>dict</code>)
+        – <p>Layout built by CanvasManager's define_layout() method.</p>
+      </li>
+      <li class="field-body">
+        <b>track_data</b>
+            (<code>dict</code>)
+        – <p>a dictionary with prepared track specific data.</p>
+      </li>
+      <li class="field-body">
+        <b>prms</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
+        – <p>Parameters' class object.</p>
+      </li>
+  </ul>
 
 
         <details class="quote">
@@ -2545,49 +2365,28 @@
   
       <p>Create a LocusVis object.</p>
 
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>layout</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>track_data</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>a dictionary with prepared track specific data.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>parameters</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
-          </td>
-          <td><p>Parameters' class object.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Parameters:</b></p>
+  <ul>
+    
+      <li class="field-body">
+        <b>layout</b>
+            (<code>dict</code>)
+ – <p>Layout built by CanvasManager's define_layout() method.</p>
+      </li>
+     
+      <li class="field-body">
+        <b>track_data</b>
+            (<code>dict</code>)
+ – <p>a dictionary with prepared track specific data.</p>
+      </li>
+     
+      <li class="field-body">
+        <b>parameters</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
+ – <p>Parameters' class object.</p>
+      </li>
+     
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Drawing.py</code></summary>
@@ -2632,23 +2431,13 @@
   
       <p>Helper method to plot feature polygone</p>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>None</code>
-          </td>
-          <td><p>None</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+            <code>None</code>
+        – <p>None</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Drawing.py</code></summary>
@@ -2803,47 +2592,24 @@
   
       <p>Draw a LocusVis track.</p>
 
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>canvas</code></td>
-          <td>
-                <code><span title="reportlab.pdfgen.canvas.Canvas">Canvas</span></code>
-          </td>
-          <td><p>a canvas object.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Parameters:</b></p>
+  <ul>
+    
+      <li class="field-body">
+        <b>canvas</b>
+            (<code><span title="reportlab.pdfgen.canvas.Canvas">Canvas</span></code>)
+ – <p>a canvas object.</p>
+      </li>
+     
+  </ul>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>None</code>
-          </td>
-          <td><p>None</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+            <code>None</code>
+        – <p>None</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Drawing.py</code></summary>
@@ -3138,39 +2904,24 @@
   
       <p>ScaleVis track object that handles visualisation of scale bottom line.</p>
 
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>layout</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
-        </tr>
-        <tr>
-          <td><code>track_data</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>a dictionary with prepared track specific data.</p></td>
-        </tr>
-        <tr>
-          <td><code>prms</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
-          </td>
-          <td><p>Parameters' class object.</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Attributes:</b></p>
+  <ul>
+      <li class="field-body">
+        <b>layout</b>
+            (<code>dict</code>)
+        – <p>Layout built by CanvasManager's define_layout() method.</p>
+      </li>
+      <li class="field-body">
+        <b>track_data</b>
+            (<code>dict</code>)
+        – <p>a dictionary with prepared track specific data.</p>
+      </li>
+      <li class="field-body">
+        <b>prms</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
+        – <p>Parameters' class object.</p>
+      </li>
+  </ul>
 
 
         <details class="quote">
@@ -3355,49 +3106,28 @@
   
       <p>Create a LocusVis object.</p>
 
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>layout</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>track_data</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>a dictionary with prepared track specific data.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>parameters</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
-          </td>
-          <td><p>Parameters' class object.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Parameters:</b></p>
+  <ul>
+    
+      <li class="field-body">
+        <b>layout</b>
+            (<code>dict</code>)
+ – <p>Layout built by CanvasManager's define_layout() method.</p>
+      </li>
+     
+      <li class="field-body">
+        <b>track_data</b>
+            (<code>dict</code>)
+ – <p>a dictionary with prepared track specific data.</p>
+      </li>
+     
+      <li class="field-body">
+        <b>parameters</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
+ – <p>Parameters' class object.</p>
+      </li>
+     
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Drawing.py</code></summary>
@@ -3444,47 +3174,24 @@
   
       <p>Draw a ScaleVis track.</p>
 
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>canvas</code></td>
-          <td>
-                <code><span title="reportlab.pdfgen.canvas.Canvas">Canvas</span></code>
-          </td>
-          <td><p>a canvas object.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Parameters:</b></p>
+  <ul>
+    
+      <li class="field-body">
+        <b>canvas</b>
+            (<code><span title="reportlab.pdfgen.canvas.Canvas">Canvas</span></code>)
+ – <p>a canvas object.</p>
+      </li>
+     
+  </ul>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>None</code>
-          </td>
-          <td><p>None</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+            <code>None</code>
+        – <p>None</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Drawing.py</code></summary>
@@ -3623,39 +3330,24 @@
   
       <p>Parent class for visualisation Tracks.</p>
 
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>layout</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
-        </tr>
-        <tr>
-          <td><code>track_data</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>a dictionary with prepared track specific data.</p></td>
-        </tr>
-        <tr>
-          <td><code>prms</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
-          </td>
-          <td><p>Parameters' class object.</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Attributes:</b></p>
+  <ul>
+      <li class="field-body">
+        <b>layout</b>
+            (<code>dict</code>)
+        – <p>Layout built by CanvasManager's define_layout() method.</p>
+      </li>
+      <li class="field-body">
+        <b>track_data</b>
+            (<code>dict</code>)
+        – <p>a dictionary with prepared track specific data.</p>
+      </li>
+      <li class="field-body">
+        <b>prms</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
+        – <p>Parameters' class object.</p>
+      </li>
+  </ul>
 
 
         <details class="quote">
@@ -3756,49 +3448,28 @@
   
       <p>Parent's constructor for creating a Track object.</p>
 
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>layout</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>track_data</code></td>
-          <td>
-                <code>dict</code>
-          </td>
-          <td><p>a dictionary with prepared track specific data.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>parameters</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
-          </td>
-          <td><p>Parameters' class object.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Parameters:</b></p>
+  <ul>
+    
+      <li class="field-body">
+        <b>layout</b>
+            (<code>dict</code>)
+ – <p>Layout built by CanvasManager's define_layout() method.</p>
+      </li>
+     
+      <li class="field-body">
+        <b>track_data</b>
+            (<code>dict</code>)
+ – <p>a dictionary with prepared track specific data.</p>
+      </li>
+     
+      <li class="field-body">
+        <b>parameters</b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
+ – <p>Parameters' class object.</p>
+      </li>
+     
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Drawing.py</code></summary>
@@ -3845,47 +3516,24 @@
   
       <p>Empy parent's method for track drawing.</p>
 
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>canvas</code></td>
-          <td>
-                <code><span title="reportlab.pdfgen.canvas.Canvas">Canvas</span></code>
-          </td>
-          <td><p>a canvas object.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+  <p><b>Parameters:</b></p>
+  <ul>
+    
+      <li class="field-body">
+        <b>canvas</b>
+            (<code><span title="reportlab.pdfgen.canvas.Canvas">Canvas</span></code>)
+ – <p>a canvas object.</p>
+      </li>
+     
+  </ul>
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>None</code>
-          </td>
-          <td><p>None</p></td>
-        </tr>
-    </tbody>
-  </table>
+  <p> <b>Returns:</b></p>
+  <ul>
+      <li class="field-body">
+            <code>None</code>
+        – <p>None</p>
+      </li>
+  </ul>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Drawing.py</code></summary>

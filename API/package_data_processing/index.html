@@ -759,76 +759,117 @@
   
       <p>A Feature object represents a locus' feature (currently only CDS) and its properties.</p>
 
-  <p><b>Attributes:</b></p>
+
+
+  <p><span class="doc-section-title">Attributes:</span></p>
   <ul>
-      <li class="field-body">
-        <b>feature_id</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.feature_id">feature_id</span></code></b>
             (<code>str</code>)
-        – <p>Feature identifier.</p>
+        –
+        <div class="doc-md-description">
+          <p>Feature identifier.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>feature_type</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.feature_type">feature_type</span></code></b>
             (<code>str</code>)
-        – <p>Type of element (e.g. CDS or tRNA). Currently only CDS are supported.</p>
+        –
+        <div class="doc-md-description">
+          <p>Type of element (e.g. CDS or tRNA). Currently only CDS are supported.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>start</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.start">start</span></code></b>
             (<code>int</code>)
-        – <p>1-based start genomic coordinate.</p>
+        –
+        <div class="doc-md-description">
+          <p>1-based start genomic coordinate.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>end</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.end">end</span></code></b>
             (<code>int</code>)
-        – <p>1-based end genomic coordinates</p>
+        –
+        <div class="doc-md-description">
+          <p>1-based end genomic coordinates</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>strand</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.strand">strand</span></code></b>
             (<code>int</code>)
-        – <p>Genomic strand (1: plus strand, -1: minus strand).</p>
+        –
+        <div class="doc-md-description">
+          <p>Genomic strand (1: plus strand, -1: minus strand).</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>name</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.name">name</span></code></b>
             (<code>str</code>)
-        – <p>Name of the feature which will be used as a label.</p>
+        –
+        <div class="doc-md-description">
+          <p>Name of the feature which will be used as a label.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>sequence</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.sequence">sequence</span></code></b>
             (<code><span title="Bio.Seq.Seq">Seq</span></code>)
-        – <p>Feature's sequence.</p>
+        –
+        <div class="doc-md-description">
+          <p>Feature's sequence.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>record</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.record">record</span></code></b>
             (<code><span title="Bio.SeqRecord.SeqRecord">SeqRecord</span></code>)
-        – <p>SeqRecord object of corresponding feature sequence.</p>
+        –
+        <div class="doc-md-description">
+          <p>SeqRecord object of corresponding feature sequence.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>group</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.group">group</span></code></b>
             (<code>str</code>)
-        – <p>Feature group that defines feature's color and meant to represent a set of homologous features.
+        –
+        <div class="doc-md-description">
+          <p>Feature group that defines feature's color and meant to represent a set of homologous features.
 Can be set with Loci.mmseqs_cluster() method that uses mmseqs clustering to define CDS feature groups.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>group_type</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.group_type">group_type</span></code></b>
             (<code>str</code>)
-        – <p>Type of feature group that allow to visualise different set of feature groups differently
+        –
+        <div class="doc-md-description">
+          <p>Type of feature group that allow to visualise different set of feature groups differently
 (e.g. plot labels only for features which group_type is "variable" or "labeled").</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>category</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.category">category</span></code></b>
             (<code>str</code>)
-        – <p>Feature category which initially is built to handle phrogs category annotation.
+        –
+        <div class="doc-md-description">
+          <p>Feature category which initially is built to handle phrogs category annotation.
 In visualisation it defines the "category" color annotation under features.
 Supposed to represent clusters on locus or any second layer of feature properties.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>vis_prms</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.vis_prms">vis_prms</span></code></b>
             (<code>dict</code>)
-        – <p>Visualisation parameters that holds colors, label and other info for Drawing methods.</p>
+        –
+        <div class="doc-md-description">
+          <p>Visualisation parameters that holds colors, label and other info for Drawing methods.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>prms</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.prms">prms</span></code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object that holds config and cmd arguments.</p>
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object that holds config and cmd arguments.</p>
+        </div>
       </li>
   </ul>
 
@@ -987,71 +1028,109 @@ Supposed to represent clusters on locus or any second layer of feature propertie
   
       <p>Create a Feature object.</p>
 
-  <p><b>Parameters:</b></p>
+
+
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
-        <b>feature_id</b>
+      <li class="doc-section-item field-body">
+        <b><code>feature_id</code></b>
             (<code>str</code>)
-        – <p>Feature identifier.</p>
+        –
+        <div class="doc-md-description">
+          <p>Feature identifier.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>feature_type</b>
+      <li class="doc-section-item field-body">
+        <b><code>feature_type</code></b>
             (<code>str</code>)
-        – <p>Type of element (e.g. CDS or tRNA). Currently only CDS are supported.</p>
+        –
+        <div class="doc-md-description">
+          <p>Type of element (e.g. CDS or tRNA). Currently only CDS are supported.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>start</b>
+      <li class="doc-section-item field-body">
+        <b><code>start</code></b>
             (<code>int</code>)
-        – <p>1-based start genomic coordinate.</p>
+        –
+        <div class="doc-md-description">
+          <p>1-based start genomic coordinate.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>end</b>
+      <li class="doc-section-item field-body">
+        <b><code>end</code></b>
             (<code>int</code>)
-        – <p>1-based end genomic coordinates</p>
+        –
+        <div class="doc-md-description">
+          <p>1-based end genomic coordinates</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>strand</b>
+      <li class="doc-section-item field-body">
+        <b><code>strand</code></b>
             (<code>int</code>)
-        – <p>Genomic strand (1: plus strand, -1: minus strand).</p>
+        –
+        <div class="doc-md-description">
+          <p>Genomic strand (1: plus strand, -1: minus strand).</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>name</b>
+      <li class="doc-section-item field-body">
+        <b><code>name</code></b>
             (<code>str</code>)
-        – <p>Name of the feature which will be used as a label.</p>
+        –
+        <div class="doc-md-description">
+          <p>Name of the feature which will be used as a label.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>sequence</b>
+      <li class="doc-section-item field-body">
+        <b><code>sequence</code></b>
             (<code><span title="Bio.Seq.Seq">Seq</span></code>)
-        – <p>Feature's sequence.</p>
+        –
+        <div class="doc-md-description">
+          <p>Feature's sequence.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>group</b>
+      <li class="doc-section-item field-body">
+        <b><code>group</code></b>
             (<code>str</code>)
-        – <p>Feature group that defines feature's color and meant to represent a set of homologous features.
+        –
+        <div class="doc-md-description">
+          <p>Feature group that defines feature's color and meant to represent a set of homologous features.
 Can be set with Loci.mmseqs_cluster() method that uses mmseqs clustering to define CDS feature groups.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>group_type</b>
+      <li class="doc-section-item field-body">
+        <b><code>group_type</code></b>
             (<code>str</code>)
-        – <p>Type of feature group that allow to visualise different set of feature groups differently
+        –
+        <div class="doc-md-description">
+          <p>Type of feature group that allow to visualise different set of feature groups differently
 (e.g. plot labels only for features which group_type is "variable" or "labeled").</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>category</b>
+      <li class="doc-section-item field-body">
+        <b><code>category</code></b>
             (<code>str</code>)
-        – <p>Feature category which initially is built to handle phrogs category annotation.
+        –
+        <div class="doc-md-description">
+          <p>Feature category which initially is built to handle phrogs category annotation.
 In visualisation it defines the "category" color annotation under features.
 Supposed to represent clusters on locus or any second layer of feature properties.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>vis_prms</b>
+      <li class="doc-section-item field-body">
+        <b><code>vis_prms</code></b>
             (<code>dict</code>)
-        – <p>Visualisation parameters that holds colors, label and other info for Drawing methods.</p>
+        –
+        <div class="doc-md-description">
+          <p>Visualisation parameters that holds colors, label and other info for Drawing methods.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>prms</b>
+      <li class="doc-section-item field-body">
+        <b><code>prms</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object that holds config and cmd arguments.</p>
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object that holds config and cmd arguments.</p>
+        </div>
       </li>
   </ul>
 
@@ -1162,29 +1241,43 @@ Supposed to represent clusters on locus or any second layer of feature propertie
   
       <p>A Loci object holds information about all loci to be plotted and methods for data preparation.</p>
 
-  <p><b>Attributes:</b></p>
+
+
+  <p><span class="doc-section-title">Attributes:</span></p>
   <ul>
-      <li class="field-body">
-        <b>loci</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.loci">loci</span></code></b>
             (<code>list</code>)
-        – <p>List of Locus objects.</p>
+        –
+        <div class="doc-md-description">
+          <p>List of Locus objects.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>loci_annotation</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.loci_annotation">loci_annotation</span></code></b>
             (<code><span title="pandas.DataFrame">DataFrame</span></code>)
-        – <p>Table with information about each locus that defines visualisation
+        –
+        <div class="doc-md-description">
+          <p>Table with information about each locus that defines visualisation
 (e.g. coordinates for visualisation, description, etc).</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>feature_annotation</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.feature_annotation">feature_annotation</span></code></b>
             (<code><span title="pandas.DataFrame">DataFrame</span></code>)
-        – <p>Table with information about each feature that defines visualisation
+        –
+        <div class="doc-md-description">
+          <p>Table with information about each feature that defines visualisation
 (e.g. group, name, category, etc).</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>prms</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.prms">prms</span></code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object that holds config and cmd arguments.</p>
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object that holds config and cmd arguments.</p>
+        </div>
       </li>
   </ul>
 
@@ -2753,12 +2846,19 @@ Supposed to represent clusters on locus or any second layer of feature propertie
   
       <p>Create a Loci object.</p>
 
-  <p><b>Parameters:</b></p>
+
+
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
-        <b>parameters</b>
-            (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object that holds config and cmd arguments.</p>
+      <li class="doc-section-item field-body">
+        <b><code>parameters</code></b>
+            (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>, default:
+                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
+)
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object that holds config and cmd arguments.</p>
+        </div>
       </li>
   </ul>
 
@@ -2809,30 +2909,46 @@ Supposed to represent clusters on locus or any second layer of feature propertie
   
       <p>Private method to load an annotation file.</p>
 
-  <p><b>Parameters:</b></p>
+
+
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
-        <b>file_path</b>
+      <li class="doc-section-item field-body">
+        <b><code>file_path</code></b>
             (<code>str</code>)
-        – <p>File path for an annotation file to be loaded.</p>
+        –
+        <div class="doc-md-description">
+          <p>File path for an annotation file to be loaded.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>annotation_columns</b>
+      <li class="doc-section-item field-body">
+        <b><code>annotation_columns</code></b>
             (<code>list</code>)
-        – <p>List of columns that should be considered.</p>
+        –
+        <div class="doc-md-description">
+          <p>List of columns that should be considered.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>index_column</b>
+      <li class="doc-section-item field-body">
+        <b><code>index_column</code></b>
             (<code>str</code>)
-        – <p>Column name to be considered as index.</p>
+        –
+        <div class="doc-md-description">
+          <p>Column name to be considered as index.</p>
+        </div>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code><span title="pandas.DataFrame">DataFrame</span></code>
-        – <p>pd.DataFrame: Preprocessed annotation file.</p>
+        –
+        <div class="doc-md-description">
+          <p>pd.DataFrame: Preprocessed annotation file.</p>
+      </div>
       </li>
   </ul>
 
@@ -2891,40 +3007,62 @@ Supposed to represent clusters on locus or any second layer of feature propertie
   
       <p>Private method for updating feature annotation.</p>
 
-  <p><b>Parameters:</b></p>
+
+
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
-        <b>feature_id</b>
+      <li class="doc-section-item field-body">
+        <b><code>feature_id</code></b>
             (<code>str</code>)
-        – <p>Feature identifier.</p>
+        –
+        <div class="doc-md-description">
+          <p>Feature identifier.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>locus_id</b>
+      <li class="doc-section-item field-body">
+        <b><code>locus_id</code></b>
             (<code>str</code>)
-        – <p>Sequence description.</p>
+        –
+        <div class="doc-md-description">
+          <p>Sequence description.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>coordinates</b>
+      <li class="doc-section-item field-body">
+        <b><code>coordinates</code></b>
             (<code>str</code>)
-        – <p>Feature coordinates.</p>
+        –
+        <div class="doc-md-description">
+          <p>Feature coordinates.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>category</b>
+      <li class="doc-section-item field-body">
+        <b><code>category</code></b>
             (<code>str</code>)
-        – <p>Feature type.</p>
+        –
+        <div class="doc-md-description">
+          <p>Feature type.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>name</b>
+      <li class="doc-section-item field-body">
+        <b><code>name</code></b>
             (<code>str</code>)
-        – <p>Feature name.</p>
+        –
+        <div class="doc-md-description">
+          <p>Feature name.</p>
+        </div>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -3021,30 +3159,46 @@ Supposed to represent clusters on locus or any second layer of feature propertie
   
       <p>Private method for updating loci annotation.</p>
 
-  <p><b>Parameters:</b></p>
+
+
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
-        <b>record_id</b>
+      <li class="doc-section-item field-body">
+        <b><code>record_id</code></b>
             (<code>str</code>)
-        – <p>Sequence identifier.</p>
+        –
+        <div class="doc-md-description">
+          <p>Sequence identifier.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>record_description</b>
+      <li class="doc-section-item field-body">
+        <b><code>record_description</code></b>
             (<code>str</code>)
-        – <p>Sequence description.</p>
+        –
+        <div class="doc-md-description">
+          <p>Sequence description.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>record_length</b>
+      <li class="doc-section-item field-body">
+        <b><code>record_length</code></b>
             (<code>int</code>)
-        – <p>Sequence length.</p>
+        –
+        <div class="doc-md-description">
+          <p>Sequence length.</p>
+        </div>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -3109,29 +3263,36 @@ Supposed to represent clusters on locus or any second layer of feature propertie
     This function changes the order of loci that are plotted and also updates corresponding to each loci group
     attribute which defines homologues groups of proteomes.</p>
 
+<details class="note" open>
+  <summary>It's designed to use as input mmseqs_cluster() function results. However, if you have obtained homologues</summary>
+  <p>groups by other method you can also build pandas dataframe based on that with index corresponding to
+feature id and column "cluster" corresponding to the group.</p>
+</details>
 
-<p> <b>It&#39;s designed to use as input mmseqs_cluster() function results. However, if you have obtained homologues:</b> <p>groups by other method you can also build pandas dataframe based on that with index corresponding to
-feature id and column "cluster" corresponding to the group.</p></p>
 
-
-
-
-
-  <p><b>Parameters:</b></p>
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
-        <b>dataframe</b>
+      <li class="doc-section-item field-body">
+        <b><code>dataframe</code></b>
             (<code><span title="pandas.DataFrame">DataFrame</span></code>)
-        – <p>dataframe with feature id - group pairs. Its index column should
+        –
+        <div class="doc-md-description">
+          <p>dataframe with feature id - group pairs. Its index column should
 represent all loci CDS features.</p>
+        </div>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -3318,34 +3479,46 @@ represent all loci CDS features.</p>
   
       <p>Set features attribute "group" based on input dataframe.</p>
 
+<details class="note" open>
+  <summary>Note</summary>
+  <p>By default is designed to use mmseqs_cluster() function results as input. If you already have precomputed
+feature groups you can set them with feature table.</p>
+</details>
 
-<p> <b>Note:</b> <p>By default is designed to use mmseqs_cluster() function results as input. If you already have precomputed
-feature groups you can set them with feature table.</p></p>
 
-
-
-
-
-  <p><b>Parameters:</b></p>
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
-        <b>dataframe</b>
+      <li class="doc-section-item field-body">
+        <b><code>dataframe</code></b>
             (<code><span title="pandas.DataFrame">DataFrame</span></code>)
-        – <p>dataframe with feature id - group pairs. Its index column should
+        –
+        <div class="doc-md-description">
+          <p>dataframe with feature id - group pairs. Its index column should
 represent all loci CDS features.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>group_column_name</b>
-            (<code>str</code>)
-        – <p>column name of the dataframe that represent corresponding group to each feature.</p>
+      <li class="doc-section-item field-body">
+        <b><code>group_column_name</code></b>
+            (<code>str</code>, default:
+                <code>&#39;cluster&#39;</code>
+)
+        –
+        <div class="doc-md-description">
+          <p>column name of the dataframe that represent corresponding group to each feature.</p>
+        </div>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -3422,18 +3595,20 @@ represent all loci CDS features.</p>
   
       <p>Set feature visaulisation attribute "show_label" based on feature groups.</p>
 
+<details class="note" open>
+  <summary>Note</summary>
+  <p>controlled by feature_labels_to_ignore, feature_group_types_to_show_label, and
+feature_group_types_to_show_label_on_first_occurrence parameters.</p>
+</details>
 
-<p> <b>Note:</b> <p>controlled by feature_labels_to_ignore, feature_group_types_to_show_label, and
-feature_group_types_to_show_label_on_first_occurrence parameters.</p></p>
 
-
-
-
-
-  <p> <b>Returns:</b></p>
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
-        – <p>None</p>
+      <li class="doc-section-item field-body">
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -3519,29 +3694,36 @@ feature_group_types_to_show_label_on_first_occurrence parameters.</p></p>
       <p>Define feature group type attributes (variable or shell/core) based on their conservation in corresponding
     loci group feature.</p>
 
+<details class="note" open>
+  <summary>It's designed to use as input mmseqs_cluster() function results. However, if you have obtained homologues</summary>
+  <p>groups by other method you can also build pandas dataframe based on that with index corresponding to
+feature id and column "cluster" corresponding to the group.</p>
+</details>
 
-<p> <b>It&#39;s designed to use as input mmseqs_cluster() function results. However, if you have obtained homologues:</b> <p>groups by other method you can also build pandas dataframe based on that with index corresponding to
-feature id and column "cluster" corresponding to the group.</p></p>
 
-
-
-
-
-  <p><b>Parameters:</b></p>
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
-        <b>mmseqs_results</b>
+      <li class="doc-section-item field-body">
+        <b><code>mmseqs_results</code></b>
             (<code><span title="pandas.DataFrame">DataFrame</span></code>)
-        – <p>dataframe with feature id - group pairs. Its index column should
+        –
+        <div class="doc-md-description">
+          <p>dataframe with feature id - group pairs. Its index column should
 represent all loci CDS features.</p>
+        </div>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -3656,11 +3838,16 @@ represent all loci CDS features.</p>
   
       <p>Get loci lengths and number of regions.</p>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
-<b>list</b>(            <code>list[list[int]]</code>
-)        – <p>list each element of each contains locus size and number of breaks for visualisation track.</p>
+      <li class="doc-section-item field-body">
+<b><code>list</code></b> (            <code>list[list[int]]</code>
+)        –
+        <div class="doc-md-description">
+          <p>list each element of each contains locus size and number of breaks for visualisation track.</p>
+      </div>
       </li>
   </ul>
 
@@ -3723,20 +3910,30 @@ represent all loci CDS features.</p>
   
       <p>Load features annotation file.</p>
 
-  <p><b>Parameters:</b></p>
+
+
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
-        <b>file_path</b>
+      <li class="doc-section-item field-body">
+        <b><code>file_path</code></b>
             (<code>str</code>)
-        – <p>File path for a features annotation file to be loaded.</p>
+        –
+        <div class="doc-md-description">
+          <p>File path for a features annotation file to be loaded.</p>
+        </div>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -3789,20 +3986,30 @@ represent all loci CDS features.</p>
   
       <p>Load loci annotation file.</p>
 
-  <p><b>Parameters:</b></p>
+
+
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
-        <b>file_path</b>
+      <li class="doc-section-item field-body">
+        <b><code>file_path</code></b>
             (<code>str</code>)
-        – <p>File path for a loci annotation file to be loaded.</p>
+        –
+        <div class="doc-md-description">
+          <p>File path for a loci annotation file to be loaded.</p>
+        </div>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -3854,27 +4061,34 @@ represent all loci CDS features.</p>
       <p>Load loci from the folder with gff files. Each GFF file also should contain corresponding nucleotide
     sequence. Such files are produced for example by pharokka annotation tool.</p>
 
+<details class="note" open>
+  <summary>Note</summary>
+  <p>All files with extension other than .gff (not case-sensitive) will be ignored.</p>
+</details>
 
-<p> <b>Note:</b> <p>All files with extension other than .gff (not case-sensitive) will be ignored.</p></p>
 
-
-
-
-
-  <p><b>Parameters:</b></p>
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
-        <b>input_folder</b>
+      <li class="doc-section-item field-body">
+        <b><code>input_folder</code></b>
             (<code>str</code>)
-        – <p>folder name with gff files.</p>
+        –
+        <div class="doc-md-description">
+          <p>folder name with gff files.</p>
+        </div>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -4087,27 +4301,34 @@ represent all loci CDS features.</p>
   
       <p>Load loci from the folder with genbank files.</p>
 
+<details class="note" open>
+  <summary>Note</summary>
+  <p>All files with extension other than .gb (not case-sensitive) will be ignored.</p>
+</details>
 
-<p> <b>Note:</b> <p>All files with extension other than .gb (not case-sensitive) will be ignored.</p></p>
 
-
-
-
-
-  <p><b>Parameters:</b></p>
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
-        <b>input_folder</b>
+      <li class="doc-section-item field-body">
+        <b><code>input_folder</code></b>
             (<code>str</code>)
-        – <p>folder name with gb files.</p>
+        –
+        <div class="doc-md-description">
+          <p>folder name with gb files.</p>
+        </div>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -4352,12 +4573,17 @@ represent all loci CDS features.</p>
   
       <p>Cluster all proteins using mmseqs in order to define groups of homologues.</p>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code><span title="pandas.DataFrame">DataFrame</span></code>
-        – <p>pd.DataFrame: parsed mmseqs table (pandas dataframe) with columns: cluster, protein_id; where cluster is
+        –
+        <div class="doc-md-description">
+          <p>pd.DataFrame: parsed mmseqs table (pandas dataframe) with columns: cluster, protein_id; where cluster is
 defined by representative sequence id within a corresponding cluster.</p>
+      </div>
       </li>
   </ul>
 
@@ -4492,18 +4718,20 @@ defined by representative sequence id within a corresponding cluster.</p>
   
       <p>Auto re-orient loci (reset strands) of loci if they are not matched.</p>
 
+<details class="note" open>
+  <summary>Note</summary>
+  <p>Function tries to maximise co-orientation of homologous features.</p>
+</details>
 
-<p> <b>Note:</b> <p>Function tries to maximise co-orientation of homologous features.</p></p>
 
-
-
-
-
-  <p> <b>Returns:</b></p>
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -4634,18 +4862,20 @@ defined by representative sequence id within a corresponding cluster.</p>
   
       <p>Save feature annotation table to the output folder.</p>
 
+<details class="note" open>
+  <summary>Note</summary>
+  <p>Output file name is features_annotation_table.tsv</p>
+</details>
 
-<p> <b>Note:</b> <p>Output file name is features_annotation_table.tsv</p></p>
 
-
-
-
-
-  <p> <b>Returns:</b></p>
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -4710,18 +4940,20 @@ defined by representative sequence id within a corresponding cluster.</p>
   
       <p>Save loci annotation table to the output folder.</p>
 
+<details class="note" open>
+  <summary>Note</summary>
+  <p>Output file name is loci_annotation_table.tsv</p>
+</details>
 
-<p> <b>Note:</b> <p>Output file name is loci_annotation_table.tsv</p></p>
 
-
-
-
-
-  <p> <b>Returns:</b></p>
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -4786,20 +5018,32 @@ defined by representative sequence id within a corresponding cluster.</p>
   
       <p>Define colors for each category.</p>
 
-  <p><b>Parameters:</b></p>
+
+
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
-        <b>use_table</b>
-            (<code>bool</code>)
-        – <p>Bool value whether table with predefined colors should be used or not.</p>
+      <li class="doc-section-item field-body">
+        <b><code>use_table</code></b>
+            (<code>bool</code>, default:
+                <code>True</code>
+)
+        –
+        <div class="doc-md-description">
+          <p>Bool value whether table with predefined colors should be used or not.</p>
+        </div>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -4894,11 +5138,16 @@ defined by representative sequence id within a corresponding cluster.</p>
   
       <p>Define features fill color based on corresponding feature group and group types.</p>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -5005,65 +5254,100 @@ defined by representative sequence id within a corresponding cluster.</p>
   
       <p>A Locus object represents a particular locus that will be one of the sequence tracks on final figure.</p>
 
-  <p><b>Attributes:</b></p>
+
+
+  <p><span class="doc-section-title">Attributes:</span></p>
   <ul>
-      <li class="field-body">
-        <b>seq_id</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.seq_id">seq_id</span></code></b>
             (<code>str</code>)
-        – <p>Sequence identifier. Can be used to label locus.</p>
+        –
+        <div class="doc-md-description">
+          <p>Sequence identifier. Can be used to label locus.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>coordinates</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.coordinates">coordinates</span></code></b>
             (<code>list</code>)
-        – <p>List of regions to be shown. Each region format: dict with keys: start, end, strand and
+        –
+        <div class="doc-md-description">
+          <p>List of regions to be shown. Each region format: dict with keys: start, end, strand and
 corresponding 1-based start, end coordinates and strand (1: plus strand, -1: minus strand).</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>size</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.size">size</span></code></b>
             (<code>int</code>)
-        – <p>total length of regions to be plotted.</p>
+        –
+        <div class="doc-md-description">
+          <p>total length of regions to be plotted.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>description</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.description">description</span></code></b>
             (<code>str</code>)
-        – <p>Sequence description that can be used to label locus.</p>
+        –
+        <div class="doc-md-description">
+          <p>Sequence description that can be used to label locus.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>length</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.length">length</span></code></b>
             (<code>int</code>)
-        – <p>full length of the locus independent on region that should be plotted.</p>
+        –
+        <div class="doc-md-description">
+          <p>full length of the locus independent on region that should be plotted.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>circular</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.circular">circular</span></code></b>
             (<code>bool</code>)
-        – <p>Bool value whether locus is circular or not. It defines whether you have gap or not passing
+        –
+        <div class="doc-md-description">
+          <p>Bool value whether locus is circular or not. It defines whether you have gap or not passing
 1 value on the final figure.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>features</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.features">features</span></code></b>
             (<code>list</code>)
-        – <p>list of Feature objects that overlapped with coordinates.</p>
+        –
+        <div class="doc-md-description">
+          <p>list of Feature objects that overlapped with coordinates.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>order</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.order">order</span></code></b>
             (<code>int</code>)
-        – <p>index on ordered list of loci visualisation. Can be pre-defined or found based on loci
+        –
+        <div class="doc-md-description">
+          <p>index on ordered list of loci visualisation. Can be pre-defined or found based on loci
 hierarchical clustering with cluster_sequences category.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>group</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.group">group</span></code></b>
             (<code>int | str</code>)
-        – <p>locus group that defines set of closely-related loci.</p>
+        –
+        <div class="doc-md-description">
+          <p>locus group that defines set of closely-related loci.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>category_colors</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.category_colors">category_colors</span></code></b>
             (<code>dict</code>)
-        – <p>colors for locus' features categories.</p>
+        –
+        <div class="doc-md-description">
+          <p>colors for locus' features categories.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>prms</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.DataProcessing.prms">prms</span></code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object that holds config and cmd arguments.</p>
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object that holds config and cmd arguments.</p>
+        </div>
       </li>
   </ul>
 
@@ -5230,54 +5514,85 @@ hierarchical clustering with cluster_sequences category.</p>
   
       <p>Create a Locus object.</p>
 
-  <p><b>Parameters:</b></p>
+
+
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
-        <b>seq_id</b>
+      <li class="doc-section-item field-body">
+        <b><code>seq_id</code></b>
             (<code>str</code>)
-        – <p>Sequence identifier. Can be used to label locus.</p>
+        –
+        <div class="doc-md-description">
+          <p>Sequence identifier. Can be used to label locus.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>coordinates</b>
+      <li class="doc-section-item field-body">
+        <b><code>coordinates</code></b>
             (<code>list</code>)
-        – <p>List of regions to be shown. Each region format: dict with keys: start, end, strand and
+        –
+        <div class="doc-md-description">
+          <p>List of regions to be shown. Each region format: dict with keys: start, end, strand and
 corresponding 1-based start, end coordinates and strand (1: plus strand, -1: minus strand).</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>description</b>
+      <li class="doc-section-item field-body">
+        <b><code>description</code></b>
             (<code>str</code>)
-        – <p>Sequence description that can be used to label locus.</p>
+        –
+        <div class="doc-md-description">
+          <p>Sequence description that can be used to label locus.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>length</b>
+      <li class="doc-section-item field-body">
+        <b><code>length</code></b>
             (<code>int</code>)
-        – <p>full length of the locus independent on region that should be plotted.</p>
+        –
+        <div class="doc-md-description">
+          <p>full length of the locus independent on region that should be plotted.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>circular</b>
+      <li class="doc-section-item field-body">
+        <b><code>circular</code></b>
             (<code>bool</code>)
-        – <p>Bool value whether locus is circular or not. It defines whether you have gap or not passing
+        –
+        <div class="doc-md-description">
+          <p>Bool value whether locus is circular or not. It defines whether you have gap or not passing
 1 value on the final figure.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>features</b>
+      <li class="doc-section-item field-body">
+        <b><code>features</code></b>
             (<code>list</code>)
-        – <p>list of Feature objects that overlapped with coordinates.</p>
+        –
+        <div class="doc-md-description">
+          <p>list of Feature objects that overlapped with coordinates.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>order</b>
+      <li class="doc-section-item field-body">
+        <b><code>order</code></b>
             (<code>int</code>)
-        – <p>index on ordered list of loci visualisation. Can be pre-defined or found based on loci</p>
+        –
+        <div class="doc-md-description">
+          <p>index on ordered list of loci visualisation. Can be pre-defined or found based on loci</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>parameters</b>
+      <li class="doc-section-item field-body">
+        <b><code>parameters</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object that holds config and cmd arguments.</p>
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object that holds config and cmd arguments.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>group</b>
-            (<code>int | str</code>)
-        – <p>locus group that defines set of closely-related loci [1].</p>
+      <li class="doc-section-item field-body">
+        <b><code>group</code></b>
+            (<code>int | str</code>, default:
+                <code>1</code>
+)
+        –
+        <div class="doc-md-description">
+          <p>locus group that defines set of closely-related loci [1].</p>
+        </div>
       </li>
   </ul>
 

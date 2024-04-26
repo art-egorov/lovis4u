@@ -881,12 +881,17 @@
   
       <p>An Image object holds canvas;.</p>
 
-  <p><b>Attributes:</b></p>
+
+
+  <p><span class="doc-section-title">Attributes:</span></p>
   <ul>
-      <li class="field-body">
-        <b>canvas</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.Manager.canvas">canvas</span></code></b>
             (<code><span title="reportlab.pdfgen.canvas.Canvas">Canvas</span></code>)
-        – <p>canvas object of the reportlab library.</p>
+        –
+        <div class="doc-md-description">
+          <p>canvas object of the reportlab library.</p>
+        </div>
       </li>
   </ul>
 
@@ -983,22 +988,33 @@
   
       <p>Create a Canvas object.</p>
 
-  <p><b>Parameters:</b></p>
+
+
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
-        <b>filename</b>
+      <li class="doc-section-item field-body">
+        <b><code>filename</code></b>
             (<code>str</code>)
-        – <p>path and name of the output pdf.</p>
+        –
+        <div class="doc-md-description">
+          <p>path and name of the output pdf.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>width</b>
+      <li class="doc-section-item field-body">
+        <b><code>width</code></b>
             (<code>float</code>)
-        – <p>width of the canvas.</p>
+        –
+        <div class="doc-md-description">
+          <p>width of the canvas.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>height</b>
+      <li class="doc-section-item field-body">
+        <b><code>height</code></b>
             (<code>float</code>)
-        – <p>height of the pdf.</p>
+        –
+        <div class="doc-md-description">
+          <p>height of the pdf.</p>
+        </div>
       </li>
   </ul>
 
@@ -1049,11 +1065,16 @@
   
       <p>Save canvas as a pdf file.</p>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -1107,23 +1128,34 @@
       <p>Canvas manager object responsible for preprocessing data for visualisation and interaction between visualisation
     and raw data.</p>
 
-  <p><b>Attributes:</b></p>
+
+
+  <p><span class="doc-section-title">Attributes:</span></p>
   <ul>
-      <li class="field-body">
-        <b>layout</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.Manager.layout">layout</span></code></b>
             (<code>dict</code>)
-        – <p>Defines size and coordinate system of a canvas.</p>
+        –
+        <div class="doc-md-description">
+          <p>Defines size and coordinate system of a canvas.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>tracks</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.Manager.tracks">tracks</span></code></b>
             (<code>list</code>)
-        – <p>List containing Track objects each of them represents visualisation unit (e.g. particular locus).</p>
+        –
+        <div class="doc-md-description">
+          <p>List containing Track objects each of them represents visualisation unit (e.g. particular locus).</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>cross_tracks</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.Manager.cross_tracks">cross_tracks</span></code></b>
             (<code>list</code>)
-        – <p>List containing CrossTrack objects each of them represents visualisation unit that
+        –
+        <div class="doc-md-description">
+          <p>List containing CrossTrack objects each of them represents visualisation unit that
 interacts with multiple regular Track objects.</p>
+        </div>
       </li>
   </ul>
       <div class="highlight"><pre><span></span><code>prms (Parameters): Parameters&#39; class object that holds config and cmd arguments.
@@ -1572,12 +1604,17 @@ interacts with multiple regular Track objects.</p>
   
       <p>Create a CanvasManager object.</p>
 
-  <p><b>Parameters:</b></p>
+
+
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
-        <b>parameters</b>
+      <li class="doc-section-item field-body">
+        <b><code>parameters</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object that holds config and cmd arguments.</p>
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object that holds config and cmd arguments.</p>
+        </div>
       </li>
   </ul>
 
@@ -1624,20 +1661,30 @@ interacts with multiple regular Track objects.</p>
   
       <p>Add categories color legend tracks to your canvas.</p>
 
-  <p><b>Parameters:</b></p>
+
+
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
-        <b>loci</b>
+      <li class="doc-section-item field-body">
+        <b><code>loci</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Loci" href="../package_data_processing/#lovis4u.DataProcessing.Loci">Loci</a></code>)
-        – <p>Loci object with information about sequences and features.</p>
+        –
+        <div class="doc-md-description">
+          <p>Loci object with information about sequences and features.</p>
+        </div>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -1708,18 +1755,20 @@ interacts with multiple regular Track objects.</p>
   
       <p>Add homology track to your canvas.</p>
 
+<details class="note" open>
+  <summary>Note</summary>
+  <p>You should add this track after you added loci tracks.</p>
+</details>
 
-<p> <b>Note:</b> <p>You should add this track after you added loci tracks.</p></p>
 
-
-
-
-
-  <p> <b>Returns:</b></p>
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -1788,20 +1837,30 @@ interacts with multiple regular Track objects.</p>
   
       <p>Add loci tracks to your canvas.</p>
 
-  <p><b>Parameters:</b></p>
+
+
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
-        <b>loci</b>
+      <li class="doc-section-item field-body">
+        <b><code>loci</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Loci" href="../package_data_processing/#lovis4u.DataProcessing.Loci">Loci</a></code>)
-        – <p>Loci object with information about sequences and features.</p>
+        –
+        <div class="doc-md-description">
+          <p>Loci object with information about sequences and features.</p>
+        </div>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -1872,11 +1931,16 @@ interacts with multiple regular Track objects.</p>
   
       <p>Add scale line tracks to your canvas.</p>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -1937,20 +2001,30 @@ interacts with multiple regular Track objects.</p>
   
       <p>Define canvas' layout based on input loci.</p>
 
-  <p><b>Parameters:</b></p>
+
+
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
-        <b>loci</b>
+      <li class="doc-section-item field-body">
+        <b><code>loci</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Loci" href="../package_data_processing/#lovis4u.DataProcessing.Loci">Loci</a></code>)
-        – <p>Loci object with information about sequences and features.</p>
+        –
+        <div class="doc-md-description">
+          <p>Loci object with information about sequences and features.</p>
+        </div>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -2095,20 +2169,30 @@ interacts with multiple regular Track objects.</p>
   
       <p>Plot all added tracks and save the plot as pdf.</p>
 
-  <p><b>Parameters:</b></p>
+
+
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
-        <b>filename</b>
+      <li class="doc-section-item field-body">
+        <b><code>filename</code></b>
             (<code>str</code>)
-        – <p>filename for the output pdf.</p>
+        –
+        <div class="doc-md-description">
+          <p>filename for the output pdf.</p>
+        </div>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -2205,22 +2289,33 @@ interacts with multiple regular Track objects.</p>
   
       <p>A CategoriesColorLegendLoader object prepares data for a categories color legend track Drawing object.</p>
 
-  <p><b>Attributes:</b></p>
+
+
+  <p><span class="doc-section-title">Attributes:</span></p>
   <ul>
-      <li class="field-body">
-        <b>prms</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.Manager.prms">prms</span></code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object.</p>
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>layout</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.Manager.layout">layout</span></code></b>
             (<code>dict</code>)
-        – <p>Layout built by CanvasManager's define_layout() method.</p>
+        –
+        <div class="doc-md-description">
+          <p>Layout built by CanvasManager's define_layout() method.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>track_data</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.Manager.track_data">track_data</span></code></b>
             (<code>dict</code>)
-        – <p>Track specific data that will be sent to the Drawing module.</p>
+        –
+        <div class="doc-md-description">
+          <p>Track specific data that will be sent to the Drawing module.</p>
+        </div>
       </li>
   </ul>
 
@@ -2473,12 +2568,17 @@ interacts with multiple regular Track objects.</p>
   
       <p>Create a CategoriesColorLegendLoader object.</p>
 
-  <p><b>Parameters:</b></p>
+
+
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
-        <b>parameters</b>
+      <li class="doc-section-item field-body">
+        <b><code>parameters</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object that holds config and cmd arguments.</p>
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object that holds config and cmd arguments.</p>
+        </div>
       </li>
   </ul>
 
@@ -2519,10 +2619,15 @@ interacts with multiple regular Track objects.</p>
   
       <p>Calculate track height to define layout.</p>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
-<b>float</b>        – <p>track height.</p>
+      <li class="doc-section-item field-body">
+<b><code>float</code></b>        –
+        <div class="doc-md-description">
+          <p>track height.</p>
+      </div>
       </li>
   </ul>
 
@@ -2583,10 +2688,15 @@ interacts with multiple regular Track objects.</p>
   
       <p>Initialise a ColorLegendVis track object.</p>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
-        – <p>lovis4u.Drawing.LocusVis | None: visualisation track.</p>
+      <li class="doc-section-item field-body">
+        –
+        <div class="doc-md-description">
+          <p>lovis4u.Drawing.LocusVis | None: visualisation track.</p>
+      </div>
       </li>
   </ul>
 
@@ -2645,25 +2755,38 @@ interacts with multiple regular Track objects.</p>
   
       <p>Prepare ScaleLoader specific data.</p>
 
-  <p><b>Attributes:</b></p>
+
+
+  <p><span class="doc-section-title">Attributes:</span></p>
   <ul>
-      <li class="field-body">
-        <b>layout</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.Manager.CategoriesColorLegendLoader.layout">layout</span></code></b>
             (<code>dict</code>)
-        – <p>Layout built by CanvasManager's define_layout() method.</p>
+        –
+        <div class="doc-md-description">
+          <p>Layout built by CanvasManager's define_layout() method.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>loci</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.Manager.CategoriesColorLegendLoader.loci">loci</span></code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Loci" href="../package_data_processing/#lovis4u.DataProcessing.Loci">Loci</a></code>)
-        – <p>Loci object with information about sequences and features.</p>
+        –
+        <div class="doc-md-description">
+          <p>Loci object with information about sequences and features.</p>
+        </div>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -2804,22 +2927,33 @@ interacts with multiple regular Track objects.</p>
   
       <p>Parent class for tracks loaders.</p>
 
-  <p><b>Attributes:</b></p>
+
+
+  <p><span class="doc-section-title">Attributes:</span></p>
   <ul>
-      <li class="field-body">
-        <b>prms</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.Manager.prms">prms</span></code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object.</p>
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>layout</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.Manager.layout">layout</span></code></b>
             (<code>dict</code>)
-        – <p>Layout built by CanvasManager's define_layout() method.</p>
+        –
+        <div class="doc-md-description">
+          <p>Layout built by CanvasManager's define_layout() method.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>track_data</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.Manager.track_data">track_data</span></code></b>
             (<code>dict</code>)
-        – <p>Track specific data that will be sent to the Drawing module.</p>
+        –
+        <div class="doc-md-description">
+          <p>Track specific data that will be sent to the Drawing module.</p>
+        </div>
       </li>
   </ul>
 
@@ -2948,12 +3082,17 @@ interacts with multiple regular Track objects.</p>
   
       <p>Parent's constructor for creating a Loader class object.</p>
 
-  <p><b>Parameters:</b></p>
+
+
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
-        <b>parameters</b>
+      <li class="doc-section-item field-body">
+        <b><code>parameters</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object that holds config and cmd arguments.</p>
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object that holds config and cmd arguments.</p>
+        </div>
       </li>
   </ul>
 
@@ -2998,11 +3137,16 @@ interacts with multiple regular Track objects.</p>
   
       <p>Empty parent's method for track height calculation.</p>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -3043,11 +3187,16 @@ interacts with multiple regular Track objects.</p>
   
       <p>Empty parent's method for track initialisation.</p>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -3088,11 +3237,16 @@ interacts with multiple regular Track objects.</p>
   
       <p>Empty parent's method for data preparation.</p>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -3145,22 +3299,33 @@ interacts with multiple regular Track objects.</p>
   
       <p>A LocusLoader object prepares data for a Locus track Drawing object.</p>
 
-  <p><b>Attributes:</b></p>
+
+
+  <p><span class="doc-section-title">Attributes:</span></p>
   <ul>
-      <li class="field-body">
-        <b>prms</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.Manager.prms">prms</span></code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object.</p>
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>layout</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.Manager.layout">layout</span></code></b>
             (<code>dict</code>)
-        – <p>Layout built by CanvasManager's define_layout() method.</p>
+        –
+        <div class="doc-md-description">
+          <p>Layout built by CanvasManager's define_layout() method.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>track_data</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.Manager.track_data">track_data</span></code></b>
             (<code>dict</code>)
-        – <p>Track specific data that will be sent to the Drawing module.</p>
+        –
+        <div class="doc-md-description">
+          <p>Track specific data that will be sent to the Drawing module.</p>
+        </div>
       </li>
   </ul>
 
@@ -3773,12 +3938,17 @@ interacts with multiple regular Track objects.</p>
   
       <p>Create a LocusLoader object.</p>
 
-  <p><b>Parameters:</b></p>
+
+
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
-        <b>parameters</b>
+      <li class="doc-section-item field-body">
+        <b><code>parameters</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object that holds config and cmd arguments.</p>
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object that holds config and cmd arguments.</p>
+        </div>
       </li>
   </ul>
 
@@ -3819,11 +3989,16 @@ interacts with multiple regular Track objects.</p>
   
       <p>Calculate track height to define layout.</p>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
-<b>float</b>(            <code>float</code>
-)        – <p>track height.</p>
+      <li class="doc-section-item field-body">
+<b><code>float</code></b> (            <code>float</code>
+)        –
+        <div class="doc-md-description">
+          <p>track height.</p>
+      </div>
       </li>
   </ul>
 
@@ -3890,10 +4065,15 @@ interacts with multiple regular Track objects.</p>
   
       <p>Initialise a LocusVis track object.</p>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
-        – <p>lovis4u.Drawing.LocusVis: visualisation track.</p>
+      <li class="doc-section-item field-body">
+        –
+        <div class="doc-md-description">
+          <p>lovis4u.Drawing.LocusVis: visualisation track.</p>
+      </div>
       </li>
   </ul>
 
@@ -3940,25 +4120,38 @@ interacts with multiple regular Track objects.</p>
   
       <p>Prepare LocusLoader specific data.</p>
 
-  <p><b>Attributes:</b></p>
+
+
+  <p><span class="doc-section-title">Attributes:</span></p>
   <ul>
-      <li class="field-body">
-        <b>locus</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.Manager.LocusLoader.locus">locus</span></code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Locus" href="../package_data_processing/#lovis4u.DataProcessing.Locus">Locus</a></code>)
-        – <p>corresponding locus object.</p>
+        –
+        <div class="doc-md-description">
+          <p>corresponding locus object.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>layout</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.Manager.LocusLoader.layout">layout</span></code></b>
             (<code>dict</code>)
-        – <p>Layout built by CanvasManager's define_layout() method.</p>
+        –
+        <div class="doc-md-description">
+          <p>Layout built by CanvasManager's define_layout() method.</p>
+        </div>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -4463,20 +4656,22 @@ interacts with multiple regular Track objects.</p>
   
       <p>A Parameters object holds and parse command line's and config's arguments.</p>
 
+<details class="note" open>
+  <summary>Note</summary>
+  <p>A Parameters object have to be created in each script since it's used almost by each
+    class of the tool as a mandatory argument.</p>
+</details>
 
-<p> <b>Note:</b> <p>A Parameters object have to be created in each script since it's used almost by each
-    class of the tool as a mandatory argument.</p></p>
 
-
-
-
-
-  <p><b>Attributes:</b></p>
+  <p><span class="doc-section-title">Attributes:</span></p>
   <ul>
-      <li class="field-body">
-        <b>args</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.Manager.args">args</span></code></b>
             (<code>dict</code>)
-        – <p>dictionary that holds all arguments.</p>
+        –
+        <div class="doc-md-description">
+          <p>dictionary that holds all arguments.</p>
+        </div>
       </li>
   </ul>
 
@@ -4876,11 +5071,16 @@ interacts with multiple regular Track objects.</p>
 <p>Arguments
     path (str): path to a config file or name (only standard available at this moment).</p>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -4991,11 +5191,16 @@ interacts with multiple regular Track objects.</p>
   
       <p>Load fonts.</p>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -5052,11 +5257,16 @@ interacts with multiple regular Track objects.</p>
   
       <p>Load palette file.</p>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -5107,11 +5317,16 @@ interacts with multiple regular Track objects.</p>
   
       <p>Parse command-line args</p>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -5292,22 +5507,33 @@ interacts with multiple regular Track objects.</p>
   
       <p>A LocusLoader object prepares data for a Scale track Drawing object.</p>
 
-  <p><b>Attributes:</b></p>
+
+
+  <p><span class="doc-section-title">Attributes:</span></p>
   <ul>
-      <li class="field-body">
-        <b>prms</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.Manager.prms">prms</span></code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object.</p>
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>layout</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.Manager.layout">layout</span></code></b>
             (<code>dict</code>)
-        – <p>Layout built by CanvasManager's define_layout() method.</p>
+        –
+        <div class="doc-md-description">
+          <p>Layout built by CanvasManager's define_layout() method.</p>
+        </div>
       </li>
-      <li class="field-body">
-        <b>track_data</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.Manager.track_data">track_data</span></code></b>
             (<code>dict</code>)
-        – <p>Track specific data that will be sent to the Drawing module.</p>
+        –
+        <div class="doc-md-description">
+          <p>Track specific data that will be sent to the Drawing module.</p>
+        </div>
       </li>
   </ul>
 
@@ -5520,12 +5746,17 @@ interacts with multiple regular Track objects.</p>
   
       <p>Create a ScaleLoader object.</p>
 
-  <p><b>Parameters:</b></p>
+
+
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
-        <b>parameters</b>
+      <li class="doc-section-item field-body">
+        <b><code>parameters</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object that holds config and cmd arguments.</p>
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object that holds config and cmd arguments.</p>
+        </div>
       </li>
   </ul>
 
@@ -5566,10 +5797,15 @@ interacts with multiple regular Track objects.</p>
   
       <p>Calculate track height to define layout.</p>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
-<b>float</b>        – <p>track height.</p>
+      <li class="doc-section-item field-body">
+<b><code>float</code></b>        –
+        <div class="doc-md-description">
+          <p>track height.</p>
+      </div>
       </li>
   </ul>
 
@@ -5628,10 +5864,15 @@ interacts with multiple regular Track objects.</p>
   
       <p>Initialise a ScaleVis track object.</p>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
-        – <p>lovis4u.Drawing.LocusVis: visualisation track.</p>
+      <li class="doc-section-item field-body">
+        –
+        <div class="doc-md-description">
+          <p>lovis4u.Drawing.LocusVis: visualisation track.</p>
+      </div>
       </li>
   </ul>
 
@@ -5678,20 +5919,30 @@ interacts with multiple regular Track objects.</p>
   
       <p>Prepare ScaleLoader specific data.</p>
 
-  <p><b>Attributes:</b></p>
+
+
+  <p><span class="doc-section-title">Attributes:</span></p>
   <ul>
-      <li class="field-body">
-        <b>layout</b>
+      <li class="doc-section-item field-body">
+        <b><code><span title="lovis4u.Manager.ScaleLoader.layout">layout</span></code></b>
             (<code>dict</code>)
-        – <p>Layout built by CanvasManager's define_layout() method.</p>
+        –
+        <div class="doc-md-description">
+          <p>Layout built by CanvasManager's define_layout() method.</p>
+        </div>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 

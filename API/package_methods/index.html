@@ -642,46 +642,44 @@
   
       <p>Change paths in the internal config files for linux or mac.</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>to</code></td>
-          <td class="doc-param-details">
-            <p>mac | linux</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>mac | linux</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -761,23 +759,20 @@
   
       <p>Copy the lovis4u package data folder to your current dir.</p>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -837,98 +832,84 @@
   
       <p>Transform feature coordinates to x page coordinates.</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>nt_start</code></td>
-          <td class="doc-param-details">
-            <p>1-based nucleotide start coordinate.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>int</code>
-                </span>
-            </p>
+          <td>
+                <code>int</code>
+          </td>
+          <td><p>1-based nucleotide start coordinate.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>nt_end</code></td>
-          <td class="doc-param-details">
-            <p>1-based nucleotide end coordinate.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>int</code>
-                </span>
-            </p>
+          <td>
+                <code>int</code>
+          </td>
+          <td><p>1-based nucleotide end coordinate.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>feature_strand</code></td>
-          <td class="doc-param-details">
-            <p>1 | -1 corresponding to plus or minus strand, respectively.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>int</code>
-                </span>
-            </p>
+          <td>
+                <code>int</code>
+          </td>
+          <td><p>1 | -1 corresponding to plus or minus strand, respectively.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>locus</code></td>
-          <td class="doc-param-details">
-            <p>Corresponding locus object.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Locus" href="../package_data_processing/#lovis4u.DataProcessing.Locus">Locus</a></code>
-                </span>
-            </p>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Locus" href="../package_data_processing/#lovis4u.DataProcessing.Locus">Locus</a></code>
+          </td>
+          <td><p>Corresponding locus object.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>layout</code></td>
-          <td class="doc-param-details">
-            <p>Layout of the canvas.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>dict</code>
-                </span>
-            </p>
+          <td>
+                <code>dict</code>
+          </td>
+          <td><p>Layout of the canvas.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
-          <td>
-              <code>dict</code>
+<td><code>dict</code></td>          <td>
+                <code>dict</code>
           </td>
-          <td class="doc-returns-details">
-            <p>Dictionary with corresponding start and end page coordinates.</p>
-              <p>
-                <span class="doc-returns-annotation">
-                  <b>TYPE:</b>
-                    <code>dict</code>
-                </span>
-              </p>
-          </td>
+          <td><p>Dictionary with corresponding start and end page coordinates.</p></td>
         </tr>
     </tbody>
   </table>
@@ -1026,62 +1007,54 @@
   
       <p>Get HEX color by its name</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>name</code></td>
-          <td class="doc-param-details">
-            <p>name of a color.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>name of a color.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>parameters</code></td>
-          <td class="doc-param-details">
-            <p>Parameters' object dict.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>dict</code>
-                </span>
-            </p>
+          <td>
+                <code>dict</code>
+          </td>
+          <td><p>Parameters' object dict.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
-          <td>
-              <code>str</code>
+<td><code>str</code></td>          <td>
+                <code>str</code>
           </td>
-          <td class="doc-returns-details">
-            <p>HEX color.</p>
-              <p>
-                <span class="doc-returns-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-              </p>
-          </td>
+          <td><p>HEX color.</p></td>
         </tr>
     </tbody>
   </table>
@@ -1133,62 +1106,54 @@
   
       <p>Get rgba color by its name</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>name</code></td>
-          <td class="doc-param-details">
-            <p>name of a color.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>name of a color.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>parameters</code></td>
-          <td class="doc-param-details">
-            <p>Parameters' object dict.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>dict</code>
-                </span>
-            </p>
+          <td>
+                <code>dict</code>
+          </td>
+          <td><p>Parameters' object dict.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
-          <td>
-              <code>tuple</code>
+<td><code>tuple</code></td>          <td>
+                <code>tuple</code>
           </td>
-          <td class="doc-returns-details">
-            <p>RGBA color</p>
-              <p>
-                <span class="doc-returns-annotation">
-                  <b>TYPE:</b>
-                    <code>tuple</code>
-                </span>
-              </p>
-          </td>
+          <td><p>RGBA color</p></td>
         </tr>
     </tbody>
   </table>
@@ -1238,86 +1203,74 @@
   
       <p>Transform nucleotide coordinate to x page coordinate.</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>nt</code></td>
-          <td class="doc-param-details">
-            <p>Nucleotide coordinate.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>int</code>
-                </span>
-            </p>
+          <td>
+                <code>int</code>
+          </td>
+          <td><p>Nucleotide coordinate.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>locus</code></td>
-          <td class="doc-param-details">
-            <p>Corresponding locus object.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Locus" href="../package_data_processing/#lovis4u.DataProcessing.Locus">Locus</a></code>
-                </span>
-            </p>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Locus" href="../package_data_processing/#lovis4u.DataProcessing.Locus">Locus</a></code>
+          </td>
+          <td><p>Corresponding locus object.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>layout</code></td>
-          <td class="doc-param-details">
-            <p>Layout of the canvas.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>dict</code>
-                </span>
-            </p>
+          <td>
+                <code>dict</code>
+          </td>
+          <td><p>Layout of the canvas.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>mode</code></td>
-          <td class="doc-param-details">
-            <p>Mode whether coordinate should be centered to the nt or on the side.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Mode whether coordinate should be centered to the nt or on the side.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
-          <td>
-              <code>float</code>
+<td><code>float</code></td>          <td>
+                <code>float</code>
           </td>
-          <td class="doc-returns-details">
-            <p>Corresponding page coordinate.</p>
-              <p>
-                <span class="doc-returns-annotation">
-                  <b>TYPE:</b>
-                    <code>float</code>
-                </span>
-              </p>
-          </td>
+          <td><p>Corresponding page coordinate.</p></td>
         </tr>
     </tbody>
   </table>
@@ -1425,86 +1378,74 @@
   
       <p>Transform region coordinates to x page coordinates.</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>nt_start</code></td>
-          <td class="doc-param-details">
-            <p>1-based nucleotide start coordinate.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>int</code>
-                </span>
-            </p>
+          <td>
+                <code>int</code>
+          </td>
+          <td><p>1-based nucleotide start coordinate.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>nt_end</code></td>
-          <td class="doc-param-details">
-            <p>1-based nucleotide end coordinate.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>int</code>
-                </span>
-            </p>
+          <td>
+                <code>int</code>
+          </td>
+          <td><p>1-based nucleotide end coordinate.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>locus</code></td>
-          <td class="doc-param-details">
-            <p>Corresponding locus object.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Locus" href="../package_data_processing/#lovis4u.DataProcessing.Locus">Locus</a></code>
-                </span>
-            </p>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Locus" href="../package_data_processing/#lovis4u.DataProcessing.Locus">Locus</a></code>
+          </td>
+          <td><p>Corresponding locus object.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>layout</code></td>
-          <td class="doc-param-details">
-            <p>Layout of the canvas.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>dict</code>
-                </span>
-            </p>
+          <td>
+                <code>dict</code>
+          </td>
+          <td><p>Layout of the canvas.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
-          <td>
-              <code>dict</code>
+<td><code>dict</code></td>          <td>
+                <code>dict</code>
           </td>
-          <td class="doc-returns-details">
-            <p>Dictionary with corresponding start and end page coordinates.</p>
-              <p>
-                <span class="doc-returns-annotation">
-                  <b>TYPE:</b>
-                    <code>dict</code>
-                </span>
-              </p>
-          </td>
+          <td><p>Dictionary with corresponding start and end page coordinates.</p></td>
         </tr>
     </tbody>
   </table>
@@ -1572,62 +1513,54 @@
   
       <p>Helper function to get darker version of input color</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>hex_c</code></td>
-          <td class="doc-param-details">
-            <p>input HEX color</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>input HEX color</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>scale_l</code></td>
-          <td class="doc-param-details">
-            <p>scale of lightness</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>float</code>
-                </span>
-            </p>
+          <td>
+                <code>float</code>
+          </td>
+          <td><p>scale of lightness</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
-          <td>
-              <code>str</code>
+<td><code>str</code></td>          <td>
+                <code>str</code>
           </td>
-          <td class="doc-returns-details">
-            <p>new HEX color</p>
-              <p>
-                <span class="doc-returns-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-              </p>
-          </td>
+          <td><p>new HEX color</p></td>
         </tr>
     </tbody>
   </table>
@@ -1683,62 +1616,54 @@
   
       <p>Transform string height to the font size.</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>height</code></td>
-          <td class="doc-param-details">
-            <p>available height of the string.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>float</code>
-                </span>
-            </p>
+          <td>
+                <code>float</code>
+          </td>
+          <td><p>available height of the string.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>font_type</code></td>
-          <td class="doc-param-details">
-            <p>font type (see config file; at this moment only regular is available).</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>font type (see config file; at this moment only regular is available).</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
-          <td>
-              <code>float</code>
+<td><code>float</code></td>          <td>
+                <code>float</code>
           </td>
-          <td class="doc-returns-details">
-            <p>font size defined by height.</p>
-              <p>
-                <span class="doc-returns-annotation">
-                  <b>TYPE:</b>
-                    <code>float</code>
-                </span>
-              </p>
-          </td>
+          <td><p>font size defined by height.</p></td>
         </tr>
     </tbody>
   </table>
@@ -1794,62 +1719,54 @@
   
       <p>Get path basename and replace its extension</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>path</code></td>
-          <td class="doc-param-details">
-            <p>path to a file</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>path to a file</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>new_extension</code></td>
-          <td class="doc-param-details">
-            <p>new extension</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>new extension</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
-          <td>
-              <code>str</code>
+<td><code>str</code></td>          <td>
+                <code>str</code>
           </td>
-          <td class="doc-returns-details">
-            <p>basename of a file with new extension.</p>
-              <p>
-                <span class="doc-returns-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-              </p>
-          </td>
+          <td><p>basename of a file with new extension.</p></td>
         </tr>
     </tbody>
   </table>

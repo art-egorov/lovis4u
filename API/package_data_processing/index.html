@@ -759,173 +759,110 @@
   
       <p>A Feature object represents a locus' feature (currently only CDS) and its properties.</p>
 
+  <p><strong>Attributes:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>ATTRIBUTE</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>feature_id</code></td>
-          <td class="doc-attribute-details">
-            <p>Feature identifier.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
           </td>
+          <td><p>Feature identifier.</p></td>
         </tr>
         <tr>
           <td><code>feature_type</code></td>
-          <td class="doc-attribute-details">
-            <p>Type of element (e.g. CDS or tRNA). Currently only CDS are supported.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
           </td>
+          <td><p>Type of element (e.g. CDS or tRNA). Currently only CDS are supported.</p></td>
         </tr>
         <tr>
           <td><code>start</code></td>
-          <td class="doc-attribute-details">
-            <p>1-based start genomic coordinate.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>int</code>
-                </span>
-            </p>
+          <td>
+                <code>int</code>
           </td>
+          <td><p>1-based start genomic coordinate.</p></td>
         </tr>
         <tr>
           <td><code>end</code></td>
-          <td class="doc-attribute-details">
-            <p>1-based end genomic coordinates</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>int</code>
-                </span>
-            </p>
+          <td>
+                <code>int</code>
           </td>
+          <td><p>1-based end genomic coordinates</p></td>
         </tr>
         <tr>
           <td><code>strand</code></td>
-          <td class="doc-attribute-details">
-            <p>Genomic strand (1: plus strand, -1: minus strand).</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>int</code>
-                </span>
-            </p>
+          <td>
+                <code>int</code>
           </td>
+          <td><p>Genomic strand (1: plus strand, -1: minus strand).</p></td>
         </tr>
         <tr>
           <td><code>name</code></td>
-          <td class="doc-attribute-details">
-            <p>Name of the feature which will be used as a label.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
           </td>
+          <td><p>Name of the feature which will be used as a label.</p></td>
         </tr>
         <tr>
           <td><code>sequence</code></td>
-          <td class="doc-attribute-details">
-            <p>Feature's sequence.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code><span title="Bio.Seq.Seq">Seq</span></code>
-                </span>
-            </p>
+          <td>
+                <code><span title="Bio.Seq.Seq">Seq</span></code>
           </td>
+          <td><p>Feature's sequence.</p></td>
         </tr>
         <tr>
           <td><code>record</code></td>
-          <td class="doc-attribute-details">
-            <p>SeqRecord object of corresponding feature sequence.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code><span title="Bio.SeqRecord.SeqRecord">SeqRecord</span></code>
-                </span>
-            </p>
+          <td>
+                <code><span title="Bio.SeqRecord.SeqRecord">SeqRecord</span></code>
           </td>
+          <td><p>SeqRecord object of corresponding feature sequence.</p></td>
         </tr>
         <tr>
           <td><code>group</code></td>
-          <td class="doc-attribute-details">
-            <p>Feature group that defines feature's color and meant to represent a set of homologous features.
-Can be set with Loci.mmseqs_cluster() method that uses mmseqs clustering to define CDS feature groups.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
           </td>
+          <td><p>Feature group that defines feature's color and meant to represent a set of homologous features.
+Can be set with Loci.mmseqs_cluster() method that uses mmseqs clustering to define CDS feature groups.</p></td>
         </tr>
         <tr>
           <td><code>group_type</code></td>
-          <td class="doc-attribute-details">
-            <p>Type of feature group that allow to visualise different set of feature groups differently
-(e.g. plot labels only for features which group_type is "variable" or "labeled").</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
           </td>
+          <td><p>Type of feature group that allow to visualise different set of feature groups differently
+(e.g. plot labels only for features which group_type is "variable" or "labeled").</p></td>
         </tr>
         <tr>
           <td><code>category</code></td>
-          <td class="doc-attribute-details">
-            <p>Feature category which initially is built to handle phrogs category annotation.
-In visualisation it defines the "category" color annotation under features.
-Supposed to represent clusters on locus or any second layer of feature properties.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
           </td>
+          <td><p>Feature category which initially is built to handle phrogs category annotation.
+In visualisation it defines the "category" color annotation under features.
+Supposed to represent clusters on locus or any second layer of feature properties.</p></td>
         </tr>
         <tr>
           <td><code>vis_prms</code></td>
-          <td class="doc-attribute-details">
-            <p>Visualisation parameters that holds colors, label and other info for Drawing methods.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>dict</code>
-                </span>
-            </p>
+          <td>
+                <code>dict</code>
           </td>
+          <td><p>Visualisation parameters that holds colors, label and other info for Drawing methods.</p></td>
         </tr>
         <tr>
           <td><code>prms</code></td>
-          <td class="doc-attribute-details">
-            <p>Parameters' class object that holds config and cmd arguments.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
-                </span>
-            </p>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
           </td>
+          <td><p>Parameters' class object that holds config and cmd arguments.</p></td>
         </tr>
     </tbody>
   </table>
@@ -1085,160 +1022,139 @@ Supposed to represent clusters on locus or any second layer of feature propertie
   
       <p>Create a Feature object.</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>feature_id</code></td>
-          <td class="doc-param-details">
-            <p>Feature identifier.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Feature identifier.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>feature_type</code></td>
-          <td class="doc-param-details">
-            <p>Type of element (e.g. CDS or tRNA). Currently only CDS are supported.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Type of element (e.g. CDS or tRNA). Currently only CDS are supported.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>start</code></td>
-          <td class="doc-param-details">
-            <p>1-based start genomic coordinate.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>int</code>
-                </span>
-            </p>
+          <td>
+                <code>int</code>
+          </td>
+          <td><p>1-based start genomic coordinate.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>end</code></td>
-          <td class="doc-param-details">
-            <p>1-based end genomic coordinates</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>int</code>
-                </span>
-            </p>
+          <td>
+                <code>int</code>
+          </td>
+          <td><p>1-based end genomic coordinates</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>strand</code></td>
-          <td class="doc-param-details">
-            <p>Genomic strand (1: plus strand, -1: minus strand).</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>int</code>
-                </span>
-            </p>
+          <td>
+                <code>int</code>
+          </td>
+          <td><p>Genomic strand (1: plus strand, -1: minus strand).</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>name</code></td>
-          <td class="doc-param-details">
-            <p>Name of the feature which will be used as a label.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Name of the feature which will be used as a label.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>sequence</code></td>
-          <td class="doc-param-details">
-            <p>Feature's sequence.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code><span title="Bio.Seq.Seq">Seq</span></code>
-                </span>
-            </p>
+          <td>
+                <code><span title="Bio.Seq.Seq">Seq</span></code>
+          </td>
+          <td><p>Feature's sequence.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>group</code></td>
-          <td class="doc-param-details">
-            <p>Feature group that defines feature's color and meant to represent a set of homologous features.
-Can be set with Loci.mmseqs_cluster() method that uses mmseqs clustering to define CDS feature groups.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Feature group that defines feature's color and meant to represent a set of homologous features.
+Can be set with Loci.mmseqs_cluster() method that uses mmseqs clustering to define CDS feature groups.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>group_type</code></td>
-          <td class="doc-param-details">
-            <p>Type of feature group that allow to visualise different set of feature groups differently
-(e.g. plot labels only for features which group_type is "variable" or "labeled").</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Type of feature group that allow to visualise different set of feature groups differently
+(e.g. plot labels only for features which group_type is "variable" or "labeled").</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>category</code></td>
-          <td class="doc-param-details">
-            <p>Feature category which initially is built to handle phrogs category annotation.
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Feature category which initially is built to handle phrogs category annotation.
 In visualisation it defines the "category" color annotation under features.
-Supposed to represent clusters on locus or any second layer of feature properties.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+Supposed to represent clusters on locus or any second layer of feature properties.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>vis_prms</code></td>
-          <td class="doc-param-details">
-            <p>Visualisation parameters that holds colors, label and other info for Drawing methods.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>dict</code>
-                </span>
-            </p>
+          <td>
+                <code>dict</code>
+          </td>
+          <td><p>Visualisation parameters that holds colors, label and other info for Drawing methods.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>prms</code></td>
-          <td class="doc-param-details">
-            <p>Parameters' class object that holds config and cmd arguments.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
-                </span>
-            </p>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
+          </td>
+          <td><p>Parameters' class object that holds config and cmd arguments.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
@@ -1351,63 +1267,45 @@ Supposed to represent clusters on locus or any second layer of feature propertie
   
       <p>A Loci object holds information about all loci to be plotted and methods for data preparation.</p>
 
+  <p><strong>Attributes:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>ATTRIBUTE</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>loci</code></td>
-          <td class="doc-attribute-details">
-            <p>List of Locus objects.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>list</code>
-                </span>
-            </p>
+          <td>
+                <code>list</code>
           </td>
+          <td><p>List of Locus objects.</p></td>
         </tr>
         <tr>
           <td><code>loci_annotation</code></td>
-          <td class="doc-attribute-details">
-            <p>Table with information about each locus that defines visualisation
-(e.g. coordinates for visualisation, description, etc).</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code><span title="pandas.DataFrame">DataFrame</span></code>
-                </span>
-            </p>
+          <td>
+                <code><span title="pandas.DataFrame">DataFrame</span></code>
           </td>
+          <td><p>Table with information about each locus that defines visualisation
+(e.g. coordinates for visualisation, description, etc).</p></td>
         </tr>
         <tr>
           <td><code>feature_annotation</code></td>
-          <td class="doc-attribute-details">
-            <p>Table with information about each feature that defines visualisation
-(e.g. group, name, category, etc).</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code><span title="pandas.DataFrame">DataFrame</span></code>
-                </span>
-            </p>
+          <td>
+                <code><span title="pandas.DataFrame">DataFrame</span></code>
           </td>
+          <td><p>Table with information about each feature that defines visualisation
+(e.g. group, name, category, etc).</p></td>
         </tr>
         <tr>
           <td><code>prms</code></td>
-          <td class="doc-attribute-details">
-            <p>Parameters' class object that holds config and cmd arguments.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
-                </span>
-            </p>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
           </td>
+          <td><p>Parameters' class object that holds config and cmd arguments.</p></td>
         </tr>
     </tbody>
   </table>
@@ -2977,28 +2875,25 @@ Supposed to represent clusters on locus or any second layer of feature propertie
   
       <p>Create a Loci object.</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>parameters</code></td>
-          <td class="doc-param-details">
-            <p>Parameters' class object that holds config and cmd arguments.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
-                </span>
-                <span class="doc-param-default">
-                  <b>DEFAULT:</b> 
-                    <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
-                </span>
-            </p>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
+          </td>
+          <td><p>Parameters' class object that holds config and cmd arguments.</p></td>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
           </td>
         </tr>
     </tbody>
@@ -3051,70 +2946,64 @@ Supposed to represent clusters on locus or any second layer of feature propertie
   
       <p>Private method to load an annotation file.</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>file_path</code></td>
-          <td class="doc-param-details">
-            <p>File path for an annotation file to be loaded.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>File path for an annotation file to be loaded.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>annotation_columns</code></td>
-          <td class="doc-param-details">
-            <p>List of columns that should be considered.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>list</code>
-                </span>
-            </p>
+          <td>
+                <code>list</code>
+          </td>
+          <td><p>List of columns that should be considered.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>index_column</code></td>
-          <td class="doc-param-details">
-            <p>Column name to be considered as index.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Column name to be considered as index.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code><span title="pandas.DataFrame">DataFrame</span></code>
-              </span>
+                <code><span title="pandas.DataFrame">DataFrame</span></code>
           </td>
-          <td class="doc-returns-details">
-            <p>pd.DataFrame: Preprocessed annotation file.</p>
-          </td>
+          <td><p>pd.DataFrame: Preprocessed annotation file.</p></td>
         </tr>
     </tbody>
   </table>
@@ -3174,94 +3063,84 @@ Supposed to represent clusters on locus or any second layer of feature propertie
   
       <p>Private method for updating feature annotation.</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>feature_id</code></td>
-          <td class="doc-param-details">
-            <p>Feature identifier.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Feature identifier.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>locus_id</code></td>
-          <td class="doc-param-details">
-            <p>Sequence description.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Sequence description.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>coordinates</code></td>
-          <td class="doc-param-details">
-            <p>Feature coordinates.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Feature coordinates.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>category</code></td>
-          <td class="doc-param-details">
-            <p>Feature type.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Feature type.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>name</code></td>
-          <td class="doc-param-details">
-            <p>Feature name.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Feature name.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -3359,70 +3238,64 @@ Supposed to represent clusters on locus or any second layer of feature propertie
   
       <p>Private method for updating loci annotation.</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>record_id</code></td>
-          <td class="doc-param-details">
-            <p>Sequence identifier.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Sequence identifier.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>record_description</code></td>
-          <td class="doc-param-details">
-            <p>Sequence description.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Sequence description.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>record_length</code></td>
-          <td class="doc-param-details">
-            <p>Sequence length.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>int</code>
-                </span>
-            </p>
+          <td>
+                <code>int</code>
+          </td>
+          <td><p>Sequence length.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -3496,47 +3369,45 @@ feature id and column "cluster" corresponding to the group.</p></p>
 
 
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>dataframe</code></td>
-          <td class="doc-param-details">
-            <p>dataframe with feature id - group pairs. Its index column should
-represent all loci CDS features.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code><span title="pandas.DataFrame">DataFrame</span></code>
-                </span>
-            </p>
+          <td>
+                <code><span title="pandas.DataFrame">DataFrame</span></code>
+          </td>
+          <td><p>dataframe with feature id - group pairs. Its index column should
+represent all loci CDS features.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -3732,63 +3603,55 @@ feature groups you can set them with feature table.</p></p>
 
 
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>dataframe</code></td>
-          <td class="doc-param-details">
-            <p>dataframe with feature id - group pairs. Its index column should
-represent all loci CDS features.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code><span title="pandas.DataFrame">DataFrame</span></code>
-                </span>
-            </p>
+          <td>
+                <code><span title="pandas.DataFrame">DataFrame</span></code>
+          </td>
+          <td><p>dataframe with feature id - group pairs. Its index column should
+represent all loci CDS features.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>group_column_name</code></td>
-          <td class="doc-param-details">
-            <p>column name of the dataframe that represent corresponding group to each feature.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-                <span class="doc-param-default">
-                  <b>DEFAULT:</b> 
-                    <code>&#39;cluster&#39;</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>column name of the dataframe that represent corresponding group to each feature.</p></td>
+          <td>
+                <code>&#39;cluster&#39;</code>
           </td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -3874,20 +3737,19 @@ feature_group_types_to_show_label_on_first_occurrence parameters.</p></p>
 
 
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -3982,47 +3844,45 @@ feature id and column "cluster" corresponding to the group.</p></p>
 
 
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>mmseqs_results</code></td>
-          <td class="doc-param-details">
-            <p>dataframe with feature id - group pairs. Its index column should
-represent all loci CDS features.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code><span title="pandas.DataFrame">DataFrame</span></code>
-                </span>
-            </p>
+          <td>
+                <code><span title="pandas.DataFrame">DataFrame</span></code>
+          </td>
+          <td><p>dataframe with feature id - group pairs. Its index column should
+represent all loci CDS features.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -4138,27 +3998,20 @@ represent all loci CDS features.</p>
   
       <p>Get loci lengths and number of regions.</p>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
-          <td>
-              <code>list</code>
+<td><code>list</code></td>          <td>
+                <code>list[list[int]]</code>
           </td>
-          <td class="doc-returns-details">
-            <p>list each element of each contains locus size and number of breaks for visualisation track.</p>
-              <p>
-                <span class="doc-returns-annotation">
-                  <b>TYPE:</b>
-                    <code>list[list[int]]</code>
-                </span>
-              </p>
-          </td>
+          <td><p>list each element of each contains locus size and number of breaks for visualisation track.</p></td>
         </tr>
     </tbody>
   </table>
@@ -4222,46 +4075,44 @@ represent all loci CDS features.</p>
   
       <p>Load features annotation file.</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>file_path</code></td>
-          <td class="doc-param-details">
-            <p>File path for a features annotation file to be loaded.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>File path for a features annotation file to be loaded.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -4315,46 +4166,44 @@ represent all loci CDS features.</p>
   
       <p>Load loci annotation file.</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>file_path</code></td>
-          <td class="doc-param-details">
-            <p>File path for a loci annotation file to be loaded.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>File path for a loci annotation file to be loaded.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -4414,46 +4263,44 @@ represent all loci CDS features.</p>
 
 
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>input_folder</code></td>
-          <td class="doc-param-details">
-            <p>folder name with gff files.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>folder name with gff files.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -4674,46 +4521,44 @@ represent all loci CDS features.</p>
 
 
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>input_folder</code></td>
-          <td class="doc-param-details">
-            <p>folder name with gb files.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>folder name with gb files.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -4959,24 +4804,21 @@ represent all loci CDS features.</p>
   
       <p>Cluster all proteins using mmseqs in order to define groups of homologues.</p>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code><span title="pandas.DataFrame">DataFrame</span></code>
-              </span>
+                <code><span title="pandas.DataFrame">DataFrame</span></code>
           </td>
-          <td class="doc-returns-details">
-            <p>pd.DataFrame: parsed mmseqs table (pandas dataframe) with columns: cluster, protein_id; where cluster is
-defined by representative sequence id within a corresponding cluster.</p>
-          </td>
+          <td><p>pd.DataFrame: parsed mmseqs table (pandas dataframe) with columns: cluster, protein_id; where cluster is
+defined by representative sequence id within a corresponding cluster.</p></td>
         </tr>
     </tbody>
   </table>
@@ -5119,23 +4961,20 @@ defined by representative sequence id within a corresponding cluster.</p>
 
 
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -5274,23 +5113,20 @@ defined by representative sequence id within a corresponding cluster.</p>
 
 
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -5363,23 +5199,20 @@ defined by representative sequence id within a corresponding cluster.</p>
 
 
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -5445,50 +5278,44 @@ defined by representative sequence id within a corresponding cluster.</p>
   
       <p>Define colors for each category.</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>use_table</code></td>
-          <td class="doc-param-details">
-            <p>Bool value whether table with predefined colors should be used or not.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>bool</code>
-                </span>
-                <span class="doc-param-default">
-                  <b>DEFAULT:</b> 
-                    <code>True</code>
-                </span>
-            </p>
+          <td>
+                <code>bool</code>
+          </td>
+          <td><p>Bool value whether table with predefined colors should be used or not.</p></td>
+          <td>
+                <code>True</code>
           </td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -5584,23 +5411,20 @@ defined by representative sequence id within a corresponding cluster.</p>
   
       <p>Define features fill color based on corresponding feature group and group types.</p>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -5708,148 +5532,95 @@ defined by representative sequence id within a corresponding cluster.</p>
   
       <p>A Locus object represents a particular locus that will be one of the sequence tracks on final figure.</p>
 
+  <p><strong>Attributes:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>ATTRIBUTE</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>seq_id</code></td>
-          <td class="doc-attribute-details">
-            <p>Sequence identifier. Can be used to label locus.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
           </td>
+          <td><p>Sequence identifier. Can be used to label locus.</p></td>
         </tr>
         <tr>
           <td><code>coordinates</code></td>
-          <td class="doc-attribute-details">
-            <p>List of regions to be shown. Each region format: dict with keys: start, end, strand and
-corresponding 1-based start, end coordinates and strand (1: plus strand, -1: minus strand).</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>list</code>
-                </span>
-            </p>
+          <td>
+                <code>list</code>
           </td>
+          <td><p>List of regions to be shown. Each region format: dict with keys: start, end, strand and
+corresponding 1-based start, end coordinates and strand (1: plus strand, -1: minus strand).</p></td>
         </tr>
         <tr>
           <td><code>size</code></td>
-          <td class="doc-attribute-details">
-            <p>total length of regions to be plotted.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>int</code>
-                </span>
-            </p>
+          <td>
+                <code>int</code>
           </td>
+          <td><p>total length of regions to be plotted.</p></td>
         </tr>
         <tr>
           <td><code>description</code></td>
-          <td class="doc-attribute-details">
-            <p>Sequence description that can be used to label locus.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
           </td>
+          <td><p>Sequence description that can be used to label locus.</p></td>
         </tr>
         <tr>
           <td><code>length</code></td>
-          <td class="doc-attribute-details">
-            <p>full length of the locus independent on region that should be plotted.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>int</code>
-                </span>
-            </p>
+          <td>
+                <code>int</code>
           </td>
+          <td><p>full length of the locus independent on region that should be plotted.</p></td>
         </tr>
         <tr>
           <td><code>circular</code></td>
-          <td class="doc-attribute-details">
-            <p>Bool value whether locus is circular or not. It defines whether you have gap or not passing
-1 value on the final figure.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>bool</code>
-                </span>
-            </p>
+          <td>
+                <code>bool</code>
           </td>
+          <td><p>Bool value whether locus is circular or not. It defines whether you have gap or not passing
+1 value on the final figure.</p></td>
         </tr>
         <tr>
           <td><code>features</code></td>
-          <td class="doc-attribute-details">
-            <p>list of Feature objects that overlapped with coordinates.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>list</code>
-                </span>
-            </p>
+          <td>
+                <code>list</code>
           </td>
+          <td><p>list of Feature objects that overlapped with coordinates.</p></td>
         </tr>
         <tr>
           <td><code>order</code></td>
-          <td class="doc-attribute-details">
-            <p>index on ordered list of loci visualisation. Can be pre-defined or found based on loci
-hierarchical clustering with cluster_sequences category.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>int</code>
-                </span>
-            </p>
+          <td>
+                <code>int</code>
           </td>
+          <td><p>index on ordered list of loci visualisation. Can be pre-defined or found based on loci
+hierarchical clustering with cluster_sequences category.</p></td>
         </tr>
         <tr>
           <td><code>group</code></td>
-          <td class="doc-attribute-details">
-            <p>locus group that defines set of closely-related loci.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>int | str</code>
-                </span>
-            </p>
+          <td>
+                <code>int | str</code>
           </td>
+          <td><p>locus group that defines set of closely-related loci.</p></td>
         </tr>
         <tr>
           <td><code>category_colors</code></td>
-          <td class="doc-attribute-details">
-            <p>colors for locus' features categories.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>dict</code>
-                </span>
-            </p>
+          <td>
+                <code>dict</code>
           </td>
+          <td><p>colors for locus' features categories.</p></td>
         </tr>
         <tr>
           <td><code>prms</code></td>
-          <td class="doc-attribute-details">
-            <p>Parameters' class object that holds config and cmd arguments.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
-                </span>
-            </p>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
           </td>
+          <td><p>Parameters' class object that holds config and cmd arguments.</p></td>
         </tr>
     </tbody>
   </table>
@@ -6017,126 +5788,107 @@ hierarchical clustering with cluster_sequences category.</p>
   
       <p>Create a Locus object.</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>seq_id</code></td>
-          <td class="doc-param-details">
-            <p>Sequence identifier. Can be used to label locus.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Sequence identifier. Can be used to label locus.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>coordinates</code></td>
-          <td class="doc-param-details">
-            <p>List of regions to be shown. Each region format: dict with keys: start, end, strand and
-corresponding 1-based start, end coordinates and strand (1: plus strand, -1: minus strand).</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>list</code>
-                </span>
-            </p>
+          <td>
+                <code>list</code>
+          </td>
+          <td><p>List of regions to be shown. Each region format: dict with keys: start, end, strand and
+corresponding 1-based start, end coordinates and strand (1: plus strand, -1: minus strand).</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>description</code></td>
-          <td class="doc-param-details">
-            <p>Sequence description that can be used to label locus.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Sequence description that can be used to label locus.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>length</code></td>
-          <td class="doc-param-details">
-            <p>full length of the locus independent on region that should be plotted.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>int</code>
-                </span>
-            </p>
+          <td>
+                <code>int</code>
+          </td>
+          <td><p>full length of the locus independent on region that should be plotted.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>circular</code></td>
-          <td class="doc-param-details">
-            <p>Bool value whether locus is circular or not. It defines whether you have gap or not passing
-1 value on the final figure.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>bool</code>
-                </span>
-            </p>
+          <td>
+                <code>bool</code>
+          </td>
+          <td><p>Bool value whether locus is circular or not. It defines whether you have gap or not passing
+1 value on the final figure.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>features</code></td>
-          <td class="doc-param-details">
-            <p>list of Feature objects that overlapped with coordinates.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>list</code>
-                </span>
-            </p>
+          <td>
+                <code>list</code>
+          </td>
+          <td><p>list of Feature objects that overlapped with coordinates.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>order</code></td>
-          <td class="doc-param-details">
-            <p>index on ordered list of loci visualisation. Can be pre-defined or found based on loci</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>int</code>
-                </span>
-            </p>
+          <td>
+                <code>int</code>
+          </td>
+          <td><p>index on ordered list of loci visualisation. Can be pre-defined or found based on loci</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>parameters</code></td>
-          <td class="doc-param-details">
-            <p>Parameters' class object that holds config and cmd arguments.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
-                </span>
-            </p>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
+          </td>
+          <td><p>Parameters' class object that holds config and cmd arguments.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>group</code></td>
-          <td class="doc-param-details">
-            <p>locus group that defines set of closely-related loci [1].</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>int | str</code>
-                </span>
-                <span class="doc-param-default">
-                  <b>DEFAULT:</b> 
-                    <code>1</code>
-                </span>
-            </p>
+          <td>
+                <code>int | str</code>
+          </td>
+          <td><p>locus group that defines set of closely-related loci [1].</p></td>
+          <td>
+                <code>1</code>
           </td>
         </tr>
     </tbody>

@@ -881,25 +881,22 @@
   
       <p>An Image object holds canvas;.</p>
 
+  <p><strong>Attributes:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>ATTRIBUTE</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>canvas</code></td>
-          <td class="doc-attribute-details">
-            <p>canvas object of the reportlab library.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code><span title="reportlab.pdfgen.canvas.Canvas">Canvas</span></code>
-                </span>
-            </p>
+          <td>
+                <code><span title="reportlab.pdfgen.canvas.Canvas">Canvas</span></code>
           </td>
+          <td><p>canvas object of the reportlab library.</p></td>
         </tr>
     </tbody>
   </table>
@@ -997,48 +994,45 @@
   
       <p>Create a Canvas object.</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>filename</code></td>
-          <td class="doc-param-details">
-            <p>path and name of the output pdf.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>path and name of the output pdf.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>width</code></td>
-          <td class="doc-param-details">
-            <p>width of the canvas.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>float</code>
-                </span>
-            </p>
+          <td>
+                <code>float</code>
+          </td>
+          <td><p>width of the canvas.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
         <tr>
           <td><code>height</code></td>
-          <td class="doc-param-details">
-            <p>height of the pdf.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>float</code>
-                </span>
-            </p>
+          <td>
+                <code>float</code>
+          </td>
+          <td><p>height of the pdf.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
@@ -1091,23 +1085,20 @@
   
       <p>Save canvas as a pdf file.</p>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -1162,50 +1153,37 @@
       <p>Canvas manager object responsible for preprocessing data for visualisation and interaction between visualisation
     and raw data.</p>
 
+  <p><strong>Attributes:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>ATTRIBUTE</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>layout</code></td>
-          <td class="doc-attribute-details">
-            <p>Defines size and coordinate system of a canvas.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>dict</code>
-                </span>
-            </p>
+          <td>
+                <code>dict</code>
           </td>
+          <td><p>Defines size and coordinate system of a canvas.</p></td>
         </tr>
         <tr>
           <td><code>tracks</code></td>
-          <td class="doc-attribute-details">
-            <p>List containing Track objects each of them represents visualisation unit (e.g. particular locus).</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>list</code>
-                </span>
-            </p>
+          <td>
+                <code>list</code>
           </td>
+          <td><p>List containing Track objects each of them represents visualisation unit (e.g. particular locus).</p></td>
         </tr>
         <tr>
           <td><code>cross_tracks</code></td>
-          <td class="doc-attribute-details">
-            <p>List containing CrossTrack objects each of them represents visualisation unit that
-interacts with multiple regular Track objects.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>list</code>
-                </span>
-            </p>
+          <td>
+                <code>list</code>
           </td>
+          <td><p>List containing CrossTrack objects each of them represents visualisation unit that
+interacts with multiple regular Track objects.</p></td>
         </tr>
     </tbody>
   </table>
@@ -1655,24 +1633,25 @@ interacts with multiple regular Track objects.</p>
   
       <p>Create a CanvasManager object.</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>parameters</code></td>
-          <td class="doc-param-details">
-            <p>Parameters' class object that holds config and cmd arguments.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
-                </span>
-            </p>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
+          </td>
+          <td><p>Parameters' class object that holds config and cmd arguments.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
@@ -1721,46 +1700,44 @@ interacts with multiple regular Track objects.</p>
   
       <p>Add categories color legend tracks to your canvas.</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>loci</code></td>
-          <td class="doc-param-details">
-            <p>Loci object with information about sequences and features.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Loci" href="../package_data_processing/#lovis4u.DataProcessing.Loci">Loci</a></code>
-                </span>
-            </p>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Loci" href="../package_data_processing/#lovis4u.DataProcessing.Loci">Loci</a></code>
+          </td>
+          <td><p>Loci object with information about sequences and features.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -1839,23 +1816,20 @@ interacts with multiple regular Track objects.</p>
 
 
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -1925,46 +1899,44 @@ interacts with multiple regular Track objects.</p>
   
       <p>Add loci tracks to your canvas.</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>loci</code></td>
-          <td class="doc-param-details">
-            <p>Loci object with information about sequences and features.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Loci" href="../package_data_processing/#lovis4u.DataProcessing.Loci">Loci</a></code>
-                </span>
-            </p>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Loci" href="../package_data_processing/#lovis4u.DataProcessing.Loci">Loci</a></code>
+          </td>
+          <td><p>Loci object with information about sequences and features.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -2036,23 +2008,20 @@ interacts with multiple regular Track objects.</p>
   
       <p>Add scale line tracks to your canvas.</p>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -2114,46 +2083,44 @@ interacts with multiple regular Track objects.</p>
   
       <p>Define canvas' layout based on input loci.</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>loci</code></td>
-          <td class="doc-param-details">
-            <p>Loci object with information about sequences and features.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Loci" href="../package_data_processing/#lovis4u.DataProcessing.Loci">Loci</a></code>
-                </span>
-            </p>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Loci" href="../package_data_processing/#lovis4u.DataProcessing.Loci">Loci</a></code>
+          </td>
+          <td><p>Loci object with information about sequences and features.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -2299,46 +2266,44 @@ interacts with multiple regular Track objects.</p>
   
       <p>Plot all added tracks and save the plot as pdf.</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>filename</code></td>
-          <td class="doc-param-details">
-            <p>filename for the output pdf.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code>str</code>
-                </span>
-            </p>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>filename for the output pdf.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -2436,49 +2401,36 @@ interacts with multiple regular Track objects.</p>
   
       <p>A CategoriesColorLegendLoader object prepares data for a categories color legend track Drawing object.</p>
 
+  <p><strong>Attributes:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>ATTRIBUTE</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>prms</code></td>
-          <td class="doc-attribute-details">
-            <p>Parameters' class object.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
-                </span>
-            </p>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
           </td>
+          <td><p>Parameters' class object.</p></td>
         </tr>
         <tr>
           <td><code>layout</code></td>
-          <td class="doc-attribute-details">
-            <p>Layout built by CanvasManager's define_layout() method.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>dict</code>
-                </span>
-            </p>
+          <td>
+                <code>dict</code>
           </td>
+          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
         </tr>
         <tr>
           <td><code>track_data</code></td>
-          <td class="doc-attribute-details">
-            <p>Track specific data that will be sent to the Drawing module.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>dict</code>
-                </span>
-            </p>
+          <td>
+                <code>dict</code>
           </td>
+          <td><p>Track specific data that will be sent to the Drawing module.</p></td>
         </tr>
     </tbody>
   </table>
@@ -2732,24 +2684,25 @@ interacts with multiple regular Track objects.</p>
   
       <p>Create a CategoriesColorLegendLoader object.</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>parameters</code></td>
-          <td class="doc-param-details">
-            <p>Parameters' class object that holds config and cmd arguments.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
-                </span>
-            </p>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
+          </td>
+          <td><p>Parameters' class object that holds config and cmd arguments.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
@@ -2792,21 +2745,19 @@ interacts with multiple regular Track objects.</p>
   
       <p>Calculate track height to define layout.</p>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
-          <td>
-              <code>float</code>
+<td><code>float</code></td>          <td>
           </td>
-          <td class="doc-returns-details">
-            <p>track height.</p>
-          </td>
+          <td><p>track height.</p></td>
         </tr>
     </tbody>
   </table>
@@ -2868,20 +2819,19 @@ interacts with multiple regular Track objects.</p>
   
       <p>Initialise a ColorLegendVis track object.</p>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
           </td>
-          <td class="doc-returns-details">
-            <p>lovis4u.Drawing.LocusVis | None: visualisation track.</p>
-          </td>
+          <td><p>lovis4u.Drawing.LocusVis | None: visualisation track.</p></td>
         </tr>
     </tbody>
   </table>
@@ -2941,58 +2891,47 @@ interacts with multiple regular Track objects.</p>
   
       <p>Prepare ScaleLoader specific data.</p>
 
+  <p><strong>Attributes:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>ATTRIBUTE</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>layout</code></td>
-          <td class="doc-attribute-details">
-            <p>Layout built by CanvasManager's define_layout() method.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>dict</code>
-                </span>
-            </p>
+          <td>
+                <code>dict</code>
           </td>
+          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
         </tr>
         <tr>
           <td><code>loci</code></td>
-          <td class="doc-attribute-details">
-            <p>Loci object with information about sequences and features.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Loci" href="../package_data_processing/#lovis4u.DataProcessing.Loci">Loci</a></code>
-                </span>
-            </p>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Loci" href="../package_data_processing/#lovis4u.DataProcessing.Loci">Loci</a></code>
           </td>
+          <td><p>Loci object with information about sequences and features.</p></td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -3134,49 +3073,36 @@ interacts with multiple regular Track objects.</p>
   
       <p>Parent class for tracks loaders.</p>
 
+  <p><strong>Attributes:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>ATTRIBUTE</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>prms</code></td>
-          <td class="doc-attribute-details">
-            <p>Parameters' class object.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
-                </span>
-            </p>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
           </td>
+          <td><p>Parameters' class object.</p></td>
         </tr>
         <tr>
           <td><code>layout</code></td>
-          <td class="doc-attribute-details">
-            <p>Layout built by CanvasManager's define_layout() method.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>dict</code>
-                </span>
-            </p>
+          <td>
+                <code>dict</code>
           </td>
+          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
         </tr>
         <tr>
           <td><code>track_data</code></td>
-          <td class="doc-attribute-details">
-            <p>Track specific data that will be sent to the Drawing module.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>dict</code>
-                </span>
-            </p>
+          <td>
+                <code>dict</code>
           </td>
+          <td><p>Track specific data that will be sent to the Drawing module.</p></td>
         </tr>
     </tbody>
   </table>
@@ -3306,24 +3232,25 @@ interacts with multiple regular Track objects.</p>
   
       <p>Parent's constructor for creating a Loader class object.</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>parameters</code></td>
-          <td class="doc-param-details">
-            <p>Parameters' class object that holds config and cmd arguments.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
-                </span>
-            </p>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
+          </td>
+          <td><p>Parameters' class object that holds config and cmd arguments.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
@@ -3370,23 +3297,20 @@ interacts with multiple regular Track objects.</p>
   
       <p>Empty parent's method for track height calculation.</p>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -3428,23 +3352,20 @@ interacts with multiple regular Track objects.</p>
   
       <p>Empty parent's method for track initialisation.</p>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -3486,23 +3407,20 @@ interacts with multiple regular Track objects.</p>
   
       <p>Empty parent's method for data preparation.</p>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -3556,49 +3474,36 @@ interacts with multiple regular Track objects.</p>
   
       <p>A LocusLoader object prepares data for a Locus track Drawing object.</p>
 
+  <p><strong>Attributes:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>ATTRIBUTE</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>prms</code></td>
-          <td class="doc-attribute-details">
-            <p>Parameters' class object.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
-                </span>
-            </p>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
           </td>
+          <td><p>Parameters' class object.</p></td>
         </tr>
         <tr>
           <td><code>layout</code></td>
-          <td class="doc-attribute-details">
-            <p>Layout built by CanvasManager's define_layout() method.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>dict</code>
-                </span>
-            </p>
+          <td>
+                <code>dict</code>
           </td>
+          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
         </tr>
         <tr>
           <td><code>track_data</code></td>
-          <td class="doc-attribute-details">
-            <p>Track specific data that will be sent to the Drawing module.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>dict</code>
-                </span>
-            </p>
+          <td>
+                <code>dict</code>
           </td>
+          <td><p>Track specific data that will be sent to the Drawing module.</p></td>
         </tr>
     </tbody>
   </table>
@@ -4212,24 +4117,25 @@ interacts with multiple regular Track objects.</p>
   
       <p>Create a LocusLoader object.</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>parameters</code></td>
-          <td class="doc-param-details">
-            <p>Parameters' class object that holds config and cmd arguments.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
-                </span>
-            </p>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
+          </td>
+          <td><p>Parameters' class object that holds config and cmd arguments.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
@@ -4272,27 +4178,20 @@ interacts with multiple regular Track objects.</p>
   
       <p>Calculate track height to define layout.</p>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
-          <td>
-              <code>float</code>
+<td><code>float</code></td>          <td>
+                <code>float</code>
           </td>
-          <td class="doc-returns-details">
-            <p>track height.</p>
-              <p>
-                <span class="doc-returns-annotation">
-                  <b>TYPE:</b>
-                    <code>float</code>
-                </span>
-              </p>
-          </td>
+          <td><p>track height.</p></td>
         </tr>
     </tbody>
   </table>
@@ -4360,20 +4259,19 @@ interacts with multiple regular Track objects.</p>
   
       <p>Initialise a LocusVis track object.</p>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
           </td>
-          <td class="doc-returns-details">
-            <p>lovis4u.Drawing.LocusVis: visualisation track.</p>
-          </td>
+          <td><p>lovis4u.Drawing.LocusVis: visualisation track.</p></td>
         </tr>
     </tbody>
   </table>
@@ -4421,58 +4319,47 @@ interacts with multiple regular Track objects.</p>
   
       <p>Prepare LocusLoader specific data.</p>
 
+  <p><strong>Attributes:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>ATTRIBUTE</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>locus</code></td>
-          <td class="doc-attribute-details">
-            <p>corresponding locus object.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Locus" href="../package_data_processing/#lovis4u.DataProcessing.Locus">Locus</a></code>
-                </span>
-            </p>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Locus" href="../package_data_processing/#lovis4u.DataProcessing.Locus">Locus</a></code>
           </td>
+          <td><p>corresponding locus object.</p></td>
         </tr>
         <tr>
           <td><code>layout</code></td>
-          <td class="doc-attribute-details">
-            <p>Layout built by CanvasManager's define_layout() method.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>dict</code>
-                </span>
-            </p>
+          <td>
+                <code>dict</code>
           </td>
+          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -4986,25 +4873,22 @@ interacts with multiple regular Track objects.</p>
 
 
 
+  <p><strong>Attributes:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>ATTRIBUTE</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>args</code></td>
-          <td class="doc-attribute-details">
-            <p>dictionary that holds all arguments.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>dict</code>
-                </span>
-            </p>
+          <td>
+                <code>dict</code>
           </td>
+          <td><p>dictionary that holds all arguments.</p></td>
         </tr>
     </tbody>
   </table>
@@ -5405,23 +5289,20 @@ interacts with multiple regular Track objects.</p>
 <p>Arguments
     path (str): path to a config file or name (only standard available at this moment).</p>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -5533,23 +5414,20 @@ interacts with multiple regular Track objects.</p>
   
       <p>Load fonts.</p>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -5607,23 +5485,20 @@ interacts with multiple regular Track objects.</p>
   
       <p>Load palette file.</p>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -5675,23 +5550,20 @@ interacts with multiple regular Track objects.</p>
   
       <p>Parse command-line args</p>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>
@@ -5873,49 +5745,36 @@ interacts with multiple regular Track objects.</p>
   
       <p>A LocusLoader object prepares data for a Scale track Drawing object.</p>
 
+  <p><strong>Attributes:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>ATTRIBUTE</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>prms</code></td>
-          <td class="doc-attribute-details">
-            <p>Parameters' class object.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
-                </span>
-            </p>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
           </td>
+          <td><p>Parameters' class object.</p></td>
         </tr>
         <tr>
           <td><code>layout</code></td>
-          <td class="doc-attribute-details">
-            <p>Layout built by CanvasManager's define_layout() method.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>dict</code>
-                </span>
-            </p>
+          <td>
+                <code>dict</code>
           </td>
+          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
         </tr>
         <tr>
           <td><code>track_data</code></td>
-          <td class="doc-attribute-details">
-            <p>Track specific data that will be sent to the Drawing module.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>dict</code>
-                </span>
-            </p>
+          <td>
+                <code>dict</code>
           </td>
+          <td><p>Track specific data that will be sent to the Drawing module.</p></td>
         </tr>
     </tbody>
   </table>
@@ -6129,24 +5988,25 @@ interacts with multiple regular Track objects.</p>
   
       <p>Create a ScaleLoader object.</p>
 
+  <p><strong>Parameters:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>PARAMETER</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>parameters</code></td>
-          <td class="doc-param-details">
-            <p>Parameters' class object that holds config and cmd arguments.</p>
-            <p>
-                <span class="doc-param-annotation">
-                  <b>TYPE:</b>
-                    <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
-                </span>
-            </p>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="#lovis4u.Manager.Parameters">Parameters</a></code>
+          </td>
+          <td><p>Parameters' class object that holds config and cmd arguments.</p></td>
+          <td>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
@@ -6189,21 +6049,19 @@ interacts with multiple regular Track objects.</p>
   
       <p>Calculate track height to define layout.</p>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
-          <td>
-              <code>float</code>
+<td><code>float</code></td>          <td>
           </td>
-          <td class="doc-returns-details">
-            <p>track height.</p>
-          </td>
+          <td><p>track height.</p></td>
         </tr>
     </tbody>
   </table>
@@ -6263,20 +6121,19 @@ interacts with multiple regular Track objects.</p>
   
       <p>Initialise a ScaleVis track object.</p>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
           </td>
-          <td class="doc-returns-details">
-            <p>lovis4u.Drawing.LocusVis: visualisation track.</p>
-          </td>
+          <td><p>lovis4u.Drawing.LocusVis: visualisation track.</p></td>
         </tr>
     </tbody>
   </table>
@@ -6324,46 +6181,40 @@ interacts with multiple regular Track objects.</p>
   
       <p>Prepare ScaleLoader specific data.</p>
 
+  <p><strong>Attributes:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>ATTRIBUTE</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><code>layout</code></td>
-          <td class="doc-attribute-details">
-            <p>Layout built by CanvasManager's define_layout() method.</p>
-            <p>
-                <span class="doc-attribute-annotation">
-                  <b>TYPE:</b>
-                    <code>dict</code>
-                </span>
-            </p>
+          <td>
+                <code>dict</code>
           </td>
+          <td><p>Layout built by CanvasManager's define_layout() method.</p></td>
         </tr>
     </tbody>
   </table>
 
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th><b>RETURNS</b></th>
-        <th><b>DESCRIPTION</b></th>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>
-              <span class="doc-returns-annotation">
-                  <code>None</code>
-              </span>
+                <code>None</code>
           </td>
-          <td class="doc-returns-details">
-            <p>None</p>
-          </td>
+          <td><p>None</p></td>
         </tr>
     </tbody>
   </table>

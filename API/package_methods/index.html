@@ -573,77 +573,77 @@
       
         <li class="md-nav__item">
   <a href="#lovis4u.Methods" class="md-nav__link">
-    Methods
+    lovis4u.Methods
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#lovis4u.Methods.adjust_paths" class="md-nav__link">
-    adjust_paths
+    adjust_paths()
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#lovis4u.Methods.copy_package_data" class="md-nav__link">
-    copy_package_data
+    copy_package_data()
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#lovis4u.Methods.feature_nt_to_x_transform" class="md-nav__link">
-    feature_nt_to_x_transform
+    feature_nt_to_x_transform()
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#lovis4u.Methods.get_color" class="md-nav__link">
-    get_color
+    get_color()
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#lovis4u.Methods.get_color_rgba" class="md-nav__link">
-    get_color_rgba
+    get_color_rgba()
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#lovis4u.Methods.nt_to_x_transform" class="md-nav__link">
-    nt_to_x_transform
+    nt_to_x_transform()
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#lovis4u.Methods.region_nt_to_x_transform" class="md-nav__link">
-    region_nt_to_x_transform
+    region_nt_to_x_transform()
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#lovis4u.Methods.scale_lightness" class="md-nav__link">
-    scale_lightness
+    scale_lightness()
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#lovis4u.Methods.str_height_to_size" class="md-nav__link">
-    str_height_to_size
+    str_height_to_size()
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#lovis4u.Methods.update_path_extension" class="md-nav__link">
-    update_path_extension
+    update_path_extension()
   </a>
   
 </li>
@@ -697,7 +697,6 @@
 <div class="doc doc-object doc-module">
 
 
-
 <a id="lovis4u.Methods"></a>
   <div class="doc doc-contents first">
   
@@ -715,13 +714,12 @@
 
 
 
-
 <div class="doc doc-object doc-function">
 
 
 
 <h2 id="lovis4u.Methods.adjust_paths" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">adjust_paths</span><span class="p">(</span><span class="n">to</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">adjust_paths</span><span class="p">(</span><span class="n">to</span><span class="p">)</span></code>
 
 </h2>
 
@@ -757,9 +755,9 @@
       </li>
   </ul>
 
-          <details class="quote">
-            <summary>Source code in <code>lovis4u/Methods.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">21</span>
+      <details class="quote">
+        <summary>Source code in <code>lovis4u/Methods.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">21</span>
 <span class="normal">22</span>
 <span class="normal">23</span>
 <span class="normal">24</span>
@@ -813,18 +811,17 @@
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚙️  mmseqs path was adjusted to </span><span class="si">{</span><span class="n">to</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="kc">None</span>
 </code></pre></div></td></tr></table></div>
-          </details>
+      </details>
   </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
 
 <h2 id="lovis4u.Methods.copy_package_data" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">copy_package_data</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">copy_package_data</span><span class="p">()</span></code>
 
 </h2>
 
@@ -846,9 +843,9 @@
       </li>
   </ul>
 
-          <details class="quote">
-            <summary>Source code in <code>lovis4u/Methods.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">50</span>
+      <details class="quote">
+        <summary>Source code in <code>lovis4u/Methods.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">50</span>
 <span class="normal">51</span>
 <span class="normal">52</span>
 <span class="normal">53</span>
@@ -882,18 +879,17 @@
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">lovis4u</span><span class="o">.</span><span class="n">Manager</span><span class="o">.</span><span class="n">lovis4uError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unable to copy lovis4u folder in your working dir.&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">error</span>
 </code></pre></div></td></tr></table></div>
-          </details>
+      </details>
   </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
 
 <h2 id="lovis4u.Methods.feature_nt_to_x_transform" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">feature_nt_to_x_transform</span><span class="p">(</span><span class="n">nt_start</span><span class="p">,</span> <span class="n">nt_end</span><span class="p">,</span> <span class="n">feature_strand</span><span class="p">,</span> <span class="n">locus</span><span class="p">,</span> <span class="n">layout</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">feature_nt_to_x_transform</span><span class="p">(</span><span class="n">nt_start</span><span class="p">,</span> <span class="n">nt_end</span><span class="p">,</span> <span class="n">feature_strand</span><span class="p">,</span> <span class="n">locus</span><span class="p">,</span> <span class="n">layout</span><span class="p">)</span></code>
 
 </h2>
 
@@ -961,9 +957,9 @@
       </li>
   </ul>
 
-          <details class="quote">
-            <summary>Source code in <code>lovis4u/Methods.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">213</span>
+      <details class="quote">
+        <summary>Source code in <code>lovis4u/Methods.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">213</span>
 <span class="normal">214</span>
 <span class="normal">215</span>
 <span class="normal">216</span>
@@ -1035,18 +1031,17 @@
             <span class="k">break</span>
     <span class="k">return</span> <span class="n">x_coordinates</span>
 </code></pre></div></td></tr></table></div>
-          </details>
+      </details>
   </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
 
 <h2 id="lovis4u.Methods.get_color" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">get_color</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">get_color</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span></code>
 
 </h2>
 
@@ -1090,9 +1085,9 @@
       </li>
   </ul>
 
-          <details class="quote">
-            <summary>Source code in <code>lovis4u/Methods.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">86</span>
+      <details class="quote">
+        <summary>Source code in <code>lovis4u/Methods.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">86</span>
 <span class="normal">87</span>
 <span class="normal">88</span>
 <span class="normal">89</span>
@@ -1118,18 +1113,17 @@
     <span class="n">hex_c</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;palette&quot;</span><span class="p">][</span><span class="n">parameters</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="n">name</span><span class="p">]]</span>
     <span class="k">return</span> <span class="n">hex_c</span>
 </code></pre></div></td></tr></table></div>
-          </details>
+      </details>
   </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
 
 <h2 id="lovis4u.Methods.get_color_rgba" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">get_color_rgba</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">get_color_rgba</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span></code>
 
 </h2>
 
@@ -1173,9 +1167,9 @@
       </li>
   </ul>
 
-          <details class="quote">
-            <summary>Source code in <code>lovis4u/Methods.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">101</span>
+      <details class="quote">
+        <summary>Source code in <code>lovis4u/Methods.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">101</span>
 <span class="normal">102</span>
 <span class="normal">103</span>
 <span class="normal">104</span>
@@ -1199,18 +1193,17 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="o">*</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">hex2color</span><span class="p">(</span><span class="n">get_color</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)),</span> <span class="n">parameters</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_alpha&quot;</span><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
-          </details>
+      </details>
   </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
 
 <h2 id="lovis4u.Methods.nt_to_x_transform" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">nt_to_x_transform</span><span class="p">(</span><span class="n">nt</span><span class="p">,</span> <span class="n">locus</span><span class="p">,</span> <span class="n">layout</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">nt_to_x_transform</span><span class="p">(</span><span class="n">nt</span><span class="p">,</span> <span class="n">locus</span><span class="p">,</span> <span class="n">layout</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span></code>
 
 </h2>
 
@@ -1270,9 +1263,9 @@
       </li>
   </ul>
 
-          <details class="quote">
-            <summary>Source code in <code>lovis4u/Methods.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">147</span>
+      <details class="quote">
+        <summary>Source code in <code>lovis4u/Methods.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">147</span>
 <span class="normal">148</span>
 <span class="normal">149</span>
 <span class="normal">150</span>
@@ -1354,18 +1347,17 @@
                         <span class="n">passed_x</span> <span class="o">-=</span> <span class="n">layout</span><span class="p">[</span><span class="s2">&quot;x_gap_between_regions&quot;</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">global_x</span>
 </code></pre></div></td></tr></table></div>
-          </details>
+      </details>
   </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
 
 <h2 id="lovis4u.Methods.region_nt_to_x_transform" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">region_nt_to_x_transform</span><span class="p">(</span><span class="n">nt_start</span><span class="p">,</span> <span class="n">nt_end</span><span class="p">,</span> <span class="n">locus</span><span class="p">,</span> <span class="n">layout</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">region_nt_to_x_transform</span><span class="p">(</span><span class="n">nt_start</span><span class="p">,</span> <span class="n">nt_end</span><span class="p">,</span> <span class="n">locus</span><span class="p">,</span> <span class="n">layout</span><span class="p">)</span></code>
 
 </h2>
 
@@ -1425,9 +1417,9 @@
       </li>
   </ul>
 
-          <details class="quote">
-            <summary>Source code in <code>lovis4u/Methods.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">190</span>
+      <details class="quote">
+        <summary>Source code in <code>lovis4u/Methods.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">190</span>
 <span class="normal">191</span>
 <span class="normal">192</span>
 <span class="normal">193</span>
@@ -1469,18 +1461,17 @@
             <span class="k">break</span>
     <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">x_start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">x_end</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
+      </details>
   </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
 
 <h2 id="lovis4u.Methods.scale_lightness" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">scale_lightness</span><span class="p">(</span><span class="n">hex_c</span><span class="p">,</span> <span class="n">scale_l</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">scale_lightness</span><span class="p">(</span><span class="n">hex_c</span><span class="p">,</span> <span class="n">scale_l</span><span class="p">)</span></code>
 
 </h2>
 
@@ -1524,9 +1515,9 @@
       </li>
   </ul>
 
-          <details class="quote">
-            <summary>Source code in <code>lovis4u/Methods.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">69</span>
+      <details class="quote">
+        <summary>Source code in <code>lovis4u/Methods.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">69</span>
 <span class="normal">70</span>
 <span class="normal">71</span>
 <span class="normal">72</span>
@@ -1556,18 +1547,17 @@
     <span class="n">hex_c</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">rgb2hex</span><span class="p">(</span><span class="n">colorsys</span><span class="o">.</span><span class="n">hls_to_rgb</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">l</span> <span class="o">*</span> <span class="n">scale_l</span><span class="p">),</span> <span class="n">s</span><span class="o">=</span><span class="n">s</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">hex_c</span>
 </code></pre></div></td></tr></table></div>
-          </details>
+      </details>
   </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
 
 <h2 id="lovis4u.Methods.str_height_to_size" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">str_height_to_size</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">font_type</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">str_height_to_size</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">font_type</span><span class="p">)</span></code>
 
 </h2>
 
@@ -1611,9 +1601,9 @@
       </li>
   </ul>
 
-          <details class="quote">
-            <summary>Source code in <code>lovis4u/Methods.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">115</span>
+      <details class="quote">
+        <summary>Source code in <code>lovis4u/Methods.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">115</span>
 <span class="normal">116</span>
 <span class="normal">117</span>
 <span class="normal">118</span>
@@ -1643,18 +1633,17 @@
     <span class="n">font_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="mf">1.38</span> <span class="o">*</span> <span class="n">height</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">face</span><span class="o">.</span><span class="n">ascent</span> <span class="o">-</span> <span class="n">face</span><span class="o">.</span><span class="n">descent</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">font_size</span>
 </code></pre></div></td></tr></table></div>
-          </details>
+      </details>
   </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
 
 <h2 id="lovis4u.Methods.update_path_extension" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">update_path_extension</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">new_extension</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">update_path_extension</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">new_extension</span><span class="p">)</span></code>
 
 </h2>
 
@@ -1698,9 +1687,9 @@
       </li>
   </ul>
 
-          <details class="quote">
-            <summary>Source code in <code>lovis4u/Methods.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">132</span>
+      <details class="quote">
+        <summary>Source code in <code>lovis4u/Methods.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">132</span>
 <span class="normal">133</span>
 <span class="normal">134</span>
 <span class="normal">135</span>
@@ -1726,7 +1715,7 @@
     <span class="n">updated_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">path</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">new_extension</span><span class="si">}</span><span class="s2">&quot;</span>
     <span class="k">return</span> <span class="n">updated_filename</span>
 </code></pre></div></td></tr></table></div>
-          </details>
+      </details>
   </div>
 
 </div>

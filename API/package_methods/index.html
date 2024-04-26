@@ -642,26 +642,49 @@
   
       <p>Change paths in the internal config files for linux or mac.</p>
 
-  <p><b>Parameters:</b></p>
-  <ul>
-    
-	<p>
-      <li class="field-body">
-        <b>to</b>
-            (<code>str</code>)
- – <p>mac | linux</p>
-      </p>
-      </li>
-     
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th><b>PARAMETER</b></th>
+        <th><b>DESCRIPTION</b></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>to</code></td>
+          <td class="doc-param-details">
+            <p>mac | linux</p>
+            <p>
+                <span class="doc-param-annotation">
+                  <b>TYPE:</b>
+                    <code>str</code>
+                </span>
+            </p>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
-  <p> <b>Returns:</b></p>
-  <ul>
-      <li class="field-body">
-            <code>None</code>
-        – <p>None</p>
-      </li>
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th><b>RETURNS</b></th>
+        <th><b>DESCRIPTION</b></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+              <span class="doc-returns-annotation">
+                  <code>None</code>
+              </span>
+          </td>
+          <td class="doc-returns-details">
+            <p>None</p>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Methods.py</code></summary>
@@ -738,13 +761,26 @@
   
       <p>Copy the lovis4u package data folder to your current dir.</p>
 
-  <p> <b>Returns:</b></p>
-  <ul>
-      <li class="field-body">
-            <code>None</code>
-        – <p>None</p>
-      </li>
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th><b>RETURNS</b></th>
+        <th><b>DESCRIPTION</b></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+              <span class="doc-returns-annotation">
+                  <code>None</code>
+              </span>
+          </td>
+          <td class="doc-returns-details">
+            <p>None</p>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Methods.py</code></summary>
@@ -801,58 +837,101 @@
   
       <p>Transform feature coordinates to x page coordinates.</p>
 
-  <p><b>Parameters:</b></p>
-  <ul>
-    
-	<p>
-      <li class="field-body">
-        <b>nt_start</b>
-            (<code>int</code>)
- – <p>1-based nucleotide start coordinate.</p>
-      </p>
-      </li>
-     
-	<p>
-      <li class="field-body">
-        <b>nt_end</b>
-            (<code>int</code>)
- – <p>1-based nucleotide end coordinate.</p>
-      </p>
-      </li>
-     
-	<p>
-      <li class="field-body">
-        <b>feature_strand</b>
-            (<code>int</code>)
- – <p>1 | -1 corresponding to plus or minus strand, respectively.</p>
-      </p>
-      </li>
-     
-	<p>
-      <li class="field-body">
-        <b>locus</b>
-            (<code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Locus" href="../package_data_processing/#lovis4u.DataProcessing.Locus">Locus</a></code>)
- – <p>Corresponding locus object.</p>
-      </p>
-      </li>
-     
-	<p>
-      <li class="field-body">
-        <b>layout</b>
-            (<code>dict</code>)
- – <p>Layout of the canvas.</p>
-      </p>
-      </li>
-     
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th><b>PARAMETER</b></th>
+        <th><b>DESCRIPTION</b></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>nt_start</code></td>
+          <td class="doc-param-details">
+            <p>1-based nucleotide start coordinate.</p>
+            <p>
+                <span class="doc-param-annotation">
+                  <b>TYPE:</b>
+                    <code>int</code>
+                </span>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>nt_end</code></td>
+          <td class="doc-param-details">
+            <p>1-based nucleotide end coordinate.</p>
+            <p>
+                <span class="doc-param-annotation">
+                  <b>TYPE:</b>
+                    <code>int</code>
+                </span>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>feature_strand</code></td>
+          <td class="doc-param-details">
+            <p>1 | -1 corresponding to plus or minus strand, respectively.</p>
+            <p>
+                <span class="doc-param-annotation">
+                  <b>TYPE:</b>
+                    <code>int</code>
+                </span>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>locus</code></td>
+          <td class="doc-param-details">
+            <p>Corresponding locus object.</p>
+            <p>
+                <span class="doc-param-annotation">
+                  <b>TYPE:</b>
+                    <code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Locus" href="../package_data_processing/#lovis4u.DataProcessing.Locus">Locus</a></code>
+                </span>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>layout</code></td>
+          <td class="doc-param-details">
+            <p>Layout of the canvas.</p>
+            <p>
+                <span class="doc-param-annotation">
+                  <b>TYPE:</b>
+                    <code>dict</code>
+                </span>
+            </p>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
-  <p> <b>Returns:</b></p>
-  <ul>
-      <li class="field-body">
-<b>dict</b>(            <code>dict</code>
-)        – <p>Dictionary with corresponding start and end page coordinates.</p>
-      </li>
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th><b>RETURNS</b></th>
+        <th><b>DESCRIPTION</b></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+              <code>dict</code>
+          </td>
+          <td class="doc-returns-details">
+            <p>Dictionary with corresponding start and end page coordinates.</p>
+              <p>
+                <span class="doc-returns-annotation">
+                  <b>TYPE:</b>
+                    <code>dict</code>
+                </span>
+              </p>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Methods.py</code></summary>
@@ -947,34 +1026,65 @@
   
       <p>Get HEX color by its name</p>
 
-  <p><b>Parameters:</b></p>
-  <ul>
-    
-	<p>
-      <li class="field-body">
-        <b>name</b>
-            (<code>str</code>)
- – <p>name of a color.</p>
-      </p>
-      </li>
-     
-	<p>
-      <li class="field-body">
-        <b>parameters</b>
-            (<code>dict</code>)
- – <p>Parameters' object dict.</p>
-      </p>
-      </li>
-     
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th><b>PARAMETER</b></th>
+        <th><b>DESCRIPTION</b></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>name</code></td>
+          <td class="doc-param-details">
+            <p>name of a color.</p>
+            <p>
+                <span class="doc-param-annotation">
+                  <b>TYPE:</b>
+                    <code>str</code>
+                </span>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>parameters</code></td>
+          <td class="doc-param-details">
+            <p>Parameters' object dict.</p>
+            <p>
+                <span class="doc-param-annotation">
+                  <b>TYPE:</b>
+                    <code>dict</code>
+                </span>
+            </p>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
-  <p> <b>Returns:</b></p>
-  <ul>
-      <li class="field-body">
-<b>str</b>(            <code>str</code>
-)        – <p>HEX color.</p>
-      </li>
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th><b>RETURNS</b></th>
+        <th><b>DESCRIPTION</b></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+              <code>str</code>
+          </td>
+          <td class="doc-returns-details">
+            <p>HEX color.</p>
+              <p>
+                <span class="doc-returns-annotation">
+                  <b>TYPE:</b>
+                    <code>str</code>
+                </span>
+              </p>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Methods.py</code></summary>
@@ -1023,34 +1133,65 @@
   
       <p>Get rgba color by its name</p>
 
-  <p><b>Parameters:</b></p>
-  <ul>
-    
-	<p>
-      <li class="field-body">
-        <b>name</b>
-            (<code>str</code>)
- – <p>name of a color.</p>
-      </p>
-      </li>
-     
-	<p>
-      <li class="field-body">
-        <b>parameters</b>
-            (<code>dict</code>)
- – <p>Parameters' object dict.</p>
-      </p>
-      </li>
-     
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th><b>PARAMETER</b></th>
+        <th><b>DESCRIPTION</b></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>name</code></td>
+          <td class="doc-param-details">
+            <p>name of a color.</p>
+            <p>
+                <span class="doc-param-annotation">
+                  <b>TYPE:</b>
+                    <code>str</code>
+                </span>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>parameters</code></td>
+          <td class="doc-param-details">
+            <p>Parameters' object dict.</p>
+            <p>
+                <span class="doc-param-annotation">
+                  <b>TYPE:</b>
+                    <code>dict</code>
+                </span>
+            </p>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
-  <p> <b>Returns:</b></p>
-  <ul>
-      <li class="field-body">
-<b>tuple</b>(            <code>tuple</code>
-)        – <p>RGBA color</p>
-      </li>
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th><b>RETURNS</b></th>
+        <th><b>DESCRIPTION</b></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+              <code>tuple</code>
+          </td>
+          <td class="doc-returns-details">
+            <p>RGBA color</p>
+              <p>
+                <span class="doc-returns-annotation">
+                  <b>TYPE:</b>
+                    <code>tuple</code>
+                </span>
+              </p>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Methods.py</code></summary>
@@ -1097,50 +1238,89 @@
   
       <p>Transform nucleotide coordinate to x page coordinate.</p>
 
-  <p><b>Parameters:</b></p>
-  <ul>
-    
-	<p>
-      <li class="field-body">
-        <b>nt</b>
-            (<code>int</code>)
- – <p>Nucleotide coordinate.</p>
-      </p>
-      </li>
-     
-	<p>
-      <li class="field-body">
-        <b>locus</b>
-            (<code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Locus" href="../package_data_processing/#lovis4u.DataProcessing.Locus">Locus</a></code>)
- – <p>Corresponding locus object.</p>
-      </p>
-      </li>
-     
-	<p>
-      <li class="field-body">
-        <b>layout</b>
-            (<code>dict</code>)
- – <p>Layout of the canvas.</p>
-      </p>
-      </li>
-     
-	<p>
-      <li class="field-body">
-        <b>mode</b>
-            (<code>str</code>)
- – <p>Mode whether coordinate should be centered to the nt or on the side.</p>
-      </p>
-      </li>
-     
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th><b>PARAMETER</b></th>
+        <th><b>DESCRIPTION</b></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>nt</code></td>
+          <td class="doc-param-details">
+            <p>Nucleotide coordinate.</p>
+            <p>
+                <span class="doc-param-annotation">
+                  <b>TYPE:</b>
+                    <code>int</code>
+                </span>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>locus</code></td>
+          <td class="doc-param-details">
+            <p>Corresponding locus object.</p>
+            <p>
+                <span class="doc-param-annotation">
+                  <b>TYPE:</b>
+                    <code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Locus" href="../package_data_processing/#lovis4u.DataProcessing.Locus">Locus</a></code>
+                </span>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>layout</code></td>
+          <td class="doc-param-details">
+            <p>Layout of the canvas.</p>
+            <p>
+                <span class="doc-param-annotation">
+                  <b>TYPE:</b>
+                    <code>dict</code>
+                </span>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>mode</code></td>
+          <td class="doc-param-details">
+            <p>Mode whether coordinate should be centered to the nt or on the side.</p>
+            <p>
+                <span class="doc-param-annotation">
+                  <b>TYPE:</b>
+                    <code>str</code>
+                </span>
+            </p>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
-  <p> <b>Returns:</b></p>
-  <ul>
-      <li class="field-body">
-<b>float</b>(            <code>float</code>
-)        – <p>Corresponding page coordinate.</p>
-      </li>
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th><b>RETURNS</b></th>
+        <th><b>DESCRIPTION</b></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+              <code>float</code>
+          </td>
+          <td class="doc-returns-details">
+            <p>Corresponding page coordinate.</p>
+              <p>
+                <span class="doc-returns-annotation">
+                  <b>TYPE:</b>
+                    <code>float</code>
+                </span>
+              </p>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Methods.py</code></summary>
@@ -1245,50 +1425,89 @@
   
       <p>Transform region coordinates to x page coordinates.</p>
 
-  <p><b>Parameters:</b></p>
-  <ul>
-    
-	<p>
-      <li class="field-body">
-        <b>nt_start</b>
-            (<code>int</code>)
- – <p>1-based nucleotide start coordinate.</p>
-      </p>
-      </li>
-     
-	<p>
-      <li class="field-body">
-        <b>nt_end</b>
-            (<code>int</code>)
- – <p>1-based nucleotide end coordinate.</p>
-      </p>
-      </li>
-     
-	<p>
-      <li class="field-body">
-        <b>locus</b>
-            (<code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Locus" href="../package_data_processing/#lovis4u.DataProcessing.Locus">Locus</a></code>)
- – <p>Corresponding locus object.</p>
-      </p>
-      </li>
-     
-	<p>
-      <li class="field-body">
-        <b>layout</b>
-            (<code>dict</code>)
- – <p>Layout of the canvas.</p>
-      </p>
-      </li>
-     
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th><b>PARAMETER</b></th>
+        <th><b>DESCRIPTION</b></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>nt_start</code></td>
+          <td class="doc-param-details">
+            <p>1-based nucleotide start coordinate.</p>
+            <p>
+                <span class="doc-param-annotation">
+                  <b>TYPE:</b>
+                    <code>int</code>
+                </span>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>nt_end</code></td>
+          <td class="doc-param-details">
+            <p>1-based nucleotide end coordinate.</p>
+            <p>
+                <span class="doc-param-annotation">
+                  <b>TYPE:</b>
+                    <code>int</code>
+                </span>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>locus</code></td>
+          <td class="doc-param-details">
+            <p>Corresponding locus object.</p>
+            <p>
+                <span class="doc-param-annotation">
+                  <b>TYPE:</b>
+                    <code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Locus" href="../package_data_processing/#lovis4u.DataProcessing.Locus">Locus</a></code>
+                </span>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>layout</code></td>
+          <td class="doc-param-details">
+            <p>Layout of the canvas.</p>
+            <p>
+                <span class="doc-param-annotation">
+                  <b>TYPE:</b>
+                    <code>dict</code>
+                </span>
+            </p>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
-  <p> <b>Returns:</b></p>
-  <ul>
-      <li class="field-body">
-<b>dict</b>(            <code>dict</code>
-)        – <p>Dictionary with corresponding start and end page coordinates.</p>
-      </li>
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th><b>RETURNS</b></th>
+        <th><b>DESCRIPTION</b></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+              <code>dict</code>
+          </td>
+          <td class="doc-returns-details">
+            <p>Dictionary with corresponding start and end page coordinates.</p>
+              <p>
+                <span class="doc-returns-annotation">
+                  <b>TYPE:</b>
+                    <code>dict</code>
+                </span>
+              </p>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Methods.py</code></summary>
@@ -1353,34 +1572,65 @@
   
       <p>Helper function to get darker version of input color</p>
 
-  <p><b>Parameters:</b></p>
-  <ul>
-    
-	<p>
-      <li class="field-body">
-        <b>hex_c</b>
-            (<code>str</code>)
- – <p>input HEX color</p>
-      </p>
-      </li>
-     
-	<p>
-      <li class="field-body">
-        <b>scale_l</b>
-            (<code>float</code>)
- – <p>scale of lightness</p>
-      </p>
-      </li>
-     
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th><b>PARAMETER</b></th>
+        <th><b>DESCRIPTION</b></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>hex_c</code></td>
+          <td class="doc-param-details">
+            <p>input HEX color</p>
+            <p>
+                <span class="doc-param-annotation">
+                  <b>TYPE:</b>
+                    <code>str</code>
+                </span>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>scale_l</code></td>
+          <td class="doc-param-details">
+            <p>scale of lightness</p>
+            <p>
+                <span class="doc-param-annotation">
+                  <b>TYPE:</b>
+                    <code>float</code>
+                </span>
+            </p>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
-  <p> <b>Returns:</b></p>
-  <ul>
-      <li class="field-body">
-<b>str</b>(            <code>str</code>
-)        – <p>new HEX color</p>
-      </li>
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th><b>RETURNS</b></th>
+        <th><b>DESCRIPTION</b></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+              <code>str</code>
+          </td>
+          <td class="doc-returns-details">
+            <p>new HEX color</p>
+              <p>
+                <span class="doc-returns-annotation">
+                  <b>TYPE:</b>
+                    <code>str</code>
+                </span>
+              </p>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Methods.py</code></summary>
@@ -1433,34 +1683,65 @@
   
       <p>Transform string height to the font size.</p>
 
-  <p><b>Parameters:</b></p>
-  <ul>
-    
-	<p>
-      <li class="field-body">
-        <b>height</b>
-            (<code>float</code>)
- – <p>available height of the string.</p>
-      </p>
-      </li>
-     
-	<p>
-      <li class="field-body">
-        <b>font_type</b>
-            (<code>str</code>)
- – <p>font type (see config file; at this moment only regular is available).</p>
-      </p>
-      </li>
-     
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th><b>PARAMETER</b></th>
+        <th><b>DESCRIPTION</b></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>height</code></td>
+          <td class="doc-param-details">
+            <p>available height of the string.</p>
+            <p>
+                <span class="doc-param-annotation">
+                  <b>TYPE:</b>
+                    <code>float</code>
+                </span>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>font_type</code></td>
+          <td class="doc-param-details">
+            <p>font type (see config file; at this moment only regular is available).</p>
+            <p>
+                <span class="doc-param-annotation">
+                  <b>TYPE:</b>
+                    <code>str</code>
+                </span>
+            </p>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
-  <p> <b>Returns:</b></p>
-  <ul>
-      <li class="field-body">
-<b>float</b>(            <code>float</code>
-)        – <p>font size defined by height.</p>
-      </li>
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th><b>RETURNS</b></th>
+        <th><b>DESCRIPTION</b></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+              <code>float</code>
+          </td>
+          <td class="doc-returns-details">
+            <p>font size defined by height.</p>
+              <p>
+                <span class="doc-returns-annotation">
+                  <b>TYPE:</b>
+                    <code>float</code>
+                </span>
+              </p>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Methods.py</code></summary>
@@ -1513,34 +1794,65 @@
   
       <p>Get path basename and replace its extension</p>
 
-  <p><b>Parameters:</b></p>
-  <ul>
-    
-	<p>
-      <li class="field-body">
-        <b>path</b>
-            (<code>str</code>)
- – <p>path to a file</p>
-      </p>
-      </li>
-     
-	<p>
-      <li class="field-body">
-        <b>new_extension</b>
-            (<code>str</code>)
- – <p>new extension</p>
-      </p>
-      </li>
-     
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th><b>PARAMETER</b></th>
+        <th><b>DESCRIPTION</b></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>path</code></td>
+          <td class="doc-param-details">
+            <p>path to a file</p>
+            <p>
+                <span class="doc-param-annotation">
+                  <b>TYPE:</b>
+                    <code>str</code>
+                </span>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>new_extension</code></td>
+          <td class="doc-param-details">
+            <p>new extension</p>
+            <p>
+                <span class="doc-param-annotation">
+                  <b>TYPE:</b>
+                    <code>str</code>
+                </span>
+            </p>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
-  <p> <b>Returns:</b></p>
-  <ul>
-      <li class="field-body">
-<b>str</b>(            <code>str</code>
-)        – <p>basename of a file with new extension.</p>
-      </li>
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th><b>RETURNS</b></th>
+        <th><b>DESCRIPTION</b></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+              <code>str</code>
+          </td>
+          <td class="doc-returns-details">
+            <p>basename of a file with new extension.</p>
+              <p>
+                <span class="doc-returns-annotation">
+                  <b>TYPE:</b>
+                    <code>str</code>
+                </span>
+              </p>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
       <details class="quote">
         <summary>Source code in <code>lovis4u/Methods.py</code></summary>

@@ -989,70 +989,107 @@ Supposed to represent clusters on locus or any second layer of feature propertie
 
   <p><b>Parameters:</b></p>
   <ul>
+    
+	<p>
       <li class="field-body">
         <b>feature_id</b>
             (<code>str</code>)
  – <p>Feature identifier.</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>feature_type</b>
             (<code>str</code>)
  – <p>Type of element (e.g. CDS or tRNA). Currently only CDS are supported.</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>start</b>
             (<code>int</code>)
  – <p>1-based start genomic coordinate.</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>end</b>
             (<code>int</code>)
  – <p>1-based end genomic coordinates</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>strand</b>
             (<code>int</code>)
  – <p>Genomic strand (1: plus strand, -1: minus strand).</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>name</b>
             (<code>str</code>)
  – <p>Name of the feature which will be used as a label.</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>sequence</b>
             (<code><span title="Bio.Seq.Seq">Seq</span></code>)
  – <p>Feature's sequence.</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>group</b>
             (<code>str</code>)
  – <p>Feature group that defines feature's color and meant to represent a set of homologous features.
 Can be set with Loci.mmseqs_cluster() method that uses mmseqs clustering to define CDS feature groups.</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>group_type</b>
             (<code>str</code>)
  – <p>Type of feature group that allow to visualise different set of feature groups differently
 (e.g. plot labels only for features which group_type is "variable" or "labeled").</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>category</b>
             (<code>str</code>)
  – <p>Feature category which initially is built to handle phrogs category annotation.
 In visualisation it defines the "category" color annotation under features.
 Supposed to represent clusters on locus or any second layer of feature properties.</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>vis_prms</b>
             (<code>dict</code>)
  – <p>Visualisation parameters that holds colors, label and other info for Drawing methods.</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>prms</b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
  – <p>Parameters' class object that holds config and cmd arguments.</p>
+      </p>
       </li>
+     
   </ul>
 
       <details class="quote">
@@ -2755,11 +2792,15 @@ Supposed to represent clusters on locus or any second layer of feature propertie
 
   <p><b>Parameters:</b></p>
   <ul>
+    
+	<p>
       <li class="field-body">
         <b>parameters</b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
  – <p>Parameters' class object that holds config and cmd arguments.</p>
+      </p>
       </li>
+     
   </ul>
 
       <details class="quote">
@@ -2811,21 +2852,31 @@ Supposed to represent clusters on locus or any second layer of feature propertie
 
   <p><b>Parameters:</b></p>
   <ul>
+    
+	<p>
       <li class="field-body">
         <b>file_path</b>
             (<code>str</code>)
  – <p>File path for an annotation file to be loaded.</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>annotation_columns</b>
             (<code>list</code>)
  – <p>List of columns that should be considered.</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>index_column</b>
             (<code>str</code>)
  – <p>Column name to be considered as index.</p>
+      </p>
       </li>
+     
   </ul>
 
   <p> <b>Returns:</b></p>
@@ -2893,31 +2944,47 @@ Supposed to represent clusters on locus or any second layer of feature propertie
 
   <p><b>Parameters:</b></p>
   <ul>
+    
+	<p>
       <li class="field-body">
         <b>feature_id</b>
             (<code>str</code>)
  – <p>Feature identifier.</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>locus_id</b>
             (<code>str</code>)
  – <p>Sequence description.</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>coordinates</b>
             (<code>str</code>)
  – <p>Feature coordinates.</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>category</b>
             (<code>str</code>)
  – <p>Feature type.</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>name</b>
             (<code>str</code>)
  – <p>Feature name.</p>
+      </p>
       </li>
+     
   </ul>
 
   <p> <b>Returns:</b></p>
@@ -3023,21 +3090,31 @@ Supposed to represent clusters on locus or any second layer of feature propertie
 
   <p><b>Parameters:</b></p>
   <ul>
+    
+	<p>
       <li class="field-body">
         <b>record_id</b>
             (<code>str</code>)
  – <p>Sequence identifier.</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>record_description</b>
             (<code>str</code>)
  – <p>Sequence description.</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>record_length</b>
             (<code>int</code>)
  – <p>Sequence length.</p>
+      </p>
       </li>
+     
   </ul>
 
   <p> <b>Returns:</b></p>
@@ -3119,12 +3196,16 @@ feature id and column "cluster" corresponding to the group.</p></p>
 
   <p><b>Parameters:</b></p>
   <ul>
+    
+	<p>
       <li class="field-body">
         <b>dataframe</b>
             (<code><span title="pandas.DataFrame">DataFrame</span></code>)
  – <p>dataframe with feature id - group pairs. Its index column should
 represent all loci CDS features.</p>
+      </p>
       </li>
+     
   </ul>
 
   <p> <b>Returns:</b></p>
@@ -3328,17 +3409,24 @@ feature groups you can set them with feature table.</p></p>
 
   <p><b>Parameters:</b></p>
   <ul>
+    
+	<p>
       <li class="field-body">
         <b>dataframe</b>
             (<code><span title="pandas.DataFrame">DataFrame</span></code>)
  – <p>dataframe with feature id - group pairs. Its index column should
 represent all loci CDS features.</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>group_column_name</b>
             (<code>str</code>)
  – <p>column name of the dataframe that represent corresponding group to each feature.</p>
+      </p>
       </li>
+     
   </ul>
 
   <p> <b>Returns:</b></p>
@@ -3529,12 +3617,16 @@ feature id and column "cluster" corresponding to the group.</p></p>
 
   <p><b>Parameters:</b></p>
   <ul>
+    
+	<p>
       <li class="field-body">
         <b>mmseqs_results</b>
             (<code><span title="pandas.DataFrame">DataFrame</span></code>)
  – <p>dataframe with feature id - group pairs. Its index column should
 represent all loci CDS features.</p>
+      </p>
       </li>
+     
   </ul>
 
   <p> <b>Returns:</b></p>
@@ -3725,11 +3817,15 @@ represent all loci CDS features.</p>
 
   <p><b>Parameters:</b></p>
   <ul>
+    
+	<p>
       <li class="field-body">
         <b>file_path</b>
             (<code>str</code>)
  – <p>File path for a features annotation file to be loaded.</p>
+      </p>
       </li>
+     
   </ul>
 
   <p> <b>Returns:</b></p>
@@ -3791,11 +3887,15 @@ represent all loci CDS features.</p>
 
   <p><b>Parameters:</b></p>
   <ul>
+    
+	<p>
       <li class="field-body">
         <b>file_path</b>
             (<code>str</code>)
  – <p>File path for a loci annotation file to be loaded.</p>
+      </p>
       </li>
+     
   </ul>
 
   <p> <b>Returns:</b></p>
@@ -3863,11 +3963,15 @@ represent all loci CDS features.</p>
 
   <p><b>Parameters:</b></p>
   <ul>
+    
+	<p>
       <li class="field-body">
         <b>input_folder</b>
             (<code>str</code>)
  – <p>folder name with gff files.</p>
+      </p>
       </li>
+     
   </ul>
 
   <p> <b>Returns:</b></p>
@@ -4096,11 +4200,15 @@ represent all loci CDS features.</p>
 
   <p><b>Parameters:</b></p>
   <ul>
+    
+	<p>
       <li class="field-body">
         <b>input_folder</b>
             (<code>str</code>)
  – <p>folder name with gb files.</p>
+      </p>
       </li>
+     
   </ul>
 
   <p> <b>Returns:</b></p>
@@ -4788,11 +4896,15 @@ defined by representative sequence id within a corresponding cluster.</p>
 
   <p><b>Parameters:</b></p>
   <ul>
+    
+	<p>
       <li class="field-body">
         <b>use_table</b>
             (<code>bool</code>)
  – <p>Bool value whether table with predefined colors should be used or not.</p>
+      </p>
       </li>
+     
   </ul>
 
   <p> <b>Returns:</b></p>
@@ -5232,53 +5344,81 @@ hierarchical clustering with cluster_sequences category.</p>
 
   <p><b>Parameters:</b></p>
   <ul>
+    
+	<p>
       <li class="field-body">
         <b>seq_id</b>
             (<code>str</code>)
  – <p>Sequence identifier. Can be used to label locus.</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>coordinates</b>
             (<code>list</code>)
  – <p>List of regions to be shown. Each region format: dict with keys: start, end, strand and
 corresponding 1-based start, end coordinates and strand (1: plus strand, -1: minus strand).</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>description</b>
             (<code>str</code>)
  – <p>Sequence description that can be used to label locus.</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>length</b>
             (<code>int</code>)
  – <p>full length of the locus independent on region that should be plotted.</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>circular</b>
             (<code>bool</code>)
  – <p>Bool value whether locus is circular or not. It defines whether you have gap or not passing
 1 value on the final figure.</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>features</b>
             (<code>list</code>)
  – <p>list of Feature objects that overlapped with coordinates.</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>order</b>
             (<code>int</code>)
  – <p>index on ordered list of loci visualisation. Can be pre-defined or found based on loci</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>parameters</b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
  – <p>Parameters' class object that holds config and cmd arguments.</p>
+      </p>
       </li>
+     
+	<p>
       <li class="field-body">
         <b>group</b>
             (<code>int | str</code>)
  – <p>locus group that defines set of closely-related loci [1].</p>
+      </p>
       </li>
+     
   </ul>
 
       <details class="quote">

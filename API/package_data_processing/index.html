@@ -764,72 +764,59 @@
   <p><span class="doc-section-title">Attributes:</span></p>
   <ul>
       <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.feature_id">feature_id</span></code></b>(<code>str</code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.feature_id">feature_id</span></code></b>(<code>str</code>)–<div class="doc-md-description">
           <p>Feature identifier.</p>
         </div>
       </li>      <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.feature_type">feature_type</span></code></b>(<code>str</code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.feature_type">feature_type</span></code></b>(<code>str</code>)–<div class="doc-md-description">
           <p>Type of element (e.g. CDS or tRNA). Currently only CDS are supported.</p>
         </div>
       </li>      <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.start">start</span></code></b>(<code>int</code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.start">start</span></code></b>(<code>int</code>)–<div class="doc-md-description">
           <p>1-based start genomic coordinate.</p>
         </div>
       </li>      <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.end">end</span></code></b>(<code>int</code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.end">end</span></code></b>(<code>int</code>)–<div class="doc-md-description">
           <p>1-based end genomic coordinates</p>
         </div>
       </li>      <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.strand">strand</span></code></b>(<code>int</code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.strand">strand</span></code></b>(<code>int</code>)–<div class="doc-md-description">
           <p>Genomic strand (1: plus strand, -1: minus strand).</p>
         </div>
       </li>      <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.name">name</span></code></b>(<code>str</code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.name">name</span></code></b>(<code>str</code>)–<div class="doc-md-description">
           <p>Name of the feature which will be used as a label.</p>
         </div>
       </li>      <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.sequence">sequence</span></code></b>(<code><span title="Bio.Seq.Seq">Seq</span></code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.sequence">sequence</span></code></b>(<code><span title="Bio.Seq.Seq">Seq</span></code>)–<div class="doc-md-description">
           <p>Feature's sequence.</p>
         </div>
       </li>      <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.record">record</span></code></b>(<code><span title="Bio.SeqRecord.SeqRecord">SeqRecord</span></code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.record">record</span></code></b>(<code><span title="Bio.SeqRecord.SeqRecord">SeqRecord</span></code>)–<div class="doc-md-description">
           <p>SeqRecord object of corresponding feature sequence.</p>
         </div>
       </li>      <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.group">group</span></code></b>(<code>str</code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.group">group</span></code></b>(<code>str</code>)–<div class="doc-md-description">
           <p>Feature group that defines feature's color and meant to represent a set of homologous features.
 Can be set with Loci.mmseqs_cluster() method that uses mmseqs clustering to define CDS feature groups.</p>
         </div>
       </li>      <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.group_type">group_type</span></code></b>(<code>str</code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.group_type">group_type</span></code></b>(<code>str</code>)–<div class="doc-md-description">
           <p>Type of feature group that allow to visualise different set of feature groups differently
 (e.g. plot labels only for features which group_type is "variable" or "labeled").</p>
         </div>
       </li>      <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.category">category</span></code></b>(<code>str</code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.category">category</span></code></b>(<code>str</code>)–<div class="doc-md-description">
           <p>Feature category which initially is built to handle phrogs category annotation.
 In visualisation it defines the "category" color annotation under features.
 Supposed to represent clusters on locus or any second layer of feature properties.</p>
         </div>
       </li>      <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.vis_prms">vis_prms</span></code></b>(<code>dict</code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.vis_prms">vis_prms</span></code></b>(<code>dict</code>)–<div class="doc-md-description">
           <p>Visualisation parameters that holds colors, label and other info for Drawing methods.</p>
         </div>
       </li>      <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.prms">prms</span></code></b>(<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.prms">prms</span></code></b>(<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)–<div class="doc-md-description">
           <p>Parameters' class object that holds config and cmd arguments.</p>
         </div>
       </li></ul>
@@ -1207,25 +1194,21 @@ Supposed to represent clusters on locus or any second layer of feature propertie
   <p><span class="doc-section-title">Attributes:</span></p>
   <ul>
       <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.loci">loci</span></code></b>(<code>list</code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.loci">loci</span></code></b>(<code>list</code>)–<div class="doc-md-description">
           <p>List of Locus objects.</p>
         </div>
       </li>      <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.loci_annotation">loci_annotation</span></code></b>(<code><span title="pandas.DataFrame">DataFrame</span></code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.loci_annotation">loci_annotation</span></code></b>(<code><span title="pandas.DataFrame">DataFrame</span></code>)–<div class="doc-md-description">
           <p>Table with information about each locus that defines visualisation
 (e.g. coordinates for visualisation, description, etc).</p>
         </div>
       </li>      <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.feature_annotation">feature_annotation</span></code></b>(<code><span title="pandas.DataFrame">DataFrame</span></code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.feature_annotation">feature_annotation</span></code></b>(<code><span title="pandas.DataFrame">DataFrame</span></code>)–<div class="doc-md-description">
           <p>Table with information about each feature that defines visualisation
 (e.g. group, name, category, etc).</p>
         </div>
       </li>      <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.prms">prms</span></code></b>(<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.prms">prms</span></code></b>(<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)–<div class="doc-md-description">
           <p>Parameters' class object that holds config and cmd arguments.</p>
         </div>
       </li></ul>
@@ -5208,61 +5191,50 @@ defined by representative sequence id within a corresponding cluster.</p>
   <p><span class="doc-section-title">Attributes:</span></p>
   <ul>
       <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.seq_id">seq_id</span></code></b>(<code>str</code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.seq_id">seq_id</span></code></b>(<code>str</code>)–<div class="doc-md-description">
           <p>Sequence identifier. Can be used to label locus.</p>
         </div>
       </li>      <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.coordinates">coordinates</span></code></b>(<code>list</code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.coordinates">coordinates</span></code></b>(<code>list</code>)–<div class="doc-md-description">
           <p>List of regions to be shown. Each region format: dict with keys: start, end, strand and
 corresponding 1-based start, end coordinates and strand (1: plus strand, -1: minus strand).</p>
         </div>
       </li>      <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.size">size</span></code></b>(<code>int</code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.size">size</span></code></b>(<code>int</code>)–<div class="doc-md-description">
           <p>total length of regions to be plotted.</p>
         </div>
       </li>      <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.description">description</span></code></b>(<code>str</code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.description">description</span></code></b>(<code>str</code>)–<div class="doc-md-description">
           <p>Sequence description that can be used to label locus.</p>
         </div>
       </li>      <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.length">length</span></code></b>(<code>int</code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.length">length</span></code></b>(<code>int</code>)–<div class="doc-md-description">
           <p>full length of the locus independent on region that should be plotted.</p>
         </div>
       </li>      <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.circular">circular</span></code></b>(<code>bool</code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.circular">circular</span></code></b>(<code>bool</code>)–<div class="doc-md-description">
           <p>Bool value whether locus is circular or not. It defines whether you have gap or not passing
 1 value on the final figure.</p>
         </div>
       </li>      <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.features">features</span></code></b>(<code>list</code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.features">features</span></code></b>(<code>list</code>)–<div class="doc-md-description">
           <p>list of Feature objects that overlapped with coordinates.</p>
         </div>
       </li>      <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.order">order</span></code></b>(<code>int</code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.order">order</span></code></b>(<code>int</code>)–<div class="doc-md-description">
           <p>index on ordered list of loci visualisation. Can be pre-defined or found based on loci
 hierarchical clustering with cluster_sequences category.</p>
         </div>
       </li>      <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.group">group</span></code></b>(<code>int | str</code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.group">group</span></code></b>(<code>int | str</code>)–<div class="doc-md-description">
           <p>locus group that defines set of closely-related loci.</p>
         </div>
       </li>      <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.category_colors">category_colors</span></code></b>(<code>dict</code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.category_colors">category_colors</span></code></b>(<code>dict</code>)–<div class="doc-md-description">
           <p>colors for locus' features categories.</p>
         </div>
       </li>      <li class="doc-section-item field-body">
-        <b><code><span title="lovis4u.DataProcessing.prms">prms</span></code></b>(<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)–
-        <div class="doc-md-description">
+        <b><code><span title="lovis4u.DataProcessing.prms">prms</span></code></b>(<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)–<div class="doc-md-description">
           <p>Parameters' class object that holds config and cmd arguments.</p>
         </div>
       </li></ul>

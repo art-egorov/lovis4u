@@ -488,14 +488,14 @@
         
           <li class="md-nav__item">
   <a href="#lovis4u.Drawing.ColorLegendVis.__init__" class="md-nav__link">
-    __init__
+    __init__()
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#lovis4u.Drawing.ColorLegendVis.draw" class="md-nav__link">
-    draw
+    draw()
   </a>
   
 </li>
@@ -515,14 +515,14 @@
         
           <li class="md-nav__item">
   <a href="#lovis4u.Drawing.CrossTrack.__init__" class="md-nav__link">
-    __init__
+    __init__()
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#lovis4u.Drawing.CrossTrack.draw" class="md-nav__link">
-    draw
+    draw()
   </a>
   
 </li>
@@ -542,14 +542,14 @@
         
           <li class="md-nav__item">
   <a href="#lovis4u.Drawing.HomologyTrack.__init__" class="md-nav__link">
-    __init__
+    __init__()
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#lovis4u.Drawing.HomologyTrack.draw" class="md-nav__link">
-    draw
+    draw()
   </a>
   
 </li>
@@ -569,21 +569,21 @@
         
           <li class="md-nav__item">
   <a href="#lovis4u.Drawing.LocusVis.__init__" class="md-nav__link">
-    __init__
+    __init__()
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#lovis4u.Drawing.LocusVis.__plot_cds_feature" class="md-nav__link">
-    __plot_cds_feature
+    __plot_cds_feature()
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#lovis4u.Drawing.LocusVis.draw" class="md-nav__link">
-    draw
+    draw()
   </a>
   
 </li>
@@ -603,14 +603,14 @@
         
           <li class="md-nav__item">
   <a href="#lovis4u.Drawing.ScaleVis.__init__" class="md-nav__link">
-    __init__
+    __init__()
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#lovis4u.Drawing.ScaleVis.draw" class="md-nav__link">
-    draw
+    draw()
   </a>
   
 </li>
@@ -630,14 +630,14 @@
         
           <li class="md-nav__item">
   <a href="#lovis4u.Drawing.Track.__init__" class="md-nav__link">
-    __init__
+    __init__()
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#lovis4u.Drawing.Track.draw" class="md-nav__link">
-    draw
+    draw()
   </a>
   
 </li>
@@ -731,43 +731,54 @@
 
 
 
+
 <h2 id="lovis4u.Drawing.ColorLegendVis" class="doc doc-heading">
-        <code>ColorLegendVis</code>
+          <code>ColorLegendVis</code>
 
 
 </h2>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><a class="autorefs autorefs-internal" title="lovis4u.Drawing.Track" href="#lovis4u.Drawing.Track">Track</a></code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="lovis4u.Drawing.Track" href="#lovis4u.Drawing.Track">Track</a></code></p>
 
   
       <p>ColorLegend track object that handles visualisation of legend to feature's category colors.</p>
 
-  <p><b>Attributes:</b></p>
+
+
+  <p>Attributes:</p>
   <ul>
       <li class="field-body">
-        <b>layout</b>
+        <b><code>layout</code></b>
             (<code>dict</code>)
-        – <p>Layout built by CanvasManager's define_layout() method.</p>
+        –
+        <div class="doc-md-description">
+          <p>Layout built by CanvasManager's define_layout() method.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>track_data</b>
+        <b><code>track_data</code></b>
             (<code>dict</code>)
-        – <p>a dictionary with prepared track specific data.</p>
+        –
+        <div class="doc-md-description">
+          <p>a dictionary with prepared track specific data.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>prms</b>
+        <b><code>prms</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object.</p>
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object.</p>
+        </div>
       </li>
   </ul>
 
-
-        <details class="quote">
-          <summary>Source code in <code>lovis4u/Drawing.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">502</span>
+            <details class="quote">
+              <summary>Source code in <code>lovis4u/Drawing.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">502</span>
 <span class="normal">503</span>
 <span class="normal">504</span>
 <span class="normal">505</span>
@@ -865,7 +876,7 @@
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">lovis4u</span><span class="o">.</span><span class="n">Manager</span><span class="o">.</span><span class="n">lovis4uError</span><span class="p">(</span><span class="s2">&quot;Unable to draw a color legend track.&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">error</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
@@ -884,6 +895,7 @@
 
 
 
+
 <h3 id="lovis4u.Drawing.ColorLegendVis.__init__" class="doc doc-heading">
           <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">layout</span><span class="p">,</span> <span class="n">track_data</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span></code>
 
@@ -896,9 +908,9 @@
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>layout</code></b>
             (<code>dict</code>)
         –
@@ -906,7 +918,7 @@
           <p>Layout built by CanvasManager's define_layout() method.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>track_data</code></b>
             (<code>dict</code>)
         –
@@ -914,7 +926,7 @@
           <p>a dictionary with prepared track specific data.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>parameters</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
         –
@@ -958,6 +970,7 @@
 
 
 
+
 <h3 id="lovis4u.Drawing.ColorLegendVis.draw" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">draw</span><span class="p">(</span><span class="n">canvas</span><span class="p">)</span></code>
 
@@ -970,9 +983,9 @@
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>canvas</code></b>
             (<code><span title="reportlab.pdfgen.canvas.Canvas">Canvas</span></code>)
         –
@@ -982,11 +995,16 @@
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -1063,8 +1081,9 @@
 
 
 
+
 <h2 id="lovis4u.Drawing.CrossTrack" class="doc doc-heading">
-        <code>CrossTrack</code>
+          <code>CrossTrack</code>
 
 
 </h2>
@@ -1075,29 +1094,39 @@
   
       <p>Parent class for Cross-Tracks visualisation.</p>
 
-  <p><b>Attributes:</b></p>
+
+
+  <p>Attributes:</p>
   <ul>
       <li class="field-body">
-        <b>layout</b>
+        <b><code>layout</code></b>
             (<code>dict</code>)
-        – <p>Layout built by CanvasManager's define_layout() method.</p>
+        –
+        <div class="doc-md-description">
+          <p>Layout built by CanvasManager's define_layout() method.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>tracks</b>
+        <b><code>tracks</code></b>
             (<code>dict</code>)
-        – <p>List with track objects participated in CrossTrack.</p>
+        –
+        <div class="doc-md-description">
+          <p>List with track objects participated in CrossTrack.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>prms</b>
+        <b><code>prms</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object.</p>
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object.</p>
+        </div>
       </li>
   </ul>
 
-
-        <details class="quote">
-          <summary>Source code in <code>lovis4u/Drawing.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">55</span>
+            <details class="quote">
+              <summary>Source code in <code>lovis4u/Drawing.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">55</span>
 <span class="normal">56</span>
 <span class="normal">57</span>
 <span class="normal">58</span>
@@ -1165,7 +1194,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
@@ -1184,6 +1213,7 @@
 
 
 
+
 <h3 id="lovis4u.Drawing.CrossTrack.__init__" class="doc doc-heading">
           <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">layout</span><span class="p">,</span> <span class="n">tracks</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span></code>
 
@@ -1194,22 +1224,33 @@
   
       <p>Parent's constructor for creating a CrossTrack object.</p>
 
-  <p><b>Attributes:</b></p>
+
+
+  <p>Attributes:</p>
   <ul>
       <li class="field-body">
-        <b>layout</b>
+        <b><code>layout</code></b>
             (<code>dict</code>)
-        – <p>Layout built by CanvasManager's define_layout() method.</p>
+        –
+        <div class="doc-md-description">
+          <p>Layout built by CanvasManager's define_layout() method.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>tracks</b>
+        <b><code>tracks</code></b>
             (<code>dict</code>)
-        – <p>List with track objects participated in CrossTrack.</p>
+        –
+        <div class="doc-md-description">
+          <p>List with track objects participated in CrossTrack.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>parameters</b>
+        <b><code>parameters</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object.</p>
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object.</p>
+        </div>
       </li>
   </ul>
 
@@ -1249,6 +1290,7 @@
 
 
 
+
 <h3 id="lovis4u.Drawing.CrossTrack.draw" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">draw</span><span class="p">(</span><span class="n">canvas</span><span class="p">)</span></code>
 
@@ -1261,9 +1303,9 @@
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>canvas</code></b>
             (<code><span title="reportlab.pdfgen.canvas.Canvas">Canvas</span></code>)
         –
@@ -1273,10 +1315,15 @@
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -1321,43 +1368,54 @@
 
 
 
+
 <h2 id="lovis4u.Drawing.HomologyTrack" class="doc doc-heading">
-        <code>HomologyTrack</code>
+          <code>HomologyTrack</code>
 
 
 </h2>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><a class="autorefs autorefs-internal" title="lovis4u.Drawing.CrossTrack" href="#lovis4u.Drawing.CrossTrack">CrossTrack</a></code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="lovis4u.Drawing.CrossTrack" href="#lovis4u.Drawing.CrossTrack">CrossTrack</a></code></p>
 
   
       <p>Track that handle visualisation of homology lines between homologous features on neighbours' loci.</p>
 
-  <p><b>Attributes:</b></p>
+
+
+  <p>Attributes:</p>
   <ul>
       <li class="field-body">
-        <b>layout</b>
+        <b><code>layout</code></b>
             (<code>dict</code>)
-        – <p>Layout built by CanvasManager's define_layout() method.</p>
+        –
+        <div class="doc-md-description">
+          <p>Layout built by CanvasManager's define_layout() method.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>tracks</b>
+        <b><code>tracks</code></b>
             (<code>dict</code>)
-        – <p>List with track objects participated in CrossTrack.</p>
+        –
+        <div class="doc-md-description">
+          <p>List with track objects participated in CrossTrack.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>prms</b>
+        <b><code>prms</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object.</p>
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object.</p>
+        </div>
       </li>
   </ul>
 
-
-        <details class="quote">
-          <summary>Source code in <code>lovis4u/Drawing.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 91</span>
+            <details class="quote">
+              <summary>Source code in <code>lovis4u/Drawing.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 91</span>
 <span class="normal"> 92</span>
 <span class="normal"> 93</span>
 <span class="normal"> 94</span>
@@ -1577,7 +1635,7 @@
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">lovis4u</span><span class="o">.</span><span class="n">Manager</span><span class="o">.</span><span class="n">lovis4uError</span><span class="p">(</span><span class="s2">&quot;Unable to draw homology line track.&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">error</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
@@ -1596,6 +1654,7 @@
 
 
 
+
 <h3 id="lovis4u.Drawing.HomologyTrack.__init__" class="doc doc-heading">
           <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">layout</span><span class="p">,</span> <span class="n">tracks</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span></code>
 
@@ -1606,22 +1665,33 @@
   
       <p>Create a HomologyTrack.</p>
 
-  <p><b>Attributes:</b></p>
+
+
+  <p>Attributes:</p>
   <ul>
       <li class="field-body">
-        <b>layout</b>
+        <b><code>layout</code></b>
             (<code>dict</code>)
-        – <p>Layout built by CanvasManager's define_layout() method.</p>
+        –
+        <div class="doc-md-description">
+          <p>Layout built by CanvasManager's define_layout() method.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>tracks</b>
+        <b><code>tracks</code></b>
             (<code>dict</code>)
-        – <p>List with track objects participated in CrossTrack.</p>
+        –
+        <div class="doc-md-description">
+          <p>List with track objects participated in CrossTrack.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>parameters</b>
+        <b><code>parameters</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object.</p>
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object.</p>
+        </div>
       </li>
   </ul>
 
@@ -1657,6 +1727,7 @@
 
 
 
+
 <h3 id="lovis4u.Drawing.HomologyTrack.draw" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">draw</span><span class="p">(</span><span class="n">canvas</span><span class="p">)</span></code>
 
@@ -1669,9 +1740,9 @@
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>canvas</code></b>
             (<code><span title="reportlab.pdfgen.canvas.Canvas">Canvas</span></code>)
         –
@@ -1681,11 +1752,16 @@
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -1886,43 +1962,54 @@
 
 
 
+
 <h2 id="lovis4u.Drawing.LocusVis" class="doc doc-heading">
-        <code>LocusVis</code>
+          <code>LocusVis</code>
 
 
 </h2>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><a class="autorefs autorefs-internal" title="lovis4u.Drawing.Track" href="#lovis4u.Drawing.Track">Track</a></code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="lovis4u.Drawing.Track" href="#lovis4u.Drawing.Track">Track</a></code></p>
 
   
       <p>LocusVis track object that handles each locus visualisation.</p>
 
-  <p><b>Attributes:</b></p>
+
+
+  <p>Attributes:</p>
   <ul>
       <li class="field-body">
-        <b>layout</b>
+        <b><code>layout</code></b>
             (<code>dict</code>)
-        – <p>Layout built by CanvasManager's define_layout() method.</p>
+        –
+        <div class="doc-md-description">
+          <p>Layout built by CanvasManager's define_layout() method.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>track_data</b>
+        <b><code>track_data</code></b>
             (<code>dict</code>)
-        – <p>a dictionary with prepared track specific data.</p>
+        –
+        <div class="doc-md-description">
+          <p>a dictionary with prepared track specific data.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>prms</b>
+        <b><code>prms</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object.</p>
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object.</p>
+        </div>
       </li>
   </ul>
 
-
-        <details class="quote">
-          <summary>Source code in <code>lovis4u/Drawing.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">203</span>
+            <details class="quote">
+              <summary>Source code in <code>lovis4u/Drawing.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">203</span>
 <span class="normal">204</span>
 <span class="normal">205</span>
 <span class="normal">206</span>
@@ -2360,7 +2447,7 @@
         <span class="n">canvas</span><span class="o">.</span><span class="n">drawPath</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">stroke</span><span class="o">=</span><span class="n">stroke</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">fill</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">None</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
@@ -2379,6 +2466,7 @@
 
 
 
+
 <h3 id="lovis4u.Drawing.LocusVis.__init__" class="doc doc-heading">
           <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">layout</span><span class="p">,</span> <span class="n">track_data</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span></code>
 
@@ -2391,9 +2479,9 @@
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>layout</code></b>
             (<code>dict</code>)
         –
@@ -2401,7 +2489,7 @@
           <p>Layout built by CanvasManager's define_layout() method.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>track_data</code></b>
             (<code>dict</code>)
         –
@@ -2409,7 +2497,7 @@
           <p>a dictionary with prepared track specific data.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>parameters</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
         –
@@ -2453,6 +2541,7 @@
 
 
 
+
 <h3 id="lovis4u.Drawing.LocusVis.__plot_cds_feature" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">__plot_cds_feature</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span> <span class="n">feature_data</span><span class="p">,</span> <span class="n">y_center</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span></code>
 
@@ -2463,11 +2552,16 @@
   
       <p>Helper method to plot feature polygone</p>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -2615,6 +2709,7 @@
 
 
 
+
 <h3 id="lovis4u.Drawing.LocusVis.draw" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">draw</span><span class="p">(</span><span class="n">canvas</span><span class="p">)</span></code>
 
@@ -2627,9 +2722,9 @@
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>canvas</code></b>
             (<code><span title="reportlab.pdfgen.canvas.Canvas">Canvas</span></code>)
         –
@@ -2639,11 +2734,16 @@
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -2926,43 +3026,54 @@
 
 
 
+
 <h2 id="lovis4u.Drawing.ScaleVis" class="doc doc-heading">
-        <code>ScaleVis</code>
+          <code>ScaleVis</code>
 
 
 </h2>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><a class="autorefs autorefs-internal" title="lovis4u.Drawing.Track" href="#lovis4u.Drawing.Track">Track</a></code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="lovis4u.Drawing.Track" href="#lovis4u.Drawing.Track">Track</a></code></p>
 
   
       <p>ScaleVis track object that handles visualisation of scale bottom line.</p>
 
-  <p><b>Attributes:</b></p>
+
+
+  <p>Attributes:</p>
   <ul>
       <li class="field-body">
-        <b>layout</b>
+        <b><code>layout</code></b>
             (<code>dict</code>)
-        – <p>Layout built by CanvasManager's define_layout() method.</p>
+        –
+        <div class="doc-md-description">
+          <p>Layout built by CanvasManager's define_layout() method.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>track_data</b>
+        <b><code>track_data</code></b>
             (<code>dict</code>)
-        – <p>a dictionary with prepared track specific data.</p>
+        –
+        <div class="doc-md-description">
+          <p>a dictionary with prepared track specific data.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>prms</b>
+        <b><code>prms</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object.</p>
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object.</p>
+        </div>
       </li>
   </ul>
 
-
-        <details class="quote">
-          <summary>Source code in <code>lovis4u/Drawing.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">424</span>
+            <details class="quote">
+              <summary>Source code in <code>lovis4u/Drawing.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">424</span>
 <span class="normal">425</span>
 <span class="normal">426</span>
 <span class="normal">427</span>
@@ -3114,7 +3225,7 @@
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">lovis4u</span><span class="o">.</span><span class="n">Manager</span><span class="o">.</span><span class="n">lovis4uError</span><span class="p">(</span><span class="s2">&quot;Unable to draw a scale track.&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">error</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
@@ -3133,6 +3244,7 @@
 
 
 
+
 <h3 id="lovis4u.Drawing.ScaleVis.__init__" class="doc doc-heading">
           <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">layout</span><span class="p">,</span> <span class="n">track_data</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span></code>
 
@@ -3145,9 +3257,9 @@
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>layout</code></b>
             (<code>dict</code>)
         –
@@ -3155,7 +3267,7 @@
           <p>Layout built by CanvasManager's define_layout() method.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>track_data</code></b>
             (<code>dict</code>)
         –
@@ -3163,7 +3275,7 @@
           <p>a dictionary with prepared track specific data.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>parameters</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
         –
@@ -3209,6 +3321,7 @@
 
 
 
+
 <h3 id="lovis4u.Drawing.ScaleVis.draw" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">draw</span><span class="p">(</span><span class="n">canvas</span><span class="p">)</span></code>
 
@@ -3221,9 +3334,9 @@
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>canvas</code></b>
             (<code><span title="reportlab.pdfgen.canvas.Canvas">Canvas</span></code>)
         –
@@ -3233,11 +3346,16 @@
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -3366,8 +3484,9 @@
 
 
 
+
 <h2 id="lovis4u.Drawing.Track" class="doc doc-heading">
-        <code>Track</code>
+          <code>Track</code>
 
 
 </h2>
@@ -3378,29 +3497,39 @@
   
       <p>Parent class for visualisation Tracks.</p>
 
-  <p><b>Attributes:</b></p>
+
+
+  <p>Attributes:</p>
   <ul>
       <li class="field-body">
-        <b>layout</b>
+        <b><code>layout</code></b>
             (<code>dict</code>)
-        – <p>Layout built by CanvasManager's define_layout() method.</p>
+        –
+        <div class="doc-md-description">
+          <p>Layout built by CanvasManager's define_layout() method.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>track_data</b>
+        <b><code>track_data</code></b>
             (<code>dict</code>)
-        – <p>a dictionary with prepared track specific data.</p>
+        –
+        <div class="doc-md-description">
+          <p>a dictionary with prepared track specific data.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>prms</b>
+        <b><code>prms</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object.</p>
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object.</p>
+        </div>
       </li>
   </ul>
 
-
-        <details class="quote">
-          <summary>Source code in <code>lovis4u/Drawing.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">19</span>
+            <details class="quote">
+              <summary>Source code in <code>lovis4u/Drawing.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">19</span>
 <span class="normal">20</span>
 <span class="normal">21</span>
 <span class="normal">22</span>
@@ -3468,7 +3597,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
@@ -3487,6 +3616,7 @@
 
 
 
+
 <h3 id="lovis4u.Drawing.Track.__init__" class="doc doc-heading">
           <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">layout</span><span class="p">,</span> <span class="n">track_data</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span></code>
 
@@ -3499,9 +3629,9 @@
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>layout</code></b>
             (<code>dict</code>)
         –
@@ -3509,7 +3639,7 @@
           <p>Layout built by CanvasManager's define_layout() method.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>track_data</code></b>
             (<code>dict</code>)
         –
@@ -3517,7 +3647,7 @@
           <p>a dictionary with prepared track specific data.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>parameters</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
         –
@@ -3563,6 +3693,7 @@
 
 
 
+
 <h3 id="lovis4u.Drawing.Track.draw" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">draw</span><span class="p">(</span><span class="n">canvas</span><span class="p">)</span></code>
 
@@ -3575,9 +3706,9 @@
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>canvas</code></b>
             (<code><span title="reportlab.pdfgen.canvas.Canvas">Canvas</span></code>)
         –
@@ -3587,11 +3718,16 @@
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 

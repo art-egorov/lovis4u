@@ -460,7 +460,7 @@
         
           <li class="md-nav__item">
   <a href="#lovis4u.DataProcessing.Feature.__init__" class="md-nav__link">
-    __init__
+    __init__()
   </a>
   
 </li>
@@ -480,133 +480,133 @@
         
           <li class="md-nav__item">
   <a href="#lovis4u.DataProcessing.Loci.__init__" class="md-nav__link">
-    __init__
+    __init__()
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#lovis4u.DataProcessing.Loci.__load_annotation_file" class="md-nav__link">
-    __load_annotation_file
+    __load_annotation_file()
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#lovis4u.DataProcessing.Loci.__update_feature_annotation" class="md-nav__link">
-    __update_feature_annotation
+    __update_feature_annotation()
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#lovis4u.DataProcessing.Loci.__update_loci_annotation" class="md-nav__link">
-    __update_loci_annotation
+    __update_loci_annotation()
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#lovis4u.DataProcessing.Loci.cluster_sequences" class="md-nav__link">
-    cluster_sequences
+    cluster_sequences()
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#lovis4u.DataProcessing.Loci.define_features_groups" class="md-nav__link">
-    define_features_groups
+    define_features_groups()
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#lovis4u.DataProcessing.Loci.define_labels_to_be_shown" class="md-nav__link">
-    define_labels_to_be_shown
+    define_labels_to_be_shown()
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#lovis4u.DataProcessing.Loci.find_variable_feature_groups" class="md-nav__link">
-    find_variable_feature_groups
+    find_variable_feature_groups()
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#lovis4u.DataProcessing.Loci.get_loci_lengths_and_n_of_regions" class="md-nav__link">
-    get_loci_lengths_and_n_of_regions
+    get_loci_lengths_and_n_of_regions()
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#lovis4u.DataProcessing.Loci.load_features_annotation_file" class="md-nav__link">
-    load_features_annotation_file
+    load_features_annotation_file()
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#lovis4u.DataProcessing.Loci.load_loci_annotation_file" class="md-nav__link">
-    load_loci_annotation_file
+    load_loci_annotation_file()
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#lovis4u.DataProcessing.Loci.load_loci_from_extended_gff" class="md-nav__link">
-    load_loci_from_extended_gff
+    load_loci_from_extended_gff()
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#lovis4u.DataProcessing.Loci.load_loci_from_gb" class="md-nav__link">
-    load_loci_from_gb
+    load_loci_from_gb()
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#lovis4u.DataProcessing.Loci.mmseqs_cluster" class="md-nav__link">
-    mmseqs_cluster
+    mmseqs_cluster()
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#lovis4u.DataProcessing.Loci.reorient_loci" class="md-nav__link">
-    reorient_loci
+    reorient_loci()
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#lovis4u.DataProcessing.Loci.save_features_annotation_table" class="md-nav__link">
-    save_features_annotation_table
+    save_features_annotation_table()
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#lovis4u.DataProcessing.Loci.save_loci_annotation_table" class="md-nav__link">
-    save_loci_annotation_table
+    save_loci_annotation_table()
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#lovis4u.DataProcessing.Loci.set_category_colors" class="md-nav__link">
-    set_category_colors
+    set_category_colors()
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#lovis4u.DataProcessing.Loci.set_feature_colors_based_on_groups" class="md-nav__link">
-    set_feature_colors_based_on_groups
+    set_feature_colors_based_on_groups()
   </a>
   
 </li>
@@ -626,7 +626,7 @@
         
           <li class="md-nav__item">
   <a href="#lovis4u.DataProcessing.Locus.__init__" class="md-nav__link">
-    __init__
+    __init__()
   </a>
   
 </li>
@@ -748,8 +748,9 @@
 
 
 
+
 <h2 id="lovis4u.DataProcessing.Feature" class="doc doc-heading">
-        <code>Feature</code>
+          <code>Feature</code>
 
 
 </h2>
@@ -760,83 +761,123 @@
   
       <p>A Feature object represents a locus' feature (currently only CDS) and its properties.</p>
 
-  <p><b>Attributes:</b></p>
+
+
+  <p>Attributes:</p>
   <ul>
       <li class="field-body">
-        <b>feature_id</b>
+        <b><code>feature_id</code></b>
             (<code>str</code>)
-        – <p>Feature identifier.</p>
+        –
+        <div class="doc-md-description">
+          <p>Feature identifier.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>feature_type</b>
+        <b><code>feature_type</code></b>
             (<code>str</code>)
-        – <p>Type of element (e.g. CDS or tRNA). Currently only CDS are supported.</p>
+        –
+        <div class="doc-md-description">
+          <p>Type of element (e.g. CDS or tRNA). Currently only CDS are supported.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>start</b>
+        <b><code>start</code></b>
             (<code>int</code>)
-        – <p>1-based start genomic coordinate.</p>
+        –
+        <div class="doc-md-description">
+          <p>1-based start genomic coordinate.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>end</b>
+        <b><code>end</code></b>
             (<code>int</code>)
-        – <p>1-based end genomic coordinates</p>
+        –
+        <div class="doc-md-description">
+          <p>1-based end genomic coordinates</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>strand</b>
+        <b><code>strand</code></b>
             (<code>int</code>)
-        – <p>Genomic strand (1: plus strand, -1: minus strand).</p>
+        –
+        <div class="doc-md-description">
+          <p>Genomic strand (1: plus strand, -1: minus strand).</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>name</b>
+        <b><code>name</code></b>
             (<code>str</code>)
-        – <p>Name of the feature which will be used as a label.</p>
+        –
+        <div class="doc-md-description">
+          <p>Name of the feature which will be used as a label.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>sequence</b>
+        <b><code>sequence</code></b>
             (<code><span title="Bio.Seq.Seq">Seq</span></code>)
-        – <p>Feature's sequence.</p>
+        –
+        <div class="doc-md-description">
+          <p>Feature's sequence.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>record</b>
+        <b><code>record</code></b>
             (<code><span title="Bio.SeqRecord.SeqRecord">SeqRecord</span></code>)
-        – <p>SeqRecord object of corresponding feature sequence.</p>
+        –
+        <div class="doc-md-description">
+          <p>SeqRecord object of corresponding feature sequence.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>group</b>
+        <b><code>group</code></b>
             (<code>str</code>)
-        – <p>Feature group that defines feature's color and meant to represent a set of homologous features.
+        –
+        <div class="doc-md-description">
+          <p>Feature group that defines feature's color and meant to represent a set of homologous features.
 Can be set with Loci.mmseqs_cluster() method that uses mmseqs clustering to define CDS feature groups.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>group_type</b>
+        <b><code>group_type</code></b>
             (<code>str</code>)
-        – <p>Type of feature group that allow to visualise different set of feature groups differently
+        –
+        <div class="doc-md-description">
+          <p>Type of feature group that allow to visualise different set of feature groups differently
 (e.g. plot labels only for features which group_type is "variable" or "labeled").</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>category</b>
+        <b><code>category</code></b>
             (<code>str</code>)
-        – <p>Feature category which initially is built to handle phrogs category annotation.
+        –
+        <div class="doc-md-description">
+          <p>Feature category which initially is built to handle phrogs category annotation.
 In visualisation it defines the "category" color annotation under features.
 Supposed to represent clusters on locus or any second layer of feature properties.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>vis_prms</b>
+        <b><code>vis_prms</code></b>
             (<code>dict</code>)
-        – <p>Visualisation parameters that holds colors, label and other info for Drawing methods.</p>
+        –
+        <div class="doc-md-description">
+          <p>Visualisation parameters that holds colors, label and other info for Drawing methods.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>prms</b>
+        <b><code>prms</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object that holds config and cmd arguments.</p>
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object that holds config and cmd arguments.</p>
+        </div>
       </li>
   </ul>
 
-
-        <details class="quote">
-          <summary>Source code in <code>lovis4u/DataProcessing.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">38</span>
+            <details class="quote">
+              <summary>Source code in <code>lovis4u/DataProcessing.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">38</span>
 <span class="normal">39</span>
 <span class="normal">40</span>
 <span class="normal">41</span>
@@ -960,7 +1001,7 @@ Supposed to represent clusters on locus or any second layer of feature propertie
         <span class="bp">self</span><span class="o">.</span><span class="n">vis_prms</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">prms</span> <span class="o">=</span> <span class="n">parameters</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
@@ -979,6 +1020,7 @@ Supposed to represent clusters on locus or any second layer of feature propertie
 
 
 
+
 <h3 id="lovis4u.DataProcessing.Feature.__init__" class="doc doc-heading">
           <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">feature_id</span><span class="p">,</span> <span class="n">feature_type</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">strand</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">sequence</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">group_type</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">vis_prms</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span></code>
 
@@ -991,9 +1033,9 @@ Supposed to represent clusters on locus or any second layer of feature propertie
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>feature_id</code></b>
             (<code>str</code>)
         –
@@ -1001,7 +1043,7 @@ Supposed to represent clusters on locus or any second layer of feature propertie
           <p>Feature identifier.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>feature_type</code></b>
             (<code>str</code>)
         –
@@ -1009,7 +1051,7 @@ Supposed to represent clusters on locus or any second layer of feature propertie
           <p>Type of element (e.g. CDS or tRNA). Currently only CDS are supported.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>start</code></b>
             (<code>int</code>)
         –
@@ -1017,7 +1059,7 @@ Supposed to represent clusters on locus or any second layer of feature propertie
           <p>1-based start genomic coordinate.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>end</code></b>
             (<code>int</code>)
         –
@@ -1025,7 +1067,7 @@ Supposed to represent clusters on locus or any second layer of feature propertie
           <p>1-based end genomic coordinates</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>strand</code></b>
             (<code>int</code>)
         –
@@ -1033,7 +1075,7 @@ Supposed to represent clusters on locus or any second layer of feature propertie
           <p>Genomic strand (1: plus strand, -1: minus strand).</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>name</code></b>
             (<code>str</code>)
         –
@@ -1041,7 +1083,7 @@ Supposed to represent clusters on locus or any second layer of feature propertie
           <p>Name of the feature which will be used as a label.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>sequence</code></b>
             (<code><span title="Bio.Seq.Seq">Seq</span></code>)
         –
@@ -1049,7 +1091,7 @@ Supposed to represent clusters on locus or any second layer of feature propertie
           <p>Feature's sequence.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>group</code></b>
             (<code>str</code>)
         –
@@ -1058,7 +1100,7 @@ Supposed to represent clusters on locus or any second layer of feature propertie
 Can be set with Loci.mmseqs_cluster() method that uses mmseqs clustering to define CDS feature groups.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>group_type</code></b>
             (<code>str</code>)
         –
@@ -1067,7 +1109,7 @@ Can be set with Loci.mmseqs_cluster() method that uses mmseqs clustering to defi
 (e.g. plot labels only for features which group_type is "variable" or "labeled").</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>category</code></b>
             (<code>str</code>)
         –
@@ -1077,7 +1119,7 @@ In visualisation it defines the "category" color annotation under features.
 Supposed to represent clusters on locus or any second layer of feature properties.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>vis_prms</code></b>
             (<code>dict</code>)
         –
@@ -1085,7 +1127,7 @@ Supposed to represent clusters on locus or any second layer of feature propertie
           <p>Visualisation parameters that holds colors, label and other info for Drawing methods.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>prms</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
         –
@@ -1190,8 +1232,9 @@ Supposed to represent clusters on locus or any second layer of feature propertie
 
 
 
+
 <h2 id="lovis4u.DataProcessing.Loci" class="doc doc-heading">
-        <code>Loci</code>
+          <code>Loci</code>
 
 
 </h2>
@@ -1202,36 +1245,49 @@ Supposed to represent clusters on locus or any second layer of feature propertie
   
       <p>A Loci object holds information about all loci to be plotted and methods for data preparation.</p>
 
-  <p><b>Attributes:</b></p>
+
+
+  <p>Attributes:</p>
   <ul>
       <li class="field-body">
-        <b>loci</b>
+        <b><code>loci</code></b>
             (<code>list</code>)
-        – <p>List of Locus objects.</p>
+        –
+        <div class="doc-md-description">
+          <p>List of Locus objects.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>loci_annotation</b>
+        <b><code>loci_annotation</code></b>
             (<code><span title="pandas.DataFrame">DataFrame</span></code>)
-        – <p>Table with information about each locus that defines visualisation
+        –
+        <div class="doc-md-description">
+          <p>Table with information about each locus that defines visualisation
 (e.g. coordinates for visualisation, description, etc).</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>feature_annotation</b>
+        <b><code>feature_annotation</code></b>
             (<code><span title="pandas.DataFrame">DataFrame</span></code>)
-        – <p>Table with information about each feature that defines visualisation
+        –
+        <div class="doc-md-description">
+          <p>Table with information about each feature that defines visualisation
 (e.g. group, name, category, etc).</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>prms</b>
+        <b><code>prms</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object that holds config and cmd arguments.</p>
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object that holds config and cmd arguments.</p>
+        </div>
       </li>
   </ul>
 
-
-        <details class="quote">
-          <summary>Source code in <code>lovis4u/DataProcessing.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">170</span>
+            <details class="quote">
+              <summary>Source code in <code>lovis4u/DataProcessing.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">170</span>
 <span class="normal">171</span>
 <span class="normal">172</span>
 <span class="normal">173</span>
@@ -2765,7 +2821,7 @@ Supposed to represent clusters on locus or any second layer of feature propertie
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">lovis4u</span><span class="o">.</span><span class="n">Manager</span><span class="o">.</span><span class="n">lovis4uError</span><span class="p">(</span><span class="s2">&quot;Unable to get loci lengths.&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">error</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
@@ -2784,6 +2840,7 @@ Supposed to represent clusters on locus or any second layer of feature propertie
 
 
 
+
 <h3 id="lovis4u.DataProcessing.Loci.__init__" class="doc doc-heading">
           <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">parameters</span><span class="o">=</span><span class="n">lovis4u</span><span class="o">.</span><span class="n">Manager</span><span class="o">.</span><span class="n">Parameters</span><span class="p">)</span></code>
 
@@ -2796,9 +2853,9 @@ Supposed to represent clusters on locus or any second layer of feature propertie
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>parameters</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>, default:
                 <code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>
@@ -2848,6 +2905,7 @@ Supposed to represent clusters on locus or any second layer of feature propertie
 
 
 
+
 <h3 id="lovis4u.DataProcessing.Loci.__load_annotation_file" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">__load_annotation_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">annotation_columns</span><span class="p">,</span> <span class="n">index_column</span><span class="p">)</span></code>
 
@@ -2860,9 +2918,9 @@ Supposed to represent clusters on locus or any second layer of feature propertie
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>file_path</code></b>
             (<code>str</code>)
         –
@@ -2870,7 +2928,7 @@ Supposed to represent clusters on locus or any second layer of feature propertie
           <p>File path for an annotation file to be loaded.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>annotation_columns</code></b>
             (<code>list</code>)
         –
@@ -2878,7 +2936,7 @@ Supposed to represent clusters on locus or any second layer of feature propertie
           <p>List of columns that should be considered.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>index_column</code></b>
             (<code>str</code>)
         –
@@ -2888,11 +2946,16 @@ Supposed to represent clusters on locus or any second layer of feature propertie
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
             <code><span title="pandas.DataFrame">DataFrame</span></code>
-        – <p>pd.DataFrame: Preprocessed annotation file.</p>
+        –
+        <div class="doc-md-description">
+          <p>pd.DataFrame: Preprocessed annotation file.</p>
+      </div>
       </li>
   </ul>
 
@@ -2942,6 +3005,7 @@ Supposed to represent clusters on locus or any second layer of feature propertie
 
 
 
+
 <h3 id="lovis4u.DataProcessing.Loci.__update_feature_annotation" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">__update_feature_annotation</span><span class="p">(</span><span class="n">feature_id</span><span class="p">,</span> <span class="n">locus_id</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">,</span> <span class="n">feature_type</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></code>
 
@@ -2954,9 +3018,9 @@ Supposed to represent clusters on locus or any second layer of feature propertie
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>feature_id</code></b>
             (<code>str</code>)
         –
@@ -2964,7 +3028,7 @@ Supposed to represent clusters on locus or any second layer of feature propertie
           <p>Feature identifier.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>locus_id</code></b>
             (<code>str</code>)
         –
@@ -2972,7 +3036,7 @@ Supposed to represent clusters on locus or any second layer of feature propertie
           <p>Sequence description.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>coordinates</code></b>
             (<code>str</code>)
         –
@@ -2980,7 +3044,7 @@ Supposed to represent clusters on locus or any second layer of feature propertie
           <p>Feature coordinates.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>category</code></b>
             (<code>str</code>)
         –
@@ -2988,7 +3052,7 @@ Supposed to represent clusters on locus or any second layer of feature propertie
           <p>Feature type.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>name</code></b>
             (<code>str</code>)
         –
@@ -2998,11 +3062,16 @@ Supposed to represent clusters on locus or any second layer of feature propertie
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -3090,6 +3159,7 @@ Supposed to represent clusters on locus or any second layer of feature propertie
 
 
 
+
 <h3 id="lovis4u.DataProcessing.Loci.__update_loci_annotation" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">__update_loci_annotation</span><span class="p">(</span><span class="n">record_id</span><span class="p">,</span> <span class="n">record_description</span><span class="p">,</span> <span class="n">record_length</span><span class="p">)</span></code>
 
@@ -3102,9 +3172,9 @@ Supposed to represent clusters on locus or any second layer of feature propertie
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>record_id</code></b>
             (<code>str</code>)
         –
@@ -3112,7 +3182,7 @@ Supposed to represent clusters on locus or any second layer of feature propertie
           <p>Sequence identifier.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>record_description</code></b>
             (<code>str</code>)
         –
@@ -3120,7 +3190,7 @@ Supposed to represent clusters on locus or any second layer of feature propertie
           <p>Sequence description.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>record_length</code></b>
             (<code>int</code>)
         –
@@ -3130,11 +3200,16 @@ Supposed to represent clusters on locus or any second layer of feature propertie
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -3188,6 +3263,7 @@ Supposed to represent clusters on locus or any second layer of feature propertie
 
 
 
+
 <h3 id="lovis4u.DataProcessing.Loci.cluster_sequences" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">cluster_sequences</span><span class="p">(</span><span class="n">dataframe</span><span class="p">)</span></code>
 
@@ -3207,9 +3283,9 @@ feature id and column "cluster" corresponding to the group.</p>
 </details>
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>dataframe</code></b>
             (<code><span title="pandas.DataFrame">DataFrame</span></code>)
         –
@@ -3220,11 +3296,16 @@ represent all loci CDS features.</p>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -3402,6 +3483,7 @@ represent all loci CDS features.</p>
 
 
 
+
 <h3 id="lovis4u.DataProcessing.Loci.define_features_groups" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">define_features_groups</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">group_column_name</span><span class="o">=</span><span class="s1">&#39;cluster&#39;</span><span class="p">)</span></code>
 
@@ -3419,9 +3501,9 @@ feature groups you can set them with feature table.</p>
 </details>
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>dataframe</code></b>
             (<code><span title="pandas.DataFrame">DataFrame</span></code>)
         –
@@ -3430,7 +3512,7 @@ feature groups you can set them with feature table.</p>
 represent all loci CDS features.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>group_column_name</code></b>
             (<code>str</code>, default:
                 <code>&#39;cluster&#39;</code>
@@ -3442,11 +3524,16 @@ represent all loci CDS features.</p>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -3514,6 +3601,7 @@ represent all loci CDS features.</p>
 
 
 
+
 <h3 id="lovis4u.DataProcessing.Loci.define_labels_to_be_shown" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">define_labels_to_be_shown</span><span class="p">()</span></code>
 
@@ -3529,10 +3617,15 @@ represent all loci CDS features.</p>
   <p>controlled by feature_labels_to_ignore, feature_group_types_to_show_label, and
 feature_group_types_to_show_label_on_first_occurrence parameters.</p>
 </details>
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -3608,6 +3701,7 @@ feature_group_types_to_show_label_on_first_occurrence parameters.</p>
 
 
 
+
 <h3 id="lovis4u.DataProcessing.Loci.find_variable_feature_groups" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">find_variable_feature_groups</span><span class="p">(</span><span class="n">mmseqs_results</span><span class="p">)</span></code>
 
@@ -3626,9 +3720,9 @@ feature id and column "cluster" corresponding to the group.</p>
 </details>
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>mmseqs_results</code></b>
             (<code><span title="pandas.DataFrame">DataFrame</span></code>)
         –
@@ -3639,11 +3733,16 @@ represent all loci CDS features.</p>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -3749,6 +3848,7 @@ represent all loci CDS features.</p>
 
 
 
+
 <h3 id="lovis4u.DataProcessing.Loci.get_loci_lengths_and_n_of_regions" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">get_loci_lengths_and_n_of_regions</span><span class="p">()</span></code>
 
@@ -3759,11 +3859,16 @@ represent all loci CDS features.</p>
   
       <p>Get loci lengths and number of regions.</p>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
-<b>list</b>(            <code>list[list[int]]</code>
-)        – <p>list each element of each contains locus size and number of breaks for visualisation track.</p>
+<b><code>list</code></b> (            <code>list[list[int]]</code>
+)        –
+        <div class="doc-md-description">
+          <p>list each element of each contains locus size and number of breaks for visualisation track.</p>
+      </div>
       </li>
   </ul>
 
@@ -3817,6 +3922,7 @@ represent all loci CDS features.</p>
 
 
 
+
 <h3 id="lovis4u.DataProcessing.Loci.load_features_annotation_file" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">load_features_annotation_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span></code>
 
@@ -3829,9 +3935,9 @@ represent all loci CDS features.</p>
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>file_path</code></b>
             (<code>str</code>)
         –
@@ -3841,11 +3947,16 @@ represent all loci CDS features.</p>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -3889,6 +4000,7 @@ represent all loci CDS features.</p>
 
 
 
+
 <h3 id="lovis4u.DataProcessing.Loci.load_loci_annotation_file" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">load_loci_annotation_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span></code>
 
@@ -3901,9 +4013,9 @@ represent all loci CDS features.</p>
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>file_path</code></b>
             (<code>str</code>)
         –
@@ -3913,11 +4025,16 @@ represent all loci CDS features.</p>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -3959,6 +4076,7 @@ represent all loci CDS features.</p>
 
 
 
+
 <h3 id="lovis4u.DataProcessing.Loci.load_loci_from_extended_gff" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">load_loci_from_extended_gff</span><span class="p">(</span><span class="n">input_folder</span><span class="p">)</span></code>
 
@@ -3976,9 +4094,9 @@ represent all loci CDS features.</p>
 </details>
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>input_folder</code></b>
             (<code>str</code>)
         –
@@ -3988,11 +4106,16 @@ represent all loci CDS features.</p>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -4196,6 +4319,7 @@ represent all loci CDS features.</p>
 
 
 
+
 <h3 id="lovis4u.DataProcessing.Loci.load_loci_from_gb" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">load_loci_from_gb</span><span class="p">(</span><span class="n">input_folder</span><span class="p">)</span></code>
 
@@ -4212,9 +4336,9 @@ represent all loci CDS features.</p>
 </details>
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>input_folder</code></b>
             (<code>str</code>)
         –
@@ -4224,11 +4348,16 @@ represent all loci CDS features.</p>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -4464,6 +4593,7 @@ represent all loci CDS features.</p>
 
 
 
+
 <h3 id="lovis4u.DataProcessing.Loci.mmseqs_cluster" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">mmseqs_cluster</span><span class="p">()</span></code>
 
@@ -4474,12 +4604,17 @@ represent all loci CDS features.</p>
   
       <p>Cluster all proteins using mmseqs in order to define groups of homologues.</p>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
             <code><span title="pandas.DataFrame">DataFrame</span></code>
-        – <p>pd.DataFrame: parsed mmseqs table (pandas dataframe) with columns: cluster, protein_id; where cluster is
+        –
+        <div class="doc-md-description">
+          <p>pd.DataFrame: parsed mmseqs table (pandas dataframe) with columns: cluster, protein_id; where cluster is
 defined by representative sequence id within a corresponding cluster.</p>
+      </div>
       </li>
   </ul>
 
@@ -4605,6 +4740,7 @@ defined by representative sequence id within a corresponding cluster.</p>
 
 
 
+
 <h3 id="lovis4u.DataProcessing.Loci.reorient_loci" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">reorient_loci</span><span class="p">()</span></code>
 
@@ -4619,11 +4755,16 @@ defined by representative sequence id within a corresponding cluster.</p>
   <summary>Note</summary>
   <p>Function tries to maximise co-orientation of homologous features.</p>
 </details>
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -4745,6 +4886,7 @@ defined by representative sequence id within a corresponding cluster.</p>
 
 
 
+
 <h3 id="lovis4u.DataProcessing.Loci.save_features_annotation_table" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">save_features_annotation_table</span><span class="p">()</span></code>
 
@@ -4759,11 +4901,16 @@ defined by representative sequence id within a corresponding cluster.</p>
   <summary>Note</summary>
   <p>Output file name is features_annotation_table.tsv</p>
 </details>
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -4819,6 +4966,7 @@ defined by representative sequence id within a corresponding cluster.</p>
 
 
 
+
 <h3 id="lovis4u.DataProcessing.Loci.save_loci_annotation_table" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">save_loci_annotation_table</span><span class="p">()</span></code>
 
@@ -4833,11 +4981,16 @@ defined by representative sequence id within a corresponding cluster.</p>
   <summary>Note</summary>
   <p>Output file name is loci_annotation_table.tsv</p>
 </details>
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -4893,6 +5046,7 @@ defined by representative sequence id within a corresponding cluster.</p>
 
 
 
+
 <h3 id="lovis4u.DataProcessing.Loci.set_category_colors" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">set_category_colors</span><span class="p">(</span><span class="n">use_table</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
 
@@ -4905,9 +5059,9 @@ defined by representative sequence id within a corresponding cluster.</p>
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>use_table</code></b>
             (<code>bool</code>, default:
                 <code>True</code>
@@ -4919,11 +5073,16 @@ defined by representative sequence id within a corresponding cluster.</p>
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -5009,6 +5168,7 @@ defined by representative sequence id within a corresponding cluster.</p>
 
 
 
+
 <h3 id="lovis4u.DataProcessing.Loci.set_feature_colors_based_on_groups" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">set_feature_colors_based_on_groups</span><span class="p">()</span></code>
 
@@ -5019,11 +5179,16 @@ defined by representative sequence id within a corresponding cluster.</p>
   
       <p>Define features fill color based on corresponding feature group and group types.</p>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -5118,8 +5283,9 @@ defined by representative sequence id within a corresponding cluster.</p>
 
 
 
+
 <h2 id="lovis4u.DataProcessing.Locus" class="doc doc-heading">
-        <code>Locus</code>
+          <code>Locus</code>
 
 
 </h2>
@@ -5130,72 +5296,106 @@ defined by representative sequence id within a corresponding cluster.</p>
   
       <p>A Locus object represents a particular locus that will be one of the sequence tracks on final figure.</p>
 
-  <p><b>Attributes:</b></p>
+
+
+  <p>Attributes:</p>
   <ul>
       <li class="field-body">
-        <b>seq_id</b>
+        <b><code>seq_id</code></b>
             (<code>str</code>)
-        – <p>Sequence identifier. Can be used to label locus.</p>
+        –
+        <div class="doc-md-description">
+          <p>Sequence identifier. Can be used to label locus.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>coordinates</b>
+        <b><code>coordinates</code></b>
             (<code>list</code>)
-        – <p>List of regions to be shown. Each region format: dict with keys: start, end, strand and
+        –
+        <div class="doc-md-description">
+          <p>List of regions to be shown. Each region format: dict with keys: start, end, strand and
 corresponding 1-based start, end coordinates and strand (1: plus strand, -1: minus strand).</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>size</b>
+        <b><code>size</code></b>
             (<code>int</code>)
-        – <p>total length of regions to be plotted.</p>
+        –
+        <div class="doc-md-description">
+          <p>total length of regions to be plotted.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>description</b>
+        <b><code>description</code></b>
             (<code>str</code>)
-        – <p>Sequence description that can be used to label locus.</p>
+        –
+        <div class="doc-md-description">
+          <p>Sequence description that can be used to label locus.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>length</b>
+        <b><code>length</code></b>
             (<code>int</code>)
-        – <p>full length of the locus independent on region that should be plotted.</p>
+        –
+        <div class="doc-md-description">
+          <p>full length of the locus independent on region that should be plotted.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>circular</b>
+        <b><code>circular</code></b>
             (<code>bool</code>)
-        – <p>Bool value whether locus is circular or not. It defines whether you have gap or not passing
+        –
+        <div class="doc-md-description">
+          <p>Bool value whether locus is circular or not. It defines whether you have gap or not passing
 1 value on the final figure.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>features</b>
+        <b><code>features</code></b>
             (<code>list</code>)
-        – <p>list of Feature objects that overlapped with coordinates.</p>
+        –
+        <div class="doc-md-description">
+          <p>list of Feature objects that overlapped with coordinates.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>order</b>
+        <b><code>order</code></b>
             (<code>int</code>)
-        – <p>index on ordered list of loci visualisation. Can be pre-defined or found based on loci
+        –
+        <div class="doc-md-description">
+          <p>index on ordered list of loci visualisation. Can be pre-defined or found based on loci
 hierarchical clustering with cluster_sequences category.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>group</b>
+        <b><code>group</code></b>
             (<code>int | str</code>)
-        – <p>locus group that defines set of closely-related loci.</p>
+        –
+        <div class="doc-md-description">
+          <p>locus group that defines set of closely-related loci.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>category_colors</b>
+        <b><code>category_colors</code></b>
             (<code>dict</code>)
-        – <p>colors for locus' features categories.</p>
+        –
+        <div class="doc-md-description">
+          <p>colors for locus' features categories.</p>
+        </div>
       </li>
       <li class="field-body">
-        <b>prms</b>
+        <b><code>prms</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
-        – <p>Parameters' class object that holds config and cmd arguments.</p>
+        –
+        <div class="doc-md-description">
+          <p>Parameters' class object that holds config and cmd arguments.</p>
+        </div>
       </li>
   </ul>
 
-
-        <details class="quote">
-          <summary>Source code in <code>lovis4u/DataProcessing.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">102</span>
+            <details class="quote">
+              <summary>Source code in <code>lovis4u/DataProcessing.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">102</span>
 <span class="normal">103</span>
 <span class="normal">104</span>
 <span class="normal">105</span>
@@ -5327,7 +5527,7 @@ hierarchical clustering with cluster_sequences category.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">category_colors</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">prms</span> <span class="o">=</span> <span class="n">parameters</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
@@ -5346,6 +5546,7 @@ hierarchical clustering with cluster_sequences category.</p>
 
 
 
+
 <h3 id="lovis4u.DataProcessing.Locus.__init__" class="doc doc-heading">
           <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">seq_id</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">circular</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
 
@@ -5358,9 +5559,9 @@ hierarchical clustering with cluster_sequences category.</p>
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>seq_id</code></b>
             (<code>str</code>)
         –
@@ -5368,7 +5569,7 @@ hierarchical clustering with cluster_sequences category.</p>
           <p>Sequence identifier. Can be used to label locus.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>coordinates</code></b>
             (<code>list</code>)
         –
@@ -5377,7 +5578,7 @@ hierarchical clustering with cluster_sequences category.</p>
 corresponding 1-based start, end coordinates and strand (1: plus strand, -1: minus strand).</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>description</code></b>
             (<code>str</code>)
         –
@@ -5385,7 +5586,7 @@ corresponding 1-based start, end coordinates and strand (1: plus strand, -1: min
           <p>Sequence description that can be used to label locus.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>length</code></b>
             (<code>int</code>)
         –
@@ -5393,7 +5594,7 @@ corresponding 1-based start, end coordinates and strand (1: plus strand, -1: min
           <p>full length of the locus independent on region that should be plotted.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>circular</code></b>
             (<code>bool</code>)
         –
@@ -5402,7 +5603,7 @@ corresponding 1-based start, end coordinates and strand (1: plus strand, -1: min
 1 value on the final figure.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>features</code></b>
             (<code>list</code>)
         –
@@ -5410,7 +5611,7 @@ corresponding 1-based start, end coordinates and strand (1: plus strand, -1: min
           <p>list of Feature objects that overlapped with coordinates.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>order</code></b>
             (<code>int</code>)
         –
@@ -5418,7 +5619,7 @@ corresponding 1-based start, end coordinates and strand (1: plus strand, -1: min
           <p>index on ordered list of loci visualisation. Can be pre-defined or found based on loci</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>parameters</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.Manager.Parameters" href="../package_manager/#lovis4u.Manager.Parameters">Parameters</a></code>)
         –
@@ -5426,7 +5627,7 @@ corresponding 1-based start, end coordinates and strand (1: plus strand, -1: min
           <p>Parameters' class object that holds config and cmd arguments.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>group</code></b>
             (<code>int | str</code>, default:
                 <code>1</code>

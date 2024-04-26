@@ -494,70 +494,70 @@
       
         <li class="md-nav__item">
   <a href="#lovis4u.Methods.adjust_paths" class="md-nav__link">
-    adjust_paths
+    adjust_paths()
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#lovis4u.Methods.copy_package_data" class="md-nav__link">
-    copy_package_data
+    copy_package_data()
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#lovis4u.Methods.feature_nt_to_x_transform" class="md-nav__link">
-    feature_nt_to_x_transform
+    feature_nt_to_x_transform()
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#lovis4u.Methods.get_color" class="md-nav__link">
-    get_color
+    get_color()
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#lovis4u.Methods.get_color_rgba" class="md-nav__link">
-    get_color_rgba
+    get_color_rgba()
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#lovis4u.Methods.nt_to_x_transform" class="md-nav__link">
-    nt_to_x_transform
+    nt_to_x_transform()
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#lovis4u.Methods.region_nt_to_x_transform" class="md-nav__link">
-    region_nt_to_x_transform
+    region_nt_to_x_transform()
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#lovis4u.Methods.scale_lightness" class="md-nav__link">
-    scale_lightness
+    scale_lightness()
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#lovis4u.Methods.str_height_to_size" class="md-nav__link">
-    str_height_to_size
+    str_height_to_size()
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#lovis4u.Methods.update_path_extension" class="md-nav__link">
-    update_path_extension
+    update_path_extension()
   </a>
   
 </li>
@@ -634,6 +634,7 @@
 
 
 
+
 <h2 id="lovis4u.Methods.adjust_paths" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">adjust_paths</span><span class="p">(</span><span class="n">to</span><span class="p">)</span></code>
 
@@ -646,9 +647,9 @@
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>to</code></b>
             (<code>str</code>)
         –
@@ -658,11 +659,16 @@
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -732,6 +738,7 @@
 
 
 
+
 <h2 id="lovis4u.Methods.copy_package_data" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">copy_package_data</span><span class="p">()</span></code>
 
@@ -742,11 +749,16 @@
   
       <p>Copy the lovis4u package data folder to your current dir.</p>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
             <code>None</code>
-        – <p>None</p>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
       </li>
   </ul>
 
@@ -796,6 +808,7 @@
 
 
 
+
 <h2 id="lovis4u.Methods.feature_nt_to_x_transform" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">feature_nt_to_x_transform</span><span class="p">(</span><span class="n">nt_start</span><span class="p">,</span> <span class="n">nt_end</span><span class="p">,</span> <span class="n">feature_strand</span><span class="p">,</span> <span class="n">locus</span><span class="p">,</span> <span class="n">layout</span><span class="p">)</span></code>
 
@@ -808,9 +821,9 @@
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>nt_start</code></b>
             (<code>int</code>)
         –
@@ -818,7 +831,7 @@
           <p>1-based nucleotide start coordinate.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>nt_end</code></b>
             (<code>int</code>)
         –
@@ -826,7 +839,7 @@
           <p>1-based nucleotide end coordinate.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>feature_strand</code></b>
             (<code>int</code>)
         –
@@ -834,7 +847,7 @@
           <p>1 | -1 corresponding to plus or minus strand, respectively.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>locus</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Locus" href="../package_data_processing/#lovis4u.DataProcessing.Locus">Locus</a></code>)
         –
@@ -842,7 +855,7 @@
           <p>Corresponding locus object.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>layout</code></b>
             (<code>dict</code>)
         –
@@ -852,11 +865,16 @@
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
-<b>dict</b>(            <code>dict</code>
-)        – <p>Dictionary with corresponding start and end page coordinates.</p>
+<b><code>dict</code></b> (            <code>dict</code>
+)        –
+        <div class="doc-md-description">
+          <p>Dictionary with corresponding start and end page coordinates.</p>
+      </div>
       </li>
   </ul>
 
@@ -944,6 +962,7 @@
 
 
 
+
 <h2 id="lovis4u.Methods.get_color" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">get_color</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span></code>
 
@@ -956,9 +975,9 @@
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>name</code></b>
             (<code>str</code>)
         –
@@ -966,7 +985,7 @@
           <p>name of a color.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>parameters</code></b>
             (<code>dict</code>)
         –
@@ -976,11 +995,16 @@
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
-<b>str</b>(            <code>str</code>
-)        – <p>HEX color.</p>
+<b><code>str</code></b> (            <code>str</code>
+)        –
+        <div class="doc-md-description">
+          <p>HEX color.</p>
+      </div>
       </li>
   </ul>
 
@@ -1022,6 +1046,7 @@
 
 
 
+
 <h2 id="lovis4u.Methods.get_color_rgba" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">get_color_rgba</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span></code>
 
@@ -1034,9 +1059,9 @@
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>name</code></b>
             (<code>str</code>)
         –
@@ -1044,7 +1069,7 @@
           <p>name of a color.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>parameters</code></b>
             (<code>dict</code>)
         –
@@ -1054,11 +1079,16 @@
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
-<b>tuple</b>(            <code>tuple</code>
-)        – <p>RGBA color</p>
+<b><code>tuple</code></b> (            <code>tuple</code>
+)        –
+        <div class="doc-md-description">
+          <p>RGBA color</p>
+      </div>
       </li>
   </ul>
 
@@ -1098,6 +1128,7 @@
 
 
 
+
 <h2 id="lovis4u.Methods.nt_to_x_transform" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">nt_to_x_transform</span><span class="p">(</span><span class="n">nt</span><span class="p">,</span> <span class="n">locus</span><span class="p">,</span> <span class="n">layout</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span></code>
 
@@ -1110,9 +1141,9 @@
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>nt</code></b>
             (<code>int</code>)
         –
@@ -1120,7 +1151,7 @@
           <p>Nucleotide coordinate.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>locus</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Locus" href="../package_data_processing/#lovis4u.DataProcessing.Locus">Locus</a></code>)
         –
@@ -1128,7 +1159,7 @@
           <p>Corresponding locus object.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>layout</code></b>
             (<code>dict</code>)
         –
@@ -1136,7 +1167,7 @@
           <p>Layout of the canvas.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>mode</code></b>
             (<code>str</code>)
         –
@@ -1146,11 +1177,16 @@
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
-<b>float</b>(            <code>float</code>
-)        – <p>Corresponding page coordinate.</p>
+<b><code>float</code></b> (            <code>float</code>
+)        –
+        <div class="doc-md-description">
+          <p>Corresponding page coordinate.</p>
+      </div>
       </li>
   </ul>
 
@@ -1248,6 +1284,7 @@
 
 
 
+
 <h2 id="lovis4u.Methods.region_nt_to_x_transform" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">region_nt_to_x_transform</span><span class="p">(</span><span class="n">nt_start</span><span class="p">,</span> <span class="n">nt_end</span><span class="p">,</span> <span class="n">locus</span><span class="p">,</span> <span class="n">layout</span><span class="p">)</span></code>
 
@@ -1260,9 +1297,9 @@
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>nt_start</code></b>
             (<code>int</code>)
         –
@@ -1270,7 +1307,7 @@
           <p>1-based nucleotide start coordinate.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>nt_end</code></b>
             (<code>int</code>)
         –
@@ -1278,7 +1315,7 @@
           <p>1-based nucleotide end coordinate.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>locus</code></b>
             (<code><a class="autorefs autorefs-internal" title="lovis4u.DataProcessing.Locus" href="../package_data_processing/#lovis4u.DataProcessing.Locus">Locus</a></code>)
         –
@@ -1286,7 +1323,7 @@
           <p>Corresponding locus object.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>layout</code></b>
             (<code>dict</code>)
         –
@@ -1296,11 +1333,16 @@
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
-<b>dict</b>(            <code>dict</code>
-)        – <p>Dictionary with corresponding start and end page coordinates.</p>
+<b><code>dict</code></b> (            <code>dict</code>
+)        –
+        <div class="doc-md-description">
+          <p>Dictionary with corresponding start and end page coordinates.</p>
+      </div>
       </li>
   </ul>
 
@@ -1358,6 +1400,7 @@
 
 
 
+
 <h2 id="lovis4u.Methods.scale_lightness" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">scale_lightness</span><span class="p">(</span><span class="n">hex_c</span><span class="p">,</span> <span class="n">scale_l</span><span class="p">)</span></code>
 
@@ -1370,9 +1413,9 @@
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>hex_c</code></b>
             (<code>str</code>)
         –
@@ -1380,7 +1423,7 @@
           <p>input HEX color</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>scale_l</code></b>
             (<code>float</code>)
         –
@@ -1390,11 +1433,16 @@
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
-<b>str</b>(            <code>str</code>
-)        – <p>new HEX color</p>
+<b><code>str</code></b> (            <code>str</code>
+)        –
+        <div class="doc-md-description">
+          <p>new HEX color</p>
+      </div>
       </li>
   </ul>
 
@@ -1440,6 +1488,7 @@
 
 
 
+
 <h2 id="lovis4u.Methods.str_height_to_size" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">str_height_to_size</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">font_type</span><span class="p">)</span></code>
 
@@ -1452,9 +1501,9 @@
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>height</code></b>
             (<code>float</code>)
         –
@@ -1462,7 +1511,7 @@
           <p>available height of the string.</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>font_type</code></b>
             (<code>str</code>)
         –
@@ -1472,11 +1521,16 @@
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
-<b>float</b>(            <code>float</code>
-)        – <p>font size defined by height.</p>
+<b><code>float</code></b> (            <code>float</code>
+)        –
+        <div class="doc-md-description">
+          <p>font size defined by height.</p>
+      </div>
       </li>
   </ul>
 
@@ -1522,6 +1576,7 @@
 
 
 
+
 <h2 id="lovis4u.Methods.update_path_extension" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">update_path_extension</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">new_extension</span><span class="p">)</span></code>
 
@@ -1534,9 +1589,9 @@
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
+  <p>Parameters:</p>
   <ul>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>path</code></b>
             (<code>str</code>)
         –
@@ -1544,7 +1599,7 @@
           <p>path to a file</p>
         </div>
       </li>
-      <li class="doc-section-item field-body">
+      <li class="field-body">
         <b><code>new_extension</code></b>
             (<code>str</code>)
         –
@@ -1554,11 +1609,16 @@
       </li>
   </ul>
 
-  <p> <b>Returns:</b></p>
+
+
+  <p>Returns:</p>
   <ul>
       <li class="field-body">
-<b>str</b>(            <code>str</code>
-)        – <p>basename of a file with new extension.</p>
+<b><code>str</code></b> (            <code>str</code>
+)        –
+        <div class="doc-md-description">
+          <p>basename of a file with new extension.</p>
+      </div>
       </li>
   </ul>
 

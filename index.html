@@ -1,0 +1,708 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>uORF4u</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.1dff34a1.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="assets/_markdown_exec_pyodide.css">
+    
+      <link rel="stylesheet" href="assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="css/material.css">
+    
+      <link rel="stylesheet" href="css/mkdocstrings.css">
+    
+    <script>__md_scope=new URL(".",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="grey" data-md-color-accent="yellow">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="uORF4u" class="md-header__button md-logo" aria-label="uORF4u" data-md-component="logo">
+      
+  
+  <?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 187.41 159.79">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3 {
+        fill: none;
+      }
+
+      .cls-1, .cls-3 {
+        stroke: #fff;
+        stroke-linejoin: round;
+        stroke-width: 16px;
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        stroke: #757576;
+        stroke-miterlimit: 11.34;
+        stroke-width: 5px;
+      }
+
+      .cls-3 {
+        stroke-linecap: square;
+      }
+    </style>
+  </defs>
+  <g>
+    <path class="cls-3" d="M93.16,35.15m81.7,3.42c-.02-.06-.04,.24-.06,.18-5.34-17.02-21.17-29.53-39.86-29.53-10.68,0-20.44,3.76-27.83,10.4-2.17,1.74-9.53,7.92-13.82,15.34-4.71-7.78-13.82-14.9-14.4-15.34,0,0-.02-.01-.02-.02h0c-7.35-6.47-16.97-10.39-27.51-10.39-18.69,0-34.52,12.33-39.86,29.35-.02,.06-.04,.11-.06,.18-17.33,51.23,81.73,105.87,81.73,105.87,0,0,99.01-54.82,81.68-106.05Z"/>
+    <g>
+      <path class="cls-4" d="M93.16,144.62s39.64-21.95,64.37-51.04"/>
+      <g>
+        <path class="cls-1" d="M93.16,144.62s24.81-13.74,47.42-33.89"/>
+        <polygon class="cls-4" points="148.74 125.91 157.52 93.58 125.13 102.13 148.74 125.91"/>
+      </g>
+    </g>
+    <g>
+      <path class="cls-1" d="M21.38,84.14c23.16,33.67,71.77,60.48,71.77,60.48"/>
+      <polygon class="cls-4" points="80.76 156.92 114.26 156.27 96.95 127.58 80.76 156.92"/>
+    </g>
+  </g>
+  <polyline class="cls-2" points="125.95 99.47 161.05 90.27 151.48 125.27"/>
+  <line class="cls-2" x1="14.53" y1="88.88" x2="28.23" y2="79.4"/>
+  <line class="cls-2" x1="101.36" y1="130.05" x2="111.36" y2="146.63"/>
+</svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            uORF4u
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="grey" data-md-color-accent="yellow"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+          
+        
+      </form>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/art-egorov/lovis4u.git" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+
+
+  <li class="md-tabs__item">
+    <a href="." class="md-tabs__link md-tabs__link--active">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="ExampleDrivenGuide/cmd_guide/" class="md-tabs__link">
+      Example-driven guide
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="Parameters/cmd_parameters/" class="md-tabs__link">
+        Parameters
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="API/usage_examples/" class="md-tabs__link">
+        API
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="VersionLog/versions/" class="md-tabs__link">
+      Version log
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="uORF4u" class="md-nav__button md-logo" aria-label="uORF4u" data-md-component="logo">
+      
+  
+  <?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 187.41 159.79">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3 {
+        fill: none;
+      }
+
+      .cls-1, .cls-3 {
+        stroke: #fff;
+        stroke-linejoin: round;
+        stroke-width: 16px;
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        stroke: #757576;
+        stroke-miterlimit: 11.34;
+        stroke-width: 5px;
+      }
+
+      .cls-3 {
+        stroke-linecap: square;
+      }
+    </style>
+  </defs>
+  <g>
+    <path class="cls-3" d="M93.16,35.15m81.7,3.42c-.02-.06-.04,.24-.06,.18-5.34-17.02-21.17-29.53-39.86-29.53-10.68,0-20.44,3.76-27.83,10.4-2.17,1.74-9.53,7.92-13.82,15.34-4.71-7.78-13.82-14.9-14.4-15.34,0,0-.02-.01-.02-.02h0c-7.35-6.47-16.97-10.39-27.51-10.39-18.69,0-34.52,12.33-39.86,29.35-.02,.06-.04,.11-.06,.18-17.33,51.23,81.73,105.87,81.73,105.87,0,0,99.01-54.82,81.68-106.05Z"/>
+    <g>
+      <path class="cls-4" d="M93.16,144.62s39.64-21.95,64.37-51.04"/>
+      <g>
+        <path class="cls-1" d="M93.16,144.62s24.81-13.74,47.42-33.89"/>
+        <polygon class="cls-4" points="148.74 125.91 157.52 93.58 125.13 102.13 148.74 125.91"/>
+      </g>
+    </g>
+    <g>
+      <path class="cls-1" d="M21.38,84.14c23.16,33.67,71.77,60.48,71.77,60.48"/>
+      <polygon class="cls-4" points="80.76 156.92 114.26 156.27 96.95 127.58 80.76 156.92"/>
+    </g>
+  </g>
+  <polyline class="cls-2" points="125.95 99.47 161.05 90.27 151.48 125.27"/>
+  <line class="cls-2" x1="14.53" y1="88.88" x2="28.23" y2="79.4"/>
+  <line class="cls-2" x1="101.36" y1="130.05" x2="111.36" y2="146.63"/>
+</svg>
+
+    </a>
+    uORF4u
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/art-egorov/lovis4u.git" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Home
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        Home
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    Description
+  </a>
+  
+    <nav class="md-nav" aria-label="Description">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#output-example" class="md-nav__link">
+    Output example:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation 🛠️
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    Reference
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contact" class="md-nav__link">
+    Contact
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authors" class="md-nav__link">
+    Authors
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ExampleDrivenGuide/cmd_guide/" class="md-nav__link">
+        Example-driven guide
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Parameters
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Parameters" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Parameters
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Parameters/cmd_parameters/" class="md-nav__link">
+        Command-line parameters
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Parameters/config_parameters/" class="md-nav__link">
+        Configuration file parameters
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="API/usage_examples/" class="md-nav__link">
+        Usage examples
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="VersionLog/versions/" class="md-nav__link">
+        Version log
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<p><img  src="img/lovis4u_logo.png" width="250"/></p>
+<h1 id="_1"></h1>
+<h2 id="description">Description</h2>
+<p><strong>LoVis4u</strong> is a bioinformatics tool for <strong>Lo</strong>ci <strong>Vis</strong>ualisation.</p>
+<p><strong>Supported input</strong>: Genbank, gff3 with sequence  <br />
+<strong>Supported output</strong>: Static vector graphics (pdf) <br />
+<strong>Programming language:</strong> Python3 <br />
+<strong>OS:</strong> MacOS, Linux<br />
+<strong>Python dependencies:</strong> biopython, bcbio-gff, scipy, configs, argparse, pandas, distinctipy, matplotlib, seaborn, reportlab<br />
+<strong>Python version:</strong> &gt;= 3.9<br />
+<strong>OS-level dependencies:</strong> MMseqs2 (included in the package)<br />
+<strong>License:</strong> WTFPL<br />
+<strong>Version:</strong> 0.0.2 (April 2024)</p>
+<h4 id="output-example">Output example:</h4>
+<p><img  src="img/output_example_advanced_multiple_regions_labeled.png" width="100%"/></p>
+<h2 id="installation">Installation 🛠️</h2>
+<ul>
+<li>The most stable release of lovis4u can be installed directly from pypi:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>python3 -m pip install lovis4u
+</code></pre></div>
+<ul>
+<li>The development version is available at github :</li>
+</ul>
+<div class="highlight"><pre><span></span><code>git clone https://github.com/art-egorov/lovis4u.git
+cd lovis4u
+python3 -m pip install --upgrade pip
+python3 -m pip install setuptools wheel
+python3 setup.py sdist
+python3 -m pip install -e .
+</code></pre></div>
+<p><strong>!</strong> If you're a linux user, run <code>lovis4u --linux</code> post-install command once to update paths in the premade config files that set by default for MacOS users.</p>
+<h2 id="reference">Reference</h2>
+<p>If you find uorf4u useful, please cite:<br />
+Artyom. A. Egorov, Gemma C. Atkinson, <strong>lovis4u: ---</strong>, <em>---</em></p>
+<h2 id="contact">Contact</h2>
+<p>Please contact us by e-mail <em>artem<strong>dot</strong>egorov<strong>AT</strong>med<strong>dot</strong>lu<strong>dot</strong>se</em> or use <a href="https://github.com/art-egorov/lovis4u/issues?q=">Issues</a> to report any technical problems.<br />
+You can also use <a href="https://github.com/art-egorov/lovis4u/discussions">Discussions section</a> for sharing your ideas or feature requests! </p>
+<h2 id="authors">Authors</h2>
+<p>LoVis4u is developed by Artyom Egorov at <a href="https://atkinson-lab.com">the Atkinson Lab</a>, Department of Experimental Medical Science, Lund University, Sweden 🇸🇪. We are open for suggestions to extend and improve LoVis4u functionality. Please don't hesitate to share your ideas or feature requests.</p>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+      
+        
+        <a href="ExampleDrivenGuide/cmd_guide/" class="md-footer__link md-footer__link--next" aria-label="Next: Example-driven guide" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Example-driven guide
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": ["content.code.annotate", "announce.dismiss", "navigation.tabs", "toc.integrate", "header.autohide"], "search": "assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.c99f48ec.min.js"></script>
+      
+        <script src="assets/_markdown_exec_pyodide.js"></script>
+      
+    
+  </body>
+</html>

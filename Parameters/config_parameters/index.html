@@ -1,0 +1,718 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>Configuration file parameters - uORF4u</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1dff34a1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_markdown_exec_pyodide.css">
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../css/material.css">
+    
+      <link rel="stylesheet" href="../../css/mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="grey" data-md-color-accent="yellow">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configuration-file-parameters" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="uORF4u" class="md-header__button md-logo" aria-label="uORF4u" data-md-component="logo">
+      
+  
+  <?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 187.41 159.79">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3 {
+        fill: none;
+      }
+
+      .cls-1, .cls-3 {
+        stroke: #fff;
+        stroke-linejoin: round;
+        stroke-width: 16px;
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        stroke: #757576;
+        stroke-miterlimit: 11.34;
+        stroke-width: 5px;
+      }
+
+      .cls-3 {
+        stroke-linecap: square;
+      }
+    </style>
+  </defs>
+  <g>
+    <path class="cls-3" d="M93.16,35.15m81.7,3.42c-.02-.06-.04,.24-.06,.18-5.34-17.02-21.17-29.53-39.86-29.53-10.68,0-20.44,3.76-27.83,10.4-2.17,1.74-9.53,7.92-13.82,15.34-4.71-7.78-13.82-14.9-14.4-15.34,0,0-.02-.01-.02-.02h0c-7.35-6.47-16.97-10.39-27.51-10.39-18.69,0-34.52,12.33-39.86,29.35-.02,.06-.04,.11-.06,.18-17.33,51.23,81.73,105.87,81.73,105.87,0,0,99.01-54.82,81.68-106.05Z"/>
+    <g>
+      <path class="cls-4" d="M93.16,144.62s39.64-21.95,64.37-51.04"/>
+      <g>
+        <path class="cls-1" d="M93.16,144.62s24.81-13.74,47.42-33.89"/>
+        <polygon class="cls-4" points="148.74 125.91 157.52 93.58 125.13 102.13 148.74 125.91"/>
+      </g>
+    </g>
+    <g>
+      <path class="cls-1" d="M21.38,84.14c23.16,33.67,71.77,60.48,71.77,60.48"/>
+      <polygon class="cls-4" points="80.76 156.92 114.26 156.27 96.95 127.58 80.76 156.92"/>
+    </g>
+  </g>
+  <polyline class="cls-2" points="125.95 99.47 161.05 90.27 151.48 125.27"/>
+  <line class="cls-2" x1="14.53" y1="88.88" x2="28.23" y2="79.4"/>
+  <line class="cls-2" x1="101.36" y1="130.05" x2="111.36" y2="146.63"/>
+</svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            uORF4u
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Configuration file parameters
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="grey" data-md-color-accent="yellow"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+          
+        
+      </form>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/art-egorov/lovis4u.git" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../ExampleDrivenGuide/cmd_guide/" class="md-tabs__link">
+      Example-driven guide
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../cmd_parameters/" class="md-tabs__link md-tabs__link--active">
+        Parameters
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../API/usage_examples/" class="md-tabs__link">
+        API
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../VersionLog/versions/" class="md-tabs__link">
+      Version log
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="uORF4u" class="md-nav__button md-logo" aria-label="uORF4u" data-md-component="logo">
+      
+  
+  <?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 187.41 159.79">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3 {
+        fill: none;
+      }
+
+      .cls-1, .cls-3 {
+        stroke: #fff;
+        stroke-linejoin: round;
+        stroke-width: 16px;
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        stroke: #757576;
+        stroke-miterlimit: 11.34;
+        stroke-width: 5px;
+      }
+
+      .cls-3 {
+        stroke-linecap: square;
+      }
+    </style>
+  </defs>
+  <g>
+    <path class="cls-3" d="M93.16,35.15m81.7,3.42c-.02-.06-.04,.24-.06,.18-5.34-17.02-21.17-29.53-39.86-29.53-10.68,0-20.44,3.76-27.83,10.4-2.17,1.74-9.53,7.92-13.82,15.34-4.71-7.78-13.82-14.9-14.4-15.34,0,0-.02-.01-.02-.02h0c-7.35-6.47-16.97-10.39-27.51-10.39-18.69,0-34.52,12.33-39.86,29.35-.02,.06-.04,.11-.06,.18-17.33,51.23,81.73,105.87,81.73,105.87,0,0,99.01-54.82,81.68-106.05Z"/>
+    <g>
+      <path class="cls-4" d="M93.16,144.62s39.64-21.95,64.37-51.04"/>
+      <g>
+        <path class="cls-1" d="M93.16,144.62s24.81-13.74,47.42-33.89"/>
+        <polygon class="cls-4" points="148.74 125.91 157.52 93.58 125.13 102.13 148.74 125.91"/>
+      </g>
+    </g>
+    <g>
+      <path class="cls-1" d="M21.38,84.14c23.16,33.67,71.77,60.48,71.77,60.48"/>
+      <polygon class="cls-4" points="80.76 156.92 114.26 156.27 96.95 127.58 80.76 156.92"/>
+    </g>
+  </g>
+  <polyline class="cls-2" points="125.95 99.47 161.05 90.27 151.48 125.27"/>
+  <line class="cls-2" x1="14.53" y1="88.88" x2="28.23" y2="79.4"/>
+  <line class="cls-2" x1="101.36" y1="130.05" x2="111.36" y2="146.63"/>
+</svg>
+
+    </a>
+    uORF4u
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/art-egorov/lovis4u.git" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ExampleDrivenGuide/cmd_guide/" class="md-nav__link">
+        Example-driven guide
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Parameters
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Parameters" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Parameters
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cmd_parameters/" class="md-nav__link">
+        Command-line parameters
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Configuration file parameters
+      </a>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API/usage_examples/" class="md-nav__link">
+        Usage examples
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VersionLog/versions/" class="md-nav__link">
+        Version log
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="configuration-file-parameters">Configuration file parameters</h1>
+<p>uorf4u configuration file allows detailed customization of the tool's parameters.</p>
+<p><strong><em>Note:</em></strong> <br />
+uorf4u has two pre-made configuration files: <em>uorf4u_eukaryotes.cfg</em> and <em>uorf4u_bacteria</em> located in: ./uorftu/uorf4u_data/ folder (internal). By default, 'bacteria' config file is used if no path or name of premade file is specified by a cmd parameter: <code>-c  bacteria|eukaryotes|&lt;file.cfg&gt;</code>.  </p>
+<p>You can copy the <em>uorf4u_data</em> folder that contains the config files to your wiking directory with <code>uorf4u --data</code> command and safely edit and use them without affecting 'internal' set of configs. If you want to use a copied config file, use <code>-c path_to_config</code>.</p>
+<hr />
+<p><strong><em>;[General]</em></strong><br />
+<strong>ncbi_genetic_code_name = Bacterial</strong>; <em>the ncbi genetic code name ('Standard' for eukaryotes' config)</em> <br />
+<strong>ncbi_entrez_email = <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#117;&#111;&#114;&#102;&#52;&#117;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#117;&#111;&#114;&#102;&#52;&#117;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></strong>; <em>e-mail for the NCBI API.</em> <br />
+<strong>upstream_region_length = 500</strong>; <em>[int or 'all'] Length of upstream region to retrieve. 'all' value is set for eukaryotes config file since by default it uses only mRNAs sequences. (can be overriden by <code>-ul</code> cmd parameter).</em><br />
+<strong>minimal_upstream_region_length = 300</strong>; <em>[int] minimal upstream region length for sequences to retrieve. If available sequence length to retrieve is shorter then this record won't be taken in the analysis</em>.  <br />
+<strong>downstream_region_length = 100</strong>; <em>[int] downstream region (overlapped with CDS) length to retrieve. (can be overriden by <code>-dl</code> cmd parameter).</em><br />
+<strong>filter_refseq_sequences_by_regex = True</strong>; <em>[bool] use or not regex parameter (below) for filtering the NCBI RefSeq sequences to retrieve.</em>  <br />
+<strong>refseq_sequences_regex = ^[N][ZCW]_.</strong><em>; </em>[regex] that will be used to filter the NCBI RefSeq sequnces. For eukaryotes set as '^[NX]M_.<em>' that means that only sequences that start with NM_ or XM_ (mRNAs) will be taken in the analysis.</em><br />
+<strong>max_number_of_assemblies = 1</strong>; <em>[int] max number of assemblies to take into analysis for each protein. If there are more sequences in the identical protein database then random sampling will be used. (can be overriden by <code>-mna</code> cmd parameter).</em></p>
+<p><strong><em>;[blastp homologous searching]</em></strong><br />
+<strong>blastp_database = refseq_select</strong>; <em>[refseq_select or refseq_protein] Online blastp database to perform blastp searching for homologues. (can be overriden by <code>-bdb</code> cmd parameter).</em><br />
+<strong>blastp_evalue_cutoff = 1e-5</strong>; <em>[float] blastp e-value cutoff during the searching for homologs against the RefSeq database.</em><br />
+<strong>blastp_hit_list_size = 200</strong>; <em>[int] max number of blastp hits to take in the analysis.</em><br />
+<strong>blastp_max_number_of_alignments = 1000</strong>; <em>[int] max number of alignments during the searching (there could be several alignments for 1 hit, see blastp documentation)</em>  <br />
+<strong>blastp_pident_to_query_length_cutoff = 0.5</strong>; <em>[float: 0-1] cutoff for hit's identity to your query protein.</em>  </p>
+<p><strong><em>;[ORF annotation]</em></strong><br />
+<strong>alternative_start_codons = False</strong>; <em>[bool] use or not set of alternative start codons.</em> <br />
+<strong>main_start_codon = ATG</strong>;  <em>[str]</em>      <br />
+<strong>min_orf_length = 9</strong>; <em>[int] cutoff for ORFs length during annotation</em>  <br />
+<strong>filter_by_sd = True</strong>; <em>[bool] filter annotated ORFs by Shine-Dalgarno sequence prersence. Filtering based on calculation of binding energy between aSD sequence (UCCUCC) and putative SD sequence in an upstream to uAUG window. Energy calculation performed as described here: <a href="10.1534/g3.116.032227">Yang et.al, 2016</a></em><br />
+<strong>sd_energy_cutoff = -3</strong>; <em>[float] cutoff for aSD-SD binding energy.</em>  <br />
+<strong>sd_window_length = 20</strong>; <em>[int] length of a region for SD sequence search.</em>  <br />
+<strong>check_assembly_annotation = False</strong>; [bool] retrieve or not the NCBI sequences annotation to be sure that annotated uORFs are not overlapped with known CDSs (can be overriden by <code>-annot</code> cmd parameter).</p>
+<p><strong><em>;[conserved ORFs searching]</em></strong><br />
+<strong>fast_searching = auto</strong>; <em>[bool(true or false) or 'auto'] use or not fast searching mode with less accuracy (needed for &gt;~200 sequences or &gt;~2000 ORFs). Can be also set as auto [default]. (can be overriden by <code>-fast</code> cmd parameter).</em><br />
+<strong>fast_searching_fraction_of_initial_genomes = 0.3</strong>; <em>[bool] fraction of input sequences that will be used as initial step in algorithm searching. Applied only if the fast_searching parameter is True.</em>  <br />
+<strong>orf_length_group_range = 0.25</strong>; <em>[float or int] orf's lengths window within conserved uORFs set can be annotated. If it's a float value [0-1] then the radius of window is a set percentage of the claster's length, while if it's int then the window radius is fixed.</em>  <br />
+<strong>orfs_presence_cutoff = 0.5</strong>; <em>[float] a set of ORFs will be returned only if they were found in a fraction of input sequences larger than this cutoff.</em>  <br />
+<strong>paths_identity_cutoff = 0.5</strong>; <em>[float] if two sets of found ORFs are ovelapped more than this cutoff, then only a set with a higher. score will be returned. (Helps to remove duplicates).</em>  <br />
+<strong>max_num_of_initial_genome_iteration = 100</strong>; <em>[int] similar to the fast_searching_fraction_of_initial_genomes parametr, but used with a normal mode for optimisation.</em>    </p>
+<p><strong><em>;[Pairwise alignment]</em></strong><br />
+<strong>alignment_type = aa</strong>; <em>[nt or aa] alignment type of uORFs during conservation analysis.</em>  <br />
+; <em>Below listed global alignments parametersduring conservation analysis. uorf4u uses Bio.Align. package to perfome pairwise alignment of uORFs.</em>  <br />
+<strong>global_match_score = 1</strong>; <em>[float]</em><br />
+<strong>global_mismatch_score = -1</strong>; <em>[float]</em>  <br />
+<strong>global_open_gap_score = -1</strong>; <em>[float]</em><br />
+<strong>global_extend_gap_score = -1</strong>; <em>[float]</em>  <br />
+<strong>global_target_end_gap_score = -1</strong>; <em>[float]</em>  <br />
+<strong>global_query_end_gap_score = -1</strong>; <em>[float]</em>  <br />
+<strong>alignment_score_cutoff = 0</strong>; <em>[float] if a pairwise alignment score is larger than this cutoff then two uORFs are considered as aligned.</em>    </p>
+<p><strong><em>;[Multiple Sequence Alignment]</em></strong><br />
+<strong>consensus_threshold = 0.7</strong>;  <em>[float] treshold for MSA position to consider a nucleotide/amino acid as conserved in consensus sequence building.</em>  </p>
+<p><strong><em>;[Paths]</em></strong> <br />
+;<em>Pathes to scripts and files used by the tool. {internal} means a folder uorf4u/uorf4u_data in the tool location.</em><br />
+<strong>ref_energies = {config_path}/energyRef-CCTCCT.json</strong>; <em>aSD-SD energy table downloaded from: <a href="10.1534/g3.116.032227">Yang et.al, 2016</a></em> <br />
+<strong>maft_binary = {config_path}/bin/mafft-mac/mafft.bat</strong>  <br />
+<strong>palette = {config_path}/palette.txt</strong>  <br />
+<strong>colors_nt = {config_path}/colors_nt.txt</strong>  <br />
+<strong>colors_aa = {config_path}/colors_aa.txt</strong>    </p>
+<p><strong><em>;[Output]</em></strong><br />
+<strong>sequences_to_write = nt, aa, sd</strong>; <em>[list] type of sequences results for that (logos, MSAs, fasta files) will writetn. nt - nucleotide seqs of uORFs, aa - amino acid seqs, sd - SD seqs (sd is not available for 'eukaryotes' mode)</em>  <br />
+<strong>logo_type = both</strong>; <em>[probability, information or both] type of logo, see logomaker package documentation.</em>     <br />
+<strong>output_dir = uorf4u_{current_date}</strong>; <em>[str] default name of the output dir. default: uorf4u_{current_date}; e.g. uorf4u_2022_07_25-20_41. (can be overriden by <code>-o</code> cmd parameter).</em>  </p>
+<p>;------------------------<br />
+<strong><em>;Annotation visualisation</em></strong><br />
+;------------------------<br />
+<strong><em>;[General figure parameters]</em></strong><br />
+margin = 0.1<br />
+gap = 0.03<br />
+label_gap = 0.07<br />
+orf_height = 0.15<br />
+annotation_width = auto<br />
+mm_per_nt = 0.04<br />
+font_regular = {config_path}/fonts/Lato-Regular.ttf<br />
+font_bold = {config_path}/fonts/Lato-Bold.ttf<br />
+font_mono = {config_path}/fonts/RobotoMono-Regular.ttf  </p>
+<p><strong><em>;[Sequence labels]</em></strong><br />
+label_color = #3D3D3D<br />
+label_color_alpha = 1<br />
+label_height_to_orf_height = 0.65  </p>
+<p><strong><em>;[Axis tics]</em></strong><br />
+axis_tics_font_size = auto<br />
+axis_tics_line_width = 0.3  </p>
+<p><strong><em>;[Loci annotations]</em></strong><br />
+upstream_seq_line_color = #CECECE<br />
+upstream_seq_line_color_alpha = 1<br />
+upstream_seq_line_width = 0.5<br />
+cds_seq_stroke_color = #489143<br />
+cds_seq_stroke_color_alpha = 0.8<br />
+cds_seq_fill_color = #9ee19b<br />
+cds_seq_fill_color_alpha = 0.03<br />
+orf_line_width = 0.5<br />
+conserved_uorfs_stroke_color = #4e4e4e<br />
+conserved_uorfs_stroke_color_alpha = 1<br />
+conserved_uorfs_fill_color = #ee8fb1<br />
+conserved_uorfs_fill_color_alpha = 0.6<br />
+other_uorfs_stroke_color = #CECECE<br />
+other_uorfs_stroke_color_alpha = 1<br />
+annotated_orf_stroke_color = #3d6f8e<br />
+annotated_orf_stroke_color_alpha = 1  </p>
+<p>;------------------------<br />
+<strong>;MSA plot</strong><br />
+;------------------------<br />
+tile_size = 0.1<br />
+tile_stroke = 0.05<br />
+char_size = 0.7<br />
+label_size = 0.6<br />
+tile_alpha = 0.8<br />
+logo_alpha = 0.8  </p>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../cmd_parameters/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Command-line parameters" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Command-line parameters
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../API/usage_examples/" class="md-footer__link md-footer__link--next" aria-label="Next: Usage examples" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Usage examples
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "announce.dismiss", "navigation.tabs", "toc.integrate", "header.autohide"], "search": "../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c99f48ec.min.js"></script>
+      
+        <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      
+    
+  </body>
+</html>

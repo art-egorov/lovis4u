@@ -1,0 +1,1780 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>Drawing - uORF4u</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1dff34a1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_markdown_exec_pyodide.css">
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../css/material.css">
+    
+      <link rel="stylesheet" href="../../css/mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="grey" data-md-color-accent="yellow">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lovis4u.Methods" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="uORF4u" class="md-header__button md-logo" aria-label="uORF4u" data-md-component="logo">
+      
+  
+  <?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 187.41 159.79">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3 {
+        fill: none;
+      }
+
+      .cls-1, .cls-3 {
+        stroke: #fff;
+        stroke-linejoin: round;
+        stroke-width: 16px;
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        stroke: #757576;
+        stroke-miterlimit: 11.34;
+        stroke-width: 5px;
+      }
+
+      .cls-3 {
+        stroke-linecap: square;
+      }
+    </style>
+  </defs>
+  <g>
+    <path class="cls-3" d="M93.16,35.15m81.7,3.42c-.02-.06-.04,.24-.06,.18-5.34-17.02-21.17-29.53-39.86-29.53-10.68,0-20.44,3.76-27.83,10.4-2.17,1.74-9.53,7.92-13.82,15.34-4.71-7.78-13.82-14.9-14.4-15.34,0,0-.02-.01-.02-.02h0c-7.35-6.47-16.97-10.39-27.51-10.39-18.69,0-34.52,12.33-39.86,29.35-.02,.06-.04,.11-.06,.18-17.33,51.23,81.73,105.87,81.73,105.87,0,0,99.01-54.82,81.68-106.05Z"/>
+    <g>
+      <path class="cls-4" d="M93.16,144.62s39.64-21.95,64.37-51.04"/>
+      <g>
+        <path class="cls-1" d="M93.16,144.62s24.81-13.74,47.42-33.89"/>
+        <polygon class="cls-4" points="148.74 125.91 157.52 93.58 125.13 102.13 148.74 125.91"/>
+      </g>
+    </g>
+    <g>
+      <path class="cls-1" d="M21.38,84.14c23.16,33.67,71.77,60.48,71.77,60.48"/>
+      <polygon class="cls-4" points="80.76 156.92 114.26 156.27 96.95 127.58 80.76 156.92"/>
+    </g>
+  </g>
+  <polyline class="cls-2" points="125.95 99.47 161.05 90.27 151.48 125.27"/>
+  <line class="cls-2" x1="14.53" y1="88.88" x2="28.23" y2="79.4"/>
+  <line class="cls-2" x1="101.36" y1="130.05" x2="111.36" y2="146.63"/>
+</svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            uORF4u
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Drawing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="grey" data-md-color-accent="yellow"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+          
+        
+      </form>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/art-egorov/lovis4u.git" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../ExampleDrivenGuide/cmd_guide/" class="md-tabs__link">
+      Example-driven guide
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Parameters/cmd_parameters/" class="md-tabs__link">
+        Parameters
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../usage_examples/" class="md-tabs__link md-tabs__link--active">
+        API
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../VersionLog/versions/" class="md-tabs__link">
+      Version log
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="uORF4u" class="md-nav__button md-logo" aria-label="uORF4u" data-md-component="logo">
+      
+  
+  <?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 187.41 159.79">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3 {
+        fill: none;
+      }
+
+      .cls-1, .cls-3 {
+        stroke: #fff;
+        stroke-linejoin: round;
+        stroke-width: 16px;
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        stroke: #757576;
+        stroke-miterlimit: 11.34;
+        stroke-width: 5px;
+      }
+
+      .cls-3 {
+        stroke-linecap: square;
+      }
+    </style>
+  </defs>
+  <g>
+    <path class="cls-3" d="M93.16,35.15m81.7,3.42c-.02-.06-.04,.24-.06,.18-5.34-17.02-21.17-29.53-39.86-29.53-10.68,0-20.44,3.76-27.83,10.4-2.17,1.74-9.53,7.92-13.82,15.34-4.71-7.78-13.82-14.9-14.4-15.34,0,0-.02-.01-.02-.02h0c-7.35-6.47-16.97-10.39-27.51-10.39-18.69,0-34.52,12.33-39.86,29.35-.02,.06-.04,.11-.06,.18-17.33,51.23,81.73,105.87,81.73,105.87,0,0,99.01-54.82,81.68-106.05Z"/>
+    <g>
+      <path class="cls-4" d="M93.16,144.62s39.64-21.95,64.37-51.04"/>
+      <g>
+        <path class="cls-1" d="M93.16,144.62s24.81-13.74,47.42-33.89"/>
+        <polygon class="cls-4" points="148.74 125.91 157.52 93.58 125.13 102.13 148.74 125.91"/>
+      </g>
+    </g>
+    <g>
+      <path class="cls-1" d="M21.38,84.14c23.16,33.67,71.77,60.48,71.77,60.48"/>
+      <polygon class="cls-4" points="80.76 156.92 114.26 156.27 96.95 127.58 80.76 156.92"/>
+    </g>
+  </g>
+  <polyline class="cls-2" points="125.95 99.47 161.05 90.27 151.48 125.27"/>
+  <line class="cls-2" x1="14.53" y1="88.88" x2="28.23" y2="79.4"/>
+  <line class="cls-2" x1="101.36" y1="130.05" x2="111.36" y2="146.63"/>
+</svg>
+
+    </a>
+    uORF4u
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/art-egorov/lovis4u.git" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ExampleDrivenGuide/cmd_guide/" class="md-nav__link">
+        Example-driven guide
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Parameters
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Parameters" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Parameters
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Parameters/cmd_parameters/" class="md-nav__link">
+        Command-line parameters
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Parameters/config_parameters/" class="md-nav__link">
+        Configuration file parameters
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage_examples/" class="md-nav__link">
+        Usage examples
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Drawing
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Drawing
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lovis4u.Methods" class="md-nav__link">
+    Methods
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lovis4u.Methods.adjust_paths" class="md-nav__link">
+    adjust_paths()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lovis4u.Methods.copy_package_data" class="md-nav__link">
+    copy_package_data()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lovis4u.Methods.feature_nt_to_x_transform" class="md-nav__link">
+    feature_nt_to_x_transform()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lovis4u.Methods.get_color" class="md-nav__link">
+    get_color()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lovis4u.Methods.get_color_rgba" class="md-nav__link">
+    get_color_rgba()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lovis4u.Methods.nt_to_x_transform" class="md-nav__link">
+    nt_to_x_transform()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lovis4u.Methods.region_nt_to_x_transform" class="md-nav__link">
+    region_nt_to_x_transform()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lovis4u.Methods.scale_lightness" class="md-nav__link">
+    scale_lightness()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lovis4u.Methods.str_height_to_size" class="md-nav__link">
+    str_height_to_size()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lovis4u.Methods.update_path_extension" class="md-nav__link">
+    update_path_extension()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VersionLog/versions/" class="md-nav__link">
+        Version log
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+  <h1>Drawing</h1>
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="lovis4u.Methods"></a>
+  <div class="doc doc-contents first">
+  
+      <p>This module provides some methods (e.g. colors tranformation, data copying) used by the tool.</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="lovis4u.Methods.adjust_paths" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">adjust_paths</span><span class="p">(</span><span class="n">to</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Change paths in the internal config files for linux or mac.</p>
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>to</code></b>
+            (<code>str</code>)
+        –
+        <div class="doc-md-description">
+          <p>mac | linux</p>
+        </div>
+      </li>
+  </ul>
+
+
+
+  <p>Returns:</p>
+  <ul>
+      <li class="field-body">
+            <code>None</code>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
+      </li>
+  </ul>
+
+          <details class="quote">
+            <summary>Source code in <code>lovis4u/Methods.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">adjust_paths</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Change paths in the internal config files for linux or mac.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        to (str): mac | linux</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">internal_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">&quot;lovis4u_data&quot;</span><span class="p">)</span>
+    <span class="n">config_files</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;standard.cfg&quot;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">config_file</span> <span class="ow">in</span> <span class="n">config_files</span><span class="p">:</span>
+        <span class="n">config_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">internal_dir</span><span class="p">,</span> <span class="n">config_file</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config_file_path</span><span class="p">,</span> <span class="s2">&quot;r+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">config</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">to</span> <span class="o">==</span> <span class="s2">&quot;linux&quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">internal_dir</span><span class="p">,</span> <span class="s2">&quot;bin/mmseqs_linux&quot;</span><span class="p">)):</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;unzip -q -d </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">internal_dir</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;bin/&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> &quot;</span>
+                              <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">internal_dir</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;bin/mmseqs_linux.zip&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">config_txt</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;mmseqs_mac/bin/mmseqs&quot;</span><span class="p">,</span> <span class="s2">&quot;mmseqs_linux/bin/mmseqs&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">config_txt</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;mmseqs_linux/bin/mmseqs&quot;</span><span class="p">,</span> <span class="s2">&quot;mmseqs_mac/bin/mmseqs&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+            <span class="n">config</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">config</span><span class="o">.</span><span class="n">truncate</span><span class="p">()</span>
+            <span class="n">config</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">config_txt</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚙️  mmseqs path was adjusted to </span><span class="si">{</span><span class="n">to</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="lovis4u.Methods.copy_package_data" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">copy_package_data</span><span class="p">()</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Copy the lovis4u package data folder to your current dir.</p>
+
+
+
+  <p>Returns:</p>
+  <ul>
+      <li class="field-body">
+            <code>None</code>
+        –
+        <div class="doc-md-description">
+          <p>None</p>
+      </div>
+      </li>
+  </ul>
+
+          <details class="quote">
+            <summary>Source code in <code>lovis4u/Methods.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">copy_package_data</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Copy the lovis4u package data folder to your current dir.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">users_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;lovis4u_data&quot;</span><span class="p">)</span>
+        <span class="n">internal_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">&quot;lovis4u_data&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">users_dir</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">lovis4u</span><span class="o">.</span><span class="n">Manager</span><span class="o">.</span><span class="n">lovis4uError</span><span class="p">(</span><span class="s2">&quot;lovis4u_data folder already exists.&quot;</span><span class="p">)</span>
+        <span class="n">shutil</span><span class="o">.</span><span class="n">copytree</span><span class="p">(</span><span class="n">internal_dir</span><span class="p">,</span> <span class="n">users_dir</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="n">shutil</span><span class="o">.</span><span class="n">ignore_patterns</span><span class="p">(</span><span class="s2">&quot;help*&quot;</span><span class="p">,</span> <span class="s2">&quot;.*&quot;</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🗃️ lovis4u_data folder was copied to the current working directory&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">lovis4u</span><span class="o">.</span><span class="n">Manager</span><span class="o">.</span><span class="n">lovis4uError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unable to copy lovis4u folder in your working dir.&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">error</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="lovis4u.Methods.feature_nt_to_x_transform" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">feature_nt_to_x_transform</span><span class="p">(</span><span class="n">nt_start</span><span class="p">,</span> <span class="n">nt_end</span><span class="p">,</span> <span class="n">feature_strand</span><span class="p">,</span> <span class="n">locus</span><span class="p">,</span> <span class="n">layout</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Transform feature coordinates to x page coordinates.</p>
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>nt_start</code></b>
+            (<code>int</code>)
+        –
+        <div class="doc-md-description">
+          <p>1-based nucleotide start coordinate.</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>nt_end</code></b>
+            (<code>int</code>)
+        –
+        <div class="doc-md-description">
+          <p>1-based nucleotide end coordinate.</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>feature_strand</code></b>
+            (<code>int</code>)
+        –
+        <div class="doc-md-description">
+          <p>1 | -1 corresponding to plus or minus strand, respectively.</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>locus</code></b>
+            (<code><span title="lovis4u.DataProcessing.Locus">Locus</span></code>)
+        –
+        <div class="doc-md-description">
+          <p>Corresponding locus object.</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>layout</code></b>
+            (<code>dict</code>)
+        –
+        <div class="doc-md-description">
+          <p>Layout of the canvas.</p>
+        </div>
+      </li>
+  </ul>
+
+
+
+  <p>Returns:</p>
+  <ul>
+      <li class="field-body">
+<b><code>dict</code></b> (            <code>dict</code>
+)        –
+        <div class="doc-md-description">
+          <p>Dictionary with corresponding start and end page coordinates.</p>
+      </div>
+      </li>
+  </ul>
+
+          <details class="quote">
+            <summary>Source code in <code>lovis4u/Methods.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">feature_nt_to_x_transform</span><span class="p">(</span><span class="n">nt_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">nt_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">feature_strand</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">locus</span><span class="p">,</span> <span class="n">layout</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Transform feature coordinates to x page coordinates.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        nt_start (int): 1-based nucleotide start coordinate.</span>
+<span class="sd">        nt_end (int): 1-based nucleotide end coordinate.</span>
+<span class="sd">        feature_strand (int): 1 | -1 corresponding to plus or minus strand, respectively.</span>
+<span class="sd">        locus (lovis4u.DataProcessing.Locus): Corresponding locus object.</span>
+<span class="sd">        layout (dict): Layout of the canvas.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: Dictionary with corresponding start and end page coordinates.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">left_out</span><span class="p">,</span> <span class="n">right_out</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span>
+    <span class="k">for</span> <span class="n">coordinate</span> <span class="ow">in</span> <span class="n">locus</span><span class="o">.</span><span class="n">coordinates</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">nt_start</span> <span class="o">&lt;=</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;end&quot;</span><span class="p">]</span> <span class="ow">or</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">nt_end</span> <span class="o">&lt;=</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;end&quot;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">nt_start</span> <span class="o">&lt;</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;strand&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">left_out</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">right_out</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">nt_start</span> <span class="o">=</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">nt_end</span> <span class="o">&gt;</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;end&quot;</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;strand&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">right_out</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">left_out</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">nt_end</span> <span class="o">=</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;end&quot;</span><span class="p">]</span>
+            <span class="n">x_coordinates</span> <span class="o">=</span> <span class="n">region_nt_to_x_transform</span><span class="p">(</span><span class="n">nt_start</span><span class="p">,</span> <span class="n">nt_end</span><span class="p">,</span> <span class="n">locus</span><span class="p">,</span> <span class="n">layout</span><span class="p">)</span>
+            <span class="n">x_coordinates</span><span class="p">[</span><span class="s2">&quot;center&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_coordinates</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">x_coordinates</span><span class="p">[</span><span class="s2">&quot;end&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+            <span class="n">x_coordinates</span><span class="p">[</span><span class="s2">&quot;orient&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">feature_strand</span> <span class="o">*</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;strand&quot;</span><span class="p">]</span>
+            <span class="n">x_coordinates</span><span class="p">[</span><span class="s2">&quot;lout&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">left_out</span>
+            <span class="n">x_coordinates</span><span class="p">[</span><span class="s2">&quot;rout&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">right_out</span>
+            <span class="k">break</span>
+    <span class="k">return</span> <span class="n">x_coordinates</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="lovis4u.Methods.get_color" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">get_color</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Get HEX color by its name</p>
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>name</code></b>
+            (<code>str</code>)
+        –
+        <div class="doc-md-description">
+          <p>name of a color.</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>parameters</code></b>
+            (<code>dict</code>)
+        –
+        <div class="doc-md-description">
+          <p>Parameters' object dict.</p>
+        </div>
+      </li>
+  </ul>
+
+
+
+  <p>Returns:</p>
+  <ul>
+      <li class="field-body">
+<b><code>str</code></b> (            <code>str</code>
+)        –
+        <div class="doc-md-description">
+          <p>HEX color.</p>
+      </div>
+      </li>
+  </ul>
+
+          <details class="quote">
+            <summary>Source code in <code>lovis4u/Methods.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span>
+<span class="normal">96</span>
+<span class="normal">97</span>
+<span class="normal">98</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_color</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">parameters</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get HEX color by its name</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        name (str): name of a color.</span>
+<span class="sd">        parameters (dict): Parameters&#39; object dict.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: HEX color.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">hex_c</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;palette&quot;</span><span class="p">][</span><span class="n">parameters</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="n">name</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="n">hex_c</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="lovis4u.Methods.get_color_rgba" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">get_color_rgba</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Get rgba color by its name</p>
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>name</code></b>
+            (<code>str</code>)
+        –
+        <div class="doc-md-description">
+          <p>name of a color.</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>parameters</code></b>
+            (<code>dict</code>)
+        –
+        <div class="doc-md-description">
+          <p>Parameters' object dict.</p>
+        </div>
+      </li>
+  </ul>
+
+
+
+  <p>Returns:</p>
+  <ul>
+      <li class="field-body">
+<b><code>tuple</code></b> (            <code>tuple</code>
+)        –
+        <div class="doc-md-description">
+          <p>RGBA color</p>
+      </div>
+      </li>
+  </ul>
+
+          <details class="quote">
+            <summary>Source code in <code>lovis4u/Methods.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_color_rgba</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">parameters</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get rgba color by its name</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        name (str): name of a color.</span>
+<span class="sd">        parameters (dict): Parameters&#39; object dict.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: RGBA color</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="o">*</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">hex2color</span><span class="p">(</span><span class="n">get_color</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)),</span> <span class="n">parameters</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_alpha&quot;</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="lovis4u.Methods.nt_to_x_transform" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">nt_to_x_transform</span><span class="p">(</span><span class="n">nt</span><span class="p">,</span> <span class="n">locus</span><span class="p">,</span> <span class="n">layout</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Transform nucleotide coordinate to x page coordinate.</p>
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>nt</code></b>
+            (<code>int</code>)
+        –
+        <div class="doc-md-description">
+          <p>Nucleotide coordinate.</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>locus</code></b>
+            (<code><span title="lovis4u.DataProcessing.Locus">Locus</span></code>)
+        –
+        <div class="doc-md-description">
+          <p>Corresponding locus object.</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>layout</code></b>
+            (<code>dict</code>)
+        –
+        <div class="doc-md-description">
+          <p>Layout of the canvas.</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>mode</code></b>
+            (<code>str</code>)
+        –
+        <div class="doc-md-description">
+          <p>Mode whether coordinate should be centered to the nt or on the side.</p>
+        </div>
+      </li>
+  </ul>
+
+
+
+  <p>Returns:</p>
+  <ul>
+      <li class="field-body">
+<b><code>float</code></b> (            <code>float</code>
+)        –
+        <div class="doc-md-description">
+          <p>Corresponding page coordinate.</p>
+      </div>
+      </li>
+  </ul>
+
+          <details class="quote">
+            <summary>Source code in <code>lovis4u/Methods.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">nt_to_x_transform</span><span class="p">(</span><span class="n">nt</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">locus</span><span class="p">,</span> <span class="n">layout</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Transform nucleotide coordinate to x page coordinate.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        nt (int): Nucleotide coordinate.</span>
+<span class="sd">        locus (lovis4u.DataProcessing.Locus): Corresponding locus object.</span>
+<span class="sd">        layout (dict): Layout of the canvas.</span>
+<span class="sd">        mode (str): Mode whether coordinate should be centered to the nt or on the side.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: Corresponding page coordinate.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">passed_x</span> <span class="o">=</span> <span class="n">layout</span><span class="p">[</span><span class="s2">&quot;loci_tracks_left_border&quot;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">c_i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">locus</span><span class="o">.</span><span class="n">coordinates</span><span class="p">)):</span>
+        <span class="n">coordinate</span> <span class="o">=</span> <span class="n">locus</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[</span><span class="n">c_i</span><span class="p">]</span>
+        <span class="n">coordinate_region_width</span> <span class="o">=</span> <span class="p">(</span><span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;end&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">layout</span><span class="p">[</span><span class="s2">&quot;width_per_nt&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">nt</span> <span class="o">&lt;=</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;end&quot;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;strand&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">relative_nt</span> <span class="o">=</span> <span class="n">nt</span> <span class="o">-</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">relative_nt</span> <span class="o">=</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;end&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">nt</span>
+            <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;start&quot;</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;center&quot;</span><span class="p">:</span>
+                <span class="n">relative_nt</span> <span class="o">+=</span> <span class="mf">0.5</span>
+            <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;end&quot;</span><span class="p">:</span>
+                <span class="n">relative_nt</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">relative_x</span> <span class="o">=</span> <span class="n">relative_nt</span> <span class="o">*</span> <span class="n">layout</span><span class="p">[</span><span class="s2">&quot;width_per_nt&quot;</span><span class="p">]</span>
+            <span class="n">global_x</span> <span class="o">=</span> <span class="n">passed_x</span> <span class="o">+</span> <span class="n">relative_x</span>
+            <span class="k">break</span>
+        <span class="n">passed_x</span> <span class="o">+=</span> <span class="n">coordinate_region_width</span> <span class="o">+</span> <span class="n">layout</span><span class="p">[</span><span class="s2">&quot;x_gap_between_regions&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">c_i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">locus</span><span class="o">.</span><span class="n">coordinates</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">locus</span><span class="o">.</span><span class="n">circular</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;strand&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">locus</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[</span><span class="n">c_i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="s2">&quot;strand&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;end&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">locus</span><span class="o">.</span><span class="n">length</span> <span class="ow">and</span> <span class="n">locus</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[</span><span class="n">c_i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="s2">&quot;start&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="n">passed_x</span> <span class="o">-=</span> <span class="n">layout</span><span class="p">[</span><span class="s2">&quot;x_gap_between_regions&quot;</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;strand&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">locus</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[</span><span class="n">c_i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="s2">&quot;strand&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">locus</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[</span><span class="n">c_i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="s2">&quot;end&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">locus</span><span class="o">.</span><span class="n">length</span><span class="p">:</span>
+                        <span class="n">passed_x</span> <span class="o">-=</span> <span class="n">layout</span><span class="p">[</span><span class="s2">&quot;x_gap_between_regions&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">global_x</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="lovis4u.Methods.region_nt_to_x_transform" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">region_nt_to_x_transform</span><span class="p">(</span><span class="n">nt_start</span><span class="p">,</span> <span class="n">nt_end</span><span class="p">,</span> <span class="n">locus</span><span class="p">,</span> <span class="n">layout</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Transform region coordinates to x page coordinates.</p>
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>nt_start</code></b>
+            (<code>int</code>)
+        –
+        <div class="doc-md-description">
+          <p>1-based nucleotide start coordinate.</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>nt_end</code></b>
+            (<code>int</code>)
+        –
+        <div class="doc-md-description">
+          <p>1-based nucleotide end coordinate.</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>locus</code></b>
+            (<code><span title="lovis4u.DataProcessing.Locus">Locus</span></code>)
+        –
+        <div class="doc-md-description">
+          <p>Corresponding locus object.</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>layout</code></b>
+            (<code>dict</code>)
+        –
+        <div class="doc-md-description">
+          <p>Layout of the canvas.</p>
+        </div>
+      </li>
+  </ul>
+
+
+
+  <p>Returns:</p>
+  <ul>
+      <li class="field-body">
+<b><code>dict</code></b> (            <code>dict</code>
+)        –
+        <div class="doc-md-description">
+          <p>Dictionary with corresponding start and end page coordinates.</p>
+      </div>
+      </li>
+  </ul>
+
+          <details class="quote">
+            <summary>Source code in <code>lovis4u/Methods.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">region_nt_to_x_transform</span><span class="p">(</span><span class="n">nt_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">nt_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">locus</span><span class="p">,</span> <span class="n">layout</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Transform region coordinates to x page coordinates.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        nt_start (int): 1-based nucleotide start coordinate.</span>
+<span class="sd">        nt_end (int): 1-based nucleotide end coordinate.</span>
+<span class="sd">        locus (lovis4u.DataProcessing.Locus): Corresponding locus object.</span>
+<span class="sd">        layout (dict): Layout of the canvas.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: Dictionary with corresponding start and end page coordinates.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">coordinate</span> <span class="ow">in</span> <span class="n">locus</span><span class="o">.</span><span class="n">coordinates</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">nt_start</span> <span class="o">&lt;=</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;end&quot;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">nt_end</span> <span class="o">&lt;=</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;end&quot;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">coordinate</span><span class="p">[</span><span class="s2">&quot;strand&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">nt_start</span><span class="p">,</span> <span class="n">nt_end</span> <span class="o">=</span> <span class="n">nt_end</span><span class="p">,</span> <span class="n">nt_start</span>
+            <span class="n">x_start</span> <span class="o">=</span> <span class="n">nt_to_x_transform</span><span class="p">(</span><span class="n">nt_start</span><span class="p">,</span> <span class="n">locus</span><span class="p">,</span> <span class="n">layout</span><span class="p">,</span> <span class="s2">&quot;start&quot;</span><span class="p">)</span>
+            <span class="n">x_end</span> <span class="o">=</span> <span class="n">nt_to_x_transform</span><span class="p">(</span><span class="n">nt_end</span><span class="p">,</span> <span class="n">locus</span><span class="p">,</span> <span class="n">layout</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">)</span>
+            <span class="k">break</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">x_start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">x_end</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="lovis4u.Methods.scale_lightness" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">scale_lightness</span><span class="p">(</span><span class="n">hex_c</span><span class="p">,</span> <span class="n">scale_l</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Helper function to get darker version of input color</p>
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>hex_c</code></b>
+            (<code>str</code>)
+        –
+        <div class="doc-md-description">
+          <p>input HEX color</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>scale_l</code></b>
+            (<code>float</code>)
+        –
+        <div class="doc-md-description">
+          <p>scale of lightness</p>
+        </div>
+      </li>
+  </ul>
+
+
+
+  <p>Returns:</p>
+  <ul>
+      <li class="field-body">
+<b><code>str</code></b> (            <code>str</code>
+)        –
+        <div class="doc-md-description">
+          <p>new HEX color</p>
+      </div>
+      </li>
+  </ul>
+
+          <details class="quote">
+            <summary>Source code in <code>lovis4u/Methods.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">scale_lightness</span><span class="p">(</span><span class="n">hex_c</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">scale_l</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function to get darker version of input color</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        hex_c (str): input HEX color</span>
+<span class="sd">        scale_l (float): scale of lightness</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: new HEX color</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rgb</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">hex2color</span><span class="p">(</span><span class="n">hex_c</span><span class="p">)</span>
+    <span class="n">h</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="n">colorsys</span><span class="o">.</span><span class="n">rgb_to_hls</span><span class="p">(</span><span class="o">*</span><span class="n">rgb</span><span class="p">)</span>
+    <span class="n">hex_c</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">rgb2hex</span><span class="p">(</span><span class="n">colorsys</span><span class="o">.</span><span class="n">hls_to_rgb</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">l</span> <span class="o">*</span> <span class="n">scale_l</span><span class="p">),</span> <span class="n">s</span><span class="o">=</span><span class="n">s</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">hex_c</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="lovis4u.Methods.str_height_to_size" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">str_height_to_size</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">font_type</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Transform string height to the font size.</p>
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>height</code></b>
+            (<code>float</code>)
+        –
+        <div class="doc-md-description">
+          <p>available height of the string.</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>font_type</code></b>
+            (<code>str</code>)
+        –
+        <div class="doc-md-description">
+          <p>font type (see config file; at this moment only regular is available).</p>
+        </div>
+      </li>
+  </ul>
+
+
+
+  <p>Returns:</p>
+  <ul>
+      <li class="field-body">
+<b><code>float</code></b> (            <code>float</code>
+)        –
+        <div class="doc-md-description">
+          <p>font size defined by height.</p>
+      </div>
+      </li>
+  </ul>
+
+          <details class="quote">
+            <summary>Source code in <code>lovis4u/Methods.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">str_height_to_size</span><span class="p">(</span><span class="n">height</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">font_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Transform string height to the font size.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        height (float): available height of the string.</span>
+<span class="sd">        font_type (str): font type (see config file; at this moment only regular is available).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: font size defined by height.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">face</span> <span class="o">=</span> <span class="n">reportlab</span><span class="o">.</span><span class="n">pdfbase</span><span class="o">.</span><span class="n">pdfmetrics</span><span class="o">.</span><span class="n">getFont</span><span class="p">(</span><span class="n">font_type</span><span class="p">)</span><span class="o">.</span><span class="n">face</span>
+    <span class="n">font_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="mf">1.38</span> <span class="o">*</span> <span class="n">height</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">face</span><span class="o">.</span><span class="n">ascent</span> <span class="o">-</span> <span class="n">face</span><span class="o">.</span><span class="n">descent</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">font_size</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h2 id="lovis4u.Methods.update_path_extension" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">update_path_extension</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">new_extension</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Get path basename and replace its extension</p>
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>path</code></b>
+            (<code>str</code>)
+        –
+        <div class="doc-md-description">
+          <p>path to a file</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>new_extension</code></b>
+            (<code>str</code>)
+        –
+        <div class="doc-md-description">
+          <p>new extension</p>
+        </div>
+      </li>
+  </ul>
+
+
+
+  <p>Returns:</p>
+  <ul>
+      <li class="field-body">
+<b><code>str</code></b> (            <code>str</code>
+)        –
+        <div class="doc-md-description">
+          <p>basename of a file with new extension.</p>
+      </div>
+      </li>
+  </ul>
+
+          <details class="quote">
+            <summary>Source code in <code>lovis4u/Methods.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">update_path_extension</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">new_extension</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get path basename and replace its extension</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        path (str): path to a file</span>
+<span class="sd">        new_extension (str): new extension</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: basename of a file with new extension.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">updated_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">path</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">new_extension</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">return</span> <span class="n">updated_filename</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../usage_examples/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Usage examples" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Usage examples
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../VersionLog/versions/" class="md-footer__link md-footer__link--next" aria-label="Next: Version log" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Version log
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "announce.dismiss", "navigation.tabs", "toc.integrate", "header.autohide"], "search": "../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c99f48ec.min.js"></script>
+      
+        <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      
+    
+  </body>
+</html>

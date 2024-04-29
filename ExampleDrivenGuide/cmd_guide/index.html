@@ -570,16 +570,20 @@ This command replaces the tools paths (MMseqs2) in the pre-made config files fro
 <p>Let's start with default parameter run. The only mandatory argument is a folder path containing pharokka generated gff (<code>-gff</code>) files or genbank files (<code>-gb</code>).   </p>
 <p><code>lovis4u -gff lovis4u_data/guide/gff</code> </p>
 <p>As results of running this command an output folder named lovis4u_{current_date} (e.g. lovis4u_2024_04_28-16_36) will be created. Name of the output folder can be changed with <code>-o &lt;output_folder_name&gt;</code>.</p>
-<p><strong>Output folder structure:</strong><br />
-- <em>lovis4u.pdf</em> - vector graphic output (file name can be changed with <code>--pdf-name &lt;filename&gt;</code> parameter)<br />
-- <em>loci_annotation_table.tsv</em> - table containing annotation (sequence_id, length, coordinates, etc..) for each locus.<br />
-- <em>features_annotation_table.tsv</em> - table containing annotation (feature_id, locus_id, coordinates, etc..) for each feature (e.g. CDS)<br />
-- <em>mmseqs</em> (folder)<br />
-    - <em>DB</em> folder with mmseqs' databases.<br />
-    - <em>mmmseqs_clustering.tsv</em> - table with proteome clustering results.<br />
-    - <em>mmmseqs_(stdout/stderr).txt</em> - mmseqs logs.<br />
-    - <em>input_proteins.fa</em> - fasta file with all anntated protein sequences (input to mmseqs).<br />
-- <em>proteome_similarity_matrix.tsv</em> - pairwise proteome similarity scores indicating fraction of shared proteins homologues.  </p>
+<p><strong>Output folder structure:</strong></p>
+<ul>
+<li><em>lovis4u.pdf</em> - vector graphic output (file name can be changed with <code>--pdf-name &lt;filename&gt;</code> parameter)  </li>
+<li><em>loci_annotation_table.tsv</em> - table containing annotation (sequence_id, length, coordinates, etc..) for each locus.  </li>
+<li><em>features_annotation_table.tsv</em> - table containing annotation (feature_id, locus_id, coordinates, etc..) for each feature (e.g. CDS)  </li>
+<li><em>mmseqs</em> (folder)  <ul>
+<li><em>DB</em> folder with mmseqs' databases.  </li>
+<li><em>mmmseqs_clustering.tsv</em> - table with proteome clustering results.  </li>
+<li><em>mmmseqs_(stdout/stderr).txt</em> - mmseqs logs.  </li>
+<li><em>input_proteins.fa</em> - fasta file with all anntated protein sequences (input to mmseqs).  </li>
+</ul>
+</li>
+<li><em>proteome_similarity_matrix.tsv</em> - pairwise proteome similarity scores indicating fraction of shared proteins homologues.  </li>
+</ul>
 <p><strong>Visualisation results</strong><br />
 <img  src="img/lovis4u_default_1.png" width="100%"/></p>
 <p>As you can see </p>

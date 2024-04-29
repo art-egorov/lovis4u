@@ -335,13 +335,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#eukaryotes-atf4" class="md-nav__link">
-    Eukaryotes: ATF4
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -558,54 +551,17 @@ This command replaces the tools paths (MMseqs2) in the pre-made config files fro
 <p><code>lovis4u -gff lovis4u_data/guide/gff</code> </p>
 <p>As results of running this command an output folder named lovis4u_{current_date} (e.g. lovis4u_2024_04_28-16_36) will be created. Name of the output folder can be changed with <code>-o &lt;output_folder_name&gt;</code>.</p>
 <p><strong>Output folder structure:</strong>
-- <em>lovis4u.pdf</em> - vector graphic output (file name can be changed with <code>--pdf-name &lt;filename&gt;</code> parameter)
-- <em>loci_annotation_table.tsv</em> - table containing annotation (sequence_id, length, coordinates, etc..) for each locus.
-- <em>features_annotation_table.tsv</em> - table containing annotation (feature_id, locus_id, coordinates, etc..) for each feature (e.g. CDS)
-- <em>mmseqs</em> (folder)
-    - <em>DB</em> folder with mmseqs' databases.
-    - <em>mmmseqs_clustering.tsv</em> - table with proteome clustering results.
-    - <em>mmmseqs_(stdout/stderr).txt</em> - mmseqs logs.
-    - <em>input_proteins.fa</em> - fasta file with all anntated protein sequences (input to mmseqs).
-- <em>proteome_similarity_matrix.tsv</em> - pairwise proteome similarity scores indicating fraction of shared proteins homologues.</p>
+- <em>lovis4u.pdf</em> - vector graphic output (file name can be changed with <code>--pdf-name &lt;filename&gt;</code> parameter)<br />
+- <em>loci_annotation_table.tsv</em> - table containing annotation (sequence_id, length, coordinates, etc..) for each locus.<br />
+- <em>features_annotation_table.tsv</em> - table containing annotation (feature_id, locus_id, coordinates, etc..) for each feature (e.g. CDS)<br />
+- <em>mmseqs</em> (folder)<br />
+    - <em>DB</em> folder with mmseqs' databases.<br />
+    - <em>mmmseqs_clustering.tsv</em> - table with proteome clustering results.<br />
+    - <em>mmmseqs_(stdout/stderr).txt</em> - mmseqs logs.<br />
+    - <em>input_proteins.fa</em> - fasta file with all anntated protein sequences (input to mmseqs).<br />
+- <em>proteome_similarity_matrix.tsv</em> - pairwise proteome similarity scores indicating fraction of shared proteins homologues.  </p>
 <p><strong>Visualisation results</strong> <em>lovis4u.pdf</em><br />
 <img  src="img/lovis4u_default_1.png" width="100%"/></p>
-<p><img  src="img/ermC_regulation.png" width="600"/></p>
-<p><strong>Using a single RefSeq protein accession number as input</strong>  </p>
-<p>To test whether uORF4u will find the <em>ermCL</em> we can use only the RefSeq accession number of <em>ermC</em> protein as input which is <em>WP_001003263.1</em>.<br />
-<code>uorf4u -an WP_001003263.1 -ul 400 -o ErmC -c bacteria</code>,<br />
-All arguments, except <code>-an</code>, were optional. <code>-ul</code> was used to overrides the upstream region length to retrieve (default: 500). Output folder name can be set with <code>-o</code> parameter (default: uorf4u_{current_date}). We also used <em>bacteria</em> mode by specifying the premade configuration file with <code>-c</code> parameter.  </p>
-<p>uORF4u finds the expected <em>ermCL</em> and returns one set of conserved uORFs. Output contains <a href="img/ermC_msa.pdf"><strong>MSA plot</strong></a>, <a href="img/ermC_annotation_plot.pdf"><strong>annotation plot</strong></a>, and sequence logo:<br />
-<img  src="img/ermC_logo.png" width="430"/></p>
-<p><strong>Using a list of homologues as input</strong></p>
-<p>Alternatively, a list of homologues can be used as input. This is important for allowing a user to decide the breadth and depth of the search. In addition, it can be useful for creating compact output figures that can be used in articles. For such demonstration, we have chosen several <em>ermC</em> proteins from the previous run and used them as input:<br />
-<div class="highlight"><pre><span></span><code>uorf4u -hl WP_202338192.1 WP_102227852.1 WP_034984371.1 WP_159316313.1 WP_095341278.1 WP_150861853.1 WP_011382144.1 WP_081624258.1 -c bacteria -annot -ul 400
-</code></pre></div>
-where <code>-annot</code> parameter was used to show on annotation plot known ORFs annotated in the NCBI (shown with blue outlines). <br />
-<strong><em>Note</em></strong>: List of homologues can be also written in a txt file (one accession per line) and used as input with <code>-hlf</code> parameter.</p>
-<p>Results with annotation plot, MSA visualisation and sequence logos:  </p>
-<p><img  src="img/ermC_selected_proteins.png" width="600"/></p>
-<h2 id="eukaryotes-atf4">Eukaryotes: <em>ATF4</em></h2>
-<p>The expression of <em>ATF4</em> (activating transcription factor) is regulated by two uORFs. After translation of the first uORF1, ribosomes are normally able to reinitiate translation at a downstream uORF2 after rebinding the initiating ternary complex (<em>eIF2-GTP-Met-tRNA</em>). Reduced levels of the ternary complex during stress conditions leads to the ribosome scanning through the uORF2 start codon and instead reinitiating at the ATF4 uORF.</p>
-<p><img  src="img/ATF4_regulation.png" width="400"/></p>
-<p>uORF4u has two modes: <em>bacteria</em> (set as default) and <em>eukaryotes</em> that defined by pre-made configuration files. Archaea mode (no SD sequence annotation + retrieving DNA sequences as well due the absence of mRNAs data) will be presented soon or can be set manually within config files.  <br />
-The main differences between two modes: 1. For eukaryotes there is no SD sequence annotation step and corresponding uORF filtering. 2. While sequences retrieving for found homologues we take only mRNAs (the tool uses regex to perform that which is set by <em>refseq_sequences_regex</em> in the config files. For eukaryotes it's set as '^[NX]M_.*' that means that only sequences with ids that start with NM_ or XM_ (mRNAs) will be taken in the analysis).</p>
-<p><strong>Using a single RefSeq protein accession number as input</strong>  </p>
-<p>Similarly to the bacteria' example, firstly we can use a single protein accession number as input:<br />
-<code>uorf4u -an NP_877962.1 -c eukaryotes -o ATF4</code><br />
-We used <em>eukaryotes</em> mode by specifying the premade configuration file with <code>-c</code> parameter.  </p>
-<p>uORF4u finds both uORFs and returns (as always) MSA plots (<a href="img/ATF4_uorf1_MSA.pdf"><strong>uORF1 nt</strong></a>, <a href="img/ATF4_uorf2_MSA.pdf"><strong>uORF2 nt</strong></a>), annotation plots (<a href="img/ATF4_uorf1_annot.pdf"><strong>uORF1</strong></a>, <a href="img/ATF4_uorf2_annot.pdf"><strong>uORF2</strong></a>) and sequence logos. A nucleotide sequence logo for uORF1:<br />
-<img  src="img/ATF4_uorf1_logo.png" width="270"/></p>
-<p><strong>Using a list of homologues as input</strong></p>
-<p>Let's use again a subset of the found homologues to get a compact output. <br />
-<div class="highlight"><pre><span></span><code>uorf4u -hl NP_001666.2 XP_036720744.1 XP_024434925.1 XP_034632036.1 XP_008703764.1 XP_034983127.1 XP_019400505.1 XP_003989324.2 XP_003419800.1 XP_019302483.1 XP_047407736.1 XP_032062344.1 -c eukaryotes
-</code></pre></div></p>
-<p><img  src="img/ATF4_selected_proteins.png" width="600"/></p>
-<p><em>Note</em>: unfortunately, animal's emojis were added manually. </p>
-<p><strong>Using a fasta file with sequences as input</strong></p>
-<p>You can use a fasta file with sequences as input as well.<br />
-Command example with a fasta file obtained from previous run as input:<br />
-<code>uorf4u -fa ATF4/upstream_sequences.fa -c eukaryotes</code>  </p>
-<p><strong>It is useful to note</strong> that when using nucleotide sequences as input, uORF4u can be used as a general conserved ORF search tool, that is, not necessarily upstream of any particular mORF. But be carefull with this mode, recommended range of sequences' length ~100-1000nt and number of sequences: 10-1000. <strong>uORF4u was not designed to perform conservation analysis on chromosome' size set of sequences.</strong></p>
 
               
             </article>

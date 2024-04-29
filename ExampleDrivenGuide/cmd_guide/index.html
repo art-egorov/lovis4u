@@ -329,15 +329,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#output-folder-structure" class="md-nav__link">
-    Output folder structure
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bacteria-ermcl" class="md-nav__link">
-    Bacteria: ermCL
+  <a href="#default-parameters-run" class="md-nav__link">
+    Default parameters run
   </a>
   
 </li>
@@ -553,17 +546,29 @@
 
 
 <h1 id="example-driven-guide">Example-driven guide</h1>
-<p>Here we show several usage examples of the uorf4u command-line interface for two well-known uORFs: <em>ermCL</em> (bacteria) and <em>ATF4</em> (eukaryotes).<br />
-(See review articles about uORFs in prokaryotes and eukaryotes: <a href="https://www.annualreviews.org/doi/10.1146/annurev-biochem-080211-105026">Ito et.al. 2013</a> and <a href="https://www.annualreviews.org/doi/abs/10.1146/annurev-genet-112618-043822">Dever et.al. 2020</a>.</p>
-<p><strong>Before start:</strong> The necessary sample data as well as adjustable tool' configuration files are provided by uorf4u at the post-install step:  <br />
-<code>uorf4u --data</code> <br />
+<p>Here we show several usage examples of the lovis4u command-line interface. Along this guide we will show step-by-step how you can optimise your visualisation starting from default parameters.</p>
+<p><strong>Before start:</strong> The necessary sample data as well as adjustable tool' configuration files are provided by lovis4u at the post-install step:  <br />
+<code>lovis4u --data</code> which copies <code>lovis4u_data</code> folder to your working directory. <br />
 <strong>If you work on a Linux machine</strong> after installation you should run: <code>uorf4u --linux</code><br />
-This command replaces the tools paths (maft) in the pre-made config files from the MacOS' version (default) to the Linux'. </p>
-<h4 id="output-folder-structure">Output folder structure</h4>
-<p><img  src="img/output_folder_uorf4u.png" width="500"/></p>
+This command replaces the tools paths (MMseqs2) in the pre-made config files from the MacOS version (default) to the Linux. </p>
+<p>For demonstration we will use pharokka generated gff files with sequences of 5 Enterobacteria phages. Gff files are stored at: <code>lovis4u_data/guide/gff</code></p>
 <hr />
-<h2 id="bacteria-ermcl">Bacteria: <em>ermCL</em></h2>
-<p>Expression of 23S rRNA methyltransferase <em>ermC</em> is regulated by translational attenuation: ribosome stalling on the <em>ermC</em> uORF (named <em>ermCL</em>) is inducible by erythromycin. The arresst alters the regional mRNA structure, exposing the ermC SD sequence and allowing translation of the <em>ermC</em> ORF. </p>
+<h2 id="default-parameters-run">Default parameters run</h2>
+<p>Let's start with default parameter run. The only mandatory argument is a folder path containing pharokka generated gff (<code>-gff</code>) files or genbank files (<code>-gb</code>).   </p>
+<p><code>lovis4u -gff lovis4u_data/guide/gff</code> </p>
+<p>As results of running this command an output folder named lovis4u_{current_date} (e.g. lovis4u_2024_04_28-16_36) will be created. Name of the output folder can be changed with <code>-o &lt;output_folder_name&gt;</code>.</p>
+<p><strong>Output folder structure:</strong>
+- <em>lovis4u.pdf</em> - vector graphic output (file name can be changed with <code>--pdf-name &lt;filename&gt;</code> parameter)
+- <em>loci_annotation_table.tsv</em> - table containing annotation (sequence_id, length, coordinates, etc..) for each locus.
+- <em>features_annotation_table.tsv</em> - table containing annotation (feature_id, locus_id, coordinates, etc..) for each feature (e.g. CDS)
+- <em>mmseqs</em> (folder)
+    - <em>DB</em> folder with mmseqs' databases.
+    - <em>mmmseqs_clustering.tsv</em> - table with proteome clustering results.
+    - <em>mmmseqs_(stdout/stderr).txt</em> - mmseqs logs.
+    - <em>input_proteins.fa</em> - fasta file with all anntated protein sequences (input to mmseqs).
+- <em>proteome_similarity_matrix.tsv</em> - pairwise proteome similarity scores indicating fraction of shared proteins homologues.</p>
+<p><strong>Visualisation results</strong> <em>lovis4u.pdf</em><br />
+<img  src="img/lovis4u_default_1.png" width="100%"/></p>
 <p><img  src="img/ermC_regulation.png" width="600"/></p>
 <p><strong>Using a single RefSeq protein accession number as input</strong>  </p>
 <p>To test whether uORF4u will find the <em>ermCL</em> we can use only the RefSeq accession number of <em>ermC</em> protein as input which is <em>WP_001003263.1</em>.<br />

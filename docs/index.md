@@ -25,13 +25,13 @@
 
 ## Installation
 
-- The most stable release of lovis4u can be installed directly from pypi:
+The most stable release of lovis4u can be installed directly from pypi:
 
 ```
 python3 -m pip install lovis4u
 ```
 
-- The development version is available at github :
+The development version is available at github :
 
 ```
 git clone https://github.com/art-egorov/lovis4u.git

@@ -1,4 +1,4 @@
-LoVis4u (version 0.0.2):
+LoVis4u (version 0.0.3):
 Home page and documentation: https://github.com/art-egorov/lovis4u
 The Atkinson Lab 4U | Artyom Egorov
 -------------------------------
@@ -59,6 +59,9 @@ COMMAND-LINE PARAMETERS
     Locus label style based on input sequence annotation.
 -safl, --show-all-feature-labels
     Display all feature labels.
+-sflf, --show-feature-label-for  <feature_group1 [feature group2 ...]>
+    Space-separated list of feature groups for which label should be shown.
+    [default: variable, labeled]
 -sfflf, --show-first-feature-label-for <feature_group1 [feature group2 ...]>
     Space-separated list of feature group types for which label will be displayed
      only for the first occurrence of feature homologues group.
@@ -70,6 +73,11 @@ COMMAND-LINE PARAMETERS
     Do not plot individual x-axis for each locus track.
 -dml, --draw-middle-line
     Draw middle line for each locus.
+-mm-per-nt, --mm-per-nt <float value>
+    Scale which defines given space for each nt cell on canvas.
+    [default: auto (0.0022 - 0.02, depending on window size)]
+-fw, --figure-width <float value>
+    Output figure width in cm.
 -------------------------------
 [OPTIONAL ARGUMENTS | ADDITIONAL TRACKS]
 -hl, --homology-links
@@ -80,7 +88,7 @@ COMMAND-LINE PARAMETERS
 [OPTIONAL ARGUMENTS | OTHERS]
 -o <name>
     Output dir name. It will be created if it does not exist.
-	[default: lovis4u_{current_date}; e.g. uorf4u_2022_07_25-20_41].
+	[default: lovis4u_{current_date}; e.g. uorf4u_2022_07_25-20_41]
 --pdf-name <name>
     Name of the output pdf file (will be saved in the output folder).
     [default: lovis4u.pdf]

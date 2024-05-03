@@ -30,9 +30,8 @@ class lovis4uError(Exception):
 class Parameters:
     """A Parameters object holds and parse command line's and config's arguments.
 
-    Note:
-        A Parameters object have to be created in each script since it's used almost by each
-            class of the tool as a mandatory argument.
+    A Parameters object have to be created in each script since it's used almost by each
+        class of the tool as a mandatory argument.
 
     Attributes:
         args (dict): dictionary that holds all arguments.
@@ -62,11 +61,12 @@ class Parameters:
         mutually_exclusive_group.add_argument("-gb", "--gb", dest="gb", type=str, default=None)
         parser.add_argument("-laf", "--loci-annotation-file", dest="loci-annotation", type=str, default=None)
         parser.add_argument("-faf", "--features-annotation-file", dest="features-annotation", type=str, default=None)
-        parser.add_argument("-mmseqs-off", dest="mmseqs", action="store_false")
+        parser.add_argument("-mmseqs-off", "--mmseqs-off", dest="mmseqs", action="store_false")
         parser.add_argument("-fv-off", "--find-variable-off", dest="find-variable", action="store_false")
         parser.add_argument("-cl-off", "--clust_loci-off", dest="clust_loci", action="store_false")
         parser.add_argument("-reorient_loci", "--reorient_loci", dest="reorient_loci", action="store_true")
-        parser.add_argument("-lls", "--loci-label-style", dest="label", choices=["id", "description", "full"],
+        parser.add_argument("-lls", "--loci-label-style", dest="locus_label_style",
+                            choices=["id", "description", "full"],
                             default=None)
         parser.add_argument("-sgc-off", "--set-group-color-off", dest="set-group-color", action="store_false")
         parser.add_argument("-sgcf", "--set-group-color-for", dest="feature_group_types_to_set_color", nargs="*",
@@ -86,10 +86,12 @@ class Parameters:
         parser.add_argument("-slt", "--scale-line-track", dest="scale-line-track", action="store_true")
         parser.add_argument("-hix", "--hide-x-axis", dest="draw_individual_x_axis", action="store_false")
         parser.add_argument("-dml", "--draw-middle-line", dest="draw_middle_line", action="store_true")
+        parser.add_argument("-mm-per-nt", "--mm-per-nt", dest="mm_per_nt", type=float, default=None)
+        parser.add_argument("-fw", "--figure-width", dest="figure_width", type=float, default=None)
         parser.add_argument("-o", dest="output_dir", type=str, default=None)
         parser.add_argument("--pdf-name", dest="pdf-name", type=str, default="lovis4u.pdf")
         parser.add_argument("-c", dest="config_file", type=str, default="standard")
-        parser.add_argument("-v", "--version", action='version', version='%(prog)s 0.1.0')
+        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.0.3")
         parser.add_argument("-q", "--quiet", dest="verbose", default=True, action="store_false")
         parser.add_argument("--debug", "-debug", dest="debug", action="store_true")
         parser.add_argument("-h", "--help", dest="help", action="store_true")
@@ -113,7 +115,7 @@ class Parameters:
                 sys.exit()
         if not args["gff"] and not args["gb"]:
             raise lovis4u.Manager.lovis4uError("-gff or -gb parameter with folder path should be provided")
-        args_to_keep = ["loci-annotation", "features-annotation", "gb", "gff"]
+        args_to_keep = ["loci-annotation", "features-annotation", "gb", "gff", "figure_width"]
         filtered_args = {k: v for k, v in args.items() if v is not None or k in args_to_keep}
         self.cmd_arguments = filtered_args
         return None
@@ -261,8 +263,15 @@ class CanvasManager:
             loci_lengths = loci.get_loci_lengths_and_n_of_regions()
 
             self.layout["total_nt_width"] = max(i[0] for i in loci_lengths)
+
+            if self.prms.args["figure_width"]:
+                full_figure_width = self.prms.args["figure_width"] * cm
+                figure_width_for_loci = full_figure_width - max_label_string_width - 2 * self.prms.args["margin"] * cm \
+                                        - self.prms.args["gap_after_locus_label"] * cm
+                self.prms.args["mm_per_nt"] = figure_width_for_loci / self.layout["total_nt_width"]
+
             if self.prms.args["mm_per_nt"] == "auto":
-                self.prms.args["mm_per_nt"] = max(0.02 - self.layout["total_nt_width"] * 4e-07, 0.0022)
+                self.prms.args["mm_per_nt"] = max(0.019 - self.layout["total_nt_width"] * 4.2e-07, 0.0022)
             self.layout["width_per_nt"] = self.prms.args["mm_per_nt"] * mm
             self.layout["x_gap_between_regions"] = self.prms.args["gap_between_regions"] * cm
             each_loci_region_width = [
@@ -350,8 +359,7 @@ class CanvasManager:
     def add_homology_track(self) -> None:
         """Add homology track to your canvas.
 
-        Note:
-            You should add this track after you added loci tracks.
+        You should add this track after you added loci tracks.
 
         Returns:
             None

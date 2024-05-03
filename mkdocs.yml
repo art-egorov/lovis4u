@@ -1,21 +1,21 @@
-site_name: uORF4u
+site_name: LoVis4u
 
 
-repo_url: https://github.com/art-egorov/uorf4u.git
+repo_url: https://github.com/art-egorov/lovis4u.git
 edit_uri: ''  #disables edit button
 
 
 theme:
     name: material
     custom_dir: docs/material
-    favicon: assets/images/favicon.png
+    favicon: assets/images/favicon.ico
     palette:
     # Palette toggle for light mode
       - scheme: default
         primary: grey
         accent: yellow
     icon:
-      logo: uorf4u_logo
+      logo: lovis4u_small
 
     features:
         - content.code.annotate
@@ -37,13 +37,16 @@ nav:
     - Configuration file parameters: Parameters/config_parameters.md
   - API:
     - Usage examples: API/usage_examples.md
-    - uorf4u.data_processing: API/package_data_processing.md
-    - uorf4u.manager: API/package_manager.md
-    - uorf4u.drawing: API/package_drawing.md
-    - uorf4u.methods: API/package_methods.md
+    - lovis4u.DataProcessing: API/package_data_processing.md
+    - lovis4u.Manager: API/package_manager.md
+    - lovis4u.Drawing: API/package_drawing.md
+    - lovis4u.Methods: API/package_methods.md
   - Version log: VersionLog/versions.md
 
 markdown_extensions:
+ - def_list
+ - pymdownx.tasklist:
+       custom_checkbox: true
  - admonition
  - footnotes
  - pymdownx.emoji
@@ -55,24 +58,38 @@ markdown_extensions:
      alternate_style: true
  - pymdownx.tasklist
  - pymdownx.highlight
-
+ - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+ - pymdownx.inlinehilite
+ - pymdownx.snippets
+ - pymdownx.superfences
+ - pymdownx.critic
+ - pymdownx.caret
+ - pymdownx.keys
+ - pymdownx.mark
+ - pymdownx.tilde
 
 plugins:
  - search
+ - table-reader
  - markdown-exec
  - section-index
  - autorefs
  - mkdocstrings:
-    custom_templates: ./docs/templates
-    watch:
-       - uorf4u
+    watch: 
+      - lovis4u
     handlers:
       python:
+        import:
+        - https://docs.python.org/3/objects.inv
+        - https://www.mkdocs.org/objects.inv
+        - https://python-markdown.github.io/objects.inv
         options:
           docstring_style: google
           docstring_options:
             ignore_init_summary: no
-            
           separate_signature: False
           show_signature_annotation: True
           show_source: True
@@ -82,12 +99,6 @@ plugins:
           show_category_heading: False
           merge_init_into_class: False
           docstring_section_style: list
- - exclude:
-        glob:
-            - assets/images/favicon.png
 
 extra:
   generator: false
-  analytics:
-    provider: google
-    property: G-MD28PTNXBF

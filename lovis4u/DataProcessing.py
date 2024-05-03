@@ -302,8 +302,7 @@ class Loci:
         """Load loci from the folder with gff files. Each GFF file also should contain corresponding nucleotide
             sequence. Such files are produced for example by pharokka annotation tool.
 
-        Note:
-            All files with extension other than .gff (not case-sensitive) will be ignored.
+        All files with extension other than .gff (not case-sensitive) will be ignored.
 
         Arguments:
             input_folder: folder name with gff files.
@@ -358,8 +357,8 @@ class Loci:
                     if self.prms.args["gff_CDS_name_source"] in gff_feature.qualifiers:
                         name = gff_feature.qualifiers[self.prms.args["gff_CDS_name_source"]][0]
                     category = ""
-                    if self.prms.args["gff_CDS_function_source"] in gff_feature.qualifiers:
-                        category = ",".join(gff_feature.qualifiers[self.prms.args["gff_CDS_function_source"]])
+                    if self.prms.args["gff_CDS_category_source"] in gff_feature.qualifiers:
+                        category = ",".join(gff_feature.qualifiers[self.prms.args["gff_CDS_category_source"]])
                     for coordinate in record_locus.coordinates:
                         start, end = coordinate["start"], coordinate["end"]
                         if start <= gff_feature.location.start + 1 <= end or start <= gff_feature.location.end <= end:
@@ -396,8 +395,7 @@ class Loci:
     def load_loci_from_gb(self, input_folder: str) -> None:
         """Load loci from the folder with genbank files.
 
-        Note:
-            All files with extension other than .gb (not case-sensitive) will be ignored.
+        All files with extension other than .gb (not case-sensitive) will be ignored.
 
         Arguments:
             input_folder: folder name with gb files.
@@ -467,8 +465,8 @@ class Loci:
                     if self.prms.args["genbank_CDS_name_source"] in gb_feature.qualifiers:
                         name = gb_feature.qualifiers[self.prms.args["genbank_CDS_name_source"]][0]
                     category = ""
-                    if self.prms.args["genbank_CDS_function_source"] in gb_feature.qualifiers:
-                        category = ",".join(gb_feature.qualifiers[self.prms.args["genbank_CDS_function_source"]])
+                    if self.prms.args["genbank_CDS_category_source"] in gb_feature.qualifiers:
+                        category = ",".join(gb_feature.qualifiers[self.prms.args["genbank_CDS_category_source"]])
                     for coordinate in record_locus.coordinates:
                         start, end = coordinate["start"], coordinate["end"]
                         if start <= gb_feature.location.start + 1 <= end or start <= gb_feature.location.end <= end:
@@ -507,8 +505,7 @@ class Loci:
     def save_loci_annotation_table(self) -> None:
         """Save loci annotation table to the output folder.
 
-        Note:
-            Output file name is loci_annotation_table.tsv
+        Output file name is loci_annotation_table.tsv
 
         Returns:
             None
@@ -528,8 +525,7 @@ class Loci:
     def save_features_annotation_table(self) -> None:
         """Save feature annotation table to the output folder.
 
-        Note:
-            Output file name is features_annotation_table.tsv
+        Output file name is features_annotation_table.tsv
 
         Returns:
             None
@@ -566,6 +562,7 @@ class Loci:
             if os.path.exists(mmseqs_output_folder):
                 shutil.rmtree(mmseqs_output_folder)
             os.mkdir(mmseqs_output_folder)
+            Bio.SeqIO.write(feature_records, os.path.join(mmseqs_output_folder, "input_proteins.fa"), "fasta")
             mmseqs_output_folder_db = os.path.join(mmseqs_output_folder, "DB")
             os.mkdir(mmseqs_output_folder_db)
             mmseqs_stdout = open(os.path.join(mmseqs_output_folder, "mmseqs_stdout.txt"), "w")
@@ -605,8 +602,7 @@ class Loci:
     def define_features_groups(self, dataframe: pd.DataFrame, group_column_name: str = "cluster") -> None:
         """Set features attribute "group" based on input dataframe.
 
-        Note:
-            By default is designed to use mmseqs_cluster() function results as input. If you already have precomputed
+        By default is designed to use mmseqs_cluster() function results as input. If you already have precomputed
             feature groups you can set them with feature table.
 
         Arguments:
@@ -632,8 +628,7 @@ class Loci:
     def define_labels_to_be_shown(self):
         """Set feature visaulisation attribute "show_label" based on feature groups.
 
-        Note:
-            controlled by feature_labels_to_ignore, feature_group_types_to_show_label, and
+        controlled by feature_labels_to_ignore, feature_group_types_to_show_label, and
             feature_group_types_to_show_label_on_first_occurrence parameters.
 
         Returns:
@@ -665,7 +660,7 @@ class Loci:
             This function changes the order of loci that are plotted and also updates corresponding to each loci group
             attribute which defines homologues groups of proteomes.
 
-        Note: It's designed to use as input mmseqs_cluster() function results. However, if you have obtained homologues
+        It's designed to use as input mmseqs_cluster() function results. However, if you have obtained homologues
             groups by other method you can also build pandas dataframe based on that with index corresponding to
             feature id and column "cluster" corresponding to the group.
 
@@ -708,7 +703,6 @@ class Loci:
                 scipy.spatial.distance.squareform(symmetric_distance_matrix),
                 method="average")
             dendrogram = scipy.cluster.hierarchy.dendrogram(linkage_matrix, no_plot=True)
-
             clusters = pd.Series(scipy.cluster.hierarchy.fcluster(linkage_matrix, 0.35, criterion="distance"),
                                  index=loci_ids)
             for locus in self.loci:
@@ -746,7 +740,7 @@ class Loci:
         """Define feature group type attributes (variable or shell/core) based on their conservation in corresponding
             loci group feature.
 
-        Note: It's designed to use as input mmseqs_cluster() function results. However, if you have obtained homologues
+        It's designed to use as input mmseqs_cluster() function results. However, if you have obtained homologues
             groups by other method you can also build pandas dataframe based on that with index corresponding to
             feature id and column "cluster" corresponding to the group.
 
@@ -864,8 +858,7 @@ class Loci:
     def reorient_loci(self) -> None:
         """Auto re-orient loci (reset strands) of loci if they are not matched.
 
-        Note:
-            Function tries to maximise co-orientation of homologous features.
+        Function tries to maximise co-orientation of homologous features.
 
         Returns:
             None

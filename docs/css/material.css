@@ -2,17 +2,3 @@
 .md-main__inner {
   margin-bottom: 1.5rem;
 }
-
-.md-grid {
-  max-width: 85%; 
-}
-
-.md-typeset h1, 
-.md-typeset h2,
-.md-typeset h3,
-.md-typeset h4,
-.md-typeset h5,
-.md-typeset h6,
-.md-typeset h7{
-font-weight: bold;
-}

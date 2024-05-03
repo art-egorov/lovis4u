@@ -1,81 +1,163 @@
 # Example-driven guide
 
-Here we show several usage examples of the uorf4u command-line interface for two well-known uORFs: *ermCL* (bacteria) and *ATF4* (eukaryotes).  
-(See review articles about uORFs in prokaryotes and eukaryotes: [Ito et.al. 2013](https://www.annualreviews.org/doi/10.1146/annurev-biochem-080211-105026) and [Dever et.al. 2020](https://www.annualreviews.org/doi/abs/10.1146/annurev-genet-112618-043822).
-
-**Before start:** The necessary sample data as well as adjustable tool' configuration files are provided by uorf4u at the post-install step:    
-`uorf4u --data`   
+Here we show usage examples of lovis4u command-line interface. Through this guide we will show step-by-step how you can optimise your visualisation starting from default parameters.
+ 
+**Before start:** The necessary sample data as well as adjustable tool configuration files are provided by lovis4u at the post-install step:    
+`lovis4u --data` which copies *lovis4u_data* folder to your working directory. 
+  
 **If you work on a Linux machine** after installation you should run: `uorf4u --linux`  
-This command replaces the tools paths (maft) in the pre-made config files from the MacOS' version (default) to the Linux'. 
+This command replaces the tools paths (MMseqs2) in the pre-made config files from the MacOS version (default) to the Linux.  
+If you run it for fun and want to change it back you can use `uorfu --mac`.
 
-
-#### Output folder structure
-
-<img  src="img/output_folder_uorf4u.png" width="500"/>
+^^For demonstration we will use pharokka generated gff files with sequences of 5 Enterobacteria phages.  
+Gff files are stored at: *lovis4u_data/guide/gff_files*.^^      
+The main difference of pharokka generated gff files from regular gff3 (for ex. which you can download from the NCBI) is that in addition to annotation rows they contain corresponding to the annotation nucleotide sequence. 
 
 ---
 
-## Bacteria: *ermCL*
+## Example run with default parameters
 
-Expression of 23S rRNA methyltransferase *ermC* is regulated by translational attenuation: ribosome stalling on the *ermC* uORF (named *ermCL*) is inducible by erythromycin. The arresst alters the regional mRNA structure, exposing the ermC SD sequence and allowing translation of the *ermC* ORF. 
+Let's start with running lovis4u without using any optional argument. The only mandatory argument is a folder path containing pharokka generated gff (`-gff`) files or genbank files (`-gb`).   
 
-<img  src="img/ermC_regulation.png" width="600"/>
-
-**Using a single RefSeq protein accession number as input**  
-
-To test whether uORF4u will find the *ermCL* we can use only the RefSeq accession number of *ermC* protein as input which is *WP_001003263.1*.  
-`uorf4u -an WP_001003263.1 -ul 400 -o ErmC -c bacteria`,  
-All arguments, except `-an`, were optional. `-ul` was used to overrides the upstream region length to retrieve (default: 500). Output folder name can be set with `-o` parameter (default: uorf4u_{current_date}). We also used *bacteria* mode by specifying the premade configuration file with `-c` parameter.  
-
-uORF4u finds the expected *ermCL* and returns one set of conserved uORFs. Output contains [**MSA plot**](img/ermC_msa.pdf), [**annotation plot**](img/ermC_annotation_plot.pdf), and sequence logo:  
-<img  src="img/ermC_logo.png" width="430"/>
-
-**Using a list of homologues as input**
-
-Alternatively, a list of homologues can be used as input. This is important for allowing a user to decide the breadth and depth of the search. In addition, it can be useful for creating compact output figures that can be used in articles. For such demonstration, we have chosen several *ermC* proteins from the previous run and used them as input:  
 ```
-uorf4u -hl WP_202338192.1 WP_102227852.1 WP_034984371.1 WP_159316313.1 WP_095341278.1 WP_150861853.1 WP_011382144.1 WP_081624258.1 -c bacteria -annot -ul 400
-```  
-where `-annot` parameter was used to show on annotation plot known ORFs annotated in the NCBI (shown with blue outlines).   
-***Note***: List of homologues can be also written in a txt file (one accession per line) and used as input with `-hlf` parameter.
+lovis4u -gff lovis4u_data/guide/gff_files
+``` 
 
-Results with annotation plot, MSA visualisation and sequence logos:  
+As results of running this command an output folder named lovis4u_{current_date} (e.g. lovis4u_2024_04_28-16_36) will be created.  
+Name of the output folder can be changed with `-o <output_folder_name>`.
 
-<img  src="img/ermC_selected_proteins.png" width="600"/>
+**Output folder structure:**
 
-## Eukaryotes: *ATF4*
+- *lovis4u.pdf* - vector graphic output (file name can be changed with `--pdf-name <filename>` parameter)  
+- *loci_annotation_table.tsv* - table containing annotation (sequence_id, length, coordinates, etc..) for each locus.  
+- *features_annotation_table.tsv* - table containing annotation (feature_id, locus_id, coordinates, etc..) for each feature (e.g. CDS)  
+- *mmseqs* (folder)  
+	- *DB* - folder with mmseqs' databases.  
+	- *mmmseqs_clustering.tsv* - table with proteomes clustering results.  
+	- *mmmseqs_(stdout/stderr).txt* - mmseqs logs.  
+	- *input_proteins.fa* - fasta file with all annotated protein sequences (input to mmseqs).  
+- *proteome_similarity_matrix.tsv* - pairwise proteome similarity scores indicating fraction of shared proteins homologues.  
 
-The expression of *ATF4* (activating transcription factor) is regulated by two uORFs. After translation of the first uORF1, ribosomes are normally able to reinitiate translation at a downstream uORF2 after rebinding the initiating ternary complex (*eIF2-GTP-Met-tRNA*). Reduced levels of the ternary complex during stress conditions leads to the ribosome scanning through the uORF2 start codon and instead reinitiating at the ATF4 uORF.
+*Visualisation results:*
+<img  src="img/lovis4u_default_1.png" width="100%"/>
 
-<img  src="img/ATF4_regulation.png" width="400"/>
+**By default, lovis4u utilises the following data preprocessing steps:**
 
-uORF4u has two modes: *bacteria* (set as default) and *eukaryotes* that defined by pre-made configuration files. Archaea mode (no SD sequence annotation + retrieving DNA sequences as well due the absence of mRNAs data) will be presented soon or can be set manually within config files.    
-The main differences between two modes: 1. For eukaryotes there is no SD sequence annotation step and corresponding uORF filtering. 2. While sequences retrieving for found homologues we take only mRNAs (the tool uses regex to perform that which is set by *refseq_sequences_regex* in the config files. For eukaryotes it's set as '^[NX]M\_.*' that means that only sequences with ids that start with NM\_ or XM\_ (mRNAs) will be taken in the analysis).
+1. Full length of each locus are taken for analysis *(this can be adjusted using loci annotation table, see below)*. 
+2. All proteins annotated on input sequences are used as input for MMseqs2 clustering *(can be deactivated with `--mmseqs-off` parameter)*. MMseqs2 arguments can be adjusted using config file. Proteins clustered together are considered as a set of homologues. Based on that the "group" attribute of each CDS is set. 
+3. Taking into account information about set of homologues from the previous step, lovis4u applies similarity based hierarchical clustering of corresponding proteomes with which it finds optimal order for visualisation and set "group" attribute for each locus. The purpose is to group together only related proteomes (keeping average proteome set similarity > ~80%). This step can be skipped with (`-cl-off` or `--clust_loci-off`) parameter.
+4. Defining feature attribute "group_type" which allows to apply visualisation parameter targeting particular set of feature groups (e.g. set color or show labels only for "group_type" = "variable"). By default it sets group_type "variable" for CDS features that found in less than 0.25 of loci within the loci group and "shell/core" for others. 
+5. Setting feature color based on feature "group" attribute *(can be deactivated with `-sgc-off` or `--set-group-color-off`)*. Be default it sets distinct colours only for features with group_type "variable". But, you can change it with `-sgcf` or `--set-group-color-for`. For example, if you want to set color only for features with group_type "shel/core", run `--set-group-color-for shell/core`. 
+6. Defining labels to be shown. By default lovis4u shows all labels for "variable" features and only first occurrence for "shell/core" features. You can show all labels with `--show-all-feature-labels` or specify group types for which all labels will be shown with `-sflf` or `--show-feature-label-for`. Additionally, by default lovis4u ignores labels:  hypothetical protein, unknown protein. The list of ignored labels can be set with `-ifl, --ignored-feature-labels <feature_label1 [feature_label2 ...]>`. The list with this argument can be left empty to not filter out labels by their name.
 
-**Using a single RefSeq protein accession number as input**  
+**We also consider corresponding parameters as highly useful for basic runs:**
 
-Similarly to the bacteria' example, firstly we can use a single protein accession number as input:  
-`uorf4u -an NP_877962.1 -c eukaryotes -o ATF4`  
-We used *eukaryotes* mode by specifying the premade configuration file with `-c` parameter.  
+- `--reorient_loci` - Auto re-orient loci (set new strands) if they are not matched.  Function tries to maximise co-orientation of homologous features.
+- `-hl`, `--homology-links` - Draw homology link track.
+- `-o <name>` - Output dir name.  
 
-uORF4u finds both uORFs and returns (as always) MSA plots ([**uORF1 nt**](img/ATF4_uorf1_MSA.pdf), [**uORF2 nt**](img/ATF4_uorf2_MSA.pdf)), annotation plots ([**uORF1**](img/ATF4_uorf1_annot.pdf), [**uORF2**](img/ATF4_uorf2_annot.pdf)) and sequence logos. A nucleotide sequence logo for uORF1:  
-<img  src="img/ATF4_uorf1_logo.png" width="270"/>
- 
-**Using a list of homologues as input**
+While loci in our test set are already correctly orientated, let's add -hl parameter to update the output.
 
-Let's use again a subset of the found homologues to get a compact output.   
 ```
-uorf4u -hl NP_001666.2 XP_036720744.1 XP_024434925.1 XP_034632036.1 XP_008703764.1 XP_034983127.1 XP_019400505.1 XP_003989324.2 XP_003419800.1 XP_019302483.1 XP_047407736.1 XP_032062344.1 -c eukaryotes
-```  
+lovis4u -gff lovis4u_data/guide/gff_files  -hl -o lovis4u_output
+```
+<img  src="img/lovis4u_default_hl.png" width="100%"/>
 
-<img  src="img/ATF4_selected_proteins.png" width="600"/>
+## Using loci annotation table 
 
-*Note*: unfortunately, animal's emojis were added manually. 
+As it was already mentioned, full length of each locus is taken for visualisation by default. However, you can specify coordinates of multiple regions for each locus to be shown. This coordinates together with other information about each locus can be specified in loci annotation table and used as input with `-laf` or `--loci-annotation-file` parameter. 
 
-**Using a fasta file with sequences as input**
+Additionally, after each run lovis4u saves the *loci_annotation_table.tsv* with annotation parameters used in this particular run. If no table was specified by input then all annotation columns are set with default values.  
 
-You can use a fasta file with sequences as input as well.  
-Command example with a fasta file obtained from previous run as input:  
-`uorf4u -fa ATF4/upstream_sequences.fa -c eukaryotes`  
+*Default table generated from previous runs:*
 
-**It is useful to note** that when using nucleotide sequences as input, uORF4u can be used as a general conserved ORF search tool, that is, not necessarily upstream of any particular mORF. But be carefull with this mode, recommended range of sequences' length ~100-1000nt and number of sequences: 10-1000. **uORF4u was not designed to perform conservation analysis on chromosome' size set of sequences.**
+{{ read_table('loci_annotation_table.tsv', sep = '\t') }} 
+
+After default run we can take the output loci_annotation_table and edit information we want to change.  
+**Important to note** that we can use as input a table only with subset of columns (only *sequence_id* column is essential), for other columns or empty cells, lovis4u will set default values.
+
+For example, let's use this table as input:
+
+{{ read_table('loci_annotation_table_alt.tsv', sep = '\t') }} 
+
+Here we specified only the coordinates, order and group for each locus. Order and group are also specified and kept since it's logical to use clustering results defined on full locus length run and to turn off new attempt to cluster sequences with `-cl-off, --clust_loci-off` parameter.   
+
+**Format for coordinates specification:** comma-separated list of start\:end:strand. Start and end are in 1-based format, strand: 1 for plus strand and -1 for minus.
+
+The table can be found in the guide folder: *lovis4u_data/guide/loci_annotation_table_alt.tsv*
+
+Now we can run: 
+```
+lovis4u -gff lovis4u_data/guide/gff_files  -hl -o lovis4u_output \
+	--loci-annotation-file lovis4u_data/guide/loci_annotation_table_alt.tsv -cl-off
+```
+<img  src="img/lovis4u_window_1.png" width="100%"/>
+
+
+## Using features annotation table 
+
+Similar way of adjusting features visualisation parameters is implemented. After each run a *features_annotation_table.tsv* file is saved in your output folder. Below you can see header of default table created with default parameter run.
+
+{{ read_table('features_annotation_table_alt_header.tsv', sep = '\t') }} 
+
+And here we also can use in input with parameter `-faf` or `--features-annotation-file` a table that contains only subset of annotation columns. For example, you can specify only new label and color for a particular CDS.
+
+{{ read_table('features_annotation_table_alt.tsv', sep = '\t') }} 
+
+This table can be found in the guide folder: *lovis4u_data/guide/features_annotation_table_alt.tsv*
+
+```
+lovis4u -gff lovis4u_data/guide/gff_files  -hl -o lovis4u_output \
+	--loci-annotation-file lovis4u_data/guide/loci_annotation_table_alt.tsv -cl-off \
+	--features-annotation-file lovis4u_data/guide/features_annotation_table_alt.tsv
+```
+<img  src="img/lovis4u_updated_name.png" width="100%"/>
+
+Here also **important to note** that if you don't use feature attribute *"group_type"* defined by full loci run, then it will be re-defined by mmseqs run on subset of proteins found only in specified regions (you can deactivate it with `--find-variable-off` and `--mmseqs-off`) . It can result in situation that ORF called in that case "variable" in reality are encoded by each proteome but outside of their shown coordinates. 
+
+## Other features
+
+### Category color and annotation 
+
+Using parameter `--set-category-color` you can use category annotation column for features. By default it was designed to parse PHROGs category annotation for proteins and retrieve information about category in "function" qualifiers in Genbank or GFF files *(used qualifiers can be changed in config file)*. However, you can set up category for each CDS using described above features annotation table with "category" column. Additionally, you can set up color code for your categories using `--category-color-table`. For categories not found in a table a random color will be set. By default, lovis4u uses pre-made color table which location is *lovis4u_data/category_colors.tsv*. 
+
+```
+lovis4u -gff lovis4u_data/guide/gff_files -hl --set-category-color
+```
+<img  src="img/lovis4u_category_colour.png" width="100%"/>
+
+
+### Scale line instead of individual x-axis
+
+Using parameter `--hide-x-axis` you can deactivate visualisation of individual x-axis for each locus track and instead of them with `-slt` or `--scale-line-track` you can draw a scale line track below.
+
+```
+lovis4u -gff lovis4u_data/guide/gff_files -hl --hide-x-axis --scale-line-track
+``` 
+<img  src="img/lovis4u_scale.png" width="100%"/>  
+
+### Highlighting conserved genes instead of variable
+
+For many analysis purposes (e.g. conserved neighbourhood visualisation) we need to colorise conserved gene clusters instead of variable. It can be easily switched in lovis4u using `--set-group-color-for` parameter. By default it's set as "variable" but using `--set-group-color-for shell/core` will change it to the opposite mode.  
+**Note** that if you have other feature group set in your features annotation table and want to set auto-colorising for them as well you can specify them in space separated list with this argument (e.g. `--set-group-color-for shell/core your_group_1 your_group_2`.
+
+```
+lovis4u -gff lovis4u_data/guide/gff_files -hl --set-group-color-for shell/core 
+```
+
+<img  src="img/lovis4u_conserved_colorised.png" width="100%"/>  
+
+**Note:** By default colours for groups are randomly set for each group using [seaborn husl palette](https://seaborn.pydata.org/tutorial/color_palettes.html). In config file you can change to more intense hsl palette or change the desaturation parameter.
+
+### Specifying figure width
+
+Lovis4u tries to set an optimal figure width taking into account nucleotide size of visualisation window. You can change it in two ways:  
+1) Using `--mm-per-nt <float value>` argument changing scale which defines given space for each nt cell on canvas. Default: 0.0022 - 0.02, depending on window size.  
+2) With `-fw, --figure-width <float value [cm]>` parameter which defines total output figure width.  
+We demonstrate usage by plotting compact visualisation of full loci together with `--show-first-feature-label-for` argument with empty list deactivating showing first occurrence label for shell/core genes.
+
+```
+lovis4u -gff lovis4u_data/guide/gff_files -hl -o width_test --show-first-feature-label-for --figure-width 7
+```
+<img  src="img/lovis4u_set_width.png" width="100%"/>  
+

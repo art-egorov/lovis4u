@@ -34,6 +34,9 @@ def adjust_paths(to: str) -> None:
         config_file_path = os.path.join(internal_dir, config_file)
         with open(config_file_path, "r+") as config:
             if to == "linux":
+                if not os.path.exists(os.path.join(internal_dir, "bin/mmseqs_linux")):
+                    os.system(f"unzip -q -d {os.path.join(internal_dir, 'bin/')} "
+                              f"{os.path.join(internal_dir, 'bin/mmseqs_linux.zip')}")
                 config_txt = re.sub(r"mmseqs_mac/bin/mmseqs", "mmseqs_linux/bin/mmseqs", config.read())
             else:
                 config_txt = re.sub(r"mmseqs_linux/bin/mmseqs", "mmseqs_mac/bin/mmseqs", config.read())

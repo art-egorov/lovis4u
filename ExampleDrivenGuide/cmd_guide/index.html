@@ -355,6 +355,61 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#using-loci-annotation-table" class="md-nav__link">
+    Using loci annotation table
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-features-annotation-table" class="md-nav__link">
+    Using features annotation table
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-features" class="md-nav__link">
+    Other features
+  </a>
+  
+    <nav class="md-nav" aria-label="Other features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#category-color-and-annotation" class="md-nav__link">
+    Category color and annotation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scale-line-instead-of-individual-x-axis" class="md-nav__link">
+    Scale line instead of individual x-axis
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#highlighting-conserved-genes-instead-of-variable" class="md-nav__link">
+    Highlighting conserved genes instead of variable
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specifying-figure-width" class="md-nav__link">
+    Specifying figure width
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -559,34 +614,317 @@
 
 
 <h1 id="example-driven-guide">Example-driven guide</h1>
-<p>Here we show several usage examples of the lovis4u command-line interface. Along this guide we will show step-by-step how you can optimise your visualisation starting from default parameters.</p>
+<p>Here we show usage examples of lovis4u command-line interface. Through this guide we will show step-by-step how you can optimise your visualisation starting from default parameters.</p>
 <p><strong>Before start:</strong> The necessary sample data as well as adjustable tool' configuration files are provided by lovis4u at the post-install step:  <br />
-<code>lovis4u --data</code> which copies <code>lovis4u_data</code> folder to your working directory. <br />
-<strong>If you work on a Linux machine</strong> after installation you should run: <code>uorf4u --linux</code><br />
-This command replaces the tools paths (MMseqs2) in the pre-made config files from the MacOS version (default) to the Linux. </p>
-<p>For demonstration we will use pharokka generated gff files with sequences of 5 Enterobacteria phages. Gff files are stored at: <code>lovis4u_data/guide/gff</code></p>
+<code>lovis4u --data</code> which copies <em>lovis4u_data</em> folder to your working directory. </p>
+<p><strong>If you work on a Linux machine</strong> after installation you should run: <code>uorf4u --linux</code><br />
+This command replaces the tools paths (MMseqs2) in the pre-made config files from the MacOS version (default) to the Linux.<br />
+If you run it for fun and want to change it back you can use <code>uorfu --mac</code>.</p>
+<p>For demonstration we will use pharokka generated gff files with sequences of 5 Enterobacteria phages. Gff files are stored at: <em>lovis4u_data/guide/gff_files</em>.<br />
+The main difference of pharokka generated gff files from regular gff3 (for ex. which you can download from the NCBI) is that in addition to annotation rows they contain corresponding to the annotation nucleotide sequence. </p>
 <hr />
 <h2 id="default-parameters-run">Default parameters run</h2>
-<p>Let's start with default parameter run. The only mandatory argument is a folder path containing pharokka generated gff (<code>-gff</code>) files or genbank files (<code>-gb</code>).   </p>
-<p><code>lovis4u -gff lovis4u_data/guide/gff</code> </p>
-<p>As results of running this command an output folder named lovis4u_{current_date} (e.g. lovis4u_2024_04_28-16_36) will be created. Name of the output folder can be changed with <code>-o &lt;output_folder_name&gt;</code>.</p>
+<p>Let's start with running lovis4u without using any optional argument. The only mandatory argument is a folder path containing pharokka generated gff (<code>-gff</code>) files or genbank files (<code>-gb</code>).   </p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>lovis4u -gff lovis4u_data/guide/gff_files
+</span></code></pre></div>
+<p>As results of running this command an output folder named lovis4u_{current_date} (e.g. lovis4u_2024_04_28-16_36) will be created.<br />
+Name of the output folder can be changed with <code>-o &lt;output_folder_name&gt;</code>.</p>
 <p><strong>Output folder structure:</strong></p>
 <ul>
 <li><em>lovis4u.pdf</em> - vector graphic output (file name can be changed with <code>--pdf-name &lt;filename&gt;</code> parameter)  </li>
 <li><em>loci_annotation_table.tsv</em> - table containing annotation (sequence_id, length, coordinates, etc..) for each locus.  </li>
 <li><em>features_annotation_table.tsv</em> - table containing annotation (feature_id, locus_id, coordinates, etc..) for each feature (e.g. CDS)  </li>
 <li><em>mmseqs</em> (folder)  <ul>
-<li><em>DB</em> folder with mmseqs' databases.  </li>
-<li><em>mmmseqs_clustering.tsv</em> - table with proteome clustering results.  </li>
+<li><em>DB</em> - folder with mmseqs' databases.  </li>
+<li><em>mmmseqs_clustering.tsv</em> - table with proteomes clustering results.  </li>
 <li><em>mmmseqs_(stdout/stderr).txt</em> - mmseqs logs.  </li>
-<li><em>input_proteins.fa</em> - fasta file with all anntated protein sequences (input to mmseqs).  </li>
+<li><em>input_proteins.fa</em> - fasta file with all annotated protein sequences (input to mmseqs).  </li>
 </ul>
 </li>
 <li><em>proteome_similarity_matrix.tsv</em> - pairwise proteome similarity scores indicating fraction of shared proteins homologues.  </li>
 </ul>
-<p><strong>Visualisation results</strong><br />
+<p><em>Visualisation results:</em>
 <img  src="img/lovis4u_default_1.png" width="100%"/></p>
-<p>As you can see </p>
+<p><strong>By default, lovis4u utilises the following data preprocessing steps:</strong></p>
+<ol>
+<li>Full length of each locus are taken for analysis <em>(this can be adjusted using loci annotation table, see below)</em>. </li>
+<li>All proteins annotated on input sequences are used as input for MMseqs2 clustering <em>(can be deactivated with <code>--mmseqs-off</code> parameter)</em>. MMseqs2 arguments can be adjusted using config file. Proteins clustered together are considered as a set of homologues. Based on that the "group" attribute of each CDS is set. </li>
+<li>Taking into account information about set of homologues from the previous step, lovis4u applies similarity based hierarchical clustering of corresponding proteomes with which it finds optimal order for visualisation and set "group" attribute for each locus. The purpose is to group together only related proteomes (keeping average proteome set similarity &gt; ~80%). This step can be skipped with (<code>-cl-off</code> or <code>--clust_loci-off</code>) parameter.</li>
+<li>Defining feature attribute "group_type" which allows to apply visualisation parameter targeting particular set of feature groups (e.g. set color or show labels only for "group_type" = "variable"). By default it sets group_type "variable" for CDS features that found in less than 0.25 of loci within the loci group and "shell/core" for others. </li>
+<li>Setting feature color based on feature "group" attribute <em>(can be deactivated with <code>-sgc-off</code> or <code>--set-group-color-off</code>)</em>. Be default it sets distinct colours only for features with group_type "variable". But, you can change it with <code>-sgcf</code> or <code>--set-group-color-for</code>. For example, if you want to set color only for features with group_type "shel/core", run <code>--set-group-color-for shell/core</code>. </li>
+<li>Defining labels to be shown. By default lovis4u shows all labels for "variable" features and only first occurrence for "shell/core" features. You can show all labels with <code>--show-all-feature-labels</code> or specify group types for which all labels will be shown with <code>-sflf</code> or <code>--show-feature-label-for</code>. Additionally, by default lovis4u ignores labels:  hypothetical protein, unknown protein. The list of ignored labels can be set with <code>-ifl, --ignored-feature-labels &lt;feature_label1 [feature_label2 ...]&gt;</code>. The list with this argument can be left empty to not filter out labels by their name.</li>
+</ol>
+<p><strong>We also consider corresponding parameters as highly useful for basic runs:</strong></p>
+<ul>
+<li><code>--reorient_loci</code> - Auto re-orient loci (set new strands) if they are not matched.  Function tries to maximise co-orientation of homologous features.</li>
+<li><code>-hl</code>, <code>--homology-links</code> - Draw homology link track.</li>
+<li><code>-o &lt;name&gt;</code> - Output dir name.  </li>
+</ul>
+<p>While loci in our test set are already correctly orientated, let's add -hl parameter to update the output.</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>lovis4u -gff lovis4u_data/guide/gff_files  -hl -o lovis4u_output
+</span></code></pre></div>
+<img  src="img/lovis4u_default_hl.png" width="100%"/></p>
+<h2 id="using-loci-annotation-table">Using loci annotation table</h2>
+<p>As it was already mentioned, full length of each locus is taken for visualisation by default. However, you can specify coordinates of multiple regions for each locus to be shown. This coordinates together with other information about each locus can be specified in loci annotation table and used as input with <code>-laf</code> or <code>--loci-annotation-file</code> parameter. </p>
+<p>Additionally, after each run lovis4u saves the <em>loci_annotation_table.tsv</em> with annotation parameters used in this particular run. If no table was specified by input then all annotation columns are set with default values.  </p>
+<p><em>Default table generated from previous runs:</em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">sequence_id</th>
+<th style="text-align: right;">length</th>
+<th style="text-align: left;">coordinates</th>
+<th style="text-align: right;">circular</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: right;">order</th>
+<th style="text-align: right;">group</th>
+<th style="text-align: right;">initial_order</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">RefSeq_NC_005056.1</td>
+<td style="text-align: right;">32684</td>
+<td style="text-align: left;">1:32684:1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Escherichia phage Wphi</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td style="text-align: left;">RefSeq_NC_049461.1</td>
+<td style="text-align: right;">31834</td>
+<td style="text-align: left;">1:31834:1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Bacteriophage R18C</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">RefSeq_NC_001895.1</td>
+<td style="text-align: right;">33593</td>
+<td style="text-align: left;">1:33593:1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Enterobacteria phage P2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">RefSeq_NC_049457.1</td>
+<td style="text-align: right;">33807</td>
+<td style="text-align: left;">1:33807:1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Escherichia phage vB_EcoM-12474III</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td style="text-align: left;">RefSeq_NC_028943.1</td>
+<td style="text-align: right;">29237</td>
+<td style="text-align: left;">1:29237:1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Escherichia phage pro483</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+</tr>
+</tbody>
+</table>
+<p>After default run we can take the output loci_annotation_table and edit information we want to change.<br />
+<strong>Important to note</strong> that we can use as input a table only with subset of columns (only <em>sequence_id</em> column is essential), for other columns or empty cells, lovis4u will set default values.</p>
+<p>For example, let's use this table as input:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">sequence_id</th>
+<th style="text-align: left;">coordinates</th>
+<th style="text-align: right;">order</th>
+<th style="text-align: right;">group</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">RefSeq_NC_005056.1</td>
+<td style="text-align: left;">18320:24320:1,31684:32684:1,1:9360:1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">RefSeq_NC_049461.1</td>
+<td style="text-align: left;">16745:22745:1,30834:31834:1,1:7016:1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">RefSeq_NC_001895.1</td>
+<td style="text-align: left;">18294:24294:1,32593:33593:1,1:8460:1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">RefSeq_NC_049457.1</td>
+<td style="text-align: left;">19308:25308:1,32807:33807:1,1:9474:1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">RefSeq_NC_028943.1</td>
+<td style="text-align: left;">14839:20839:1,28237:29237:1,1:6321:1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+<p>Here we specified only the coordinates, order and group for each locus. Order and group are also specified and kept since it's logical to use clustering results defined on full locus length run and to turn off new attempt to cluster sequences with <code>-cl-off, --clust_loci-off</code> parameter.   </p>
+<p><strong>Format for coordinates specification:</strong> comma-separated list of start:end:strand. Start and end are in 1-based format, strand: 1 for plus strand and -1 for minus.</p>
+<p>The table can be found in the guide folder: <em>lovis4u_data/guide/loci_annotation_table_alt.tsv</em></p>
+<p>Now we can run: 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>lovis4u -gff lovis4u_data/guide/gff_files  -hl -o lovis4u_output \
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    --loci-annotation-file lovis4u_data/guide/loci_annotation_table_alt.tsv -cl-off
+</span></code></pre></div>
+<img  src="img/lovis4u_window_1.png" width="100%"/></p>
+<h2 id="using-features-annotation-table">Using features annotation table</h2>
+<p>Similar way of adjusting features visualisation parameters is implemented. After each run a <em>features_annotation_table.tsv</em> file is saved in your output folder. Below you can see header of default table created with default parameter run.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">feature_id</th>
+<th style="text-align: left;">locus_id</th>
+<th style="text-align: left;">coordinates</th>
+<th style="text-align: left;">feature_type</th>
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">group</th>
+<th style="text-align: left;">group_type</th>
+<th style="text-align: left;">category</th>
+<th style="text-align: left;">fill_color</th>
+<th style="text-align: left;">stroke_color</th>
+<th style="text-align: right;">show_label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">RefSeq_NC_001895.1_CDS_0001</td>
+<td style="text-align: left;">RefSeq_NC_001895.1</td>
+<td style="text-align: left;">64:2286:1</td>
+<td style="text-align: left;">CDS</td>
+<td style="text-align: left;">nicking at origin of replication</td>
+<td style="text-align: left;">RefSeq_NC_005056.1_CDS_0001</td>
+<td style="text-align: left;">shell/core</td>
+<td style="text-align: left;">"DNA, RNA and nucleotide metabolism"</td>
+<td style="text-align: left;">default</td>
+<td style="text-align: left;">default</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">RefSeq_NC_001895.1_CDS_0002</td>
+<td style="text-align: left;">RefSeq_NC_001895.1</td>
+<td style="text-align: left;">2283:2612:1</td>
+<td style="text-align: left;">CDS</td>
+<td style="text-align: left;">hypothetical protein</td>
+<td style="text-align: left;">RefSeq_NC_005056.1_CDS_0002</td>
+<td style="text-align: left;">shell/core</td>
+<td style="text-align: left;">unknown function</td>
+<td style="text-align: left;">default</td>
+<td style="text-align: left;">default</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">RefSeq_NC_001895.1_CDS_0003</td>
+<td style="text-align: left;">RefSeq_NC_001895.1</td>
+<td style="text-align: left;">2651:3412:-1</td>
+<td style="text-align: left;">CDS</td>
+<td style="text-align: left;">hypothetical protein</td>
+<td style="text-align: left;">RefSeq_NC_001895.1_CDS_0003</td>
+<td style="text-align: left;">variable</td>
+<td style="text-align: left;">unknown function</td>
+<td style="text-align: left;">#aa9b35</td>
+<td style="text-align: left;">default</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">RefSeq_NC_001895.1_CDS_0004</td>
+<td style="text-align: left;">RefSeq_NC_001895.1</td>
+<td style="text-align: left;">3587:5347:-1</td>
+<td style="text-align: left;">CDS</td>
+<td style="text-align: left;">hypothetical protein</td>
+<td style="text-align: left;">RefSeq_NC_001895.1_CDS_0004</td>
+<td style="text-align: left;">variable</td>
+<td style="text-align: left;">unknown function</td>
+<td style="text-align: left;">#f4767a</td>
+<td style="text-align: left;">default</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">RefSeq_NC_001895.1_CDS_0005</td>
+<td style="text-align: left;">RefSeq_NC_001895.1</td>
+<td style="text-align: left;">5347:5517:-1</td>
+<td style="text-align: left;">CDS</td>
+<td style="text-align: left;">hypothetical protein</td>
+<td style="text-align: left;">RefSeq_NC_001895.1_CDS_0005</td>
+<td style="text-align: left;">variable</td>
+<td style="text-align: left;">unknown function</td>
+<td style="text-align: left;">#f47763</td>
+<td style="text-align: left;">default</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+<p>And here we also can use in input with parameter <code>-faf</code> or <code>--features-annotation-file</code> a table that contains only subset of annotation columns. For example, you can specify only new label and color for a particular CDS.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">feature_id</th>
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">fill_color</th>
+<th style="text-align: right;">show_label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">RefSeq_NC_001895.1_CDS_0001</td>
+<td style="text-align: left;">Updated Name :)</td>
+<td style="text-align: left;">#e54e86</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+<p>This table can be found in the guide folder: <em>lovis4u_data/guide/features_annotation_table_alt.tsv</em></p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>lovis4u -gff lovis4u_data/guide/gff_files  -hl -o lovis4u_output \
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    --loci-annotation-file lovis4u_data/guide/loci_annotation_table_alt.tsv -cl-off \
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    --features-annotation-file lovis4u_data/guide/features_annotation_table_alt.tsv
+</span></code></pre></div>
+<img  src="img/lovis4u_updated_name.png" width="100%"/></p>
+<p>Here also <strong>important to note</strong> that if you don't use feature attribute <em>"group_type"</em> defined by full loci run, then it will be re-defined by mmseqs run on subset of proteins found only in specified regions (you can deactivate it with <code>--find-variable-off</code> and <code>--mmseqs-off</code>) . It can result in situation that ORF called in that case "variable" in reality are encoded by each proteome but outside of their shown coordinates. </p>
+<h2 id="other-features">Other features</h2>
+<h3 id="category-color-and-annotation">Category color and annotation</h3>
+<p>Using parameter <code>--set-category-color</code> you can use category annotation column for features. By default it was designed to parse PHROGs category annotation for proteins and retrieve information about category in "function" qualifiers in Genbank or GFF files <em>(used qualifiers can be changed in config file)</em>. However, you can set up category for each CDS using described above features annotation table with "category" column. Additionally, you can set up color code for your categories using <code>--category-color-table</code>. For categories not found in a table a random color will be set. By default, lovis4u uses pre-made color table which location is <em>lovis4u_data/category_colors.tsv</em>. </p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>lovis4u -gff lovis4u_data/guide/gff_files -hl --set-category-color
+</span></code></pre></div>
+<img  src="img/lovis4u_category_colour.png" width="100%"/></p>
+<h3 id="scale-line-instead-of-individual-x-axis">Scale line instead of individual x-axis</h3>
+<p>Using parameter <code>--hide-x-axis</code> you can deactivate visualisation of individual x-axis for each locus track and instead of them with <code>-slt</code> or <code>--scale-line-track</code> you can draw a scale line track below.</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>lovis4u -gff lovis4u_data/guide/gff_files -hl --hide-x-axis --scale-line-track
+</span></code></pre></div>
+<img  src="img/lovis4u_scale.png" width="100%"/>  </p>
+<h3 id="highlighting-conserved-genes-instead-of-variable">Highlighting conserved genes instead of variable</h3>
+<p>For many analysis purposes (e.g. conserved neighbourhood visualisation) we need to colorise conserved gene clusters instead of variable. It can be easily switched in lovis4u using <code>--set-group-color-for</code> parameter. By default it's set as "variable" but using <code>--set-group-color-for shell/core</code> will change it to the opposite mode.<br />
+<strong>Note</strong> that if you have other feature group set in your features annotation table and want to set auto-colorising for them as well you can specify them in space separated list with this argument (e.g. <code>--set-group-color-for shell/core your_group_1 your_group_2</code>.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>lovis4u -gff lovis4u_data/guide/gff_files -hl --set-group-color-for shell/core 
+</span></code></pre></div>
+<p><img  src="img/lovis4u_conserved_colorised.png" width="100%"/>  </p>
+<p><strong>Note:</strong> By default colours for groups are randomly set for each group using <a href="https://seaborn.pydata.org/tutorial/color_palettes.html">seaborn husl palette</a>. In config file you can change to more intense hsl palette or change the desaturation parameter.</p>
+<h3 id="specifying-figure-width">Specifying figure width</h3>
+<p>Lovis4u tries to set an optimal figure width taking into account nucleotide size of visualisation window. You can change it in two ways:<br />
+1) Using <code>--mm-per-nt &lt;float value&gt;</code> argument changing scale which defines given space for each nt cell on canvas. Default: 0.0022 - 0.02, depending on window size.<br />
+2) With <code>-fw, --figure-width &lt;float value [cm]&gt;</code> parameter which defines total output figure width.<br />
+We demonstrate usage by plotting compact visualisation of full loci together with <code>--show-first-feature-label-for</code> argument with empty list deactivating showing first occurrence label for shell/core genes.</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>lovis4u -gff lovis4u_data/guide/gff_files -hl -o width_test --show-first-feature-label-for --figure-width 7
+</span></code></pre></div>
+<img  src="img/lovis4u_set_width.png" width="100%"/>  </p>
 
               
             </article>

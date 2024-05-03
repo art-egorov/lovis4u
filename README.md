@@ -11,7 +11,7 @@
 **Programming language:** Python3   
 **OS:** MacOS, Linux  
 **Python dependencies:** biopython, bcbio-gff, scipy, configs, argparse, pandas, distinctipy, matplotlib, seaborn, reportlab  
-**Python version:** >= 3.9  
+**Python version:** >= 3.8  
 **OS-level dependencies:** MMseqs2 (included in the package)  
 **License:** WTFPL  
 **Version:** 0.0.3 (May 2024)

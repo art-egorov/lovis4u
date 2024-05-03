@@ -47,7 +47,7 @@ python3 -m pip install -e .
 
 ## Reference 
 
-If you find uorf4u useful, please cite:  
+If you find lovis4u useful, please cite:  
 Artyom. A. Egorov, Gemma C. Atkinson, **lovis4u: ...**, *...*
 
 ## Contact 

@@ -381,9 +381,40 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Configuration file parameters
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Configuration file parameters
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description-is-under-construction" class="md-nav__link">
+    Description is under construction...
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -530,110 +561,114 @@
 
 
 <h1 id="configuration-file-parameters">Configuration file parameters</h1>
-<p>uorf4u configuration file allows detailed customization of the tool's parameters.</p>
-<p><strong><em>Note:</em></strong> <br />
-uorf4u has two pre-made configuration files: <em>uorf4u_eukaryotes.cfg</em> and <em>uorf4u_bacteria</em> located in: ./uorftu/uorf4u_data/ folder (internal). By default, 'bacteria' config file is used if no path or name of premade file is specified by a cmd parameter: <code>-c  bacteria|eukaryotes|&lt;file.cfg&gt;</code>.  </p>
-<p>You can copy the <em>uorf4u_data</em> folder that contains the config files to your wiking directory with <code>uorf4u --data</code> command and safely edit and use them without affecting 'internal' set of configs. If you want to use a copied config file, use <code>-c path_to_config</code>.</p>
+<p>lovis4u configuration file allows detailed customization of the tool's parameters.</p>
+<p><strong><em>Note:</em></strong><br />
+You can copy the <em>lovis4u_data</em> folder that contains the config files to your wiking directory with <code>lovis4u --data</code> command and safely edit and use them without affecting 'internal' config. If you want to use a copied config file, use <code>-c path_to_config</code>.</p>
+<h5 id="description-is-under-construction">Description is under construction...</h5>
 <hr />
-<p><strong><em>;[General]</em></strong><br />
-<strong>ncbi_genetic_code_name = Bacterial</strong>; <em>the ncbi genetic code name ('Standard' for eukaryotes' config)</em> <br />
-<strong>ncbi_entrez_email = <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#117;&#111;&#114;&#102;&#52;&#117;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#117;&#111;&#114;&#102;&#52;&#117;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></strong>; <em>e-mail for the NCBI API.</em> <br />
-<strong>upstream_region_length = 500</strong>; <em>[int or 'all'] Length of upstream region to retrieve. 'all' value is set for eukaryotes config file since by default it uses only mRNAs sequences. (can be overriden by <code>-ul</code> cmd parameter).</em><br />
-<strong>minimal_upstream_region_length = 300</strong>; <em>[int] minimal upstream region length for sequences to retrieve. If available sequence length to retrieve is shorter then this record won't be taken in the analysis</em>.  <br />
-<strong>downstream_region_length = 100</strong>; <em>[int] downstream region (overlapped with CDS) length to retrieve. (can be overriden by <code>-dl</code> cmd parameter).</em><br />
-<strong>filter_refseq_sequences_by_regex = True</strong>; <em>[bool] use or not regex parameter (below) for filtering the NCBI RefSeq sequences to retrieve.</em>  <br />
-<strong>refseq_sequences_regex = ^[N][ZCW]_.</strong><em>; </em>[regex] that will be used to filter the NCBI RefSeq sequnces. For eukaryotes set as '^[NX]M_.<em>' that means that only sequences that start with NM_ or XM_ (mRNAs) will be taken in the analysis.</em><br />
-<strong>max_number_of_assemblies = 1</strong>; <em>[int] max number of assemblies to take into analysis for each protein. If there are more sequences in the identical protein database then random sampling will be used. (can be overriden by <code>-mna</code> cmd parameter).</em></p>
-<p><strong><em>;[blastp homologous searching]</em></strong><br />
-<strong>blastp_database = refseq_select</strong>; <em>[refseq_select or refseq_protein] Online blastp database to perform blastp searching for homologues. (can be overriden by <code>-bdb</code> cmd parameter).</em><br />
-<strong>blastp_evalue_cutoff = 1e-5</strong>; <em>[float] blastp e-value cutoff during the searching for homologs against the RefSeq database.</em><br />
-<strong>blastp_hit_list_size = 200</strong>; <em>[int] max number of blastp hits to take in the analysis.</em><br />
-<strong>blastp_max_number_of_alignments = 1000</strong>; <em>[int] max number of alignments during the searching (there could be several alignments for 1 hit, see blastp documentation)</em>  <br />
-<strong>blastp_pident_to_query_length_cutoff = 0.5</strong>; <em>[float: 0-1] cutoff for hit's identity to your query protein.</em>  </p>
-<p><strong><em>;[ORF annotation]</em></strong><br />
-<strong>alternative_start_codons = False</strong>; <em>[bool] use or not set of alternative start codons.</em> <br />
-<strong>main_start_codon = ATG</strong>;  <em>[str]</em>      <br />
-<strong>min_orf_length = 9</strong>; <em>[int] cutoff for ORFs length during annotation</em>  <br />
-<strong>filter_by_sd = True</strong>; <em>[bool] filter annotated ORFs by Shine-Dalgarno sequence prersence. Filtering based on calculation of binding energy between aSD sequence (UCCUCC) and putative SD sequence in an upstream to uAUG window. Energy calculation performed as described here: <a href="10.1534/g3.116.032227">Yang et.al, 2016</a></em><br />
-<strong>sd_energy_cutoff = -3</strong>; <em>[float] cutoff for aSD-SD binding energy.</em>  <br />
-<strong>sd_window_length = 20</strong>; <em>[int] length of a region for SD sequence search.</em>  <br />
-<strong>check_assembly_annotation = False</strong>; [bool] retrieve or not the NCBI sequences annotation to be sure that annotated uORFs are not overlapped with known CDSs (can be overriden by <code>-annot</code> cmd parameter).</p>
-<p><strong><em>;[conserved ORFs searching]</em></strong><br />
-<strong>fast_searching = auto</strong>; <em>[bool(true or false) or 'auto'] use or not fast searching mode with less accuracy (needed for &gt;~200 sequences or &gt;~2000 ORFs). Can be also set as auto [default]. (can be overriden by <code>-fast</code> cmd parameter).</em><br />
-<strong>fast_searching_fraction_of_initial_genomes = 0.3</strong>; <em>[bool] fraction of input sequences that will be used as initial step in algorithm searching. Applied only if the fast_searching parameter is True.</em>  <br />
-<strong>orf_length_group_range = 0.25</strong>; <em>[float or int] orf's lengths window within conserved uORFs set can be annotated. If it's a float value [0-1] then the radius of window is a set percentage of the claster's length, while if it's int then the window radius is fixed.</em>  <br />
-<strong>orfs_presence_cutoff = 0.5</strong>; <em>[float] a set of ORFs will be returned only if they were found in a fraction of input sequences larger than this cutoff.</em>  <br />
-<strong>paths_identity_cutoff = 0.5</strong>; <em>[float] if two sets of found ORFs are ovelapped more than this cutoff, then only a set with a higher. score will be returned. (Helps to remove duplicates).</em>  <br />
-<strong>max_num_of_initial_genome_iteration = 100</strong>; <em>[int] similar to the fast_searching_fraction_of_initial_genomes parametr, but used with a normal mode for optimisation.</em>    </p>
-<p><strong><em>;[Pairwise alignment]</em></strong><br />
-<strong>alignment_type = aa</strong>; <em>[nt or aa] alignment type of uORFs during conservation analysis.</em>  <br />
-; <em>Below listed global alignments parametersduring conservation analysis. uorf4u uses Bio.Align. package to perfome pairwise alignment of uORFs.</em>  <br />
-<strong>global_match_score = 1</strong>; <em>[float]</em><br />
-<strong>global_mismatch_score = -1</strong>; <em>[float]</em>  <br />
-<strong>global_open_gap_score = -1</strong>; <em>[float]</em><br />
-<strong>global_extend_gap_score = -1</strong>; <em>[float]</em>  <br />
-<strong>global_target_end_gap_score = -1</strong>; <em>[float]</em>  <br />
-<strong>global_query_end_gap_score = -1</strong>; <em>[float]</em>  <br />
-<strong>alignment_score_cutoff = 0</strong>; <em>[float] if a pairwise alignment score is larger than this cutoff then two uORFs are considered as aligned.</em>    </p>
-<p><strong><em>;[Multiple Sequence Alignment]</em></strong><br />
-<strong>consensus_threshold = 0.7</strong>;  <em>[float] treshold for MSA position to consider a nucleotide/amino acid as conserved in consensus sequence building.</em>  </p>
-<p><strong><em>;[Paths]</em></strong> <br />
-;<em>Pathes to scripts and files used by the tool. {internal} means a folder uorf4u/uorf4u_data in the tool location.</em><br />
-<strong>ref_energies = {config_path}/energyRef-CCTCCT.json</strong>; <em>aSD-SD energy table downloaded from: <a href="10.1534/g3.116.032227">Yang et.al, 2016</a></em> <br />
-<strong>maft_binary = {config_path}/bin/mafft-mac/mafft.bat</strong>  <br />
-<strong>palette = {config_path}/palette.txt</strong>  <br />
-<strong>colors_nt = {config_path}/colors_nt.txt</strong>  <br />
-<strong>colors_aa = {config_path}/colors_aa.txt</strong>    </p>
-<p><strong><em>;[Output]</em></strong><br />
-<strong>sequences_to_write = nt, aa, sd</strong>; <em>[list] type of sequences results for that (logos, MSAs, fasta files) will writetn. nt - nucleotide seqs of uORFs, aa - amino acid seqs, sd - SD seqs (sd is not available for 'eukaryotes' mode)</em>  <br />
-<strong>logo_type = both</strong>; <em>[probability, information or both] type of logo, see logomaker package documentation.</em>     <br />
-<strong>output_dir = uorf4u_{current_date}</strong>; <em>[str] default name of the output dir. default: uorf4u_{current_date}; e.g. uorf4u_2022_07_25-20_41. (can be overriden by <code>-o</code> cmd parameter).</em>  </p>
-<p>;------------------------<br />
-<strong><em>;Annotation visualisation</em></strong><br />
-;------------------------<br />
-<strong><em>;[General figure parameters]</em></strong><br />
+<p><strong>;[Data Processing]</strong><br />
+default_transl_table = 11<br />
+gff_description_source = description<br />
+gff_CDS_name_source = product 
+gff_CDS_category_source = function<br />
+genbank_id_source = protein_id<br />
+genbank_id_alternative_source = ID,id,PROTEIN_ID<br />
+genbank_description_source = annotations:organism<br />
+genbank_CDS_name_source = product<br />
+genbank_CDS_category_source = function<br />
+CDS_is_variable_cutoff = 0.25<br />
+keep_predefined_groups = True<br />
+keep_predefined_colors = True  </p>
+<p><strong>;[mmseqs parameters]</strong><br />
+mmseqs_cluster_mode = 0<br />
+mmseqs_cov_mode = 0<br />
+mmseqs_min_seq_id = 0.35<br />
+mmseqs_c = 0.8  <br />
+mmseqs_s = 6.5  </p>
+<p><strong>;[Paths]</strong><br />
+palette = {internal}/palette.txt<br />
+mmseqs_binary = {internal}/bin/mmseqs_mac/bin/mmseqs  <br />
+category_colors = {internal}/category_colors.tsv<br />
+font_italic = {internal}/fonts/Lato-Italic.ttf<br />
+font_light = {internal}/fonts/Lato-Light.ttf<br />
+font_light_italic = {internal}/fonts/Lato-LightItalic.ttf<br />
+font_regular = {internal}/fonts/Lato-Regular.ttf<br />
+font_bold = {internal}/fonts/Lato-Bold.ttf<br />
+font_mono = {internal}/fonts/RobotoMono-Regular.ttf  </p>
+<p><strong>;[Output]</strong><br />
+verbose = True<br />
+debug = False<br />
+output_dir = lovis4u_{current_date}  </p>
+<p><strong>;[General figure parameters]</strong><br />
 margin = 0.1<br />
-gap = 0.03<br />
-label_gap = 0.07<br />
-orf_height = 0.15<br />
-annotation_width = auto<br />
-mm_per_nt = 0.04<br />
-font_regular = {config_path}/fonts/Lato-Regular.ttf<br />
-font_bold = {config_path}/fonts/Lato-Bold.ttf<br />
-font_mono = {config_path}/fonts/RobotoMono-Regular.ttf  </p>
-<p><strong><em>;[Sequence labels]</em></strong><br />
-label_color = #3D3D3D<br />
-label_color_alpha = 1<br />
-label_height_to_orf_height = 0.65  </p>
-<p><strong><em>;[Axis tics]</em></strong><br />
-axis_tics_font_size = auto<br />
-axis_tics_line_width = 0.3  </p>
-<p><strong><em>;[Loci annotations]</em></strong><br />
-upstream_seq_line_color = #CECECE<br />
-upstream_seq_line_color_alpha = 1<br />
-upstream_seq_line_width = 0.5<br />
-cds_seq_stroke_color = #489143<br />
-cds_seq_stroke_color_alpha = 0.8<br />
-cds_seq_fill_color = #9ee19b<br />
-cds_seq_fill_color_alpha = 0.03<br />
-orf_line_width = 0.5<br />
-conserved_uorfs_stroke_color = #4e4e4e<br />
-conserved_uorfs_stroke_color_alpha = 1<br />
-conserved_uorfs_fill_color = #ee8fb1<br />
-conserved_uorfs_fill_color_alpha = 0.6<br />
-other_uorfs_stroke_color = #CECECE<br />
-other_uorfs_stroke_color_alpha = 1<br />
-annotated_orf_stroke_color = #3d6f8e<br />
-annotated_orf_stroke_color_alpha = 1  </p>
-<p>;------------------------<br />
-<strong>;MSA plot</strong><br />
-;------------------------<br />
-tile_size = 0.1<br />
-tile_stroke = 0.05<br />
-char_size = 0.7<br />
-label_size = 0.6<br />
-tile_alpha = 0.8<br />
-logo_alpha = 0.8  </p>
+gap = 0.1<br />
+mm_per_nt = auto<br />
+figure_width = None  </p>
+<p><strong>;[Locus track primary settings]</strong><br />
+locus_label_style = full<br />
+locus_label_description_font_face = italic<br />
+locus_label_id_font_face = regular<br />
+draw_individual_x_axis = True<br />
+draw_middle_line = False<br />
+feature_default_fill_color = fancy_grey<br />
+feature_default_stroke_color = grey<br />
+set_feature_stroke_color_based_on_fill_color = True<br />
+feature_stroke_color_relative_lightness = 0.4<br />
+feature_group_types_to_set_color = variable,labeled<br />
+groups_fill_color_palette_lib = seaborn<br />
+groups_fill_color_seaborn_palette = husl<br />
+groups_fill_color_seaborn_desat = 0.95<br />
+feature_labels_to_ignore = hypothetical protein, unknown protein<br />
+feature_group_types_to_show_label = variable,labeled<br />
+feature_group_types_to_show_label_on_first_occurrence = shell/core<br />
+show_all_feature_labels = False<br />
+category_color_seaborn_palette = hls<br />
+category_color_seaborn_desat = 0.9  </p>
+<p><strong>;[Locus track advanced settings]</strong><br />
+feature_height = 0.3<br />
+feature_stroke_width = 0.3<br />
+feature_arrow_length = 0.6<br />
+feature_bottom_gap = 0.04<br />
+locus_label_size = 0.7<br />
+locus_label_color = black<br />
+locus_label_color_alpha = 1<br />
+gap_after_locus_label = 0.1<br />
+x_axis_ticks_height = 0.07<br />
+x_axis_ticks_labels_height = 0.1<br />
+x_axis_ticks_labels_font_face = light<br />
+x_axis_line_width = 0.3<br />
+x_axis_line_color = black<br />
+x_axis_line_color_alpha = 1<br />
+category_annotation_alpha = 1<br />
+category_annotation_line_width = 0.07<br />
+groups_fill_colors_pastel_factor = 0.4<br />
+feature_stroke_color_alpha = 1<br />
+feature_fill_color_alpha = 0.7<br />
+groups_stroke_colors_alpha = 1<br />
+feature_label_size = 0.5<br />
+feature_label_gap = 0.5<br />
+feature_label_font_face = regular<br />
+gap_between_regions = 0.5  </p>
+<p><strong>;[Homology_track]</strong><br />
+homology_fill_color = lightgrey<br />
+homology_fill_color_alpha = 1<br />
+homology_line_width = 0.1<br />
+homology_stroke_color = grey<br />
+homology_stroke_color_alpha = 0  </p>
+<p><strong>;[Scale line track]</strong><br />
+scale_line_relative_size = 0.3<br />
+scale_line_width = 0.3<br />
+scale_line_tics_height = 0.05<br />
+scale_line_color = black<br />
+scale_line_color_alpha = 1<br />
+scale_line_label_height = 0.13<br />
+scale_line_label_font_face = regular  </p>
+<p><strong>;[Category color legend]</strong><br />
+color_legend_label_size = 0.15<br />
+color_legend_line_height = 0.07<br />
+color_legend_font_face = regular<br />
+color_legend_label_color = black<br />
+color_legend_label_color_alpha = 1  </p>
 
               
             </article>

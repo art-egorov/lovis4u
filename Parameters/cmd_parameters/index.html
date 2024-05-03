@@ -367,9 +367,82 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Command-line parameters
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Command-line parameters
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#post-install-steps" class="md-nav__link">
+    Post-install steps
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mandatory-arguments" class="md-nav__link">
+    Mandatory arguments
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-arguments-data-processing" class="md-nav__link">
+    Optional arguments | Data processing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-arguments-loci-visualisation" class="md-nav__link">
+    Optional arguments | Loci visualisation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-arguments-additional-tracks" class="md-nav__link">
+    Optional arguments | Additional tracks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-arguments-others" class="md-nav__link">
+    Optional arguments | others
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#miscellaneous-arguments" class="md-nav__link">
+    Miscellaneous arguments
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -530,135 +603,116 @@
 
 
 <h1 id="ommand-line-parameters">Сommand-line parameters</h1>
-<p><strong>POST-INSTALL DATA AND CONFIGURATION</strong></p>
-<ul>
-<li>
-<p><code>--data</code><br />
-Creates the <em>uorf4u_data</em> folder in the current working directory.
-The folder will contain the adjustable configuration file templates, palettes, tables as well as the necessary sample.</p>
-</li>
-<li>
-<p><code>--linux</code><br />
-<strong>All Linux user should run it only once after installation.</strong><br />
-Replaces the tools paths in the premade config files from the MacOS' version [default] to the Linux'.</p>
-</li>
-<li>
-<p><code>--blastp_path</code><br />
-Update the blastp path in the pre-made config files.<br />
-<strong>Required for using local blastp databases with</strong> <code>-lbdb</code> <strong>parameter.</strong>  </p>
-</li>
-</ul>
-<p><strong>MANDATORY ARGUMENTS</strong></p>
-<ul>
-<li>
-<p><code>-an</code> <em>accession_number</em><br />
-Protein's RefSeq accession number.</p>
+<h3 id="post-install-steps">Post-install steps</h3>
+<dl>
+<dt><code>--data</code></dt>
+<dd>Creates the 'lovis4u_data' folder in the current working directory.
+ The folder contains adjustable configuration files used by lovis4u
+ (e.g. config, palettes...)</dd>
+<dt><code>--linux</code></dt>
+<dd>Replaces the mmseqs path in the pre-made config file from the MacOS
+ version [default] to the Linux version.</dd>
+<dt><code>--mac</code></dt>
+<dd>Replaces the mmseqs path in the pre-made config file from the Linux</dd>
+</dl>
+<h3 id="mandatory-arguments">Mandatory arguments</h3>
+<dl>
+<dt><code>-gff &lt;folder&gt;</code></dt>
+<dd>Path to a folder containing extended gff files.
+ Each gff file should contain corresponding nucleotide sequence.
+ (designed to handle pharokka produced annotation files).</dd>
+</dl>
 <p>OR</p>
-</li>
-<li>
-<p><code>-hl</code> <em>accession_number1 [accession_number2, ...]</em><br />
-Space separated list of proteins accession numbers which will be used as list of homologous.</p>
-<p>OR</p>
-</li>
-<li>
-<p><code>-hlf</code> <em>file.txt</em><br />
-Path to a file with list of accession numbers. File format: one accession number per line, no header.</p>
-<p>OR</p>
-</li>
-<li>
-<p><code>-fa</code> <em>file.fa</em><br />
-    Path to a fasta file with upstream sequences.</p>
-</li>
-<li>
-<p><code>-c</code> <em>bacteria|eukaryotes|file.cfg</em><br />
-Path to a configuration file [default: internal].</p>
-</li>
-</ul>
-<p><strong>OPTIONAL ARGUMENTS</strong></p>
-<ul>
-<li>
-<p><code>-bdb</code> <em>&lt;efseq_select|refseq_protein</em><br />
-Online blastp database to perform blastp searching for homologues.<br />
-[default: from config; <em>refseq_select</em> for bacteria, <em>refseq_protein</em> for eukaryotes]</p>
-</li>
-<li>
-<p><code>-lbdb</code> <em>path to a database</em><br />
-Local blastp database to perform blastp searching for homologues.<br />
-Note: You have to specify path to a blastp with --blastp_path command before using this argument.</p>
-</li>
-<li>
-<p><code>-bh</code> <em>number_of_hits</em><br />
-Max number of blastp hits in homologous searching.</p>
-</li>
-<li>
-<p><code>-bid</code> <em>identity_cutoff [0-1]</em><br />
-BlastP searching cutoff for hit's identity to your query protein.</p>
-</li>
-<li>
-<p><code>-mna</code> <em>number_f_assemblies</em><br />
-Max number of assemblies to take into analysis for each protein. If there are more sequences in the identical protein database then random sampling will be used.</p>
-</li>
-<li>
-<p><code>-al</code> <em>path_to/assemblies_list.tsv</em><br />
-Path to an assemblies list file. During each run of uorf4u, a tsv table with information about assemblies (from identical protein database, ncbi) for each protein is saved to your output folder (output_dir_name/assemblies_list.tsv). There are cases with multiple assemblies for one protein accession numbers (up to thousands). In case to control assemblies included in the analysis this table can be filtered (simply by removing rows) and then used with this parameter as part of input to the next run.<br />
-In addition, config file (see config parameters section) has max_number_of_assemblies parameter. It can be used to limit max number of assemblies included in the analysis. In case number of assemblies is more than the cutoff, random sampling will be used to take only subset of them.</p>
-</li>
-<li>
-<p><code>-annot</code><br />
-Retrieve sequences annotation (to be sure that annotated uORFs is not overlapped with a known CDS. </p>
-</li>
-<li>
-<p><code>-ul</code> <em>length</em>   <br />
-Length of upstream sequences to retrieve.</p>
-</li>
-<li>
-<p><code>-dl</code> <em>length</em>  <br />
-Length of downstream sequences to retrieve.</p>
-</li>
-<li>
-<p><code>-asc</code> <br />
-Include alternative start codons in uORF annotation step. List of alternative start codons are taken from the ncbi genetic code.</p>
-</li>
-<li>
-<p><code>-nsd</code><br />
-Deactivate filtering ORFs by SD sequence presence. [default: True for 'prokaryotes' config and False for 'eukaryotes' config].</p>
-</li>
-<li>
-<p><code>-at</code> <em>aa|nt</em><br />
-Alignment type used by uorf4u for conserved ORFs searching [default: aa]. </p>
-</li>
-<li>
-<p><code>-pc</code> <em>cutoff [0-1]</em><br />
-A cutoff of presence (number of ORFs in a list/number of sequences) for an ORFs set to be called conserved and returned [default: 0.4, set in the config].</p>
-</li>
-<li>
-<p><code>-fast</code><br />
-Fast searching mode with less accuracy (&gt;~300 sequences or &gt;~2000 ORFs).</p>
-</li>
-<li>
-<p><code>-o</code> <em>dirname</em><br />
-Output dirname. It will be created if it's not exist. All output dirs will be then created in this folder [default: uorf4u_{current_date}; e.g. uorf4u_2022_07_25-20_41].</p>
-</li>
-</ul>
-<p><strong>MISCELLANEOUS ARGUMENTS</strong></p>
-<ul>
-<li>
-<p><code>-h</code>, <code>--help</code><br />
-Show help message and exit.</p>
-</li>
-<li>
-<p><code>-v</code>, <code>--version</code><br />
-Show program version.</p>
-</li>
-<li>
-<p><code>--debug</code><br />
-Provide detailed stack trace for debugging purposes.</p>
-</li>
-<li>
-<p><code>--quiet</code><br />
-Don't show progress messages.</p>
-</li>
-</ul>
+<dl>
+<dt><code>-gb &lt;folder&gt;</code></dt>
+<dd>Path to a folder containing genbank files.</dd>
+</dl>
+<h3 id="optional-arguments-data-processing">Optional arguments | Data processing</h3>
+<dl>
+<dt><code>-laf, --loci-annotation-file &lt;file path&gt;</code></dt>
+<dd>Path to the loci annotation table.
+ (See documentation for details)</dd>
+<dt><code>-faf, --features-annotation-file &lt;file path&gt;</code></dt>
+<dd>Path to the features annotation table.
+ (See documentation for details)</dd>
+<dt><code>-mmseqs-off, --mmseqs-off</code></dt>
+<dd>Deactivate mmseqs clustering of proteomes of loci.</dd>
+<dt><code>-fv-off, --find-variable-off</code></dt>
+<dd>Deactivate annotation of variable or conserved protein clusters.</dd>
+<dt><code>-cl-off, --clust_loci-off</code></dt>
+<dd>Deactivate defining locus order and using similarity based hierarchical
+clustering of proteomes.</dd>
+<dt><code>-reorient_loci, --reorient_loci</code></dt>
+<dd>Auto re-orient loci (set new strands) if they are not matched.
+ (Function tries to maximise co-orientation of homologous features.)</dd>
+</dl>
+<h3 id="optional-arguments-loci-visualisation">Optional arguments | Loci visualisation</h3>
+<dl>
+<dt><code>-sgc-off, --set-group-color-off</code></dt>
+<dd>Deactivate auto-setting of feature fill and stroke colors.
+ (Pre-set colors specified in feature annotation table will be kept.)</dd>
+<dt><code>-sgcf, --set-group-color-for &lt;feature_group1 [feature group2 ...]&gt;</code></dt>
+<dd>Space-separated list of feature groups for which colors should be set.
+ [default: variable, labeled]</dd>
+<dt><code>-scc, --set-category-color</code></dt>
+<dd>Set category color for features and plot category color legend.</dd>
+<dt><code>-cct, --category-color-table &lt;file path&gt;</code></dt>
+<dd>Path to the table with color code for categories.
+ Default table can be found in lovis4u_data folder.</dd>
+<dt><code>-lls, --loci-label-style &lt;id|description|full&gt;</code></dt>
+<dd>Locus label style based on input sequence annotation.</dd>
+<dt><code>-safl, --show-all-feature-labels</code></dt>
+<dd>Display all feature labels.</dd>
+<dt><code>-sflf, --show-feature-label-for  &lt;feature_group1 [feature group2 ...]&gt;</code></dt>
+<dd>Space-separated list of feature groups for which label should be shown.
+ [default: variable, labeled]</dd>
+<dt><code>-sfflf, --show-first-feature-label-for &lt;feature_group1 [feature group2 ...]&gt;</code></dt>
+<dd>Space-separated list of feature group types for which label will be displayed
+  only for the first occurrence of feature homologues group.
+ [default: shell/core]</dd>
+<dt><code>-ifl, --ignored-feature-labels &lt;feature_label1 [feature_label2 ...]&gt;</code></dt>
+<dd>Space-separated list of feature names for which label won't be shown.
+ [default: hypothetical protein, unknown protein]</dd>
+<dt><code>-hix, --hide-x-axis</code></dt>
+<dd>Do not plot individual x-axis for each locus track.</dd>
+<dt><code>-dml, --draw-middle-line</code></dt>
+<dd>Draw middle line for each locus.</dd>
+<dt><code>-mm-per-nt, --mm-per-nt &lt;float value&gt;</code></dt>
+<dd>Scale which defines given space for each nt cell on canvas.
+ [default: auto (0.0022 - 0.02, depending on window size)]</dd>
+<dt><code>-fw, --figure-width &lt;float value&gt;</code></dt>
+<dd>Output figure width in cm.</dd>
+</dl>
+<h3 id="optional-arguments-additional-tracks">Optional arguments | Additional tracks</h3>
+<dl>
+<dt><code>-hl, --homology-links</code></dt>
+<dd>Draw homology link track.</dd>
+<dt><code>-slt, --scale-line-track</code></dt>
+<dd>Draw scale line track.</dd>
+</dl>
+<h3 id="optional-arguments-others">Optional arguments | others</h3>
+<dl>
+<dt><code>-o &lt;name&gt;</code></dt>
+<dd>Output dir name. It will be created if it does not exist.
+ [default: lovis4u_{current_date}; e.g. uorf4u_2022_07_25-20_41]</dd>
+<dt><code>--pdf-name &lt;name&gt;</code></dt>
+<dd>Name of the output pdf file (will be saved in the output folder).
+ [default: lovis4u.pdf]</dd>
+<dt><code>-c &lt;standard|&lt;file.cfg&gt;</code></dt>
+<dd>Path to a configuration file or name of a premade config file
+ [default: standard]</dd>
+</dl>
+<h3 id="miscellaneous-arguments">Miscellaneous arguments</h3>
+<dl>
+<dt><code>-h, --help</code></dt>
+<dd>Show this help message and exit.</dd>
+<dt><code>-v, --version</code></dt>
+<dd>Show program version.</dd>
+<dt><code>--debug</code></dt>
+<dd>Provide detailed stack trace for debugging purposes.</dd>
+<dt><code>-q, --quiet</code></dt>
+<dd>Don't show progress messages.</dd>
+</dl>
 
               
             </article>

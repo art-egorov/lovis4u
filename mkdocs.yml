@@ -102,3 +102,6 @@ plugins:
 
 extra:
   generator: false
+  analytics:
+    provider: google
+    property: G-4JWMGFSKXS

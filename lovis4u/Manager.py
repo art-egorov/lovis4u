@@ -136,7 +136,10 @@ class Parameters:
             config = configs.load(path).get_config()
             internal_dir = os.path.dirname(__file__)
             for key in config["root"].keys():
-                if type(config["root"][key]) is str and "{internal}" in config["root"][key]:
+                if isinstance(config["root"][key], str):
+                    if config["root"][key] == "None":
+                        config["root"][key] = None
+                if isinstance(config["root"][key], str) and "{internal}" in config["root"][key]:
                     config["root"][key] = config["root"][key].replace("{internal}",
                                                                       os.path.join(internal_dir, "lovis4u_data"))
             config["root"]["output_dir"] = config["root"]["output_dir"].replace("{current_date}",
@@ -157,8 +160,9 @@ class Parameters:
                 self.args.update(self.cmd_arguments)
 
             if os.path.exists(self.args["output_dir"]):
-                print("❗ Warning: the output folder already exists. Results will be rewritten (without removal other "
-                      "files in this folder)", file=sys.stdout)
+                if self.args["verbose"]:
+                    print("❗ Warning: the output folder already exists. Results will be rewritten (without removal "
+                          "other files in this folder)", file=sys.stdout)
             return None
         except Exception as error:
             raise lovis4uError("Unable to parse the specified config file. Please check your config file "
@@ -233,9 +237,10 @@ class CanvasManager:
         """
         try:
             annotated_descriptions = [i.description for i in loci.loci if i.description]
-            if not annotated_descriptions:
-                print("❗ Warning message: the annotation lacks description. Locus label style is "
-                      "changed to 'id'")
+            if not annotated_descriptions and self.prms.args["locus_label_style"] != "id":
+                if self.prms.args["verbose"]:
+                    print("❗ Warning message: the annotation lacks description. Locus label style is "
+                          "changed to 'id'")
                 self.prms.args["locus_label_style"] = "id"
             if self.prms.args["locus_label_style"] == "full":
                 label_height = self.prms.args["feature_height"] * cm * 0.4
@@ -263,11 +268,11 @@ class CanvasManager:
             loci_lengths = loci.get_loci_lengths_and_n_of_regions()
 
             self.layout["total_nt_width"] = max(i[0] for i in loci_lengths)
-
             if self.prms.args["figure_width"]:
-                full_figure_width = self.prms.args["figure_width"] * cm
-                figure_width_for_loci = full_figure_width - max_label_string_width - 2 * self.prms.args["margin"] * cm \
-                                        - self.prms.args["gap_after_locus_label"] * cm
+                figure_width_for_loci = self.prms.args["figure_width"] * cm
+                self.prms.args["figure_width"] = figure_width_for_loci + max_label_string_width + \
+                                                 2 * self.prms.args["margin"] * cm \
+                                                 + self.prms.args["gap_after_locus_label"] * cm
                 self.prms.args["mm_per_nt"] = figure_width_for_loci / self.layout["total_nt_width"]
 
             if self.prms.args["mm_per_nt"] == "auto":
@@ -327,7 +332,8 @@ class CanvasManager:
             color_legend_loader = CategoriesColorLegendLoader(self.prms)
             color_legend_loader.prepare_track_specific_data(self.layout.copy(), loci)
             color_legend_track_height = color_legend_loader.calculate_track_height()
-            self.layout["figure_height"] += color_legend_track_height + self.prms.args["gap"] * cm
+            if color_legend_track_height != 0:
+                self.layout["figure_height"] += color_legend_track_height + self.prms.args["gap"] * cm
             color_legend_track = color_legend_loader.create_track()
             if isinstance(color_legend_track, lovis4u.Drawing.ColorLegendVis):
                 self.tracks.append(color_legend_track)
@@ -391,7 +397,7 @@ class CanvasManager:
         try:
             file_path = os.path.join(self.prms.args["output_dir"], filename)
             self.layout["figure_height"] += (self.prms.args["margin"] - self.prms.args["gap"]) * cm
-            plot = Canvas(file_path, self.layout["figure_width"], self.layout["figure_height"])
+            plot = Canvas(file_path, self.layout["figure_width"], self.layout["figure_height"], self.prms)
 
             for cross_track in self.cross_tracks:
                 cross_track.draw(plot.canvas)
@@ -944,8 +950,9 @@ class CategoriesColorLegendLoader(Loader):
             if self.track_data["labels"]:
                 return lovis4u.Drawing.ColorLegendVis(self.layout, self.track_data, self.prms)
             else:
-                print("❗ Warning message: Category colors legend track cannot be created since there is no "
-                      "categories.", file=sys.stdout)
+                if self.prms.args["verbose"]:
+                    print("❗ Warning message: Category colors legend track cannot be created since there is no "
+                          "categories.", file=sys.stdout)
                 return None
         except Exception as error:
             raise lovis4u.Manager.lovis4uError("Unable to create a categories color legend track track object.") \
@@ -960,7 +967,7 @@ class Canvas:
 
     """
 
-    def __init__(self, filename: str, width: float, height: float):
+    def __init__(self, filename: str, width: float, height: float, parameters):
         """Create a Canvas object.
 
         Arguments:
@@ -969,6 +976,7 @@ class Canvas:
             height (float): height of the pdf.
 
         """
+        self.prms = parameters
         self.canvas = reportlab.pdfgen.canvas.Canvas(filename, pagesize=(width, height))
         self.canvas.setTitle("lovis4u output")
         self.canvas.setSubject("🎨")
@@ -981,5 +989,7 @@ class Canvas:
             None
 
         """
+        if not os.path.exists(self.prms.args["output_dir"]):
+            os.mkdir(self.prms.args["output_dir"])
         self.canvas.save()
         return None

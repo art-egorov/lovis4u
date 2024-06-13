@@ -15,9 +15,9 @@ try:
     if parameters.args["features-annotation"]:
         loci.load_features_annotation_file(parameters.args["features-annotation"])
     if parameters.args["gff"]:
-        loci.load_loci_from_extended_gff(input_folder=parameters.args["gff"])
+        loci.load_loci_from_extended_gff(parameters.args["gff"])
     elif parameters.args["gb"]:
-        loci.load_loci_from_gb(input_folder=parameters.args["gb"])
+        loci.load_loci_from_gb(parameters.args["gb"])
 
     if parameters.args["mmseqs"]:
         mmseqs_clustering_results = loci.mmseqs_cluster()

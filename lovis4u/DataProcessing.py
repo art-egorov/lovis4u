@@ -298,7 +298,7 @@ class Loci:
         self.feature_annotation.loc[feature_id] = self.feature_annotation.loc[feature_id].fillna(default_values)
         return None
 
-    def load_loci_from_extended_gff(self, input_folder: str) -> None:
+    def load_loci_from_extended_gff(self, input_f: str) -> None:
         """Load loci from the folder with gff files. Each GFF file also should contain corresponding nucleotide
             sequence. Such files are produced for example by pharokka annotation tool.
 
@@ -311,14 +311,23 @@ class Loci:
             None
 
         """
-        if not os.path.exists(input_folder):
-            raise lovis4u.Manager.lovis4uError(f"Folder {input_folder} does not exist.")
+
         try:
-            gff_files = [f for f in os.listdir(input_folder) if os.path.splitext(f)[-1].lower() == ".gff"]
+            if isinstance(input_f, str):
+                input_folder = input_f
+                if not os.path.exists(input_folder):
+                    raise lovis4u.Manager.lovis4uError(f"Folder {input_folder} does not exist.")
+                gff_files = [os.path.join(input_folder, f) for f in os.listdir(input_folder) if
+                             os.path.splitext(f)[-1].lower() == ".gff"]
+            elif isinstance(input_f, list):
+                gff_files = input_f
+            else:
+                raise lovis4u.manager.lovis4uError(f"The input for the GFF parsing function must be either a folder or "
+                                                   f"a list of files.")
             if not gff_files:
-                raise lovis4u.Manager.lovis4uError(f"Folder {input_folder} does not contain .gff(.GFF) files.")
-            for gff_file in gff_files:
-                gff_file_path = os.path.join(input_folder, gff_file)
+                raise lovis4u.manager.lovis4uError(f"Folder {input_f} does not contain .gff(.GFF) files.")
+            for gff_file_path in gff_files:
+                gff_file = gff_file_path
                 gff_records = list(BCBio.GFF.parse(gff_file_path, limit_info=dict(gff_type=["CDS"])))
                 if len(gff_records) != 1:
                     raise lovis4u.Manager.lovis4uError(f"Gff file {gff_file} does not contain information for only"
@@ -374,7 +383,8 @@ class Loci:
                                               sequence=gff_feature.translate(record_locus_sequence, table=transl_table,
                                                                              cds=False)[:-1],
                                               group=feature_annotation_row["group"],
-                                              group_type=feature_annotation_row["group_type"], category=category,
+                                              group_type=feature_annotation_row["group_type"],
+                                              category=feature_annotation_row["category"],
                                               vis_prms=dict(fill_color=feature_annotation_row["fill_color"],
                                                             stroke_color=feature_annotation_row["stroke_color"],
                                                             show_label=feature_annotation_row["show_label"]),
@@ -442,9 +452,10 @@ class Loci:
                     for alternative_id_source in self.prms.args["genbank_id_alternative_source"]:
                         if alternative_id_source in first_CDS_record.qualifiers:
                             id_source = alternative_id_source
-                            print(f"❗ Warning: there is no <{self.prms.args['genbank_id_source']}> attribute "
-                                  f"for CDS records in {gb_file}. Alternative <{id_source}> was used instead.",
-                                  file=sys.stdout)
+                            if self.prms.args["verbose"]:
+                                print(f"❗ Warning: there is no <{self.prms.args['genbank_id_source']}> attribute "
+                                      f"for CDS records in {gb_file}. Alternative <{id_source}> was used instead.",
+                                      file=sys.stdout)
                             break
                     if id_source == self.prms.args["genbank_id_source"]:
                         raise lovis4u.Manager.lovis4uError(f"There is no <{self.prms.args['genbank_id_source']}> "
@@ -482,7 +493,8 @@ class Loci:
                                               sequence=gb_feature.translate(record_locus_sequence, table=transl_table,
                                                                             cds=False)[:-1],
                                               group=feature_annotation_row["group"],
-                                              group_type=feature_annotation_row["group_type"], category=category,
+                                              group_type=feature_annotation_row["group_type"],
+                                              category=feature_annotation_row["category"],
                                               vis_prms=dict(fill_color=feature_annotation_row["fill_color"],
                                                             stroke_color=feature_annotation_row["stroke_color"],
                                                             show_label=feature_annotation_row["show_label"]),
@@ -652,6 +664,8 @@ class Loci:
                             if feature.group not in added_first_occurrence_labels:
                                 feature.vis_prms["show_label"] = 1
                                 added_first_occurrence_labels.append(feature.group)
+                    else:
+                        feature.vis_prms["show_label"] = 0
         except Exception as error:
             raise lovis4u.Manager.lovis4uError("Unable define feature labels to be shown.") from error
 
@@ -676,6 +690,8 @@ class Loci:
             proteins_loci_dict = collections.defaultdict(collections.deque)
             loci_clusters_dict = dict()
             number_of_loci = len(self.loci)
+            if number_of_loci < 2:
+                return None
             proteome_sizes = pd.Series(np.zeros(number_of_loci, dtype=int))
             for locus_index in range(number_of_loci):
                 locus = self.loci[locus_index]
@@ -838,7 +854,8 @@ class Loci:
             feature_categories = list(set([feature.category for locus in self.loci for feature in locus.features
                                            if feature.category and feature.category]))
             if not feature_categories:
-                print("❗ Warning: there are no feature categories to set colors", file=sys.stdout)
+                if self.prms.args["verbose"]:
+                    print("❗ Warning: there are no feature categories to set colors", file=sys.stdout)
             colors_dict = {cat: col for cat, col in colors_dict.items() if cat in feature_categories}
 
             feature_categories = [ff for ff in feature_categories if ff not in colors_dict.keys()]
@@ -894,8 +911,9 @@ class Loci:
                                 annot_coordinates.append(f"{cc['start']}:{cc['end']}:{cc['strand']}")
                             self.loci_annotation.loc[c_locus.seq_id, "coordinates"] = ",".join(annot_coordinates)
                     else:
-                        print("❗ Warning: loci reorientation cannot be applied for loci that have both strands in"
-                              " pre-defined coordinates for visualisation")
+                        if self.prms.args["verbose"]:
+                            print("❗ Warning: loci reorientation cannot be applied for loci that have both strands in"
+                                  " pre-defined coordinates for visualisation")
             if self.prms.args["verbose"]:
                 if count_of_changed_strands == 0:
                     print(f"🔁 Orientation was not changed for any locus", file=sys.stdout)

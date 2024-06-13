@@ -14,10 +14,10 @@ def package_files(directory):
 
 
 extra_files = package_files("lovis4u/lovis4u_data")
-extra_files.append("docs/pypi.md")
+extra_files.append("../docs/pypi.md")
 
 setuptools.setup(name="lovis4u",
-                 version="0.0.3.5",
+                 version="0.0.4",
                  python_requires='>=3.8',
                  description="Loci Visualisation Tool.",
                  url="https://art-egorov.github.io/lovis4u/",

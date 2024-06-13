@@ -5,9 +5,9 @@ Here we show usage examples of lovis4u command-line interface. Through this guid
 **Before start:** The necessary sample data as well as adjustable tool configuration files are provided by lovis4u at the post-install step:    
 `lovis4u --data` which copies *lovis4u_data* folder to your working directory. 
   
-**If you work on a Linux machine** after installation you should run: `uorf4u --linux`  
+**If you work on a Linux machine** after installation you should run: `lovis4u --linux`  
 This command replaces the tools paths (MMseqs2) in the pre-made config files from the MacOS version (default) to the Linux.  
-If you run it for fun and want to change it back you can use `uorfu --mac`.
+If you run it for fun and want to change it back you can use `lovis4u --mac`.
 
 ^^For demonstration we will use pharokka generated gff files with sequences of 5 Enterobacteria phages.  
 Gff files are stored at: *lovis4u_data/guide/gff_files*.^^      

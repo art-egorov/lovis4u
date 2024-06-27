@@ -60,7 +60,16 @@
 
     
     
-  </head>
+   <link href="assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -576,10 +585,9 @@
                 
 
 
-<p><img  src="img/lovis4u_logo.png" width="265"/></p>
-<h1 id="_1"></h1>
+<h1 id="_1"><a class="glightbox" href="img/lovis4u_logo.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="logo" loading="lazy" src="img/lovis4u_logo.png" width="265" /></a></h1>
 <h2 id="description">Description</h2>
-<p><strong>LoVis4u</strong> is a bioinformatics tool for <strong>Lo</strong>ci <strong>Vis</strong>ualisation.</p>
+<p><strong>LoVis4u</strong> is a bioinformatics tool for <strong>Lo</strong>cus <strong>Vis</strong>ualisation.</p>
 <p><strong>Supported input</strong>: Genbank, gff3 with sequence  <br />
 <strong>Supported output</strong>: Static vector graphics (pdf) <br />
 <strong>Programming language:</strong> Python3 <br />
@@ -590,12 +598,12 @@
 <strong>License:</strong> WTFPL<br />
 <strong>Version:</strong> 0.0.4 (June 2024)</p>
 <p><strong>Pipeline:</strong>
-<img  src="img/lovis4u_pipeline_only.png" width="100%"/></p>
+<a class="glightbox" href="img/lovis4u_pipeline_only.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="pipeline" loading="lazy" src="img/lovis4u_pipeline_only.png" width="100%" /></a>  </p>
 <p><strong>Visualisation example:</strong>
-<img  src="img/output_example_advanced_multiple_regions_labeled.png" width="100%"/></p>
+<a class="glightbox" href="img/output_example_advanced_multiple_regions_labeled.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="visex" loading="lazy" src="img/output_example_advanced_multiple_regions_labeled.png" width="100%" /></a>  </p>
 <h2 id="installation">Installation</h2>
 <ul>
-<li>The most stable release of lovis4u can be installed directly from pypi:</li>
+<li>LoVis4u can be installed directly from pypi:</li>
 </ul>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python3 -m pip install lovis4u
 </span></code></pre></div>
@@ -617,7 +625,7 @@ Artyom. A. Egorov, Gemma C. Atkinson, <strong>lovis4u: ...</strong>, <em>...</em
 <p>Please contact us by e-mail <em>artem<strong>dot</strong>egorov<strong>AT</strong>med<strong>dot</strong>lu<strong>dot</strong>se</em> or use <a href="https://github.com/art-egorov/lovis4u/issues?q=">Issues</a> to report any technical problems.<br />
 You can also use <a href="https://github.com/art-egorov/lovis4u/discussions">Discussions section</a> for sharing your ideas or feature requests! </p>
 <h2 id="authors">Authors</h2>
-<p>LoVis4u is developed by Artyom Egorov at <a href="https://atkinson-lab.com">the Atkinson Lab</a>, Department of Experimental Medical Science, Lund University, Sweden 🇸🇪. We are open for suggestions to extend and improve LoVis4u functionality. Please don't hesitate to share your ideas or feature requests.</p>
+<p>LoVis4u is developed by Artyom Egorov at <a href="https://atkinson-lab.com">the Atkinson Lab</a>, Department of Experimental Medical Science, Lund University, Sweden. We are open for suggestions to extend and improve LoVis4u functionality. Please don't hesitate to share your ideas or feature requests.</p>
 
               
             </article>
@@ -673,5 +681,7 @@ You can also use <a href="https://github.com/art-egorov/lovis4u/discussions">Dis
         <script src="assets/_markdown_exec_pyodide.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

@@ -60,7 +60,16 @@
 
     
     
-  </head>
+   <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -507,7 +516,7 @@
 
   <h1>Pypi</h1>
 
-<p><img  src="https://raw.githubusercontent.com/art-egorov/lovis4u/main/docs/img/lovis4u_logo.png" width="310"/></p>
+<p><a class="glightbox" href="https://raw.githubusercontent.com/art-egorov/lovis4u/main/docs/img/lovis4u_logo.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img  src="https://raw.githubusercontent.com/art-egorov/lovis4u/main/docs/img/lovis4u_logo.png" width="310"/></a></p>
 <h2 id="description">Description</h2>
 <p><strong>LoVis4u</strong> is a bioinformatics tool for <strong>Lo</strong>ci <strong>Vis</strong>ualisation.</p>
 <p><strong>Supported input</strong>: Genbank, gff3 with sequence  <br />
@@ -562,5 +571,7 @@ You can also use <a href="https://github.com/art-egorov/lovis4u/discussions">Dis
         <script src="../assets/_markdown_exec_pyodide.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

@@ -60,7 +60,16 @@
 
     
     
-  </head>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -346,8 +355,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#using-loci-annotation-table" class="md-nav__link">
-    Using loci annotation table
+  <a href="#using-locus-annotation-table" class="md-nav__link">
+    Using locus annotation table
   </a>
   
 </li>
@@ -612,15 +621,16 @@ This command replaces the tools paths (MMseqs2) in the pre-made config files fro
 If you run it for fun and want to change it back you can use <code>lovis4u --mac</code>.</p>
 <p><ins>For demonstration we will use pharokka generated gff files with sequences of 5 Enterobacteria phages.<br />
 Gff files are stored at: <em>lovis4u_data/guide/gff_files</em>.</ins>    <br />
-The main difference of pharokka generated gff files from regular gff3 (for ex. which you can download from the NCBI) is that in addition to annotation rows they contain corresponding to the annotation nucleotide sequence. </p>
+The main difference of pharokka generated gff files from regular gff3 (for ex. which you can download from the NCBI) is that in addition to annotation rows they contain corresponding to the annotation nucleotide sequence in fasta format.</p>
 <hr />
 <h2 id="example-run-with-default-parameters">Example run with default parameters</h2>
 <p>Let's start with running lovis4u without using any optional argument. The only mandatory argument is a folder path containing pharokka generated gff (<code>-gff</code>) files or genbank files (<code>-gb</code>).   </p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>lovis4u -gff lovis4u_data/guide/gff_files
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files
 </span></code></pre></div>
 <p>As results of running this command an output folder named lovis4u_{current_date} (e.g. lovis4u_2024_04_28-16_36) will be created.<br />
 Name of the output folder can be changed with <code>-o &lt;output_folder_name&gt;</code>.</p>
-<p><strong>Output folder structure:</strong></p>
+<details class="card_hearts">
+<summary><strong>Output folder structure</strong></summary>
 <ul>
 <li><em>lovis4u.pdf</em> - vector graphic output (file name can be changed with <code>--pdf-name &lt;filename&gt;</code> parameter)  </li>
 <li><em>loci_annotation_table.tsv</em> - table containing annotation (sequence_id, length, coordinates, etc..) for each locus.  </li>
@@ -634,8 +644,8 @@ Name of the output folder can be changed with <code>-o &lt;output_folder_name&gt
 </li>
 <li><em>proteome_similarity_matrix.tsv</em> - pairwise proteome similarity scores indicating fraction of shared proteins homologues.  </li>
 </ul>
-<p><em>Visualisation results:</em>
-<img  src="img/lovis4u_default_1.png" width="100%"/></p>
+</details>
+<p><a class="glightbox" href="img/lovis4u_default_1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f1" loading="lazy" src="img/lovis4u_default_1.png" width="100%" /></a>  </p>
 <p><strong>By default, lovis4u utilises the following data preprocessing steps:</strong></p>
 <ol>
 <li>Full length of each locus are taken for analysis <em>(this can be adjusted using loci annotation table, see below)</em>. </li>
@@ -652,10 +662,10 @@ Name of the output folder can be changed with <code>-o &lt;output_folder_name&gt
 <li><code>-o &lt;name&gt;</code> - Output dir name.  </li>
 </ul>
 <p>While loci in our test set are already correctly orientated, let's add -hl parameter to update the output.</p>
-<p><div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>lovis4u -gff lovis4u_data/guide/gff_files  -hl -o lovis4u_output
+<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w">  </span>-hl<span class="w"> </span>-o<span class="w"> </span>lovis4u_output
 </span></code></pre></div>
-<img  src="img/lovis4u_default_hl.png" width="100%"/></p>
-<h2 id="using-loci-annotation-table">Using loci annotation table</h2>
+<a class="glightbox" href="img/lovis4u_default_hl.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f2" loading="lazy" src="img/lovis4u_default_hl.png" width="100%" /></a>  </p>
+<h2 id="using-locus-annotation-table">Using locus annotation table</h2>
 <p>As it was already mentioned, full length of each locus is taken for visualisation by default. However, you can specify coordinates of multiple regions for each locus to be shown. This coordinates together with other information about each locus can be specified in loci annotation table and used as input with <code>-laf</code> or <code>--loci-annotation-file</code> parameter. </p>
 <p>Additionally, after each run lovis4u saves the <em>loci_annotation_table.tsv</em> with annotation parameters used in this particular run. If no table was specified by input then all annotation columns are set with default values.  </p>
 <p><em>Default table generated from previous runs:</em></p>
@@ -774,10 +784,10 @@ Name of the output folder can be changed with <code>-o &lt;output_folder_name&gt
 <p><strong>Format for coordinates specification:</strong> comma-separated list of start:end:strand. Start and end are in 1-based format, strand: 1 for plus strand and -1 for minus.</p>
 <p>The table can be found in the guide folder: <em>lovis4u_data/guide/loci_annotation_table_alt.tsv</em></p>
 <p>Now we can run: 
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>lovis4u -gff lovis4u_data/guide/gff_files  -hl -o lovis4u_output \
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    --loci-annotation-file lovis4u_data/guide/loci_annotation_table_alt.tsv -cl-off
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w">  </span>-hl<span class="w"> </span>-o<span class="w"> </span>lovis4u_output<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span>--loci-annotation-file<span class="w"> </span>lovis4u_data/guide/loci_annotation_table_alt.tsv<span class="w"> </span>-cl-off
 </span></code></pre></div>
-<img  src="img/lovis4u_window_1.png" width="100%"/></p>
+<a class="glightbox" href="img/lovis4u_window_1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f3" loading="lazy" src="img/lovis4u_window_1.png" width="100%" /></a>  </p>
 <h2 id="using-features-annotation-table">Using features annotation table</h2>
 <p>Similar way of adjusting features visualisation parameters is implemented. After each run a <em>features_annotation_table.tsv</em> file is saved in your output folder. Below you can see header of default table created with default parameter run.</p>
 <table>
@@ -884,38 +894,38 @@ Name of the output folder can be changed with <code>-o &lt;output_folder_name&gt
 </tbody>
 </table>
 <p>This table can be found in the guide folder: <em>lovis4u_data/guide/features_annotation_table_alt.tsv</em></p>
-<p><div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>lovis4u -gff lovis4u_data/guide/gff_files  -hl -o lovis4u_output \
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    --loci-annotation-file lovis4u_data/guide/loci_annotation_table_alt.tsv -cl-off \
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    --features-annotation-file lovis4u_data/guide/features_annotation_table_alt.tsv
+<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w">  </span>-hl<span class="w"> </span>-o<span class="w"> </span>lovis4u_output<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span>--loci-annotation-file<span class="w"> </span>lovis4u_data/guide/loci_annotation_table_alt.tsv<span class="w"> </span>-cl-off<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span>--features-annotation-file<span class="w"> </span>lovis4u_data/guide/features_annotation_table_alt.tsv
 </span></code></pre></div>
-<img  src="img/lovis4u_updated_name.png" width="100%"/></p>
+<a class="glightbox" href="img/lovis4u_updated_name.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f4" loading="lazy" src="img/lovis4u_updated_name.png" width="100%" /></a>  </p>
 <p>Here also <strong>important to note</strong> that if you don't use feature attribute <em>"group_type"</em> defined by full loci run, then it will be re-defined by mmseqs run on subset of proteins found only in specified regions (you can deactivate it with <code>--find-variable-off</code> and <code>--mmseqs-off</code>) . It can result in situation that ORF called in that case "variable" in reality are encoded by each proteome but outside of their shown coordinates. </p>
 <h2 id="other-features">Other features</h2>
 <h3 id="category-color-and-annotation">Category color and annotation</h3>
 <p>Using parameter <code>--set-category-color</code> you can use category annotation column for features. By default it was designed to parse PHROGs category annotation for proteins and retrieve information about category in "function" qualifiers in Genbank or GFF files <em>(used qualifiers can be changed in config file)</em>. However, you can set up category for each CDS using described above features annotation table with "category" column. Additionally, you can set up color code for your categories using <code>--category-color-table</code>. For categories not found in a table a random color will be set. By default, lovis4u uses pre-made color table which location is <em>lovis4u_data/category_colors.tsv</em>. </p>
-<p><div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>lovis4u -gff lovis4u_data/guide/gff_files -hl --set-category-color
+<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-hl<span class="w"> </span>--set-category-color
 </span></code></pre></div>
-<img  src="img/lovis4u_category_colour.png" width="100%"/></p>
+<a class="glightbox" href="img/lovis4u_category_colour.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f5" loading="lazy" src="img/lovis4u_category_colour.png" width="100%" /></a>  </p>
 <h3 id="scale-line-instead-of-individual-x-axis">Scale line instead of individual x-axis</h3>
 <p>Using parameter <code>--hide-x-axis</code> you can deactivate visualisation of individual x-axis for each locus track and instead of them with <code>-slt</code> or <code>--scale-line-track</code> you can draw a scale line track below.</p>
-<p><div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>lovis4u -gff lovis4u_data/guide/gff_files -hl --hide-x-axis --scale-line-track
+<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-hl<span class="w"> </span>--hide-x-axis<span class="w"> </span>--scale-line-track
 </span></code></pre></div>
-<img  src="img/lovis4u_scale.png" width="100%"/>  </p>
+<a class="glightbox" href="img/lovis4u_scale.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f6" loading="lazy" src="img/lovis4u_scale.png" width="100%" /></a>  </p>
 <h3 id="highlighting-conserved-genes-instead-of-variable">Highlighting conserved genes instead of variable</h3>
 <p>For many analysis purposes (e.g. conserved neighbourhood visualisation) we need to colorise conserved gene clusters instead of variable. It can be easily switched in lovis4u using <code>--set-group-color-for</code> parameter. By default it's set as "variable" but using <code>--set-group-color-for shell/core</code> will change it to the opposite mode.<br />
 <strong>Note</strong> that if you have other feature group set in your features annotation table and want to set auto-colorising for them as well you can specify them in space separated list with this argument (e.g. <code>--set-group-color-for shell/core your_group_1 your_group_2</code>.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>lovis4u -gff lovis4u_data/guide/gff_files -hl --set-group-color-for shell/core 
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-hl<span class="w"> </span>--set-group-color-for<span class="w"> </span>shell/core<span class="w"> </span>
 </span></code></pre></div>
-<p><img  src="img/lovis4u_conserved_colorised.png" width="100%"/>  </p>
+<p><a class="glightbox" href="img/lovis4u_conserved_colorised.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f7" loading="lazy" src="img/lovis4u_conserved_colorised.png" width="100%" /></a>  </p>
 <p><strong>Note:</strong> By default colours for groups are randomly set for each group using <a href="https://seaborn.pydata.org/tutorial/color_palettes.html">seaborn husl palette</a>. In config file you can change to more intense hsl palette or change the desaturation parameter.</p>
 <h3 id="specifying-figure-width">Specifying figure width</h3>
 <p>Lovis4u tries to set an optimal figure width taking into account nucleotide size of visualisation window. You can change it in two ways:<br />
 1) Using <code>--mm-per-nt &lt;float value&gt;</code> argument changing scale which defines given space for each nt cell on canvas. Default: 0.0022 - 0.02, depending on window size.<br />
 2) With <code>-fw, --figure-width &lt;float value [cm]&gt;</code> parameter which defines total output figure width.<br />
 We demonstrate usage by plotting compact visualisation of full loci together with <code>--show-first-feature-label-for</code> argument with empty list deactivating showing first occurrence label for shell/core genes.</p>
-<p><div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>lovis4u -gff lovis4u_data/guide/gff_files -hl -o width_test --show-first-feature-label-for --figure-width 7
+<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-hl<span class="w"> </span>-o<span class="w"> </span>width_test<span class="w"> </span>--show-first-feature-label-for<span class="w"> </span>--figure-width<span class="w"> </span><span class="m">7</span>
 </span></code></pre></div>
-<img  src="img/lovis4u_set_width.png" width="100%"/>  </p>
+<a class="glightbox" href="img/lovis4u_set_width.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f8" loading="lazy" src="img/lovis4u_set_width.png" width="100%" /></a>  </p>
 
               
             </article>
@@ -986,5 +996,7 @@ We demonstrate usage by plotting compact visualisation of full loci together wit
         <script src="../../assets/_markdown_exec_pyodide.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

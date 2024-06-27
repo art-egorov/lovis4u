@@ -95,7 +95,7 @@ class Feature:
         self.group_type = group_type
         self.category = category
         self.vis_prms = vis_prms
-        self.vis_prms["label"] = name
+        self.vis_prms["label"] = str(name)
         self.prms = parameters
 
 
@@ -298,7 +298,7 @@ class Loci:
         self.feature_annotation.loc[feature_id] = self.feature_annotation.loc[feature_id].fillna(default_values)
         return None
 
-    def load_loci_from_extended_gff(self, input_f: str) -> None:
+    def load_loci_from_extended_gff(self, input_f: str, ilund4u_mode: bool = False) -> None:
         """Load loci from the folder with gff files. Each GFF file also should contain corresponding nucleotide
             sequence. Such files are produced for example by pharokka annotation tool.
 
@@ -359,6 +359,9 @@ class Loci:
                                                        f" only unique are allowed.")
                 for gff_feature in gff_record.features:
                     feature_id = gff_feature.id
+                    if ilund4u_mode:
+                        if gff_record.id not in feature_id:
+                            feature_id = f"{gff_record.id}-{feature_id}"
                     transl_table = self.prms.args["default_transl_table"]
                     if "transl_table" in gff_feature.qualifiers.keys():
                         transl_table = int(gff_feature.qualifiers["transl_table"][0])
@@ -669,7 +672,7 @@ class Loci:
         except Exception as error:
             raise lovis4u.Manager.lovis4uError("Unable define feature labels to be shown.") from error
 
-    def cluster_sequences(self, dataframe: pd.DataFrame) -> None:
+    def cluster_sequences(self, dataframe: pd.DataFrame, same_cluster=False) -> None:
         """Define loci order and clusters with proteome similarity based hierarchical clustering.
             This function changes the order of loci that are plotted and also updates corresponding to each loci group
             attribute which defines homologues groups of proteomes.
@@ -719,11 +722,12 @@ class Loci:
                 scipy.spatial.distance.squareform(symmetric_distance_matrix),
                 method="average")
             dendrogram = scipy.cluster.hierarchy.dendrogram(linkage_matrix, no_plot=True)
-            clusters = pd.Series(scipy.cluster.hierarchy.fcluster(linkage_matrix, 0.35, criterion="distance"),
-                                 index=loci_ids)
-            for locus in self.loci:
-                locus.group = clusters[locus.seq_id]
-                self.loci_annotation.loc[locus.seq_id, "group"] = locus.group
+            if not same_cluster:
+                clusters = pd.Series(scipy.cluster.hierarchy.fcluster(linkage_matrix, 0.35, criterion="distance"),
+                                     index=loci_ids)
+                for locus in self.loci:
+                    locus.group = clusters[locus.seq_id]
+                    self.loci_annotation.loc[locus.seq_id, "group"] = locus.group
             order = dendrogram["leaves"][::-1]
             self.loci_annotation["initial_order"] = self.loci_annotation["order"]
             for locus_index in range(number_of_loci):
@@ -872,7 +876,7 @@ class Loci:
         except Exception as error:
             raise lovis4u.Manager.lovis4uError("Unable to set category colors.") from error
 
-    def reorient_loci(self) -> None:
+    def reorient_loci(self, ilund4u_mode: bool = False) -> None:
         """Auto re-orient loci (reset strands) of loci if they are not matched.
 
         Function tries to maximise co-orientation of homologous features.
@@ -882,38 +886,45 @@ class Loci:
 
         """
         try:
-            loci_groups = set(self.loci_annotation["group"].to_list())
             count_of_changed_strands = 0
-            for loci_group in loci_groups:
-                loci = [locus for locus in self.loci if locus.group == loci_group]
-                for locus_index in range(1, len(loci)):
-                    p_locus = loci[locus_index - 1]
-                    c_locus = loci[locus_index]
-                    p_locus_strands = list(set([c["strand"] for c in p_locus.coordinates]))
-                    c_locus_strands = list(set([c["strand"] for c in c_locus.coordinates]))
-                    if len(p_locus_strands) == 1 and len(c_locus_strands) == 1:
+            loci = [locus for locus in self.loci]
+            for locus_index in range(1, len(loci)):
+                p_locus = loci[locus_index - 1]
+                c_locus = loci[locus_index]
+                p_locus_strands = list(set([c["strand"] for c in p_locus.coordinates]))
+                c_locus_strands = list(set([c["strand"] for c in c_locus.coordinates]))
+                if len(p_locus_strands) == 1 and len(c_locus_strands) == 1:
+                    if not ilund4u_mode:
                         pr_locus_features_groups = set([f.group for f in p_locus.features])
                         c_locus_features_groups = set([f.group for f in c_locus.features])
-                        overlapped_f_groups = pr_locus_features_groups & c_locus_features_groups
-                        prl_strand, cl_strand = p_locus_strands[0], c_locus_strands[0]
-                        pr_locus_features_strands = {f.group: f.strand * prl_strand for f in p_locus.features if
-                                                     f.group in overlapped_f_groups}
-                        c_locus_features_strands = {f.group: f.strand * cl_strand for f in c_locus.features if
-                                                    f.group in overlapped_f_groups}
-                        codirection_score = 0
-                        for ovg in overlapped_f_groups:
-                            codirection_score += pr_locus_features_strands[ovg] * c_locus_features_strands[ovg]
-                        if codirection_score < 0:
-                            count_of_changed_strands += 1
-                            annot_coordinates = []
-                            for cc in loci[locus_index].coordinates:
-                                cc["strand"] *= -1
-                                annot_coordinates.append(f"{cc['start']}:{cc['end']}:{cc['strand']}")
-                            self.loci_annotation.loc[c_locus.seq_id, "coordinates"] = ",".join(annot_coordinates)
                     else:
-                        if self.prms.args["verbose"]:
-                            print("❗ Warning: loci reorientation cannot be applied for loci that have both strands in"
-                                  " pre-defined coordinates for visualisation")
+                        pr_locus_features_groups = set(
+                            [f.group for f in p_locus.features if f.group_type == "shell/core"])
+                        c_locus_features_groups = set(
+                            [f.group for f in c_locus.features if f.group_type == "shell/core"])
+                    overlapped_f_groups = pr_locus_features_groups & c_locus_features_groups
+                    prl_strand, cl_strand = p_locus_strands[0], c_locus_strands[0]
+                    pr_locus_features_strands = {f.group: f.strand * prl_strand for f in p_locus.features if
+                                                 f.group in overlapped_f_groups}
+                    c_locus_features_strands = {f.group: f.strand * cl_strand for f in c_locus.features if
+                                                f.group in overlapped_f_groups}
+                    codirection_score = 0
+
+                    for ovg in overlapped_f_groups:
+                        codirection_score += pr_locus_features_strands[ovg] * c_locus_features_strands[ovg]
+                    if codirection_score < 0:
+                        count_of_changed_strands += 1
+                        annot_coordinates = []
+                        for cc in loci[locus_index].coordinates:
+                            cc["strand"] *= -1
+                            annot_coordinates.append(f"{cc['start']}:{cc['end']}:{cc['strand']}")
+                        loci[locus_index].coordinates = loci[locus_index].coordinates[::-1]
+                        annot_coordinates = annot_coordinates[::-1]
+                        self.loci_annotation.loc[c_locus.seq_id, "coordinates"] = ",".join(annot_coordinates)
+                else:
+                    if self.prms.args["verbose"]:
+                        print("❗ Warning: loci reorientation cannot be applied for loci that have both strands in"
+                              " pre-defined coordinates for visualisation")
             if self.prms.args["verbose"]:
                 if count_of_changed_strands == 0:
                     print(f"🔁 Orientation was not changed for any locus", file=sys.stdout)
@@ -925,6 +936,7 @@ class Loci:
             return None
         except Exception as error:
             raise lovis4u.Manager.lovis4uError("Unable to define variable feature groups.") from error
+
 
     def get_loci_lengths_and_n_of_regions(self) -> list[list[int]]:
         """Get loci lengths and number of regions.

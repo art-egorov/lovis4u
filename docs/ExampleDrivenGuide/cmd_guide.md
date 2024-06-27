@@ -11,7 +11,7 @@ If you run it for fun and want to change it back you can use `lovis4u --mac`.
 
 ^^For demonstration we will use pharokka generated gff files with sequences of 5 Enterobacteria phages.  
 Gff files are stored at: *lovis4u_data/guide/gff_files*.^^      
-The main difference of pharokka generated gff files from regular gff3 (for ex. which you can download from the NCBI) is that in addition to annotation rows they contain corresponding to the annotation nucleotide sequence. 
+The main difference of pharokka generated gff files from regular gff3 (for ex. which you can download from the NCBI) is that in addition to annotation rows they contain corresponding to the annotation nucleotide sequence in fasta format.
 
 ---
 
@@ -19,27 +19,27 @@ The main difference of pharokka generated gff files from regular gff3 (for ex. w
 
 Let's start with running lovis4u without using any optional argument. The only mandatory argument is a folder path containing pharokka generated gff (`-gff`) files or genbank files (`-gb`).   
 
-```
+```sh
 lovis4u -gff lovis4u_data/guide/gff_files
 ``` 
 
 As results of running this command an output folder named lovis4u_{current_date} (e.g. lovis4u_2024_04_28-16_36) will be created.  
 Name of the output folder can be changed with `-o <output_folder_name>`.
 
-**Output folder structure:**
+??? card_hearts "**Output folder structure**" 
 
-- *lovis4u.pdf* - vector graphic output (file name can be changed with `--pdf-name <filename>` parameter)  
-- *loci_annotation_table.tsv* - table containing annotation (sequence_id, length, coordinates, etc..) for each locus.  
-- *features_annotation_table.tsv* - table containing annotation (feature_id, locus_id, coordinates, etc..) for each feature (e.g. CDS)  
-- *mmseqs* (folder)  
-	- *DB* - folder with mmseqs' databases.  
-	- *mmmseqs_clustering.tsv* - table with proteomes clustering results.  
-	- *mmmseqs_(stdout/stderr).txt* - mmseqs logs.  
-	- *input_proteins.fa* - fasta file with all annotated protein sequences (input to mmseqs).  
-- *proteome_similarity_matrix.tsv* - pairwise proteome similarity scores indicating fraction of shared proteins homologues.  
+	- *lovis4u.pdf* - vector graphic output (file name can be changed with `--pdf-name <filename>` parameter)  
+	- *loci_annotation_table.tsv* - table containing annotation (sequence_id, length, coordinates, etc..) for each locus.  
+	- *features_annotation_table.tsv* - table containing annotation (feature_id, locus_id, coordinates, etc..) for each feature (e.g. CDS)  
+	- *mmseqs* (folder)  
+		- *DB* - folder with mmseqs' databases.  
+		- *mmmseqs_clustering.tsv* - table with proteomes clustering results.  
+		- *mmmseqs_(stdout/stderr).txt* - mmseqs logs.  
+		- *input_proteins.fa* - fasta file with all annotated protein sequences (input to mmseqs).  
+	- *proteome_similarity_matrix.tsv* - pairwise proteome similarity scores indicating fraction of shared proteins homologues.  
 
-*Visualisation results:*
-<img  src="img/lovis4u_default_1.png" width="100%"/>
+
+![f1](cmd_guide/img/lovis4u_default_1.png){loading=lazy width="100%" }  
 
 **By default, lovis4u utilises the following data preprocessing steps:**
 
@@ -58,12 +58,12 @@ Name of the output folder can be changed with `-o <output_folder_name>`.
 
 While loci in our test set are already correctly orientated, let's add -hl parameter to update the output.
 
-```
+```sh
 lovis4u -gff lovis4u_data/guide/gff_files  -hl -o lovis4u_output
 ```
-<img  src="img/lovis4u_default_hl.png" width="100%"/>
+![f2](cmd_guide/img/lovis4u_default_hl.png){loading=lazy width="100%" }  
 
-## Using loci annotation table 
+## Using locus annotation table 
 
 As it was already mentioned, full length of each locus is taken for visualisation by default. However, you can specify coordinates of multiple regions for each locus to be shown. This coordinates together with other information about each locus can be specified in loci annotation table and used as input with `-laf` or `--loci-annotation-file` parameter. 
 
@@ -87,11 +87,11 @@ Here we specified only the coordinates, order and group for each locus. Order an
 The table can be found in the guide folder: *lovis4u_data/guide/loci_annotation_table_alt.tsv*
 
 Now we can run: 
-```
+```sh
 lovis4u -gff lovis4u_data/guide/gff_files  -hl -o lovis4u_output \
 	--loci-annotation-file lovis4u_data/guide/loci_annotation_table_alt.tsv -cl-off
 ```
-<img  src="img/lovis4u_window_1.png" width="100%"/>
+![f3](cmd_guide/img/lovis4u_window_1.png){loading=lazy width="100%" }  
 
 
 ## Using features annotation table 
@@ -106,12 +106,13 @@ And here we also can use in input with parameter `-faf` or `--features-annotatio
 
 This table can be found in the guide folder: *lovis4u_data/guide/features_annotation_table_alt.tsv*
 
-```
+```sh
 lovis4u -gff lovis4u_data/guide/gff_files  -hl -o lovis4u_output \
 	--loci-annotation-file lovis4u_data/guide/loci_annotation_table_alt.tsv -cl-off \
 	--features-annotation-file lovis4u_data/guide/features_annotation_table_alt.tsv
 ```
-<img  src="img/lovis4u_updated_name.png" width="100%"/>
+![f4](cmd_guide/img/lovis4u_updated_name.png){loading=lazy width="100%" }  
+
 
 Here also **important to note** that if you don't use feature attribute *"group_type"* defined by full loci run, then it will be re-defined by mmseqs run on subset of proteins found only in specified regions (you can deactivate it with `--find-variable-off` and `--mmseqs-off`) . It can result in situation that ORF called in that case "variable" in reality are encoded by each proteome but outside of their shown coordinates. 
 
@@ -121,31 +122,34 @@ Here also **important to note** that if you don't use feature attribute *"group_
 
 Using parameter `--set-category-color` you can use category annotation column for features. By default it was designed to parse PHROGs category annotation for proteins and retrieve information about category in "function" qualifiers in Genbank or GFF files *(used qualifiers can be changed in config file)*. However, you can set up category for each CDS using described above features annotation table with "category" column. Additionally, you can set up color code for your categories using `--category-color-table`. For categories not found in a table a random color will be set. By default, lovis4u uses pre-made color table which location is *lovis4u_data/category_colors.tsv*. 
 
-```
+```sh
 lovis4u -gff lovis4u_data/guide/gff_files -hl --set-category-color
 ```
-<img  src="img/lovis4u_category_colour.png" width="100%"/>
+![f5](cmd_guide/img/lovis4u_category_colour.png){loading=lazy width="100%" }  
+
 
 
 ### Scale line instead of individual x-axis
 
 Using parameter `--hide-x-axis` you can deactivate visualisation of individual x-axis for each locus track and instead of them with `-slt` or `--scale-line-track` you can draw a scale line track below.
 
-```
+```sh
 lovis4u -gff lovis4u_data/guide/gff_files -hl --hide-x-axis --scale-line-track
 ``` 
-<img  src="img/lovis4u_scale.png" width="100%"/>  
+![f6](cmd_guide/img/lovis4u_scale.png){loading=lazy width="100%" }  
+
 
 ### Highlighting conserved genes instead of variable
 
 For many analysis purposes (e.g. conserved neighbourhood visualisation) we need to colorise conserved gene clusters instead of variable. It can be easily switched in lovis4u using `--set-group-color-for` parameter. By default it's set as "variable" but using `--set-group-color-for shell/core` will change it to the opposite mode.  
 **Note** that if you have other feature group set in your features annotation table and want to set auto-colorising for them as well you can specify them in space separated list with this argument (e.g. `--set-group-color-for shell/core your_group_1 your_group_2`.
 
-```
+```sh
 lovis4u -gff lovis4u_data/guide/gff_files -hl --set-group-color-for shell/core 
 ```
 
-<img  src="img/lovis4u_conserved_colorised.png" width="100%"/>  
+![f7](cmd_guide/img/lovis4u_conserved_colorised.png){loading=lazy width="100%" }  
+
 
 **Note:** By default colours for groups are randomly set for each group using [seaborn husl palette](https://seaborn.pydata.org/tutorial/color_palettes.html). In config file you can change to more intense hsl palette or change the desaturation parameter.
 
@@ -156,8 +160,9 @@ Lovis4u tries to set an optimal figure width taking into account nucleotide size
 2) With `-fw, --figure-width <float value [cm]>` parameter which defines total output figure width.  
 We demonstrate usage by plotting compact visualisation of full loci together with `--show-first-feature-label-for` argument with empty list deactivating showing first occurrence label for shell/core genes.
 
-```
+```sh
 lovis4u -gff lovis4u_data/guide/gff_files -hl -o width_test --show-first-feature-label-for --figure-width 7
 ```
-<img  src="img/lovis4u_set_width.png" width="100%"/>  
+![f8](cmd_guide/img/lovis4u_set_width.png){loading=lazy width="100%" }  
+
 

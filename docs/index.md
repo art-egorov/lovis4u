@@ -1,9 +1,8 @@
 
-<img  src="img/lovis4u_logo.png" width="250"/>
-#
+# ![logo](img/lovis4u_logo.png){loading=lazy width="265" }  
 ## Description
 
-**LoVis4u** is a bioinformatics tool for **Lo**ci **Vis**ualisation.
+**LoVis4u** is a bioinformatics tool for **Lo**cus **Vis**ualisation.
 
 **Supported input**: Genbank, gff3 with sequence    
 **Supported output**: Static vector graphics (pdf)   
@@ -17,15 +16,16 @@
 
 
 **Pipeline:**
-<img  src="img/lovis4u_pipeline_only.png" width="100%"/>
+![pipeline](img/lovis4u_pipeline_only.png){loading=lazy width="100%" }  
+
 
 **Visualisation example:**
-<img  src="img/output_example_advanced_multiple_regions_labeled.png" width="100%"/>
+![visex](img/output_example_advanced_multiple_regions_labeled.png){loading=lazy width="100%" }  
 
 
 ## Installation
 
-- The most stable release of lovis4u can be installed directly from pypi:
+- LoVis4u can be installed directly from pypi:
 
 ```
 python3 -m pip install lovis4u
@@ -57,5 +57,5 @@ You can also use [Discussions section](https://github.com/art-egorov/lovis4u/dis
 
 ## Authors 
 
-LoVis4u is developed by Artyom Egorov at [the Atkinson Lab](https://atkinson-lab.com), Department of Experimental Medical Science, Lund University, Sweden 🇸🇪. We are open for suggestions to extend and improve LoVis4u functionality. Please don't hesitate to share your ideas or feature requests.
+LoVis4u is developed by Artyom Egorov at [the Atkinson Lab](https://atkinson-lab.com), Department of Experimental Medical Science, Lund University, Sweden. We are open for suggestions to extend and improve LoVis4u functionality. Please don't hesitate to share your ideas or feature requests.
 

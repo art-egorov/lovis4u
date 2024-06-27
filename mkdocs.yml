@@ -12,8 +12,8 @@ theme:
     palette:
     # Palette toggle for light mode
       - scheme: default
-        primary: grey
-        accent: yellow
+        primary: lovis4u_brown
+        accent: lovis4u_yellow
     icon:
       logo: lovis4u_small
 
@@ -37,14 +37,12 @@ nav:
     - Configuration file parameters: Parameters/config_parameters.md
   - API:
     - Usage examples: API/usage_examples.md
-    - lovis4u.DataProcessing: API/package_data_processing.md
-    - lovis4u.Manager: API/package_manager.md
-    - lovis4u.Drawing: API/package_drawing.md
-    - lovis4u.Methods: API/package_methods.md
+    - Library: API/package.md
   - Version log: VersionLog/versions.md
 
 markdown_extensions:
  - def_list
+ - md_in_html
  - pymdownx.tasklist:
        custom_checkbox: true
  - admonition
@@ -69,11 +67,15 @@ markdown_extensions:
  - pymdownx.caret
  - pymdownx.keys
  - pymdownx.mark
+ - attr_list
  - pymdownx.tilde
+ - pymdownx.details
+ - pymdownx.superfences
 
 plugins:
  - search
  - table-reader
+ - glightbox
  - markdown-exec
  - section-index
  - autorefs

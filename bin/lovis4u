@@ -1,0 +1,58 @@
+#!/usr/bin/python3
+import traceback
+import lovis4u
+import sys
+
+try:
+    parameters = lovis4u.Manager.Parameters()
+    parameters.parse_cmd_arguments()
+    parameters.load_config(parameters.cmd_arguments["config_file"])
+
+    loci = lovis4u.DataProcessing.Loci(parameters=parameters)
+
+    if parameters.args["locus-annotation"]:
+        loci.load_locus_annotation_file(parameters.args["locus-annotation"])
+    if parameters.args["feature-annotation"]:
+        loci.load_feature_annotation_file(parameters.args["feature-annotation"])
+    if parameters.args["gff"]:
+        loci.load_loci_from_extended_gff(parameters.args["gff"])
+    elif parameters.args["gb"]:
+        loci.load_loci_from_gb(parameters.args["gb"])
+
+    if parameters.args["mmseqs"]:
+        mmseqs_clustering_results = loci.mmseqs_cluster()
+        loci.define_feature_groups(mmseqs_clustering_results)
+        if parameters.args["clust_loci"]:
+            loci.cluster_sequences(mmseqs_clustering_results)
+        if parameters.args["find-variable"]:
+            loci.find_variable_feature_groups(mmseqs_clustering_results)
+    if parameters.args["reorient_loci"]:
+        loci.reorient_loci()
+
+    if parameters.args["set-group-colour"]:
+        loci.set_feature_colours_based_on_groups()
+
+    if parameters.args["set-category-colour"]:
+        loci.set_category_colours()
+
+    loci.define_labels_to_be_shown()
+    loci.save_feature_annotation_table()
+    loci.save_locus_annotation_table()
+
+    canvas_manager = lovis4u.Manager.CanvasManager(parameters)
+    canvas_manager.define_layout(loci)
+    canvas_manager.add_loci_tracks(loci)
+    if parameters.args["scale-line-track"]:
+        canvas_manager.add_scale_line_track()
+    if parameters.args["set-category-colour"]:
+        canvas_manager.add_categories_colour_legend_track(loci)
+    if parameters.args["homology-track"]:
+        canvas_manager.add_homology_track()
+    canvas_manager.plot(filename=parameters.args["pdf-name"])
+except:
+    if parameters.args["debug"]:
+        traceback.print_exc()
+    else:
+        for i in (traceback.format_exc()).split('\n'):
+            if "lovis4uError:" in i:
+                print(f"lovis4uError 💔:{i.split(':')[1]}", file=sys.stderr)

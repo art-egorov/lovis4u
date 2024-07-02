@@ -1,0 +1,109 @@
+site_name: LoVis4u
+
+
+repo_url: https://github.com/art-egorov/lovis4u.git
+edit_uri: ''  #disables edit button
+
+
+theme:
+    name: material
+    custom_dir: docs/material
+    favicon: assets/images/favicon.ico
+    palette:
+    # Palette toggle for light mode
+      - scheme: default
+        primary: lovis4u_brown
+        accent: lovis4u_yellow
+    icon:
+      logo: lovis4u_small
+
+    features:
+        - content.code.annotate
+        - announce.dismiss
+        - navigation.tabs
+        - toc.integrate
+        - header.autohide
+
+extra_css:
+- css/material.css
+- css/mkdocstrings.css
+
+
+nav:
+  - Home: index.md
+  - Example-driven guide: ExampleDrivenGuide/cmd_guide.md
+  - Parameters:
+    - Command-line parameters: Parameters/cmd_parameters.md
+    - Configuration file parameters: Parameters/config_parameters.md
+  - API:
+    - Usage examples: API/usage_examples.md
+    - Library: API/package.md
+  - Version log: VersionLog/versions.md
+
+markdown_extensions:
+ - def_list
+ - md_in_html
+ - pymdownx.tasklist:
+       custom_checkbox: true
+ - admonition
+ - footnotes
+ - pymdownx.emoji
+ - pymdownx.magiclink
+ - pymdownx.snippets:
+     check_paths: true
+ - pymdownx.superfences
+ - pymdownx.tabbed:
+     alternate_style: true
+ - pymdownx.tasklist
+ - pymdownx.highlight
+ - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+ - pymdownx.inlinehilite
+ - pymdownx.snippets
+ - pymdownx.superfences
+ - pymdownx.critic
+ - pymdownx.caret
+ - pymdownx.keys
+ - pymdownx.mark
+ - attr_list
+ - pymdownx.tilde
+ - pymdownx.details
+ - pymdownx.superfences
+
+plugins:
+ - search
+ - table-reader
+ - glightbox
+ - markdown-exec
+ - section-index
+ - autorefs
+ - mkdocstrings:
+    watch: 
+      - lovis4u
+    handlers:
+      python:
+        import:
+        - https://docs.python.org/3/objects.inv
+        - https://www.mkdocs.org/objects.inv
+        - https://python-markdown.github.io/objects.inv
+        options:
+          docstring_style: google
+          docstring_options:
+            ignore_init_summary: no
+          separate_signature: False
+          show_signature_annotation: True
+          show_source: True
+          show_root_heading: False
+          show_root_full_path: True
+          show_object_full_path: False
+          show_category_heading: False
+          merge_init_into_class: False
+          docstring_section_style: list
+
+extra:
+  generator: false
+  analytics:
+    provider: google
+    property: G-4JWMGFSKXS

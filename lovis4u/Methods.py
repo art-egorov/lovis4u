@@ -60,7 +60,7 @@ def copy_package_data() -> None:
         if os.path.exists(users_dir):
             raise lovis4u.Manager.lovis4uError("lovis4u_data folder already exists.")
         shutil.copytree(internal_dir, users_dir, ignore=shutil.ignore_patterns("help*", ".*"))
-        print("🗃️ lovis4u_data folder was copied to the current working directory", file=sys.stdout)
+        print("⚙ lovis4u_data folder was copied to the current working directory", file=sys.stdout)
         return None
     except Exception as error:
         raise lovis4u.Manager.lovis4uError(f"Unable to copy lovis4u folder in your working dir.") from error

@@ -39,6 +39,9 @@ COMMAND-LINE PARAMETERS
 -cl-off, --clust_loci-off
     Deactivate defining locus order and using similarity based hierarchical
     clustering of proteomes.
+-oc, --one-cluster
+    Consider all sequences to be members of one cluster but use clustering
+    dendrogram to define the optimal order.
 -reorient_loci, --reorient_loci
     Auto re-orient loci (set new strands) if they are not matched.
     (Function tries to maximise co-orientation of homologous features.)

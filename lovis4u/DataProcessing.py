@@ -188,9 +188,10 @@ class Loci:
         """
         self.loci = []
         self.locus_annotation = pd.DataFrame(columns=["sequence_id", "length", "coordinates", "circular", "description",
-                                                     "order", "group"]).set_index("sequence_id")
+                                                      "order", "group"]).set_index("sequence_id")
         self.feature_annotation = pd.DataFrame(columns=["feature_id", "locus_id", "coordinates", "feature_type", "name",
-                                                        "group", "group_type", "category", "fill_colour", "stroke_colour",
+                                                        "group", "group_type", "category", "fill_colour",
+                                                        "stroke_colour",
                                                         "show_label"]).set_index("feature_id")
         self.prms = parameters
 
@@ -290,7 +291,7 @@ class Loci:
                 self.feature_annotation.loc[feature_id]["fill_colour"] and \
                 self.feature_annotation.loc[feature_id]["fill_colour"] != "default":
             stroke_colour = lovis4u.Methods.scale_lightness(self.feature_annotation.loc[feature_id]["fill_colour"],
-                                                           self.prms.args["feature_stroke_colour_relative_lightness"])
+                                                            self.prms.args["feature_stroke_colour_relative_lightness"])
         default_values = dict(locus_id=locus_id, coordinates=coordinates, feature_type=feature_type,
                               name=name, group="", group_type="", category=category, fill_colour="default",
                               stroke_colour=stroke_colour,
@@ -672,7 +673,7 @@ class Loci:
         except Exception as error:
             raise lovis4u.Manager.lovis4uError("Unable define feature labels to be shown.") from error
 
-    def cluster_sequences(self, dataframe: pd.DataFrame, same_cluster=False) -> None:
+    def cluster_sequences(self, dataframe: pd.DataFrame, one_cluster: bool) -> None:
         """Define loci order and clusters with proteome similarity based hierarchical clustering.
             This function changes the order of loci that are plotted and also updates corresponding to each loci group
             attribute which defines homologues groups of proteomes.
@@ -684,6 +685,8 @@ class Loci:
         Arguments:
               dataframe (pd.DataFrame): dataframe with feature id - group pairs. Its index column should
                 represent all loci CDS features.
+                one_cluster (bool): consider all sequences to be members of one cluster, but still define the
+                optimal order.
 
         Returns:
             None
@@ -722,8 +725,10 @@ class Loci:
                 scipy.spatial.distance.squareform(symmetric_distance_matrix),
                 method="average")
             dendrogram = scipy.cluster.hierarchy.dendrogram(linkage_matrix, no_plot=True)
-            if not same_cluster:
-                clusters = pd.Series(scipy.cluster.hierarchy.fcluster(linkage_matrix, 0.35, criterion="distance"),
+            if not one_cluster:
+                clusters = pd.Series(scipy.cluster.hierarchy.fcluster(linkage_matrix,
+                                                                      self.prms.args["clustering_h_value"],
+                                                                      criterion="distance"),
                                      index=loci_ids)
                 for locus in self.loci:
                     locus.group = clusters[locus.seq_id]
@@ -774,8 +779,12 @@ class Loci:
         """
         try:
             loci_clusters_sizes = self.locus_annotation["group"].value_counts()
-            loci_clusters_cutoffs = np.round(self.prms.args["CDS_is_variable_cutoff"] * loci_clusters_sizes).astype(int)
-            loci_clusters_cutoffs[loci_clusters_cutoffs == 0] = 1
+            loci_clusters_cutoff_v = np.round(self.prms.args["CDS_is_variable_cutoff"] * loci_clusters_sizes).astype(
+                int)
+            loci_clusters_cutoff_c = np.round(self.prms.args["CDF_is_conserved_cutoff"] * loci_clusters_sizes).astype(
+                int)
+            print(loci_clusters_cutoff_c)
+            loci_clusters_cutoff_v[loci_clusters_cutoff_v == 0] = 1
             cluster_types = collections.defaultdict(dict)
             for cluster in set(mmseqs_results["cluster"].to_list()):
                 cluster_proteins = mmseqs_results[mmseqs_results["cluster"] == cluster].index
@@ -787,8 +796,12 @@ class Loci:
                                                   locus.group == cluster_locus_group]
                     current_group_cluster_size = len(set(current_group_cluster_loci))
                     if loci_clusters_sizes[cluster_locus_group] > 1 and \
-                            current_group_cluster_size <= loci_clusters_cutoffs[cluster_locus_group]:
+                            current_group_cluster_size <= loci_clusters_cutoff_v[cluster_locus_group]:
                         cluster_types[cluster_locus_group][cluster] = "variable"
+                    elif loci_clusters_sizes[cluster_locus_group] > 1 and \
+                            (loci_clusters_cutoff_v[cluster_locus_group] < current_group_cluster_size <
+                             loci_clusters_cutoff_c[cluster_locus_group]):
+                        cluster_types[cluster_locus_group][cluster] = "intermediate"
                     else:
                         cluster_types[cluster_locus_group][cluster] = "conserved"
             for locus in self.loci:
@@ -819,13 +832,13 @@ class Loci:
             number_of_unique_feature_groups = len(feature_groups)
             if self.prms.args["groups_fill_colour_palette_lib"] == "seaborn":
                 colours_rgb = seaborn.color_palette(self.prms.args["groups_fill_colour_seaborn_palette"],
-                                                   number_of_unique_feature_groups,
-                                                   desat=self.prms.args["groups_fill_colour_seaborn_desat"])
+                                                    number_of_unique_feature_groups,
+                                                    desat=self.prms.args["groups_fill_colour_seaborn_desat"])
                 random.shuffle(colours_rgb)
             elif self.prms.args["groups_fill_colour_palette_lib"] == "distinctipy":
                 colours_rgb = distinctipy.get_colors(number_of_unique_feature_groups,
-                                                    exclude_colours=[(1, 1, 1), (0, 0, 0)],
-                                                    pastel_factor=self.prms.args["groups_fill_colours_pastel_factor"])
+                                                     exclude_colours=[(1, 1, 1), (0, 0, 0)],
+                                                     pastel_factor=self.prms.args["groups_fill_colours_pastel_factor"])
             colours = list(map(lambda x: matplotlib.colors.rgb2hex(x), colours_rgb))
             colours_dict = {g: c for g, c in zip(list(feature_groups), colours)}
             for locus in self.loci:
@@ -865,8 +878,8 @@ class Loci:
             feature_categories = [ff for ff in feature_categories if ff not in colours_dict.keys()]
             number_of_unique_feature_functions = len(feature_categories)
             colours_rgb = seaborn.color_palette(self.prms.args["category_colour_seaborn_palette"],
-                                               number_of_unique_feature_functions,
-                                               desat=self.prms.args["category_colour_seaborn_desat"])
+                                                number_of_unique_feature_functions,
+                                                desat=self.prms.args["category_colour_seaborn_desat"])
             random.shuffle(colours_rgb)
             colours = list(map(lambda x: matplotlib.colors.rgb2hex(x), colours_rgb))
             colours_dict.update({g: c for g, c in zip(list(feature_categories), colours)})
@@ -936,7 +949,6 @@ class Loci:
             return None
         except Exception as error:
             raise lovis4u.Manager.lovis4uError("Unable to define variable feature groups.") from error
-
 
     def get_loci_lengths_and_n_of_regions(self) -> list[list[int]]:
         """Get loci lengths and number of regions.

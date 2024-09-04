@@ -64,6 +64,7 @@ class Parameters:
         parser.add_argument("-mmseqs-off", "--mmseqs-off", dest="mmseqs", action="store_false")
         parser.add_argument("-fv-off", "--find-variable-off", dest="find-variable", action="store_false")
         parser.add_argument("-cl-off", "--clust_loci-off", dest="clust_loci", action="store_false")
+        parser.add_argument("-oc", "--one-cluster", dest="one_cluster", action="store_true", default=None)
         parser.add_argument("-reorient_loci", "--reorient_loci", dest="reorient_loci", action="store_true")
         parser.add_argument("-lls", "--locus-label-style", dest="locus_label_style",
                             choices=["id", "description", "full"],
@@ -91,7 +92,7 @@ class Parameters:
         parser.add_argument("-o", dest="output_dir", type=str, default=None)
         parser.add_argument("--pdf-name", dest="pdf-name", type=str, default="lovis4u.pdf")
         parser.add_argument("-c", dest="config_file", type=str, default="standard")
-        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.0.6")
+        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.0.7")
         parser.add_argument("-q", "--quiet", dest="verbose", default=True, action="store_false")
         parser.add_argument("--debug", "-debug", dest="debug", action="store_true")
         parser.add_argument("-h", "--help", dest="help", action="store_true")

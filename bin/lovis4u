@@ -23,7 +23,7 @@ try:
         mmseqs_clustering_results = loci.mmseqs_cluster()
         loci.define_feature_groups(mmseqs_clustering_results)
         if parameters.args["clust_loci"]:
-            loci.cluster_sequences(mmseqs_clustering_results)
+            loci.cluster_sequences(mmseqs_clustering_results, one_cluster= parameters.args["one_cluster"])
         if parameters.args["find-variable"]:
             loci.find_variable_feature_groups(mmseqs_clustering_results)
     if parameters.args["reorient_loci"]:

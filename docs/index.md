@@ -12,16 +12,17 @@
 **Python version:** >= 3.9  
 **OS-level dependencies:** MMseqs2 (included in the package)  
 **License:** WTFPL  
-**Version:** 0.0.7 (July 2024)
+**Version:** 0.0.7 (September 2024)
 
 
 
-**Pipeline:**
-![pipeline](img/lovis4u_pipeline_only.png){loading=lazy width="100%" }  
+**Pipeline and visualisation examples**
+
+![pipeline](img/lovis4u_pipeline.png){loading=lazy width="100%" }  
 
 
-**Visualisation example:**
-![visex](img/output_example_advanced_multiple_regions_labeled.png){loading=lazy width="100%" }  
+**Visualisation examples:**
+![visex](img/lovis4u_visualisation_examples.png){loading=lazy width="100%" }  
 
 
 ## Installation

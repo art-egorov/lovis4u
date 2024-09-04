@@ -16,12 +16,12 @@
 
 
 
-**Pipeline and visualisation examples**
+**Pipeline**
 
 ![pipeline](img/lovis4u_pipeline.png){loading=lazy width="100%" }  
 
 
-**Visualisation examples:**
+**Visualisation examples**
 ![visex](img/lovis4u_visualisation_examples.png){loading=lazy width="100%" }  
 
 
@@ -41,7 +41,7 @@ cd lovis4u
 python3 -m pip install --upgrade pip
 python3 -m pip install setuptools wheel
 python3 setup.py sdist
-python3 -m pip install -e .
+python3 -m pip install .
 ```
 
 **!** If you're a linux user, run `lovis4u --linux` post-install command once to update paths in the premade config files that set by default for MacOS users.

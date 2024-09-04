@@ -30,7 +30,7 @@ Then, for each pair of proteomes we calculate the pairwise distance value which 
 
 Within each proteome cluster we can find homologous protein groups that are encoded in different fractions of the proteomes. Those that are found in the majority of proteomes we call *“conserved”* (equivalent to “core” in pan-genome analyses). Those protein groups that are found in a relatively small fraction of proteomes then we call *“variable”* (equivalent to “cloud” in pan-genome analyses). Finally, those protein groups that are neither very variable nor very conserved, we refer to as *“intermediate”*  (“shell” in pan-genome analyses).
 
-For each protein group $g_i$ within a proteome cluster $c$ that consists of $N_c$ proteomes, we the define protein group presence fraction as $f_i =  N_c^{g_i}/N_c$, where $N_c^{g_i}$ is the number of proteomes of $c$ community that contain the $g_i$ protein group. if $f_i < 0.25$ $g_i$ group class is set as *"variable"*, if $ 0.25 \leq f_i \leq 0.75$ then $g_i$ is *"intermediate"*, and, if $ f_i > 0.75 $ we say that $g_i$ is *"conserved"*. 
+For each protein group $g_i$ within a proteome cluster $c$ that consists of $N_c$ proteomes, we the define protein group presence fraction as $f_i =  N_c^{g_i}/N_c$, where $N_c^{g_i}$ is the number of proteomes of $c$ community that contain the $g_i$ protein group. if $f_i \leq 0.25$ $g_i$ group class is set as *"variable"*, if $ 0.25 < f_i < 0.75$ then $g_i$ is *"intermediate"*, and, if $ f_i \geq 0.75 $ we say that $g_i$ is *"conserved"*. 
 
 
 ## Feature and Locus annotation tables 

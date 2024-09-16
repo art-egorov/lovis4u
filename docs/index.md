@@ -49,8 +49,9 @@ python3 -m pip install .
 
 ## Reference 
 
-If you find lovis4u useful, please cite:  
-Artyom. A. Egorov, Gemma C. Atkinson, **lovis4u: ...**, *...*
+If you find LoVis4u useful, please cite:  
+Artyom. A. Egorov, Gemma C. Atkinson, **LoVis4u: Locus Visualisation tool for comparative genomics**, *bioRxiv 2024.09.11.612399; doi: [10.1101/2024.09.11.612399](https://doi.org/10.1101/2024.09.11.612399)*
+
 
 ## Contact 
 

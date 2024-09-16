@@ -1,8 +1,12 @@
 # Example-driven guide
 
 Here we show usage examples of the lovis4u command-line interface. Through this guide we will show you step-by-step how to optimise your visualisation starting from default parameters.
- 
-**Before start:** The necessary sample data as well as adjustable tool configuration files are provided by lovis4u at the post-install step with the command:    
+
+## Before start
+
+### Data preparation 
+
+The necessary sample data as well as adjustable tool configuration files are provided by lovis4u at the post-install step with the command:    
 `lovis4u --data` This copies the *lovis4u_data* folder to your working directory.
   
 **If you work on a Linux machine:** after installation you should run: `lovis4u --linux`  
@@ -13,7 +17,40 @@ If you run this command for fun and want to change it back you can use `lovis4u 
 Gff files are stored at: lovis4u_data/guide/gff_files.^^      
 The main difference between pharokka generated gff files and regular gff3 (for ex. which you can download from the NCBI) is that in addition to the annotation rows the annotation contains the corresponding nucleotide sequence in fasta format.
 
----
+### Building compatible gff files based on nucleotide sequences
+
+If your query set of sequences for visualisation contains only nucleotide fasta files, below we will provide the efficient way of using [pharokka](https://pharokka.readthedocs.io/en/latest/) (phage annotation pipeline) and [prokka](https://github.com/tseemann/prokka) (prokaryotic genome annotation pipeline) for preparing gff files compatible with LoVis4u. 
+
+#### Using pharokka for annotation of phage genomes
+
+Before running pharokka you need to install pharokka databases (and pharokka itself, of course). Due to the number of non-python dependencies we recommend using a conda environment for this task. See [pharokka documentation page](https://pharokka.readthedocs.io/en/latest/install/) for clear instructions.
+
+Firstly, you can merge multiple sequences into one fasta file (could be done simply by using cat: `cat folder_with_fasta_files/*.fa > merged_fasta.fa`.  
+We recommend to merge multiple sequences to one file and using meta mode since in that case we do not load databases for each contig while annotating. 
+  
+Then, you can use pharokka in meta mode with one command:  
+```sh
+pharokka.py -i merged_fasta.fa  -o pharokka_output  --meta --split -t Num_of_threads \
+	--skip_mash --dnaapler  -database path_do_pharokka_database 
+```
+
+Gff files for each query contig will be stored at: *pharokka_output/single_gffs*
+
+#### Using prokka for annotation of prokaryotic genomes
+
+Prokka does not have an equivalent of meta mode which we used in pharokka in the example above. Therefore, for any number of input sequences we prefer running prokka independently for each contig instead of dividing more complex gff files, which requires an additional step. Again, for prokka installation instruction and parameter description see  [prokka documentation page](https://github.com/tseemann/prokka).
+
+In case your input fasta query files (^^one sequence per file^^) are located in *single_records* folders you can run:
+```sh
+for f in single_records/*.fa;  do fb=$(basename $f); nm=${fb//.fa/}; \ 
+	echo prokka --outdir prokka/$nm --prefix $nm --quiet --cpus 1 $f ; \
+	done | parallel -j num_of_available_threads
+```
+Then you can move generated gff files to one folder using:
+```sh
+for f in prokka/*; do fb=$(basename $f); echo mv  $f/$fb.gff prokka_gffs/ ; done | parallel
+```
+
 
 ## Example run with default parameters
 

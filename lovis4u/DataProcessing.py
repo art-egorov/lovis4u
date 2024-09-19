@@ -318,90 +318,94 @@ class Loci:
                 input_folder = input_f
                 if not os.path.exists(input_folder):
                     raise lovis4u.Manager.lovis4uError(f"Folder {input_folder} does not exist.")
-                gff_files = [os.path.join(input_folder, f) for f in os.listdir(input_folder) if
-                             os.path.splitext(f)[-1].lower() == ".gff"]
+                gff_files = [os.path.join(input_folder, f) for f in os.listdir(input_folder)]
             elif isinstance(input_f, list):
                 gff_files = input_f
             else:
                 raise lovis4u.manager.lovis4uError(f"The input for the GFF parsing function must be either a folder or "
                                                    f"a list of files.")
             if not gff_files:
-                raise lovis4u.manager.lovis4uError(f"Folder {input_f} does not contain .gff(.GFF) files.")
+                raise lovis4u.manager.lovis4uError(f"Folder {input_f} does not contain files.")
+            if self.prms.args["verbose"]:
+                print(f"○ Reading gff file{'s' if len(gff_files) > 1 else ''}...", file=sys.stdout)
             for gff_file_path in gff_files:
-                gff_file = gff_file_path
-                gff_records = list(BCBio.GFF.parse(gff_file_path, limit_info=dict(gff_type=["CDS"])))
-                if len(gff_records) != 1:
-                    raise lovis4u.Manager.lovis4uError(f"Gff file {gff_file} does not contain information for only"
-                                                       f" 1 sequence.")
-                gff_record = gff_records[0]
                 try:
-                    record_locus_sequence = gff_record.seq
-                except Bio.Seq.UndefinedSequenceError as error:
-                    raise lovis4u.Manager.lovis4uError(f"gff file doesn't contain corresponding sequences.") from error
-                if self.prms.args["gff_description_source"] in gff_record.annotations:
-                    record_description = gff_record.annotations[self.prms.args["gff_description_source"]][0]
-                    if isinstance(record_description, tuple):
-                        record_description = " ".join(record_description)
-                else:
-                    record_description = ""
+                    gff_file = gff_file_path
+                    gff_records = list(BCBio.GFF.parse(gff_file_path, limit_info=dict(gff_type=["CDS"])))
+                    if len(gff_records) != 1:
+                        print(f"○ Warning: gff file {gff_file} contains information for more than 1 "
+                              f"sequence. File will be skipped.")
+                        continue
+                    gff_record = gff_records[0]
+                    try:
+                        record_locus_sequence = gff_record.seq
+                    except Bio.Seq.UndefinedSequenceError as error:
+                        print(f"○ Warning: gff file {gff_file} doesn't contain corresponding sequences.")
+                        continue
+                    if self.prms.args["gff_description_source"] in gff_record.annotations:
+                        record_description = gff_record.annotations[self.prms.args["gff_description_source"]][0]
+                        if isinstance(record_description, tuple):
+                            record_description = " ".join(record_description)
+                    else:
+                        record_description = ""
 
-                self.__update_locus_annotation(gff_record.id, record_description, len(record_locus_sequence))
-                locus_annotation_row = self.locus_annotation.loc[gff_record.id]
-                coordinates = [dict(zip(["start", "end", "strand"], map(int, c.split(":")))) for c in
-                               locus_annotation_row["coordinates"].split(",")]
-                record_locus = Locus(seq_id=gff_record.id, coordinates=coordinates,
-                                     description=locus_annotation_row["description"],
-                                     circular=locus_annotation_row["circular"],
-                                     length=locus_annotation_row["length"], parameters=self.prms, features=[],
-                                     order=locus_annotation_row["order"])
-                features_ids = [i.id for i in gff_record.features]
-                if len(features_ids) != len(set(features_ids)):
-                    raise lovis4u.Manager.lovis4uError(f"Gff file {gff_file} contains duplicated feature ids while"
-                                                       f" only unique are allowed.")
-                for gff_feature in gff_record.features:
-                    feature_id = gff_feature.id
-                    if ilund4u_mode:
-                        if gff_record.id not in feature_id:
-                            feature_id = f"{gff_record.id}-{feature_id}"
-                    transl_table = self.prms.args["default_transl_table"]
-                    if "transl_table" in gff_feature.qualifiers.keys():
-                        transl_table = int(gff_feature.qualifiers["transl_table"][0])
-                    name = ""
-                    if self.prms.args["gff_CDS_name_source"] in gff_feature.qualifiers:
-                        name = gff_feature.qualifiers[self.prms.args["gff_CDS_name_source"]][0]
-                    category = ""
-                    if self.prms.args["gff_CDS_category_source"] in gff_feature.qualifiers:
-                        category = ",".join(gff_feature.qualifiers[self.prms.args["gff_CDS_category_source"]])
-                    for coordinate in record_locus.coordinates:
-                        start, end = coordinate["start"], coordinate["end"]
-                        if start <= gff_feature.location.start + 1 <= end or start <= gff_feature.location.end <= end:
-                            self.__update_feature_annotation(feature_id, record_locus.seq_id,
-                                                             f"{int(gff_feature.location.start) + 1}:"
-                                                             f"{int(gff_feature.location.end)}:{gff_feature.location.strand}",
-                                                             "CDS", category, name)
-                            feature_annotation_row = self.feature_annotation.loc[feature_id]
-                            feature = Feature(feature_type=feature_annotation_row["feature_type"],
-                                              feature_id=feature_id, start=int(gff_feature.location.start) + 1,
-                                              end=int(gff_feature.location.end), strand=gff_feature.location.strand,
-                                              name=feature_annotation_row["name"],
-                                              sequence=gff_feature.translate(record_locus_sequence, table=transl_table,
-                                                                             cds=False)[:-1],
-                                              group=feature_annotation_row["group"],
-                                              group_type=feature_annotation_row["group_type"],
-                                              category=feature_annotation_row["category"],
-                                              vis_prms=dict(fill_colour=feature_annotation_row["fill_colour"],
-                                                            stroke_colour=feature_annotation_row["stroke_colour"],
-                                                            show_label=feature_annotation_row["show_label"]),
-                                              parameters=self.prms)
-                            record_locus.features.append(feature)
-                self.loci.append(record_locus)
+                    self.__update_locus_annotation(gff_record.id, record_description, len(record_locus_sequence))
+                    locus_annotation_row = self.locus_annotation.loc[gff_record.id]
+                    coordinates = [dict(zip(["start", "end", "strand"], map(int, c.split(":")))) for c in
+                                   locus_annotation_row["coordinates"].split(",")]
+                    record_locus = Locus(seq_id=gff_record.id, coordinates=coordinates,
+                                         description=locus_annotation_row["description"],
+                                         circular=locus_annotation_row["circular"],
+                                         length=locus_annotation_row["length"], parameters=self.prms, features=[],
+                                         order=locus_annotation_row["order"])
+                    features_ids = [i.id for i in gff_record.features]
+                    if len(features_ids) != len(set(features_ids)):
+                        raise lovis4u.Manager.lovis4uError(f"Gff file {gff_file} contains duplicated feature ids while"
+                                                           f" only unique are allowed.")
+                    for gff_feature in gff_record.features:
+                        feature_id = gff_feature.id
+                        if ilund4u_mode:
+                            if gff_record.id not in feature_id:
+                                feature_id = f"{gff_record.id}-{feature_id}"
+                        transl_table = self.prms.args["default_transl_table"]
+                        if "transl_table" in gff_feature.qualifiers.keys():
+                            transl_table = int(gff_feature.qualifiers["transl_table"][0])
+                        name = ""
+                        if self.prms.args["gff_CDS_name_source"] in gff_feature.qualifiers:
+                            name = gff_feature.qualifiers[self.prms.args["gff_CDS_name_source"]][0]
+                        category = ""
+                        if self.prms.args["gff_CDS_category_source"] in gff_feature.qualifiers:
+                            category = ",".join(gff_feature.qualifiers[self.prms.args["gff_CDS_category_source"]])
+                        for coordinate in record_locus.coordinates:
+                            start, end = coordinate["start"], coordinate["end"]
+                            if start <= gff_feature.location.start + 1 <= end or start <= gff_feature.location.end <= end:
+                                self.__update_feature_annotation(feature_id, record_locus.seq_id,
+                                                                 f"{int(gff_feature.location.start) + 1}:"
+                                                                 f"{int(gff_feature.location.end)}:{gff_feature.location.strand}",
+                                                                 "CDS", category, name)
+                                feature_annotation_row = self.feature_annotation.loc[feature_id]
+                                feature = Feature(feature_type=feature_annotation_row["feature_type"],
+                                                  feature_id=feature_id, start=int(gff_feature.location.start) + 1,
+                                                  end=int(gff_feature.location.end), strand=gff_feature.location.strand,
+                                                  name=feature_annotation_row["name"],
+                                                  sequence=gff_feature.translate(record_locus_sequence, table=transl_table,
+                                                                                 cds=False)[:-1],
+                                                  group=feature_annotation_row["group"],
+                                                  group_type=feature_annotation_row["group_type"],
+                                                  category=feature_annotation_row["category"],
+                                                  vis_prms=dict(fill_colour=feature_annotation_row["fill_colour"],
+                                                                stroke_colour=feature_annotation_row["stroke_colour"],
+                                                                show_label=feature_annotation_row["show_label"]),
+                                                  parameters=self.prms)
+                                record_locus.features.append(feature)
+                    self.loci.append(record_locus)
+                except:
+                    print(f"○ Warning: gff file {gff_file} was not read properly and skipped")
             seq_id_to_order = self.locus_annotation["order"].to_dict()
             self.loci.sort(key=lambda locus: seq_id_to_order[locus.seq_id])
             if self.prms.args["verbose"]:
-                if len(self.loci) == 1:
-                    print(f"⦿ {len(self.loci)} locus was loaded from extended gff files folder", file=sys.stdout)
-                else:
-                    print(f"⦿ {len(self.loci)} loci were loaded from extended gff files folder", file=sys.stdout)
+                print(f"⦿ {len(self.loci)} {'locus was' if len(self.loci) == 1 else 'loci were'} loaded from genbank "
+                      f"files folder", file=sys.stdout)
             return None
         except Exception as error:
             raise lovis4u.Manager.lovis4uError("Unable to load loci from gff folder.") from error
@@ -421,99 +425,102 @@ class Loci:
         if not os.path.exists(input_folder):
             raise lovis4u.Manager.lovis4uError(f"Folder {input_folder} does not exist.")
         try:
-            gb_files = [f for f in os.listdir(input_folder) if os.path.splitext(f)[-1].lower() == ".gb"]
+            gb_files = [f for f in os.listdir(input_folder)]
             if not gb_files:
-                raise lovis4u.Manager.lovis4uError(f"Folder {input_folder} does not contain .gb(.GB) files.")
+                raise lovis4u.Manager.lovis4uError(f"Folder {input_folder} does not contain files.")
+            if self.prms.args["verbose"]:
+                print(f"○ Reading gb file{'s' if len(gb_files) > 1 else ''}...", file=sys.stdout)
             for gb_file in gb_files:
-                gb_file_path = os.path.join(input_folder, gb_file)
-                gb_records = list(Bio.SeqIO.parse(gb_file_path, "genbank"))
-                if len(gb_records) != 1:
-                    raise lovis4u.Manager.lovis4uError(f"gb file {gb_file} does not contain information for only"
-                                                       f" 1 sequence.")
-                gb_record = gb_records[0]
-                record_locus_sequence = gb_record.seq
-                if self.prms.args["genbank_description_source"] == "description":
-                    record_description = gb_record.description
-                elif "annotations:" in self.prms.args["genbank_description_source"]:
-                    feature_description_key = self.prms.args["genbank_description_source"].split(":")[1]
-                    record_description = gb_record.annotations[feature_description_key]
-                else:
-                    record_description = ""
-                self.__update_locus_annotation(gb_record.id, record_description, len(record_locus_sequence))
-                locus_annotation_row = self.locus_annotation.loc[gb_record.id]
-                coordinates = [dict(zip(["start", "end", "strand"], map(int, c.split(":")))) for c in
-                               locus_annotation_row["coordinates"].split(",")]
-                record_locus = Locus(seq_id=gb_record.id, coordinates=coordinates,
-                                     description=locus_annotation_row["description"],
-                                     circular=locus_annotation_row["circular"],
-                                     length=locus_annotation_row["length"], parameters=self.prms, features=[],
-                                     order=locus_annotation_row["order"])
+                try:
+                    gb_file_path = os.path.join(input_folder, gb_file)
+                    gb_records = list(Bio.SeqIO.parse(gb_file_path, "genbank"))
+                    if len(gb_records) != 1:
+                        print(f"○ Warning: gb file {gb_file} contains information for more than 1 "
+                              f"sequence. File will be skipped.")
+                        continue
+                    gb_record = gb_records[0]
+                    record_locus_sequence = gb_record.seq
+                    if self.prms.args["genbank_description_source"] == "description":
+                        record_description = gb_record.description
+                    elif "annotations:" in self.prms.args["genbank_description_source"]:
+                        feature_description_key = self.prms.args["genbank_description_source"].split(":")[1]
+                        record_description = gb_record.annotations[feature_description_key]
+                    else:
+                        record_description = ""
+                    self.__update_locus_annotation(gb_record.id, record_description, len(record_locus_sequence))
+                    locus_annotation_row = self.locus_annotation.loc[gb_record.id]
+                    coordinates = [dict(zip(["start", "end", "strand"], map(int, c.split(":")))) for c in
+                                   locus_annotation_row["coordinates"].split(",")]
+                    record_locus = Locus(seq_id=gb_record.id, coordinates=coordinates,
+                                         description=locus_annotation_row["description"],
+                                         circular=locus_annotation_row["circular"],
+                                         length=locus_annotation_row["length"], parameters=self.prms, features=[],
+                                         order=locus_annotation_row["order"])
 
-                gb_CDSs = [i for i in gb_record.features if i.type == "CDS"]
-                first_CDS_record = gb_CDSs[0]
-                id_source = self.prms.args["genbank_id_source"]
-                if self.prms.args["genbank_id_source"] not in first_CDS_record.qualifiers:
-                    for alternative_id_source in self.prms.args["genbank_id_alternative_source"]:
-                        if alternative_id_source in first_CDS_record.qualifiers:
-                            id_source = alternative_id_source
-                            if self.prms.args["verbose"]:
-                                print(f"○ Warning: there is no <{self.prms.args['genbank_id_source']}> attribute "
-                                      f"for CDS records in {gb_file}. Alternative <{id_source}> was used instead.",
-                                      file=sys.stdout)
-                            break
-                    if id_source == self.prms.args["genbank_id_source"]:
-                        raise lovis4u.Manager.lovis4uError(f"There is no <{self.prms.args['genbank_id_source']}> "
-                                                           f"attribute for CDS record found in {gb_file}. We tried to"
-                                                           f" find any from the alternative list: "
-                                                           f"{','.join(self.prms.args['genbank_id_alternative_source'])}"
-                                                           f", but they also weren't found.")  # add about cmd parameter
-                features_ids = [i.qualifiers[id_source][0] for i in gb_CDSs]
-                if len(features_ids) != len(set(features_ids)):
-                    raise lovis4u.Manager.lovis4uError(f"GB file {gb_record} contains duplicated feature ids while"
-                                                       f" only unique are allowed.")
-                for gb_feature in gb_CDSs:
-                    feature_id = gb_feature.qualifiers[id_source][0].replace("|", "_")
-                    transl_table = self.prms.args["default_transl_table"]
-                    if "transl_table" in gb_feature.qualifiers.keys():
-                        transl_table = int(gb_feature.qualifiers["transl_table"][0])
-                    name = ""
-                    if self.prms.args["genbank_CDS_name_source"] in gb_feature.qualifiers:
-                        name = gb_feature.qualifiers[self.prms.args["genbank_CDS_name_source"]][0]
-                    category = ""
-                    if self.prms.args["genbank_CDS_category_source"] in gb_feature.qualifiers:
-                        category = ",".join(gb_feature.qualifiers[self.prms.args["genbank_CDS_category_source"]])
-                    for coordinate in record_locus.coordinates:
-                        start, end = coordinate["start"], coordinate["end"]
-                        if start <= gb_feature.location.start + 1 <= end or start <= gb_feature.location.end <= end:
-                            self.__update_feature_annotation(feature_id, record_locus.seq_id,
-                                                             f"{int(gb_feature.location.start) + 1}:"
-                                                             f"{int(gb_feature.location.end)}:"
-                                                             f"{gb_feature.location.strand}", "CDS", category, name)
-                            feature_annotation_row = self.feature_annotation.loc[feature_id]
-                            feature = Feature(feature_type=feature_annotation_row["feature_type"],
-                                              feature_id=feature_id, start=int(gb_feature.location.start) + 1,
-                                              end=int(gb_feature.location.end),
-                                              strand=gb_feature.location.strand, name=feature_annotation_row["name"],
-                                              sequence=gb_feature.translate(record_locus_sequence, table=transl_table,
-                                                                            cds=False)[:-1],
-                                              group=feature_annotation_row["group"],
-                                              group_type=feature_annotation_row["group_type"],
-                                              category=feature_annotation_row["category"],
-                                              vis_prms=dict(fill_colour=feature_annotation_row["fill_colour"],
-                                                            stroke_colour=feature_annotation_row["stroke_colour"],
-                                                            show_label=feature_annotation_row["show_label"]),
-                                              parameters=self.prms)
+                    gb_CDSs = [i for i in gb_record.features if i.type == "CDS"]
+                    first_CDS_record = gb_CDSs[0]
+                    id_source = self.prms.args["genbank_id_source"]
+                    if self.prms.args["genbank_id_source"] not in first_CDS_record.qualifiers:
+                        for alternative_id_source in self.prms.args["genbank_id_alternative_source"]:
+                            if alternative_id_source in first_CDS_record.qualifiers:
+                                id_source = alternative_id_source
+                                if self.prms.args["verbose"]:
+                                    print(f"○ Warning: there is no <{self.prms.args['genbank_id_source']}> attribute "
+                                          f"for CDS records in {gb_file}. Alternative <{id_source}> was used instead.",
+                                          file=sys.stdout)
+                                break
+                        if id_source == self.prms.args["genbank_id_source"]:
+                            raise lovis4u.Manager.lovis4uError(f"There is no <{self.prms.args['genbank_id_source']}> "
+                                                               f"attribute for CDS record found in {gb_file}. We tried to"
+                                                               f" find any from the alternative list: "
+                                                               f"{','.join(self.prms.args['genbank_id_alternative_source'])}"
+                                                               f", but they also weren't found.")  # add about cmd parameter
+                    features_ids = [i.qualifiers[id_source][0] for i in gb_CDSs]
+                    if len(features_ids) != len(set(features_ids)):
+                        raise lovis4u.Manager.lovis4uError(f"GB file {gb_record} contains duplicated feature ids while"
+                                                           f" only unique are allowed.")
+                    for gb_feature in gb_CDSs:
+                        feature_id = gb_feature.qualifiers[id_source][0].replace("|", "_")
+                        transl_table = self.prms.args["default_transl_table"]
+                        if "transl_table" in gb_feature.qualifiers.keys():
+                            transl_table = int(gb_feature.qualifiers["transl_table"][0])
+                        name = ""
+                        if self.prms.args["genbank_CDS_name_source"] in gb_feature.qualifiers:
+                            name = gb_feature.qualifiers[self.prms.args["genbank_CDS_name_source"]][0]
+                        category = ""
+                        if self.prms.args["genbank_CDS_category_source"] in gb_feature.qualifiers:
+                            category = ",".join(gb_feature.qualifiers[self.prms.args["genbank_CDS_category_source"]])
+                        for coordinate in record_locus.coordinates:
+                            start, end = coordinate["start"], coordinate["end"]
+                            if start <= gb_feature.location.start + 1 <= end or start <= gb_feature.location.end <= end:
+                                self.__update_feature_annotation(feature_id, record_locus.seq_id,
+                                                                 f"{int(gb_feature.location.start) + 1}:"
+                                                                 f"{int(gb_feature.location.end)}:"
+                                                                 f"{gb_feature.location.strand}", "CDS", category, name)
+                                feature_annotation_row = self.feature_annotation.loc[feature_id]
+                                feature = Feature(feature_type=feature_annotation_row["feature_type"],
+                                                  feature_id=feature_id, start=int(gb_feature.location.start) + 1,
+                                                  end=int(gb_feature.location.end),
+                                                  strand=gb_feature.location.strand, name=feature_annotation_row["name"],
+                                                  sequence=gb_feature.translate(record_locus_sequence, table=transl_table,
+                                                                                cds=False)[:-1],
+                                                  group=feature_annotation_row["group"],
+                                                  group_type=feature_annotation_row["group_type"],
+                                                  category=feature_annotation_row["category"],
+                                                  vis_prms=dict(fill_colour=feature_annotation_row["fill_colour"],
+                                                                stroke_colour=feature_annotation_row["stroke_colour"],
+                                                                show_label=feature_annotation_row["show_label"]),
+                                                  parameters=self.prms)
 
-                            record_locus.features.append(feature)
-                self.loci.append(record_locus)
+                                record_locus.features.append(feature)
+                    self.loci.append(record_locus)
+                except:
+                    print(f"○ Warning: gff file {gb_file} was not read properly and skipped")
             seq_id_to_order = self.locus_annotation["order"].to_dict()
             self.loci.sort(key=lambda locus: seq_id_to_order[locus.seq_id])
             if self.prms.args["verbose"]:
-                if len(self.loci) == 1:
-                    print(f"⦿ {len(self.loci)} locus was loaded from genbank files folder", file=sys.stdout)
-                else:
-                    print(f"⦿ {len(self.loci)} loci were loaded from genbank files folder", file=sys.stdout)
-
+                print(f"⦿ {len(self.loci)} {'locus was' if len(self.loci) == 1 else 'loci were'} loaded from genbank "
+                      f"files folder", file=sys.stdout)
             return None
         except Exception as error:
             raise lovis4u.Manager.lovis4uError("Unable to load loci from gb folder.") from error
@@ -783,7 +790,6 @@ class Loci:
                 int)
             loci_clusters_cutoff_c = np.round(self.prms.args["CDF_is_conserved_cutoff"] * loci_clusters_sizes).astype(
                 int)
-            print(loci_clusters_cutoff_c)
             loci_clusters_cutoff_v[loci_clusters_cutoff_v == 0] = 1
             cluster_types = collections.defaultdict(dict)
             for cluster in set(mmseqs_results["cluster"].to_list()):

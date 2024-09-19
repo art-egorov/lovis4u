@@ -4,7 +4,7 @@
 
 ## Description
 
-**LoVis4u** is a bioinformatics tool for **Lo**ci **Vis**ualisation.
+**LoVis4u** is a bioinformatics tool for **Lo**cus **Vis**ualisation.
 
 **Supported input**: Genbank, gff3 with sequence    
 **Supported output**: Static vector graphics (pdf)   

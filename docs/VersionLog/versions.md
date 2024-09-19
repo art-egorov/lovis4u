@@ -1,6 +1,10 @@
 # Version log
 
-* **Ver 0.0.7** - 4 September 2024 
+* **Ver 0.0.8** - 18 September 2024 
+	- Suffix requirments for input files are removed.
+	- Subset of files with incorrect format will not lead to the error, only to the warning message.
+
+* Ver 0.0.7 - 4 September 2024 
 	-  Minor API update. 
 	- `--one-cluster` parameter is added.
 

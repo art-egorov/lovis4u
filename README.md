@@ -14,7 +14,7 @@
 **Python version:** >= 3.8  
 **OS-level dependencies:** MMseqs2 (included in the package)  
 **License:** WTFPL  
-**Version:** 0.0.8 (September 2024)
+**Version:** 0.0.9 (September 2024)
 
 **Detailed documentation with user guide is available at [LoVis4u Homepage](https://art-egorov.github.io/lovis4u/)**
 
@@ -23,8 +23,11 @@
 <img  src="docs/img/lovis4u_pipeline.png" width="100%"/>
 
 **Visualisation examples:**
-<img  src="docs/img/lovis4u_visualisation_examples.png" width="100%"/>
 
+Full-length visualisation  
+<img  src="docs/img/lovis4u_default_hl_A4p2.png" width="100%"/>
+
+See the [gallery page](https://art-egorov.github.io/ilund4u/Gallery/gallery) for more examples.
 
 
 ## Installation

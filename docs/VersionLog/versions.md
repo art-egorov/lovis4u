@@ -1,6 +1,12 @@
 # Version log
 
-* **Ver 0.0.8** - 18 September 2024 
+* **Ver 0.0.9** - 27 September 2024 
+	- Set of new configuration files and styles for layouts of A4 page (one-,two-columns, and landscape)
+	- New design and locus label positions.
+	- New config and cmd parameters.
+	- Update of the home page with new uiser guide and the gallery page.
+
+* Ver 0.0.8 - 18 September 2024 
 	- Suffix requirments for input files are removed.
 	- Subset of files with incorrect format will not lead to the error, only to the warning message.
 
@@ -8,7 +14,7 @@
 	-  Minor API update. 
 	- `--one-cluster` parameter is added.
 
-* Ver 0.0.6 - 2 Juye 2024 
+* Ver 0.0.6 - 2 July 2024 
 	-  Update of parameter names.
 
 * Ver 0.0.5 - 27 June 2024 

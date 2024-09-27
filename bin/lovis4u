@@ -18,7 +18,6 @@ try:
         loci.load_loci_from_extended_gff(parameters.args["gff"])
     elif parameters.args["gb"]:
         loci.load_loci_from_gb(parameters.args["gb"])
-
     if parameters.args["mmseqs"]:
         mmseqs_clustering_results = loci.mmseqs_cluster()
         loci.define_feature_groups(mmseqs_clustering_results)
@@ -26,6 +25,8 @@ try:
             loci.cluster_sequences(mmseqs_clustering_results, one_cluster= parameters.args["one_cluster"])
         if parameters.args["find-variable"]:
             loci.find_variable_feature_groups(mmseqs_clustering_results)
+        if parameters.args["cluster_all_proteins"]:
+            loci.remove_non_overlapping_features()
     if parameters.args["reorient_loci"]:
         loci.reorient_loci()
 
@@ -42,7 +43,7 @@ try:
     canvas_manager = lovis4u.Manager.CanvasManager(parameters)
     canvas_manager.define_layout(loci)
     canvas_manager.add_loci_tracks(loci)
-    if parameters.args["scale-line-track"]:
+    if parameters.args["draw_scale_line_track"]:
         canvas_manager.add_scale_line_track()
     if parameters.args["set-category-colour"]:
         canvas_manager.add_categories_colour_legend_track(loci)

@@ -128,6 +128,22 @@ def str_height_to_size(height: float, font_type: str) -> float:
     font_size = (1000 * 1.38 * height) / (face.ascent - face.descent)
     return font_size
 
+def str_font_size_to_height(font_size: float, font_type: str) -> float:
+    """Transform string font size to height.
+
+    Arguments:
+        font_size (float): font_size.
+        font_type (str): font type (see config file; at this moment only regular is available).
+
+    Returns:
+        float:  height of the string.
+
+    """
+
+    face = reportlab.pdfbase.pdfmetrics.getFont(font_type).face
+    height = font_size * (face.ascent - face.descent) / (1000*1.38)
+    return height
+
 
 def update_path_extension(path: str, new_extension: str) -> str:
     """Get path basename and replace its extension

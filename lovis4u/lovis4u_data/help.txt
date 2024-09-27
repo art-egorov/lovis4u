@@ -1,4 +1,4 @@
-LoVis4u (version 0.0.8):
+LoVis4u (version 0.0.9):
 Home page and documentation: https://github.com/art-egorov/lovis4u
 The Atkinson Lab 4U | AE
 -------------------------------
@@ -26,6 +26,9 @@ COMMAND-LINE PARAMETERS
     Path to a folder containing genbank files.
 -------------------------------
 [OPTIONAL ARGUMENTS | DATA PROCESSING]
+-ufid, --use-filename-as-id
+    Use filename (wo extension) as track (contig) id instead
+    of the contig id written in the gff/gb file.
 -laf, --locus-annotation-file <file path>
     Path to the locus annotation table.
     (See documentation for details)
@@ -33,7 +36,10 @@ COMMAND-LINE PARAMETERS
     Path to the feature annotation table.
     (See documentation for details)
 -mmseqs-off, --mmseqs-off
-   Deactivate mmseqs clustering of proteomes of loci.
+    Deactivate mmseqs clustering of proteomes of loci.
+-cl-owp, --cluster-only-window-proteins
+    Cluster only proteins that are overlapped with
+    the visualisation windows, not all.
 -fv-off, --find-variable-off
     Deactivate annotation of variable or conserved protein clusters.
 -cl-off, --clust_loci-off
@@ -60,6 +66,8 @@ COMMAND-LINE PARAMETERS
     Default table can be found in lovis4u_data folder.
 -lls, --locus-label-style <id|description|full>
     Locus label style based on input sequence annotation.
+-llp, --locus-label-position <left|bottom>
+    Locus label position on figure.
 -safl, --show-all-feature-labels
     Display all feature labels.
 -sflf, --show-feature-label-for  <feature_group1 [feature group2 ...]>
@@ -72,6 +80,8 @@ COMMAND-LINE PARAMETERS
 -ifl, --ignored-feature-labels <feature_label1 [feature_label2 ...]>
     Space-separated list of feature names for which label won't be shown.
     [default: hypothetical protein, unknown protein]
+-sxa, --show-x-axis
+    Plot individual x-axis for each locus track.
 -hix, --hide-x-axis
     Do not plot individual x-axis for each locus track.
 -dml, --draw-middle-line

@@ -1,0 +1,249 @@
+feature_id	locus_id	coordinates	feature_type	name	group	group_type	category	fill_colour	stroke_colour	show_label
+NC_001895.1_CDS_0001	NC_001895.1	64:2286:1	CDS	nicking at origin of replication	NC_005056.1_CDS_0001	conserved	DNA, RNA and nucleotide metabolism	default	default	0
+NC_001895.1_CDS_0002	NC_001895.1	2283:2612:1	CDS	hypothetical protein	NC_005056.1_CDS_0002	intermediate	unknown function	default	default	0
+NC_001895.1_CDS_0003	NC_001895.1	2651:3412:-1	CDS	hypothetical protein	NC_001895.1_CDS_0003	variable	unknown function	#f165db	default	0
+NC_001895.1_CDS_0004	NC_001895.1	3587:5347:-1	CDS	hypothetical protein	NC_001895.1_CDS_0004	variable	unknown function	#95a134	default	0
+NC_001895.1_CDS_0005	NC_001895.1	5347:5517:-1	CDS	hypothetical protein	NC_001895.1_CDS_0005	variable	unknown function	#9e9e34	default	0
+NC_001895.1_CDS_0006	NC_001895.1	5517:5639:-1	CDS	hypothetical protein	NC_001895.1_CDS_0006	variable	unknown function	#8aa434	default	0
+NC_001895.1_CDS_0007	NC_001895.1	5747:6781:-1	CDS	portal protein	NC_028943.1_CDS_0004	conserved	head and packaging	default	default	0
+NC_001895.1_CDS_0008	NC_001895.1	6781:8553:-1	CDS	terminase large subunit	NC_028943.1_CDS_0005	conserved	head and packaging	default	default	0
+NC_001895.1_CDS_0009	NC_001895.1	8661:9581:1	CDS	head scaffolding protein	NC_001895.1_CDS_0009	conserved	head and packaging	default	default	0
+NC_001895.1_CDS_0010	NC_001895.1	9640:10713:1	CDS	hypothetical protein	NC_001895.1_CDS_0010	conserved	unknown function	default	default	0
+NC_001895.1_CDS_0011	NC_001895.1	10717:11460:1	CDS	terminase small subunit	NC_028943.1_CDS_0008	conserved	head and packaging	default	default	0
+NC_001895.1_CDS_0012	NC_001895.1	11560:12069:1	CDS	head-tail adaptor Ad1	NC_001895.1_CDS_0012	conserved	connector	default	default	0
+NC_001895.1_CDS_0013	NC_001895.1	12069:12272:1	CDS	baseplate hub	NC_005056.1_CDS_0015	conserved	tail	default	default	0
+NC_001895.1_CDS_0014	NC_001895.1	12276:12557:1	CDS	holin	NC_005056.1_CDS_0016	conserved	lysis	default	default	0
+NC_001895.1_CDS_0015	NC_001895.1	12557:13054:1	CDS	endolysin	NC_001895.1_CDS_0015	conserved	lysis	default	default	0
+NC_001895.1_CDS_0016	NC_001895.1	13069:13494:1	CDS	endolysin	NC_049461.1_CDS_0015	conserved	lysis	default	default	0
+NC_001895.1_CDS_0017	NC_001895.1	13482:13907:1	CDS	Rz-like spanin	NC_049457.1_CDS_0019	conserved	lysis	default	default	0
+NC_001895.1_CDS_0018	NC_001895.1	13894:14052:1	CDS	Rz-like spanin	NC_049461.1_CDS_0017	conserved	lysis	default	default	0
+NC_001895.1_CDS_0019	NC_001895.1	14015:14482:1	CDS	tail terminator	NC_001895.1_CDS_0019	conserved	connector	default	default	0
+NC_001895.1_CDS_0020	NC_001895.1	14475:14927:1	CDS	hypothetical protein	NC_005056.1_CDS_0022	conserved	unknown function	default	default	0
+NC_001895.1_CDS_0021	NC_001895.1	14999:15784:-1	CDS	hypothetical protein	NC_049457.1_CDS_0023	intermediate	unknown function	default	default	0
+NC_001895.1_CDS_0022	NC_001895.1	15868:16503:1	CDS	baseplate assembly protein	NC_001895.1_CDS_0022	conserved	tail	default	default	0
+NC_001895.1_CDS_0023	NC_001895.1	16500:16847:1	CDS	baseplate wedge subunit	NC_049461.1_CDS_0022	conserved	tail	default	default	0
+NC_001895.1_CDS_0024	NC_001895.1	16852:17760:1	CDS	baseplate protein	NC_049461.1_CDS_0023	conserved	tail	default	default	0
+NC_001895.1_CDS_0025	NC_001895.1	17753:18283:1	CDS	tail protein	NC_005056.1_CDS_0026	conserved	tail	default	default	0
+NC_001895.1_CDS_0026	NC_001895.1	18294:20303:1	CDS	tail fiber protein	NC_049457.1_CDS_0028	conserved	tail	default	default	0
+NC_001895.1_CDS_0027	NC_001895.1	20307:20834:1	CDS	tail fiber assembly protein	NC_001895.1_CDS_0027	conserved	tail	default	default	0
+NC_001895.1_CDS_0028	NC_001895.1	20836:20925:1	CDS	hypothetical protein	NC_001895.1_CDS_0028	variable	unknown function	#3ca7c3	default	0
+NC_001895.1_CDS_0029	NC_001895.1	21015:21119:1	CDS	hypothetical protein	NC_001895.1_CDS_0029	variable	unknown function	#f3729b	default	0
+NC_001895.1_CDS_0030	NC_001895.1	21235:22821:-1	CDS	hypothetical protein	NC_001895.1_CDS_0030	variable	unknown function	#5e9ff1	default	0
+NC_001895.1_CDS_0031	NC_001895.1	22829:22990:-1	CDS	hypothetical protein	NC_001895.1_CDS_0031	variable	unknown function	#f27937	default	0
+NC_001895.1_CDS_0032	NC_001895.1	22962:23192:-1	CDS	hypothetical protein	NC_001895.1_CDS_0032	variable	unknown function	#ca8f36	default	0
+NC_001895.1_CDS_0033	NC_001895.1	23212:24402:1	CDS	hypothetical protein	NC_028943.1_CDS_0027	conserved	unknown function	default	default	0
+NC_001895.1_CDS_0034	NC_001895.1	24421:24933:1	CDS	head closure	NC_001895.1_CDS_0034	conserved	connector	default	default	0
+NC_001895.1_CDS_0035	NC_001895.1	24990:25265:1	CDS	tail protein	NC_001895.1_CDS_0035	conserved	tail	default	default	0
+NC_001895.1_CDS_0036	NC_001895.1	25298:25417:1	CDS	tail protein	NC_001895.1_CDS_0036	conserved	tail	default	default	0
+NC_001895.1_CDS_0037	NC_001895.1	25410:27857:1	CDS	tail length tape measure protein	NC_028943.1_CDS_0031	conserved	tail	default	default	0
+NC_001895.1_CDS_0038	NC_001895.1	27872:28351:1	CDS	tail protein	NC_001895.1_CDS_0038	conserved	tail	default	default	0
+NC_001895.1_CDS_0039	NC_001895.1	28351:29514:1	CDS	tail protein	NC_001895.1_CDS_0039	conserved	tail	default	default	0
+NC_001895.1_CDS_0040	NC_001895.1	29560:29814:1	CDS	transcriptional regulator	NC_001895.1_CDS_0040	conserved	transcription regulation	default	default	0
+NC_001895.1_CDS_0041	NC_001895.1	29895:30005:-1	CDS	hypothetical protein	NC_001895.1_CDS_0041	variable	unknown function	#40a2e8	default	0
+NC_001895.1_CDS_0042	NC_001895.1	30022:31035:-1	CDS	integrase	NC_049461.1_CDS_0043	conserved	integration and excision	default	default	0
+NC_001895.1_CDS_0043	NC_001895.1	31151:31450:-1	CDS	transcriptional regulator	NC_049461.1_CDS_0044	conserved	transcription regulation	default	default	0
+NC_001895.1_CDS_0044	NC_001895.1	31565:31840:1	CDS	Cox-like excisionase and repressor	NC_049457.1_CDS_0046	conserved	integration and excision	default	default	0
+NC_001895.1_CDS_0045	NC_001895.1	31851:32021:1	CDS	hypothetical protein	NC_049461.1_CDS_0047	conserved	unknown function	default	default	0
+NC_001895.1_CDS_0046	NC_001895.1	32012:32518:1	CDS	hypothetical protein	NC_049457.1_CDS_0048	conserved	unknown function	default	default	0
+NC_001895.1_CDS_0047	NC_001895.1	32582:32806:1	CDS	hypothetical protein	NC_005056.1_CDS_0046	conserved	unknown function	default	default	0
+NC_001895.1_CDS_0048	NC_001895.1	32806:33108:1	CDS	replication initiation protein	NC_049457.1_CDS_0050	conserved	DNA, RNA and nucleotide metabolism	default	default	0
+NC_001895.1_CDS_0049	NC_001895.1	33108:33332:1	CDS	DksA-like zinc-finger protein	NC_049461.1_CDS_0051	conserved	other	default	default	0
+NC_001895.1_CDS_0050	NC_001895.1	33329:33592:1	CDS	hypothetical protein	NC_005056.1_CDS_0049	conserved	unknown function	default	default	0
+NC_049461.1_CDS_0001	NC_049461.1	139:2283:1	CDS	nicking at origin of replication	NC_005056.1_CDS_0001	conserved	DNA, RNA and nucleotide metabolism	default	default	0
+NC_049461.1_CDS_0002	NC_049461.1	2430:2657:1	CDS	hypothetical protein	NC_049461.1_CDS_0002	variable	unknown function	#f26bc1	default	0
+NC_049461.1_CDS_0003	NC_049461.1	2654:3739:-1	CDS	hypothetical protein	NC_049461.1_CDS_0003	variable	unknown function	#3aa9ae	default	0
+NC_049461.1_CDS_0004	NC_049461.1	3795:3932:1	CDS	hypothetical protein	NC_049461.1_CDS_0004	variable	unknown function	#7d9af1	default	0
+NC_049461.1_CDS_0005	NC_049461.1	4010:4162:1	CDS	hypothetical protein	NC_049461.1_CDS_0005	variable	unknown function	#e28336	default	0
+NC_049461.1_CDS_0006	NC_049461.1	4309:5343:-1	CDS	portal protein	NC_028943.1_CDS_0004	conserved	head and packaging	default	default	0
+NC_049461.1_CDS_0007	NC_049461.1	5343:7115:-1	CDS	terminase large subunit	NC_028943.1_CDS_0005	conserved	head and packaging	default	default	0
+NC_049461.1_CDS_0008	NC_049461.1	7223:8143:1	CDS	head scaffolding protein	NC_001895.1_CDS_0009	conserved	head and packaging	default	default	0
+NC_049461.1_CDS_0009	NC_049461.1	8202:9275:1	CDS	hypothetical protein	NC_001895.1_CDS_0010	conserved	unknown function	default	default	0
+NC_049461.1_CDS_0010	NC_049461.1	9279:10016:1	CDS	terminase small subunit	NC_028943.1_CDS_0008	conserved	head and packaging	default	default	0
+NC_049461.1_CDS_0011	NC_049461.1	10116:10625:1	CDS	head-tail adaptor Ad1	NC_001895.1_CDS_0012	conserved	connector	default	default	0
+NC_049461.1_CDS_0012	NC_049461.1	10625:10828:1	CDS	baseplate hub	NC_005056.1_CDS_0015	conserved	tail	default	default	0
+NC_049461.1_CDS_0013	NC_049461.1	10832:11113:1	CDS	holin	NC_005056.1_CDS_0016	conserved	lysis	default	default	0
+NC_049461.1_CDS_0014	NC_049461.1	11113:11610:1	CDS	endolysin	NC_001895.1_CDS_0015	conserved	lysis	default	default	0
+NC_049461.1_CDS_0015	NC_049461.1	11625:12050:1	CDS	endolysin	NC_049461.1_CDS_0015	conserved	lysis	default	default	0
+NC_049461.1_CDS_0016	NC_049461.1	12038:12463:1	CDS	Rz-like spanin	NC_049457.1_CDS_0019	conserved	lysis	default	default	0
+NC_049461.1_CDS_0017	NC_049461.1	12450:12608:1	CDS	Rz-like spanin	NC_049461.1_CDS_0017	conserved	lysis	default	default	0
+NC_049461.1_CDS_0018	NC_049461.1	12571:13038:1	CDS	tail terminator	NC_001895.1_CDS_0019	conserved	connector	default	default	0
+NC_049461.1_CDS_0019	NC_049461.1	13031:13489:1	CDS	hypothetical protein	NC_005056.1_CDS_0022	conserved	unknown function	default	default	0
+NC_049461.1_CDS_0020	NC_049461.1	13501:14241:1	CDS	hypothetical protein	NC_049461.1_CDS_0020	variable	unknown function	#a58ff2	default	0
+NC_049461.1_CDS_0021	NC_049461.1	14319:14954:1	CDS	baseplate assembly protein	NC_001895.1_CDS_0022	conserved	tail	default	default	0
+NC_049461.1_CDS_0022	NC_049461.1	14951:15298:1	CDS	baseplate wedge subunit	NC_049461.1_CDS_0022	conserved	tail	default	default	0
+NC_049461.1_CDS_0023	NC_049461.1	15303:16211:1	CDS	baseplate protein	NC_049461.1_CDS_0023	conserved	tail	default	default	0
+NC_049461.1_CDS_0024	NC_049461.1	16204:16734:1	CDS	tail protein	NC_005056.1_CDS_0026	conserved	tail	default	default	0
+NC_049461.1_CDS_0025	NC_049461.1	16745:18754:1	CDS	tail fiber protein	NC_049457.1_CDS_0028	conserved	tail	default	default	0
+NC_049461.1_CDS_0026	NC_049461.1	18758:19285:1	CDS	tail fiber assembly protein	NC_001895.1_CDS_0027	conserved	tail	default	default	0
+NC_049461.1_CDS_0027	NC_049461.1	19287:19430:1	CDS	hypothetical protein	NC_049461.1_CDS_0027	variable	unknown function	#f370a8	default	0
+NC_049461.1_CDS_0028	NC_049461.1	19506:19784:-1	CDS	hypothetical protein	NC_049461.1_CDS_0028	variable	unknown function	#7da734	default	0
+NC_049461.1_CDS_0029	NC_049461.1	19837:20055:-1	CDS	hypothetical protein	NC_049461.1_CDS_0029	variable	unknown function	#d58a36	default	0
+NC_049461.1_CDS_0030	NC_049461.1	20063:20158:1	CDS	hypothetical protein	NC_049461.1_CDS_0030	variable	unknown function	#f3748b	default	0
+NC_049461.1_CDS_0031	NC_049461.1	20209:20421:1	CDS	hypothetical protein	NC_049461.1_CDS_0031	variable	unknown function	#38aa9b	default	0
+NC_049461.1_CDS_0032	NC_049461.1	20508:21200:1	CDS	hypothetical protein	NC_049461.1_CDS_0032	variable	unknown function	#c19335	default	0
+NC_049461.1_CDS_0033	NC_049461.1	21314:21430:1	CDS	hypothetical protein	NC_049461.1_CDS_0033	intermediate	unknown function	default	default	0
+NC_049461.1_CDS_0034	NC_049461.1	21460:22650:1	CDS	hypothetical protein	NC_028943.1_CDS_0027	conserved	unknown function	default	default	0
+NC_049461.1_CDS_0035	NC_049461.1	22669:23181:1	CDS	head closure	NC_001895.1_CDS_0034	conserved	connector	default	default	0
+NC_049461.1_CDS_0036	NC_049461.1	23238:23513:1	CDS	tail protein	NC_001895.1_CDS_0035	conserved	tail	default	default	0
+NC_049461.1_CDS_0037	NC_049461.1	23546:23665:1	CDS	tail protein	NC_001895.1_CDS_0036	conserved	tail	default	default	0
+NC_049461.1_CDS_0038	NC_049461.1	23658:26105:1	CDS	tail length tape measure protein	NC_028943.1_CDS_0031	conserved	tail	default	default	0
+NC_049461.1_CDS_0039	NC_049461.1	26120:26599:1	CDS	tail protein	NC_001895.1_CDS_0038	conserved	tail	default	default	0
+NC_049461.1_CDS_0040	NC_049461.1	26599:27762:1	CDS	tail protein	NC_001895.1_CDS_0039	conserved	tail	default	default	0
+NC_049461.1_CDS_0041	NC_049461.1	27808:28062:1	CDS	transcriptional regulator	NC_001895.1_CDS_0040	conserved	transcription regulation	default	default	0
+NC_049461.1_CDS_0042	NC_049461.1	28162:28272:1	CDS	hypothetical protein	NC_005056.1_CDS_0039	intermediate	unknown function	default	default	0
+NC_049461.1_CDS_0043	NC_049461.1	28337:29317:-1	CDS	integrase	NC_049461.1_CDS_0043	conserved	integration and excision	default	default	0
+NC_049461.1_CDS_0044	NC_049461.1	29387:29680:-1	CDS	transcriptional regulator	NC_049461.1_CDS_0044	conserved	transcription regulation	default	default	0
+NC_049461.1_CDS_0045	NC_049461.1	29686:29805:1	CDS	hypothetical protein	NC_049461.1_CDS_0045	variable	unknown function	#9395f2	default	0
+NC_049461.1_CDS_0046	NC_049461.1	29817:30089:1	CDS	Cox-like excisionase and repressor	NC_049457.1_CDS_0046	conserved	integration and excision	default	default	0
+NC_049461.1_CDS_0047	NC_049461.1	30092:30262:1	CDS	hypothetical protein	NC_049461.1_CDS_0047	conserved	unknown function	default	default	0
+NC_049461.1_CDS_0048	NC_049461.1	30259:30759:1	CDS	hypothetical protein	NC_049457.1_CDS_0048	conserved	unknown function	default	default	0
+NC_049461.1_CDS_0049	NC_049461.1	30823:31047:1	CDS	hypothetical protein	NC_005056.1_CDS_0046	conserved	unknown function	default	default	0
+NC_049461.1_CDS_0050	NC_049461.1	31047:31346:1	CDS	replication initiation protein	NC_049457.1_CDS_0050	conserved	DNA, RNA and nucleotide metabolism	default	default	0
+NC_049461.1_CDS_0051	NC_049461.1	31349:31573:1	CDS	DksA-like zinc-finger protein	NC_049461.1_CDS_0051	conserved	other	default	default	0
+NC_049461.1_CDS_0052	NC_049461.1	31570:31833:1	CDS	hypothetical protein	NC_005056.1_CDS_0049	conserved	unknown function	default	default	0
+NC_028943.1_CDS_0001	NC_028943.1	139:2172:1	CDS	nicking at origin of replication	NC_005056.1_CDS_0001	conserved	DNA, RNA and nucleotide metabolism	default	default	0
+NC_028943.1_CDS_0002	NC_028943.1	2276:3205:1	CDS	hypothetical protein	NC_028943.1_CDS_0002	variable	unknown function	#f268cd	default	0
+NC_028943.1_CDS_0003	NC_028943.1	3293:3439:-1	CDS	hypothetical protein	NC_028943.1_CDS_0003	variable	unknown function	#35af4a	default	0
+NC_028943.1_CDS_0004	NC_028943.1	3608:4642:-1	CDS	portal protein	NC_028943.1_CDS_0004	conserved	head and packaging	default	default	0
+NC_028943.1_CDS_0005	NC_028943.1	4642:6414:-1	CDS	terminase large subunit	NC_028943.1_CDS_0005	conserved	head and packaging	default	default	0
+NC_028943.1_CDS_0006	NC_028943.1	6522:7442:1	CDS	head scaffolding protein	NC_001895.1_CDS_0009	conserved	head and packaging	default	default	0
+NC_028943.1_CDS_0007	NC_028943.1	7501:8574:1	CDS	hypothetical protein	NC_001895.1_CDS_0010	conserved	unknown function	default	default	0
+NC_028943.1_CDS_0008	NC_028943.1	8578:9321:1	CDS	terminase small subunit	NC_028943.1_CDS_0008	conserved	head and packaging	default	default	0
+NC_028943.1_CDS_0009	NC_028943.1	9421:9930:1	CDS	head-tail adaptor Ad1	NC_001895.1_CDS_0012	conserved	connector	default	default	0
+NC_028943.1_CDS_0010	NC_028943.1	9930:10133:1	CDS	baseplate hub	NC_005056.1_CDS_0015	conserved	tail	default	default	0
+NC_028943.1_CDS_0011	NC_028943.1	10137:10418:1	CDS	holin	NC_005056.1_CDS_0016	conserved	lysis	default	default	0
+NC_028943.1_CDS_0012	NC_028943.1	10418:10915:1	CDS	endolysin	NC_001895.1_CDS_0015	conserved	lysis	default	default	0
+NC_028943.1_CDS_0013	NC_028943.1	10930:11355:1	CDS	endolysin	NC_049461.1_CDS_0015	conserved	lysis	default	default	0
+NC_028943.1_CDS_0014	NC_028943.1	11343:11768:1	CDS	Rz-like spanin	NC_049457.1_CDS_0019	conserved	lysis	default	default	0
+NC_028943.1_CDS_0015	NC_028943.1	11755:11913:1	CDS	Rz-like spanin	NC_049461.1_CDS_0017	conserved	lysis	default	default	0
+NC_028943.1_CDS_0016	NC_028943.1	11876:12343:1	CDS	tail terminator	NC_001895.1_CDS_0019	conserved	connector	default	default	0
+NC_028943.1_CDS_0017	NC_028943.1	12336:12788:1	CDS	hypothetical protein	NC_005056.1_CDS_0022	conserved	unknown function	default	default	0
+NC_028943.1_CDS_0018	NC_028943.1	12855:13490:1	CDS	baseplate assembly protein	NC_001895.1_CDS_0022	conserved	tail	default	default	0
+NC_028943.1_CDS_0019	NC_028943.1	13487:13834:1	CDS	baseplate wedge subunit	NC_049461.1_CDS_0022	conserved	tail	default	default	0
+NC_028943.1_CDS_0020	NC_028943.1	13839:14747:1	CDS	baseplate protein	NC_049461.1_CDS_0023	conserved	tail	default	default	0
+NC_028943.1_CDS_0021	NC_028943.1	14740:15351:1	CDS	tail protein	NC_005056.1_CDS_0026	conserved	tail	default	default	0
+NC_028943.1_CDS_0022	NC_028943.1	15348:16547:1	CDS	tail protein	NC_028943.1_CDS_0022	variable	tail	#3ea4d8	default	0
+NC_028943.1_CDS_0023	NC_028943.1	16568:17011:1	CDS	tail fiber assembly protein	NC_028943.1_CDS_0023	variable	tail	#f47679	default	0
+NC_028943.1_CDS_0024	NC_028943.1	16983:17585:-1	CDS	hypothetical protein	NC_028943.1_CDS_0024	variable	unknown function	#f37761	default	0
+NC_028943.1_CDS_0025	NC_028943.1	17585:18115:-1	CDS	tail collar fiber protein	NC_028943.1_CDS_0025	variable	tail	#3da6cd	default	0
+NC_028943.1_CDS_0026	NC_028943.1	18146:18739:1	CDS	DNA invertase	NC_028943.1_CDS_0026	variable	DNA, RNA and nucleotide metabolism	#36ad77	default	0
+NC_028943.1_CDS_0027	NC_028943.1	18799:19989:1	CDS	hypothetical protein	NC_028943.1_CDS_0027	conserved	unknown function	default	default	0
+NC_028943.1_CDS_0028	NC_028943.1	20008:20520:1	CDS	head closure	NC_001895.1_CDS_0034	conserved	connector	default	default	0
+NC_028943.1_CDS_0029	NC_028943.1	20577:20852:1	CDS	tail protein	NC_001895.1_CDS_0035	conserved	tail	default	default	0
+NC_028943.1_CDS_0030	NC_028943.1	20885:21004:1	CDS	tail protein	NC_001895.1_CDS_0036	conserved	tail	default	default	0
+NC_028943.1_CDS_0031	NC_028943.1	20997:23444:1	CDS	tail length tape measure protein	NC_028943.1_CDS_0031	conserved	tail	default	default	0
+NC_028943.1_CDS_0032	NC_028943.1	23459:23938:1	CDS	tail protein	NC_001895.1_CDS_0038	conserved	tail	default	default	0
+NC_028943.1_CDS_0033	NC_028943.1	23938:25101:1	CDS	tail protein	NC_001895.1_CDS_0039	conserved	tail	default	default	0
+NC_028943.1_CDS_0034	NC_028943.1	25147:25401:1	CDS	transcriptional regulator	NC_001895.1_CDS_0040	conserved	transcription regulation	default	default	0
+NC_028943.1_CDS_0035	NC_028943.1	25388:25495:-1	CDS	hypothetical protein	NC_028943.1_CDS_0035	variable	unknown function	#f26eb5	default	0
+NC_028943.1_CDS_0036	NC_028943.1	25631:26626:-1	CDS	integrase	NC_049461.1_CDS_0043	conserved	integration and excision	default	default	0
+NC_028943.1_CDS_0037	NC_028943.1	26720:27019:-1	CDS	transcriptional regulator	NC_049461.1_CDS_0044	conserved	transcription regulation	default	default	0
+NC_028943.1_CDS_0038	NC_028943.1	27046:27192:-1	CDS	hypothetical protein	NC_028943.1_CDS_0038	variable	unknown function	#c580f1	default	0
+NC_028943.1_CDS_0039	NC_028943.1	27165:27326:1	CDS	hypothetical protein	NC_028943.1_CDS_0039	variable	unknown function	#3aa8b4	default	0
+NC_028943.1_CDS_0040	NC_028943.1	27408:27665:1	CDS	hypothetical protein	NC_028943.1_CDS_0040	variable	unknown function	#e56af1	default	0
+NC_028943.1_CDS_0041	NC_028943.1	27662:28162:1	CDS	hypothetical protein	NC_049457.1_CDS_0048	conserved	unknown function	default	default	0
+NC_028943.1_CDS_0042	NC_028943.1	28226:28450:1	CDS	hypothetical protein	NC_005056.1_CDS_0046	conserved	unknown function	default	default	0
+NC_028943.1_CDS_0043	NC_028943.1	28450:28752:1	CDS	replication initiation protein	NC_049457.1_CDS_0050	conserved	DNA, RNA and nucleotide metabolism	default	default	0
+NC_028943.1_CDS_0044	NC_028943.1	28752:28976:1	CDS	DksA-like zinc-finger protein	NC_049461.1_CDS_0051	conserved	other	default	default	0
+NC_028943.1_CDS_0045	NC_028943.1	28973:29236:1	CDS	hypothetical protein	NC_005056.1_CDS_0049	conserved	unknown function	default	default	0
+NC_005056.1_CDS_0001	NC_005056.1	139:2286:1	CDS	nicking at origin of replication	NC_005056.1_CDS_0001	conserved	DNA, RNA and nucleotide metabolism	default	default	0
+NC_005056.1_CDS_0002	NC_005056.1	2283:2564:1	CDS	hypothetical protein	NC_005056.1_CDS_0002	intermediate	unknown function	default	default	0
+NC_005056.1_CDS_0003	NC_005056.1	2604:2798:1	CDS	hypothetical protein	NC_005056.1_CDS_0003	variable	unknown function	#3ba7bb	default	0
+NC_005056.1_CDS_0004	NC_005056.1	2829:2951:1	CDS	hypothetical protein	NC_005056.1_CDS_0004	variable	unknown function	#36ae66	default	0
+NC_005056.1_CDS_0005	NC_005056.1	3194:4132:1	CDS	DNA methyltransferase	NC_005056.1_CDS_0005	intermediate	other	default	default	0
+NC_005056.1_CDS_0006	NC_005056.1	4129:5238:-1	CDS	hypothetical protein	NC_005056.1_CDS_0006	variable	unknown function	#b89635	default	0
+NC_005056.1_CDS_0007	NC_005056.1	5159:6364:-1	CDS	hypothetical protein	NC_049457.1_CDS_0007	intermediate	unknown function	default	default	0
+NC_005056.1_CDS_0008	NC_005056.1	6448:6600:1	CDS	hypothetical protein	NC_005056.1_CDS_0008	variable	unknown function	#38ab94	default	0
+NC_005056.1_CDS_0009	NC_005056.1	6647:7681:-1	CDS	portal protein	NC_028943.1_CDS_0004	conserved	head and packaging	default	default	0
+NC_005056.1_CDS_0010	NC_005056.1	7681:9591:-1	CDS	terminase large subunit	NC_028943.1_CDS_0005	conserved	head and packaging	default	default	0
+NC_005056.1_CDS_0011	NC_005056.1	9561:10481:1	CDS	head scaffolding protein	NC_001895.1_CDS_0009	conserved	head and packaging	default	default	0
+NC_005056.1_CDS_0012	NC_005056.1	10540:11613:1	CDS	hypothetical protein	NC_001895.1_CDS_0010	conserved	unknown function	default	default	0
+NC_005056.1_CDS_0013	NC_005056.1	11617:12360:1	CDS	terminase small subunit	NC_028943.1_CDS_0008	conserved	head and packaging	default	default	0
+NC_005056.1_CDS_0014	NC_005056.1	12460:12969:1	CDS	head-tail adaptor Ad1	NC_001895.1_CDS_0012	conserved	connector	default	default	0
+NC_005056.1_CDS_0015	NC_005056.1	12969:13172:1	CDS	baseplate hub	NC_005056.1_CDS_0015	conserved	tail	default	default	0
+NC_005056.1_CDS_0016	NC_005056.1	13176:13457:1	CDS	holin	NC_005056.1_CDS_0016	conserved	lysis	default	default	0
+NC_005056.1_CDS_0017	NC_005056.1	13457:13954:1	CDS	endolysin	NC_001895.1_CDS_0015	conserved	lysis	default	default	0
+NC_005056.1_CDS_0018	NC_005056.1	13969:14394:1	CDS	endolysin	NC_049461.1_CDS_0015	conserved	lysis	default	default	0
+NC_005056.1_CDS_0019	NC_005056.1	14382:14807:1	CDS	Rz-like spanin	NC_049457.1_CDS_0019	conserved	lysis	default	default	0
+NC_005056.1_CDS_0020	NC_005056.1	14794:14952:1	CDS	Rz-like spanin	NC_049461.1_CDS_0017	conserved	lysis	default	default	0
+NC_005056.1_CDS_0021	NC_005056.1	14915:15382:1	CDS	tail terminator	NC_001895.1_CDS_0019	conserved	connector	default	default	0
+NC_005056.1_CDS_0022	NC_005056.1	15375:15827:1	CDS	hypothetical protein	NC_005056.1_CDS_0022	conserved	unknown function	default	default	0
+NC_005056.1_CDS_0023	NC_005056.1	15894:16529:1	CDS	baseplate assembly protein	NC_001895.1_CDS_0022	conserved	tail	default	default	0
+NC_005056.1_CDS_0024	NC_005056.1	16526:16873:1	CDS	baseplate wedge subunit	NC_049461.1_CDS_0022	conserved	tail	default	default	0
+NC_005056.1_CDS_0025	NC_005056.1	16878:17786:1	CDS	baseplate protein	NC_049461.1_CDS_0023	conserved	tail	default	default	0
+NC_005056.1_CDS_0026	NC_005056.1	17779:18309:1	CDS	tail protein	NC_005056.1_CDS_0026	conserved	tail	default	default	0
+NC_005056.1_CDS_0027	NC_005056.1	18320:20329:1	CDS	tail fiber protein	NC_049457.1_CDS_0028	conserved	tail	default	default	0
+NC_005056.1_CDS_0028	NC_005056.1	20333:20860:1	CDS	tail fiber assembly protein	NC_001895.1_CDS_0027	conserved	tail	default	default	0
+NC_005056.1_CDS_0029	NC_005056.1	21076:21975:1	CDS	hypothetical protein	NC_005056.1_CDS_0029	variable	unknown function	#d477f1	default	0
+NC_005056.1_CDS_0030	NC_005056.1	22149:22265:1	CDS	hypothetical protein	NC_049461.1_CDS_0033	intermediate	unknown function	default	default	0
+NC_005056.1_CDS_0031	NC_005056.1	22295:23485:1	CDS	hypothetical protein	NC_028943.1_CDS_0027	conserved	unknown function	default	default	0
+NC_005056.1_CDS_0032	NC_005056.1	23504:24016:1	CDS	head closure	NC_001895.1_CDS_0034	conserved	connector	default	default	0
+NC_005056.1_CDS_0033	NC_005056.1	24073:24348:1	CDS	tail protein	NC_001895.1_CDS_0035	conserved	tail	default	default	0
+NC_005056.1_CDS_0034	NC_005056.1	24381:24500:1	CDS	tail protein	NC_001895.1_CDS_0036	conserved	tail	default	default	0
+NC_005056.1_CDS_0035	NC_005056.1	24493:26940:1	CDS	tail length tape measure protein	NC_028943.1_CDS_0031	conserved	tail	default	default	0
+NC_005056.1_CDS_0036	NC_005056.1	26955:27434:1	CDS	tail protein	NC_001895.1_CDS_0038	conserved	tail	default	default	0
+NC_005056.1_CDS_0037	NC_005056.1	27434:28597:1	CDS	tail protein	NC_001895.1_CDS_0039	conserved	tail	default	default	0
+NC_005056.1_CDS_0038	NC_005056.1	28679:28897:1	CDS	transcriptional regulator	NC_001895.1_CDS_0040	conserved	transcription regulation	default	default	0
+NC_005056.1_CDS_0039	NC_005056.1	28997:29095:1	CDS	hypothetical protein	NC_005056.1_CDS_0039	intermediate	unknown function	default	default	0
+NC_005056.1_CDS_0040	NC_005056.1	29171:30181:-1	CDS	integrase	NC_049461.1_CDS_0043	conserved	integration and excision	default	default	0
+NC_005056.1_CDS_0041	NC_005056.1	30221:30514:-1	CDS	transcriptional regulator	NC_049461.1_CDS_0044	conserved	transcription regulation	default	default	0
+NC_005056.1_CDS_0042	NC_005056.1	30505:30597:1	CDS	hypothetical protein	NC_005056.1_CDS_0042	intermediate	unknown function	default	default	0
+NC_005056.1_CDS_0043	NC_005056.1	30667:30939:1	CDS	Cox-like excisionase and repressor	NC_049457.1_CDS_0046	conserved	integration and excision	default	default	0
+NC_005056.1_CDS_0044	NC_005056.1	30942:31112:1	CDS	hypothetical protein	NC_049461.1_CDS_0047	conserved	unknown function	default	default	0
+NC_005056.1_CDS_0045	NC_005056.1	31109:31609:1	CDS	hypothetical protein	NC_049457.1_CDS_0048	conserved	unknown function	default	default	0
+NC_005056.1_CDS_0046	NC_005056.1	31673:31897:1	CDS	hypothetical protein	NC_005056.1_CDS_0046	conserved	unknown function	default	default	0
+NC_005056.1_CDS_0047	NC_005056.1	31897:32199:1	CDS	replication initiation protein	NC_049457.1_CDS_0050	conserved	DNA, RNA and nucleotide metabolism	default	default	0
+NC_005056.1_CDS_0048	NC_005056.1	32199:32423:1	CDS	DksA-like zinc-finger protein	NC_049461.1_CDS_0051	conserved	other	default	default	0
+NC_005056.1_CDS_0049	NC_005056.1	32420:32683:1	CDS	hypothetical protein	NC_005056.1_CDS_0049	conserved	unknown function	default	default	0
+NC_049457.1_CDS_0001	NC_049457.1	139:2307:1	CDS	nicking at origin of replication	NC_005056.1_CDS_0001	conserved	DNA, RNA and nucleotide metabolism	default	default	0
+NC_049457.1_CDS_0002	NC_049457.1	2286:2738:1	CDS	hypothetical protein	NC_049457.1_CDS_0002	variable	unknown function	#51ad34	default	0
+NC_049457.1_CDS_0003	NC_049457.1	2738:2971:1	CDS	hypothetical protein	NC_049457.1_CDS_0003	variable	unknown function	#b588f2	default	0
+NC_049457.1_CDS_0004	NC_049457.1	2993:3085:1	CDS	hypothetical protein	NC_049457.1_CDS_0004	variable	unknown function	#a79c34	default	0
+NC_049457.1_CDS_0005	NC_049457.1	3223:4161:1	CDS	DNA methyltransferase	NC_005056.1_CDS_0005	intermediate	other	default	default	0
+NC_049457.1_CDS_0006	NC_049457.1	4162:5202:-1	CDS	hypothetical protein	NC_049457.1_CDS_0006	variable	unknown function	#f160ea	default	0
+NC_049457.1_CDS_0007	NC_049457.1	5141:6259:-1	CDS	hypothetical protein	NC_049457.1_CDS_0007	intermediate	unknown function	default	default	0
+NC_049457.1_CDS_0008	NC_049457.1	6634:7668:-1	CDS	portal protein	NC_028943.1_CDS_0004	conserved	head and packaging	default	default	0
+NC_049457.1_CDS_0009	NC_049457.1	7668:9440:-1	CDS	terminase large subunit	NC_028943.1_CDS_0005	conserved	head and packaging	default	default	0
+NC_049457.1_CDS_0010	NC_049457.1	9548:10468:1	CDS	head scaffolding protein	NC_001895.1_CDS_0009	conserved	head and packaging	default	default	0
+NC_049457.1_CDS_0011	NC_049457.1	10527:11270:1	CDS	hypothetical protein	NC_049457.1_CDS_0011	variable	unknown function	#39aaa2	default	0
+NC_049457.1_CDS_0012	NC_049457.1	11296:11727:1	CDS	major head protein	NC_049457.1_CDS_0012	variable	head and packaging	#6caa34	default	0
+NC_049457.1_CDS_0013	NC_049457.1	11731:12474:1	CDS	terminase small subunit	NC_028943.1_CDS_0008	conserved	head and packaging	default	default	0
+NC_049457.1_CDS_0014	NC_049457.1	12574:13083:1	CDS	head-tail adaptor Ad1	NC_001895.1_CDS_0012	conserved	connector	default	default	0
+NC_049457.1_CDS_0015	NC_049457.1	13083:13286:1	CDS	baseplate hub	NC_005056.1_CDS_0015	conserved	tail	default	default	0
+NC_049457.1_CDS_0016	NC_049457.1	13290:13571:1	CDS	holin	NC_005056.1_CDS_0016	conserved	lysis	default	default	0
+NC_049457.1_CDS_0017	NC_049457.1	13571:14068:1	CDS	endolysin	NC_001895.1_CDS_0015	conserved	lysis	default	default	0
+NC_049457.1_CDS_0018	NC_049457.1	14083:14508:1	CDS	endolysin	NC_049461.1_CDS_0015	conserved	lysis	default	default	0
+NC_049457.1_CDS_0019	NC_049457.1	14496:14939:1	CDS	Rz-like spanin	NC_049457.1_CDS_0019	conserved	lysis	default	default	0
+NC_049457.1_CDS_0020	NC_049457.1	14908:15066:1	CDS	Rz-like spanin	NC_049461.1_CDS_0017	conserved	lysis	default	default	0
+NC_049457.1_CDS_0021	NC_049457.1	15029:15496:1	CDS	tail terminator	NC_001895.1_CDS_0019	conserved	connector	default	default	0
+NC_049457.1_CDS_0022	NC_049457.1	15489:15941:1	CDS	hypothetical protein	NC_005056.1_CDS_0022	conserved	unknown function	default	default	0
+NC_049457.1_CDS_0023	NC_049457.1	16013:16798:-1	CDS	hypothetical protein	NC_049457.1_CDS_0023	intermediate	unknown function	default	default	0
+NC_049457.1_CDS_0024	NC_049457.1	16882:17517:1	CDS	baseplate assembly protein	NC_001895.1_CDS_0022	conserved	tail	default	default	0
+NC_049457.1_CDS_0025	NC_049457.1	17514:17861:1	CDS	baseplate wedge subunit	NC_049461.1_CDS_0022	conserved	tail	default	default	0
+NC_049457.1_CDS_0026	NC_049457.1	17866:18774:1	CDS	baseplate protein	NC_049461.1_CDS_0023	conserved	tail	default	default	0
+NC_049457.1_CDS_0027	NC_049457.1	18767:19297:1	CDS	tail protein	NC_005056.1_CDS_0026	conserved	tail	default	default	0
+NC_049457.1_CDS_0028	NC_049457.1	19308:21236:1	CDS	tail fiber protein	NC_049457.1_CDS_0028	conserved	tail	default	default	0
+NC_049457.1_CDS_0029	NC_049457.1	21240:21767:1	CDS	tail fiber assembly protein	NC_001895.1_CDS_0027	conserved	tail	default	default	0
+NC_049457.1_CDS_0030	NC_049457.1	21769:21918:1	CDS	hypothetical protein	NC_049457.1_CDS_0030	variable	unknown function	#af9935	default	0
+NC_049457.1_CDS_0031	NC_049457.1	22019:23086:-1	CDS	hypothetical protein	NC_049457.1_CDS_0031	variable	unknown function	#39a9a8	default	0
+NC_049457.1_CDS_0032	NC_049457.1	23149:23400:-1	CDS	hypothetical protein	NC_049457.1_CDS_0032	variable	unknown function	#37ac83	default	0
+NC_049457.1_CDS_0033	NC_049457.1	23420:24610:1	CDS	hypothetical protein	NC_028943.1_CDS_0027	conserved	unknown function	default	default	0
+NC_049457.1_CDS_0034	NC_049457.1	24629:25141:1	CDS	head closure	NC_001895.1_CDS_0034	conserved	connector	default	default	0
+NC_049457.1_CDS_0035	NC_049457.1	25198:25473:1	CDS	tail protein	NC_001895.1_CDS_0035	conserved	tail	default	default	0
+NC_049457.1_CDS_0036	NC_049457.1	25506:25625:1	CDS	tail protein	NC_001895.1_CDS_0036	conserved	tail	default	default	0
+NC_049457.1_CDS_0037	NC_049457.1	25618:28065:1	CDS	tail length tape measure protein	NC_028943.1_CDS_0031	conserved	tail	default	default	0
+NC_049457.1_CDS_0038	NC_049457.1	28080:28559:1	CDS	tail protein	NC_001895.1_CDS_0038	conserved	tail	default	default	0
+NC_049457.1_CDS_0039	NC_049457.1	28559:29722:1	CDS	tail protein	NC_001895.1_CDS_0039	conserved	tail	default	default	0
+NC_049457.1_CDS_0040	NC_049457.1	29722:30021:1	CDS	transcriptional regulator	NC_001895.1_CDS_0040	conserved	transcription regulation	default	default	0
+NC_049457.1_CDS_0041	NC_049457.1	30018:30119:1	CDS	hypothetical protein	NC_049457.1_CDS_0041	variable	unknown function	#37ac8c	default	0
+NC_049457.1_CDS_0042	NC_049457.1	30120:30218:1	CDS	hypothetical protein	NC_005056.1_CDS_0039	intermediate	unknown function	default	default	0
+NC_049457.1_CDS_0043	NC_049457.1	30294:31304:-1	CDS	integrase	NC_049461.1_CDS_0043	conserved	integration and excision	default	default	0
+NC_049457.1_CDS_0044	NC_049457.1	31344:31637:-1	CDS	transcriptional regulator	NC_049461.1_CDS_0044	conserved	transcription regulation	default	default	0
+NC_049457.1_CDS_0045	NC_049457.1	31628:31720:1	CDS	hypothetical protein	NC_005056.1_CDS_0042	intermediate	unknown function	default	default	0
+NC_049457.1_CDS_0046	NC_049457.1	31790:32062:1	CDS	Cox-like excisionase and repressor	NC_049457.1_CDS_0046	conserved	integration and excision	default	default	0
+NC_049457.1_CDS_0047	NC_049457.1	32065:32235:1	CDS	hypothetical protein	NC_049461.1_CDS_0047	conserved	unknown function	default	default	0
+NC_049457.1_CDS_0048	NC_049457.1	32226:32732:1	CDS	hypothetical protein	NC_049457.1_CDS_0048	conserved	unknown function	default	default	0
+NC_049457.1_CDS_0049	NC_049457.1	32796:33020:1	CDS	hypothetical protein	NC_005056.1_CDS_0046	conserved	unknown function	default	default	0
+NC_049457.1_CDS_0050	NC_049457.1	33020:33319:1	CDS	replication initiation protein	NC_049457.1_CDS_0050	conserved	DNA, RNA and nucleotide metabolism	default	default	0
+NC_049457.1_CDS_0051	NC_049457.1	33322:33546:1	CDS	DksA-like zinc-finger protein	NC_049461.1_CDS_0051	conserved	other	default	default	0
+NC_049457.1_CDS_0052	NC_049457.1	33543:33806:1	CDS	replication initiation protein	NC_005056.1_CDS_0049	conserved	DNA, RNA and nucleotide metabolism	default	default	0

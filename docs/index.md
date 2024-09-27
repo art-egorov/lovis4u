@@ -12,7 +12,7 @@
 **Python version:** >= 3.9  
 **OS-level dependencies:** MMseqs2 (included in the package)  
 **License:** WTFPL  
-**Version:** 0.0.8 (September 2024)
+**Version:** 0.0.9 (September 2024)
 
 
 
@@ -21,9 +21,12 @@
 ![pipeline](img/lovis4u_pipeline.png){loading=lazy width="100%" }  
 
 
-**Visualisation examples**
-![visex](img/lovis4u_visualisation_examples.png){loading=lazy width="100%" }  
+**Visualisation example**
 
+![visex](img/lovis4u_default_hl_A4p2.png){loading=lazy width="100%" }  
+
+
+See the [gallery page](https://art-egorov.github.io/ilund4u/Gallery/gallery) for more examples
 
 ## Installation
 

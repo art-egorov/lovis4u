@@ -2,6 +2,7 @@
 This module provides managing classes and methods for the tool.
 """
 import collections
+import statistics
 import argparse
 import configs
 import time
@@ -59,16 +60,21 @@ class Parameters:
         mutually_exclusive_group = parser.add_mutually_exclusive_group()
         mutually_exclusive_group.add_argument("-gff", "--gff", dest="gff", type=str, default=None)
         mutually_exclusive_group.add_argument("-gb", "--gb", dest="gb", type=str, default=None)
+        parser.add_argument("-ufid", "--use-filename-as-id", dest="use_filename_as_contig_id", action="store_true",
+                            default=None)
         parser.add_argument("-laf", "--locus-annotation-file", dest="locus-annotation", type=str, default=None)
         parser.add_argument("-faf", "--feature-annotation-file", dest="feature-annotation", type=str, default=None)
         parser.add_argument("-mmseqs-off", "--mmseqs-off", dest="mmseqs", action="store_false")
+        parser.add_argument("-cl-owp", "--cluster-only-window-proteins", dest="cluster_all_proteins",
+                            action="store_false", default=None)
         parser.add_argument("-fv-off", "--find-variable-off", dest="find-variable", action="store_false")
         parser.add_argument("-cl-off", "--clust_loci-off", dest="clust_loci", action="store_false")
         parser.add_argument("-oc", "--one-cluster", dest="one_cluster", action="store_true", default=None)
         parser.add_argument("-reorient_loci", "--reorient_loci", dest="reorient_loci", action="store_true")
         parser.add_argument("-lls", "--locus-label-style", dest="locus_label_style",
-                            choices=["id", "description", "full"],
-                            default=None)
+                            choices=["id", "description", "full"], default=None)
+        parser.add_argument("-llp", "--locus-label-position", dest="locus_label_position",
+                            choices=["left", "bottom"], default=None)
         parser.add_argument("-sgc-off", "--set-group-colour-off", dest="set-group-colour", action="store_false")
         parser.add_argument("-sgcf", "--set-group-colour-for", dest="feature_group_types_to_set_colour", nargs="*",
                             type=str, default=None)
@@ -84,16 +90,19 @@ class Parameters:
         parser.add_argument("-ifl", "--ignored-feature-labels", dest="feature_labels_to_ignore", nargs="*",
                             type=str, default=None)
         parser.add_argument("-hl", "--homology-links", dest="homology-track", action="store_true")
-        parser.add_argument("-slt", "--scale-line-track", dest="scale-line-track", action="store_true")
-        parser.add_argument("-hix", "--hide-x-axis", dest="draw_individual_x_axis", action="store_false")
-        parser.add_argument("-dml", "--draw-middle-line", dest="draw_middle_line", action="store_true")
+        parser.add_argument("-slt", "--scale-line-track", dest="draw_scale_line_track", action="store_true",
+                            default=None)
+        parser.add_argument("-sxa", "--show-x-axis", dest="draw_individual_x_axis", action="store_true", default=None)
+        parser.add_argument("-hix", "--hide-x-axis", dest="draw_individual_x_axis", action="store_false", default=None)
+        parser.add_argument("-dml", "--draw-middle-line", dest="draw_middle_line", action="store_true", default=None)
         parser.add_argument("-mm-per-nt", "--mm-per-nt", dest="mm_per_nt", type=float, default=None)
         parser.add_argument("-fw", "--figure-width", dest="figure_width", type=float, default=None)
         parser.add_argument("-o", dest="output_dir", type=str, default=None)
         parser.add_argument("--pdf-name", dest="pdf-name", type=str, default="lovis4u.pdf")
         parser.add_argument("-c", dest="config_file", type=str, default="standard")
-        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.0.8")
+        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.0.9")
         parser.add_argument("-q", "--quiet", dest="verbose", default=True, action="store_false")
+        parser.add_argument("--parsing-debug", "-parsing-debug", dest="parsing_debug", action="store_true")
         parser.add_argument("--debug", "-debug", dest="debug", action="store_true")
         parser.add_argument("-h", "--help", dest="help", action="store_true")
         args = parser.parse_args()
@@ -116,7 +125,7 @@ class Parameters:
                 sys.exit()
         if not args["gff"] and not args["gb"]:
             raise lovis4u.Manager.lovis4uError("-gff or -gb parameter with folder path should be provided")
-        args_to_keep = ["locus-annotation", "feature-annotation", "gb", "gff", "figure_width"]
+        args_to_keep = ["locus-annotation", "feature-annotation", "gb", "gff"]
         filtered_args = {k: v for k, v in args.items() if v is not None or k in args_to_keep}
         self.cmd_arguments = filtered_args
         return None
@@ -132,8 +141,12 @@ class Parameters:
 
         """
         try:
-            if path == "standard":
-                path = os.path.join(os.path.dirname(__file__), "lovis4u_data", "standard.cfg")
+            if path in ["standard", "A4p1", "A4p2", "A4L"]:
+                print(f"○ Loaded configuration file: '{path}'. List of available: "
+                      f"standard (auto-size),\n\tA4p1 (A4 page one-column [90mm]), A4p2 (A4 page two-column [190mm]), "
+                      f"and A4L (A4 landscape [240mm]).\n\tUse -c/--config <name> parameter for choosing.",
+                      file=sys.stdout)
+                path = os.path.join(os.path.dirname(__file__), "lovis4u_data", f"{path}.cfg")
             config = configs.load(path).get_config()
             internal_dir = os.path.dirname(__file__)
             for key in config["root"].keys():
@@ -164,6 +177,14 @@ class Parameters:
                 if self.args["verbose"]:
                     print("○ Warning: the output folder already exists. Results will be rewritten (without removal "
                           "other files in this folder)", file=sys.stdout)
+            self.args["locus_label_description_font_face"] = self.args[f"locus_label_description_font_face_" \
+                                                                       f"{self.args['locus_label_position']}"]
+            self.args["locus_label_id_font_face"] = self.args[f"locus_label_id_font_face_" \
+                                                              f"{self.args['locus_label_position']}"]
+            # Check conflicts
+            if self.args["draw_individual_x_axis"] and self.args["locus_label_position"] == "bottom":
+                raise lovis4uError("Individual x-axis cannot be plotted when locus label position"
+                                   " set as 'bottom'.")
             return None
         except Exception as error:
             raise lovis4uError("Unable to parse the specified config file. Please check your config file "
@@ -243,14 +264,22 @@ class CanvasManager:
                     print("○  Warning message: the annotation lacks description. Locus label style is "
                           "changed to 'id'")
                 self.prms.args["locus_label_style"] = "id"
-            if self.prms.args["locus_label_style"] == "full":
-                label_height = self.prms.args["feature_height"] * cm * 0.4
+            if self.prms.args["locus_label_position"] == "left":
+                if self.prms.args["locus_label_style"] == "full":
+                    label_height = self.prms.args["feature_height"] * mm * 0.4
+                else:
+                    label_height = min(1, self.prms.args["locus_label_size"]) * self.prms.args["feature_height"] * mm
+                label_font_size = lovis4u.Methods.str_height_to_size(label_height,
+                                                                     self.prms.args["locus_label_id_font_face"])
+            elif self.prms.args["locus_label_position"] == "bottom":
+                label_font_size = self.prms.args["bottom_locus_label_font_size"]
+                label_height = lovis4u.Methods.str_font_size_to_height(label_font_size,
+                                                                       self.prms.args["locus_label_id_font_face"])
             else:
-                label_height = min(1, self.prms.args["locus_label_size"]) * self.prms.args["feature_height"] * cm
+                raise lovis4u.Manager.lovis4uError("Locus label position parameter should be either 'bottom' "
+                                                   "or 'left'.")
             self.prms.args["locus_label_height"] = label_height
-            self.prms.args["locus_label_font_size"] = \
-                lovis4u.Methods.str_height_to_size(label_height, self.prms.args["locus_label_id_font_face"])
-
+            self.prms.args["locus_label_font_size"] = label_font_size
             max_id_string_width = max([pdfmetrics.stringWidth(i.seq_id, self.prms.args["locus_label_id_font_face"],
                                                               self.prms.args["locus_label_font_size"]) for i in
                                        loci.loci])
@@ -267,30 +296,41 @@ class CanvasManager:
             elif self.prms.args["locus_label_style"] == "description":
                 max_label_string_width = max_descr_string_width
             loci_lengths = loci.get_loci_lengths_and_n_of_regions()
-
             self.layout["total_nt_width"] = max(i[0] for i in loci_lengths)
             if self.prms.args["figure_width"]:
-                figure_width_for_loci = self.prms.args["figure_width"] * cm
-                self.prms.args["figure_width"] = figure_width_for_loci + max_label_string_width + \
-                                                 2 * self.prms.args["margin"] * cm \
-                                                 + self.prms.args["gap_after_locus_label"] * cm
-                self.prms.args["mm_per_nt"] = figure_width_for_loci / self.layout["total_nt_width"]
-
-            if self.prms.args["mm_per_nt"] == "auto":
-                self.prms.args["mm_per_nt"] = max(0.019 - self.layout["total_nt_width"] * 4.2e-07, 0.0022)
-            self.layout["width_per_nt"] = self.prms.args["mm_per_nt"] * mm
-            self.layout["x_gap_between_regions"] = self.prms.args["gap_between_regions"] * cm
+                if self.prms.args["locus_label_position"] == "left":
+                    figure_width_for_loci = self.prms.args["figure_width"] * mm - max_label_string_width - \
+                                            2 * self.prms.args["margin"] * mm \
+                                            - self.prms.args["gap_after_locus_label"] * mm
+                elif self.prms.args["locus_label_position"] == "bottom":
+                    figure_width_for_loci = self.prms.args["figure_width"] * mm - 2 * self.prms.args["margin"] * mm
+                self.prms.args["mm_per_nt"] = mm * figure_width_for_loci / self.layout["total_nt_width"]
+            else:
+                width_per_nt = self.prms.args["mm_per_nt"] * mm
+                figure_width_for_loci = width_per_nt * self.layout["total_nt_width"]
+                if figure_width_for_loci < 8 * cm:
+                    width_per_nt = 8 * cm / self.layout["total_nt_width"]
+                self.prms.args["mm_per_nt"] = width_per_nt / mm
+            self.layout["width_per_nt"] = self.prms.args["mm_per_nt"] / mm
+            self.layout["x_gap_between_regions"] = self.prms.args["gap_between_regions"] * mm
             each_loci_region_width = [
                 (i[0] * self.layout["width_per_nt"]) + (i[1] * self.layout["x_gap_between_regions"])
                 for i in loci_lengths]
             max_loci_region_length = max(each_loci_region_width)
-            self.layout["locus_label_left_border"] = self.prms.args["margin"] * cm
-            self.layout["locus_label_right_border"] = self.layout["locus_label_left_border"] + max_label_string_width
-            self.layout["loci_tracks_left_border"] = self.layout["locus_label_right_border"] + \
-                                                     self.prms.args["gap_after_locus_label"] * cm
-            self.layout["loci_tracks_right_border"] = self.layout["loci_tracks_left_border"] + max_loci_region_length
-            self.layout["figure_width"] = self.layout["loci_tracks_right_border"] + self.prms.args["margin"] * cm
-            self.layout["figure_height"] = self.prms.args["margin"] * cm
+            self.layout["locus_label_left_border"] = self.prms.args["margin"] * mm
+            if self.prms.args["locus_label_position"] == "left":
+                self.layout["locus_label_right_border"] = self.layout[
+                                                              "locus_label_left_border"] + max_label_string_width
+                self.layout["loci_tracks_left_border"] = self.layout["locus_label_right_border"] + \
+                                                         self.prms.args["gap_after_locus_label"] * mm
+                self.layout["loci_tracks_right_border"] = self.layout["loci_tracks_left_border"] + \
+                                                          max_loci_region_length
+            elif self.prms.args["locus_label_position"] == "bottom":
+                self.layout["loci_tracks_left_border"] = self.prms.args["margin"] * mm
+                self.layout["loci_tracks_right_border"] = self.layout["loci_tracks_left_border"] + \
+                                                          max_loci_region_length
+            self.layout["figure_width"] = self.layout["loci_tracks_right_border"] + self.prms.args["margin"] * mm
+            self.layout["figure_height"] = self.prms.args["margin"] * mm
             return None
         except Exception as error:
             raise lovis4u.Manager.lovis4uError("Unable to define layout from loci data.") from error
@@ -310,7 +350,7 @@ class CanvasManager:
                 locus_loader = LocusLoader(self.prms)
                 locus_loader.prepare_track_specific_data(locus, self.layout.copy())
                 locus_track_height = locus_loader.calculate_track_height()
-                self.layout["figure_height"] += locus_track_height + self.prms.args["gap"] * cm
+                self.layout["figure_height"] += locus_track_height + self.prms.args["gap"] * mm
                 locus_track = locus_loader.create_track()
                 self.tracks.append(locus_track)
             if self.prms.args["verbose"]:
@@ -334,7 +374,7 @@ class CanvasManager:
             colour_legend_loader.prepare_track_specific_data(self.layout.copy(), loci)
             colour_legend_track_height = colour_legend_loader.calculate_track_height()
             if colour_legend_track_height != 0:
-                self.layout["figure_height"] += colour_legend_track_height + self.prms.args["gap"] * cm
+                self.layout["figure_height"] += colour_legend_track_height + self.prms.args["gap"] * mm
             colour_legend_track = colour_legend_loader.create_track()
             if isinstance(colour_legend_track, lovis4u.Drawing.ColorLegendVis):
                 self.tracks.append(colour_legend_track)
@@ -355,7 +395,7 @@ class CanvasManager:
             scale_loader = ScaleLoader(self.prms)
             scale_loader.prepare_track_specific_data(self.layout.copy())
             scale_track_height = scale_loader.calculate_track_height()
-            self.layout["figure_height"] += scale_track_height + self.prms.args["gap"] * cm
+            self.layout["figure_height"] += scale_track_height + self.prms.args["gap"] * mm
             scale_track = scale_loader.create_track()
             self.tracks.append(scale_track)
             if self.prms.args["verbose"]:
@@ -397,18 +437,18 @@ class CanvasManager:
         """
         try:
             file_path = os.path.join(self.prms.args["output_dir"], filename)
-            self.layout["figure_height"] += (self.prms.args["margin"] - self.prms.args["gap"]) * cm
+            self.layout["figure_height"] += (self.prms.args["margin"] - self.prms.args["gap"]) * mm
             plot = Canvas(file_path, self.layout["figure_width"], self.layout["figure_height"], self.prms)
 
             for cross_track in self.cross_tracks:
                 cross_track.draw(plot.canvas)
 
-            current_y_coordinate = self.layout["figure_height"] - self.prms.args["margin"] * cm
+            current_y_coordinate = self.layout["figure_height"] - self.prms.args["margin"] * mm
             for track in self.tracks:
                 track.layout["current_y_coordinate"] = current_y_coordinate
                 track.layout["figure_height"] = self.layout["figure_height"]
                 track.draw(plot.canvas)
-                current_y_coordinate -= track.track_data["track_height"] + self.prms.args["gap"] * cm
+                current_y_coordinate -= track.track_data["track_height"] + self.prms.args["gap"] * mm
             plot.save()
             if self.prms.args["verbose"]:
                 print(f"⦿ lovis4u plot was saved as: {file_path}", file=sys.stdout)
@@ -502,19 +542,39 @@ class LocusLoader(Loader):
             layout["inverse_y_coordinate"] = layout["figure_height"]
             track_data = dict()
             self.track_data = track_data
-            if self.prms.args["locus_label_style"] == "full":
-                track_data["locus_label"] = [locus.seq_id]
-                if locus.description:
-                    track_data["locus_label"].append(locus.description)
-            elif self.prms.args["locus_label_style"] == "id":
-                track_data["locus_label"] = [locus.seq_id]
-            elif self.prms.args["locus_label_style"] == "description":
-                track_data["locus_label"] = [locus.description]
+            track_data["locus_id_width"] = pdfmetrics.stringWidth(locus.seq_id,
+                                                                  self.prms.args["locus_label_id_font_face"],
+                                                                  self.prms.args["locus_label_font_size"])
+            two_space_width = pdfmetrics.stringWidth("  ", self.prms.args["locus_label_id_font_face"],
+                                                     self.prms.args["locus_label_font_size"])
+            track_data["two_space_width"] = two_space_width
+            track_data["locus_id"] = locus.seq_id
+            track_data["locus_description"] = locus.description
+            if locus.description:
+                track_data["locus_description_width"] = pdfmetrics.stringWidth(locus.description,
+                                                                               self.prms.args["locus_label_description"
+                                                                                              "_font_face"],
+                                                                               self.prms.args["locus_label_font_size"])
+            if self.prms.args["locus_label_position"] == "bottom":
+                txt_coordinates = []
+                for i in range(len(locus.coordinates)):
+                    cc = locus.coordinates[i].copy()
+                    cc_txt = f"{cc['start']}:{cc['end']}{'(+)' if cc['strand'] == 1 else '(-)'}"
+                    if i > 0 and locus.circular:
+                        if cc["start"] == 1 and locus.coordinates[i - 1]["end"] == locus.length:
+                            txt_coordinates[-1] = f"{locus.coordinates[i - 1]['start']}:{cc['end']}" \
+                                                  f"{'(+)' if cc['strand'] == 1 else '(-)'}"
+                            continue
+                    txt_coordinates.append(cc_txt)
+                track_data["text_coordinates"] = ", ".join(txt_coordinates)
+                track_data["text_coordinates_width"] = pdfmetrics.stringWidth(locus.description,
+                                                                              self.prms.args[
+                                                                                  "locus_label_id_font_face"],
+                                                                              self.prms.args["locus_label_font_size"])
 
-            flh = self.prms.args["feature_label_size"] * self.prms.args["feature_height"] * cm
-            track_data["f_label_height"] = flh
-            track_data["f_label_font_size"] = lovis4u.Methods.str_height_to_size(
-                flh, self.prms.args["feature_label_font_face"])
+            track_data["f_label_font_size"] = self.prms.args["feature_label_font_size"]
+            track_data["f_label_height"] = lovis4u.Methods.str_font_size_to_height(
+                track_data["f_label_font_size"], self.prms.args["feature_label_font_face"])
             track_data["feature_label_gap"] = self.prms.args["feature_label_gap"] * track_data["f_label_height"]
 
             # Managing features positions and parameters
@@ -524,16 +584,17 @@ class LocusLoader(Loader):
             for feature in locus.features:
                 features_taken_nt_coordinates.append([feature.start, feature.end])
                 if feature.vis_prms["fill_colour"] == "default":
-                    feature.vis_prms["fill_colour"] = lovis4u.Methods.get_colour("feature_default_fill_colour", self.prms)
+                    feature.vis_prms["fill_colour"] = lovis4u.Methods.get_colour("feature_default_fill_colour",
+                                                                                 self.prms)
                 if self.prms.args["set_feature_stroke_colour_based_on_fill_colour"] and \
                         feature.vis_prms["stroke_colour"] == "default":
                     scale_l = self.prms.args["feature_stroke_colour_relative_lightness"]
                     feature.vis_prms["stroke_colour"] = lovis4u.Methods.scale_lightness(feature.vis_prms["fill_colour"],
-                                                                                       scale_l)
+                                                                                        scale_l)
                 elif not self.prms.args["set_feature_stroke_colour_based_on_fill_colour"] and \
                         feature.vis_prms["stroke_colour"] == "default":
                     feature.vis_prms["stroke_colour"] = lovis4u.Methods.get_colour("feature_default_stroke_colour",
-                                                                                 self.prms)
+                                                                                   self.prms)
                 f_label_width = 0
                 if feature.vis_prms["show_label"] and feature.vis_prms["label"]:
                     f_label_width = pdfmetrics.stringWidth(feature.vis_prms["label"],
@@ -672,50 +733,62 @@ class LocusLoader(Loader):
             # Managing individual x axis
             if self.prms.args["draw_individual_x_axis"]:
                 track_data["x_axis_annotation"] = dict()
-                axis_tics_label_size = \
-                    lovis4u.Methods.str_height_to_size(self.prms.args["x_axis_ticks_labels_height"] * cm,
-                                                       self.prms.args["x_axis_ticks_labels_font_face"])
-                track_data["x_axis_annotation"]["label_size"] = axis_tics_label_size
+                self.prms.args["x_axis_ticks_labels_height"] = lovis4u.Methods.str_font_size_to_height(
+                    self.prms.args["x_axis_ticks_labels_font_size"],
+                    self.prms.args["x_axis_ticks_labels_font_face"]) / mm
+                track_data["x_axis_annotation"]["label_size"] = self.prms.args["x_axis_ticks_labels_font_size"]
                 axis_regions = []
                 axis_tics_coordinates = []
                 for coordinate in locus.coordinates:
                     axis_regions.append(lovis4u.Methods.region_nt_to_x_transform(coordinate["start"], coordinate["end"],
                                                                                  locus, layout))
                     current_tics_coordinates = [coordinate["start"], coordinate["end"]]
-                    if coordinate["strand"] == -1:
-                        current_tics_coordinates = current_tics_coordinates[::-1]
                     axis_tics_coordinates += current_tics_coordinates
+                if len(axis_tics_coordinates) == 2:
+                    nt_range = coordinate["end"] - coordinate["start"]
+                    axis_tics_coordinates.append(coordinate["start"] + int(0.25 * nt_range))
+                    axis_tics_coordinates.append(coordinate["start"] + int(0.5 * nt_range))
+                    axis_tics_coordinates.append(coordinate["end"] - int(0.25 * nt_range))
+
+                axis_tics_positions = list(map(lambda x: lovis4u.Methods.nt_to_x_transform(x, locus, layout, "center"),
+                                               axis_tics_coordinates))
+                sorted_tics = sorted(zip(axis_tics_positions, axis_tics_coordinates))
+                sorted_positions, sorted_coordinates = zip(*sorted_tics)
+                axis_tics_positions = list(sorted_positions)
+                axis_tics_coordinates = list(sorted_coordinates)
                 axis_tics_labels = list(map(str, axis_tics_coordinates))
-                axis_tics_label_width = list(map(lambda x:
-                                                 pdfmetrics.stringWidth(x,
-                                                                        self.prms.args["x_axis_ticks_labels_font_face"],
-                                                                        axis_tics_label_size), axis_tics_labels))
-                axis_tics_position = list(map(lambda x: lovis4u.Methods.nt_to_x_transform(x, locus, layout, "center"),
-                                              axis_tics_coordinates))
+                axis_tics_label_size = self.prms.args["x_axis_ticks_labels_font_size"]
+                axis_tics_label_width = list(map(lambda x: pdfmetrics.stringWidth(x,
+                                                                                  self.prms.args[
+                                                                                      "x_axis_ticks_labels_font_face"],
+                                                                                  axis_tics_label_size),
+                                                 axis_tics_labels))
+
                 space_width = pdfmetrics.stringWidth(" ", self.prms.args["x_axis_ticks_labels_font_face"],
                                                      axis_tics_label_size)
-                tics_labels_coordinates = axis_tics_position.copy()
+                tics_labels_coordinates = axis_tics_positions.copy()
+                # Shitty, refactor later
                 for t_i in range(len(axis_tics_coordinates)):
                     label_width = axis_tics_label_width[t_i]
-                    tick_position = axis_tics_position[t_i]
+                    tick_position = axis_tics_positions[t_i]
                     if t_i == 0:
                         tics_labels_coordinates[t_i] += label_width * 0.5
                     elif t_i != len(axis_tics_coordinates) - 1:
                         center_label_coordinates = [tick_position - 0.5 * label_width,
                                                     tick_position + 0.5 * label_width]
-                        if center_label_coordinates[0] - space_width <= axis_tics_position[t_i - 1]:
+                        if center_label_coordinates[0] - space_width <= axis_tics_positions[t_i - 1]:
                             tics_labels_coordinates[t_i] += label_width * 0.5
-                            if axis_tics_position[t_i] - axis_tics_position[t_i - 1] < space_width:
+                            if axis_tics_positions[t_i] - axis_tics_positions[t_i - 1] < space_width:
                                 tics_labels_coordinates[t_i] += space_width
-                        if center_label_coordinates[1] + space_width >= axis_tics_position[t_i + 1]:
+                        if center_label_coordinates[1] + space_width >= axis_tics_positions[t_i + 1]:
                             tics_labels_coordinates[t_i] -= label_width * 0.5
-                            if axis_tics_position[t_i + 1] - axis_tics_position[t_i] < space_width:
+                            if axis_tics_positions[t_i + 1] - axis_tics_positions[t_i] < space_width:
                                 tics_labels_coordinates[t_i] -= space_width
                     if tics_labels_coordinates[t_i] + label_width * 0.5 > layout["loci_tracks_right_border"]:
                         tics_labels_coordinates[t_i] -= ((tics_labels_coordinates[t_i] + label_width * 0.5) -
                                                          layout["loci_tracks_right_border"])
                 track_data["x_axis_annotation"]["axis_regions"] = axis_regions
-                track_data["x_axis_annotation"]["axis_tics_position"] = axis_tics_position
+                track_data["x_axis_annotation"]["axis_tics_position"] = axis_tics_positions
                 track_data["x_axis_annotation"]["axis_tics_labels"] = axis_tics_labels
                 track_data["x_axis_annotation"]["tics_labels_coordinates"] = tics_labels_coordinates
                 return None
@@ -730,15 +803,18 @@ class LocusLoader(Loader):
 
         """
         try:
-            track_height = self.prms.args["feature_height"] * cm + \
+            track_height = self.prms.args["feature_height"] * mm + \
                            (self.track_data["n_label_rows"] * self.track_data["f_label_height"] * \
                             (1 + self.prms.args["feature_label_gap"]))
             if self.prms.args["draw_individual_x_axis"]:
                 track_height += (self.prms.args["feature_bottom_gap"] + self.prms.args["x_axis_ticks_height"] * 1.3 + \
-                                 self.prms.args["x_axis_ticks_labels_height"]) * cm
+                                 self.prms.args["x_axis_ticks_labels_height"]) * mm
             elif not self.prms.args["draw_individual_x_axis"] and self.track_data["functions_coordinates"]:
                 track_height += (self.prms.args["feature_bottom_gap"] + \
-                                 self.prms.args["category_annotation_line_width"]) * cm
+                                 self.prms.args["category_annotation_line_width"]) * mm
+            if self.prms.args["locus_label_position"] == "bottom":
+                track_height += self.prms.args["locus_label_height"] + self.prms.args["feature_bottom_gap"] * mm
+
             self.track_data["track_height"] = track_height
             return track_height
         except Exception as error:
@@ -801,16 +877,17 @@ class ScaleLoader(Loader):
                                          layout["width_per_nt"] * scale_line_nt_width]
             track_data["scale_line_width"] = track_data["coordinates"][1] - track_data["coordinates"][0]
             track_data["scale_label"] = f"{scale_line_nt_width} nt"
-            track_data["scale_label_font_size"] = lovis4u.Methods.str_height_to_size(
-                self.prms.args["scale_line_label_height"] * cm, self.prms.args["scale_line_label_font_face"])
+            track_data["scale_line_label_font_size"] = self.prms.args["scale_line_label_font_size"]
+            track_data["scale_line_label_height"] = lovis4u.Methods.str_font_size_to_height(
+                track_data["scale_line_label_font_size"], self.prms.args["scale_line_label_font_face"])
             track_data["scale_line_label_width"] = pdfmetrics.stringWidth(track_data["scale_label"],
                                                                           self.prms.args["scale_line_label_font_face"],
-                                                                          track_data["scale_label_font_size"])
+                                                                          track_data["scale_line_label_font_size"])
             if (track_data["scale_line_width"] - track_data["scale_line_label_width"]) / \
                     track_data["scale_line_width"] > 0.1:
                 track_data["style"] = "fancy"
                 track_data["space_width"] = pdfmetrics.stringWidth(" ", self.prms.args["scale_line_label_font_face"],
-                                                                   track_data["scale_label_font_size"])
+                                                                   track_data["scale_line_label_font_size"])
             else:
                 track_data["style"] = "default"
             return None
@@ -826,10 +903,10 @@ class ScaleLoader(Loader):
         """
         try:
             if self.track_data["style"] == "fancy":
-                track_height = self.prms.args["scale_line_label_height"] * cm
+                track_height = self.track_data["scale_line_label_height"]
             else:
                 track_height = (1.2 * self.prms.args["scale_line_tics_height"] +
-                                self.prms.args["scale_line_label_height"]) * cm
+                                self.track_data["scale_line_label_height"])
             self.track_data["track_height"] = track_height
             return track_height
         except Exception as error:
@@ -881,12 +958,12 @@ class CategoriesColorLegendLoader(Loader):
         try:
             self.layout = layout
             self.track_data = dict()
-            label_height = self.prms.args["colour_legend_label_size"] * cm
-            line_height = self.prms.args["colour_legend_line_height"] * cm
+            label_height = lovis4u.Methods.str_font_size_to_height(
+                self.prms.args["colour_legend_label_font_size"], self.prms.args["colour_legend_font_face"])
+            line_width = self.prms.args["colour_legend_line_width"] * mm
             line_gap = 0.4 * label_height
-            self.track_data["line_height"] = line_height
-            self.track_data["colour_legend_label_size"] = lovis4u.Methods.str_height_to_size(
-                label_height, self.prms.args["colour_legend_font_face"])
+            self.track_data["line_width"] = line_width
+            self.track_data["colour_legend_label_size"] = self.prms.args["colour_legend_label_font_size"]
             left_border = self.layout["loci_tracks_left_border"]
             right_border = self.layout["loci_tracks_right_border"]
             x_gap = pdfmetrics.stringWidth(" " * 5, self.prms.args["colour_legend_font_face"],
@@ -898,7 +975,7 @@ class CategoriesColorLegendLoader(Loader):
             self.track_data["labels"] = []
             current_x = left_border
             n_of_rows = 0
-            current_y = - (label_height + line_gap + line_height)
+            current_y = - (label_height + line_gap + line_width)
             for label, colour in colour_dict.items():
                 label_dict = dict()
                 label_width = pdfmetrics.stringWidth(label, self.prms.args["colour_legend_font_face"],
@@ -906,12 +983,12 @@ class CategoriesColorLegendLoader(Loader):
                 label_end = current_x + label_width
                 if label_end > right_border:
                     current_x = left_border
-                    current_y -= (label_height + line_gap + line_height + y_gap)
+                    current_y -= (label_height + line_gap + line_width + y_gap)
                     n_of_rows += 1
                 label_dict["label_x"] = current_x
                 label_dict["label_width"] = label_width
                 label_dict["relative_y"] = current_y
-                label_dict["relative_y_text"] = current_y + line_gap + line_height
+                label_dict["relative_y_text"] = current_y + line_gap + line_width
                 label_dict["colour"] = colour
                 label_dict["label"] = label
                 self.track_data["labels"].append(label_dict)

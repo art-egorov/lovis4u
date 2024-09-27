@@ -28,6 +28,7 @@ nav:
   - Home: index.md
   - Pipeline description: Pipeline/pipeline.md
   - Example-driven guide: ExampleDrivenGuide/cmd_guide.md
+  - Gallery: Gallery/gallery.md
   - Parameters:
     - Command-line parameters: Parameters/cmd_parameters.md
     - Configuration file parameters: Parameters/config_parameters.md
@@ -35,6 +36,7 @@ nav:
     - Usage examples: API/usage_examples.md
     - Library: API/package.md
   - Version log: VersionLog/versions.md
+  - FAQ: FAQ/FAQ.md
 
 markdown_extensions:
  - def_list

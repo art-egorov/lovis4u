@@ -55,12 +55,13 @@ class Feature:
             In visualisation it defines the "category" colour annotation under features.
             Supposed to represent clusters on locus or any second layer of feature properties.
         vis_prms (dict): Visualisation parameters that holds colours, label and other info for Drawing methods.
+        overlapping (bool): Whether feature overlaps with visualised region or not.
         prms (lovis4u.Manager.Parameters): Parameters' class object that holds config and cmd arguments.
 
     """
 
     def __init__(self, feature_id: str, feature_type: str, start: int, end: int, strand: int, name: str,
-                 sequence: Bio.Seq.Seq, group: str, group_type: str, category: str, vis_prms: dict,
+                 sequence: Bio.Seq.Seq, group: str, group_type: str, category: str, vis_prms: dict, overlapping: bool,
                  parameters: lovis4u.Manager.Parameters):
         """Create a Feature object.
 
@@ -96,6 +97,7 @@ class Feature:
         self.category = category
         self.vis_prms = vis_prms
         self.vis_prms["label"] = str(name)
+        self.overlapping = overlapping
         self.prms = parameters
 
 
@@ -322,10 +324,10 @@ class Loci:
             elif isinstance(input_f, list):
                 gff_files = input_f
             else:
-                raise lovis4u.manager.lovis4uError(f"The input for the GFF parsing function must be either a folder or "
+                raise lovis4u.Manager.lovis4uError(f"The input for the GFF parsing function must be either a folder or "
                                                    f"a list of files.")
             if not gff_files:
-                raise lovis4u.manager.lovis4uError(f"Folder {input_f} does not contain files.")
+                raise lovis4u.Manager.lovis4uError(f"Folder {input_f} does not contain files.")
             if self.prms.args["verbose"]:
                 print(f"○ Reading gff file{'s' if len(gff_files) > 1 else ''}...", file=sys.stdout)
             for gff_file_path in gff_files:
@@ -339,7 +341,7 @@ class Loci:
                     gff_record = gff_records[0]
                     try:
                         record_locus_sequence = gff_record.seq
-                    except Bio.Seq.UndefinedSequenceError as error:
+                    except Bio.Seq.UndefinedSequenceError:
                         print(f"○ Warning: gff file {gff_file} doesn't contain corresponding sequences.")
                         continue
                     if self.prms.args["gff_description_source"] in gff_record.annotations:
@@ -348,7 +350,8 @@ class Loci:
                             record_description = " ".join(record_description)
                     else:
                         record_description = ""
-
+                    if self.prms.args["use_filename_as_contig_id"]:
+                        gff_record.id = os.path.splitext(os.path.basename(gff_file))[0]
                     self.__update_locus_annotation(gff_record.id, record_description, len(record_locus_sequence))
                     locus_annotation_row = self.locus_annotation.loc[gff_record.id]
                     coordinates = [dict(zip(["start", "end", "strand"], map(int, c.split(":")))) for c in
@@ -377,31 +380,44 @@ class Loci:
                         if self.prms.args["gff_CDS_category_source"] in gff_feature.qualifiers:
                             category = ",".join(gff_feature.qualifiers[self.prms.args["gff_CDS_category_source"]])
                         for coordinate in record_locus.coordinates:
+                            overlapping = False
                             start, end = coordinate["start"], coordinate["end"]
                             if start <= gff_feature.location.start + 1 <= end or start <= gff_feature.location.end <= end:
-                                self.__update_feature_annotation(feature_id, record_locus.seq_id,
-                                                                 f"{int(gff_feature.location.start) + 1}:"
-                                                                 f"{int(gff_feature.location.end)}:{gff_feature.location.strand}",
-                                                                 "CDS", category, name)
-                                feature_annotation_row = self.feature_annotation.loc[feature_id]
-                                feature = Feature(feature_type=feature_annotation_row["feature_type"],
-                                                  feature_id=feature_id, start=int(gff_feature.location.start) + 1,
-                                                  end=int(gff_feature.location.end), strand=gff_feature.location.strand,
-                                                  name=feature_annotation_row["name"],
-                                                  sequence=gff_feature.translate(record_locus_sequence, table=transl_table,
-                                                                                 cds=False)[:-1],
-                                                  group=feature_annotation_row["group"],
-                                                  group_type=feature_annotation_row["group_type"],
-                                                  category=feature_annotation_row["category"],
-                                                  vis_prms=dict(fill_colour=feature_annotation_row["fill_colour"],
-                                                                stroke_colour=feature_annotation_row["stroke_colour"],
-                                                                show_label=feature_annotation_row["show_label"]),
-                                                  parameters=self.prms)
-                                record_locus.features.append(feature)
+                                overlapping = True
+                                break
+                        if not overlapping and not self.prms.args["cluster_all_proteins"]:
+                            continue
+                        self.__update_feature_annotation(feature_id, record_locus.seq_id,
+                                                         f"{int(gff_feature.location.start) + 1}:"
+                                                         f"{int(gff_feature.location.end)}:{gff_feature.location.strand}",
+                                                         "CDS", category, name)
+                        feature_annotation_row = self.feature_annotation.loc[feature_id]
+                        feature = Feature(feature_type=feature_annotation_row["feature_type"],
+                                          feature_id=feature_id, start=int(gff_feature.location.start) + 1,
+                                          end=int(gff_feature.location.end), strand=gff_feature.location.strand,
+                                          name=feature_annotation_row["name"],
+                                          sequence=gff_feature.translate(record_locus_sequence, table=transl_table,
+                                                                         cds=False)[:-1],
+                                          group=feature_annotation_row["group"],
+                                          group_type=feature_annotation_row["group_type"],
+                                          category=feature_annotation_row["category"],
+                                          vis_prms=dict(fill_colour=feature_annotation_row["fill_colour"],
+                                                        stroke_colour=feature_annotation_row["stroke_colour"],
+                                                        show_label=feature_annotation_row["show_label"]),
+                                          overlapping=overlapping, parameters=self.prms)
+                        record_locus.features.append(feature)
                     self.loci.append(record_locus)
                 except:
                     print(f"○ Warning: gff file {gff_file} was not read properly and skipped")
+                    if self.prms.args["parsing_debug"]:
+                        self.prms.args["debug"] = True
+                        raise lovis4u.Manager.lovis4uError()
             seq_id_to_order = self.locus_annotation["order"].to_dict()
+            loci_ids = [l.seq_id for l in self.loci]
+            if len(loci_ids) != len(set(loci_ids)):
+                raise lovis4u.Manager.lovis4uError(f"The input gff files have duplicated contig ids.\n\t"
+                                                   f"You can use `--use-filename-as-id` parameter to use file name "
+                                                   f"as contig id which can help to fix the problem.")
             self.loci.sort(key=lambda locus: seq_id_to_order[locus.seq_id])
             if self.prms.args["verbose"]:
                 print(f"⦿ {len(self.loci)} {'locus was' if len(self.loci) == 1 else 'loci were'} loaded from genbank "
@@ -447,6 +463,8 @@ class Loci:
                         record_description = gb_record.annotations[feature_description_key]
                     else:
                         record_description = ""
+                    if self.prms.args["use_filename_as_contig_id"]:
+                        gb_record.id = os.path.splitext(os.path.basename(gb_file))[0]
                     self.__update_locus_annotation(gb_record.id, record_description, len(record_locus_sequence))
                     locus_annotation_row = self.locus_annotation.loc[gb_record.id]
                     coordinates = [dict(zip(["start", "end", "strand"], map(int, c.split(":")))) for c in
@@ -470,15 +488,16 @@ class Loci:
                                           file=sys.stdout)
                                 break
                         if id_source == self.prms.args["genbank_id_source"]:
-                            raise lovis4u.Manager.lovis4uError(f"There is no <{self.prms.args['genbank_id_source']}> "
-                                                               f"attribute for CDS record found in {gb_file}. We tried to"
-                                                               f" find any from the alternative list: "
-                                                               f"{','.join(self.prms.args['genbank_id_alternative_source'])}"
-                                                               f", but they also weren't found.")  # add about cmd parameter
+                            print(f"There is no <{self.prms.args['genbank_id_source']}> "
+                                  f"attribute for CDS record found in {gb_file}. We tried to"
+                                  f" find any from the alternative list: "
+                                  f"{','.join(self.prms.args['genbank_id_alternative_source'])}"
+                                  f", but they also weren't found.")  # add about cmd parameter
                     features_ids = [i.qualifiers[id_source][0] for i in gb_CDSs]
                     if len(features_ids) != len(set(features_ids)):
-                        raise lovis4u.Manager.lovis4uError(f"GB file {gb_record} contains duplicated feature ids while"
+                        print(f"GB file {gb_record} contains duplicated feature ids while"
                                                            f" only unique are allowed.")
+
                     for gb_feature in gb_CDSs:
                         feature_id = gb_feature.qualifiers[id_source][0].replace("|", "_")
                         transl_table = self.prms.args["default_transl_table"]
@@ -490,33 +509,50 @@ class Loci:
                         category = ""
                         if self.prms.args["genbank_CDS_category_source"] in gb_feature.qualifiers:
                             category = ",".join(gb_feature.qualifiers[self.prms.args["genbank_CDS_category_source"]])
+
                         for coordinate in record_locus.coordinates:
+                            overlapping = False
                             start, end = coordinate["start"], coordinate["end"]
                             if start <= gb_feature.location.start + 1 <= end or start <= gb_feature.location.end <= end:
-                                self.__update_feature_annotation(feature_id, record_locus.seq_id,
-                                                                 f"{int(gb_feature.location.start) + 1}:"
-                                                                 f"{int(gb_feature.location.end)}:"
-                                                                 f"{gb_feature.location.strand}", "CDS", category, name)
-                                feature_annotation_row = self.feature_annotation.loc[feature_id]
-                                feature = Feature(feature_type=feature_annotation_row["feature_type"],
-                                                  feature_id=feature_id, start=int(gb_feature.location.start) + 1,
-                                                  end=int(gb_feature.location.end),
-                                                  strand=gb_feature.location.strand, name=feature_annotation_row["name"],
-                                                  sequence=gb_feature.translate(record_locus_sequence, table=transl_table,
-                                                                                cds=False)[:-1],
-                                                  group=feature_annotation_row["group"],
-                                                  group_type=feature_annotation_row["group_type"],
-                                                  category=feature_annotation_row["category"],
-                                                  vis_prms=dict(fill_colour=feature_annotation_row["fill_colour"],
-                                                                stroke_colour=feature_annotation_row["stroke_colour"],
-                                                                show_label=feature_annotation_row["show_label"]),
-                                                  parameters=self.prms)
+                                overlapping = True
+                                break
+                        if not overlapping and not self.prms.args["cluster_all_proteins"]:
+                            continue
+                        self.__update_feature_annotation(feature_id, record_locus.seq_id,
+                                                         f"{int(gb_feature.location.start) + 1}:"
+                                                         f"{int(gb_feature.location.end)}:"
+                                                         f"{gb_feature.location.strand}", "CDS", category, name)
+                        feature_annotation_row = self.feature_annotation.loc[feature_id]
+                        feature = Feature(feature_type=feature_annotation_row["feature_type"],
+                                          feature_id=feature_id, start=int(gb_feature.location.start) + 1,
+                                          end=int(gb_feature.location.end),
+                                          strand=gb_feature.location.strand,
+                                          name=feature_annotation_row["name"],
+                                          sequence=gb_feature.translate(record_locus_sequence,
+                                                                        table=transl_table,
+                                                                        cds=False)[:-1],
+                                          group=feature_annotation_row["group"],
+                                          group_type=feature_annotation_row["group_type"],
+                                          category=feature_annotation_row["category"],
+                                          vis_prms=dict(fill_colour=feature_annotation_row["fill_colour"],
+                                                        stroke_colour=feature_annotation_row["stroke_colour"],
+                                                        show_label=feature_annotation_row["show_label"]),
+                                          overlapping = overlapping,
+                                          parameters=self.prms)
 
-                                record_locus.features.append(feature)
+                        record_locus.features.append(feature)
                     self.loci.append(record_locus)
                 except:
-                    print(f"○ Warning: gff file {gb_file} was not read properly and skipped")
+                    print(f"○ Warning: gb file {gb_file} was not read properly and skipped")
+                    if self.prms.args["parsing_debug"]:
+                        self.prms.args["debug"] = True
+                        raise lovis4u.Manager.lovis4uError()
             seq_id_to_order = self.locus_annotation["order"].to_dict()
+            loci_ids = [l.seq_id for l in self.loci]
+            if len(loci_ids) != len(set(loci_ids)):
+                raise lovis4u.Manager.lovis4uError(f"The input gff files have duplicated contig ids.\n\t"
+                                                   f"You can use `--use-filename-as-id` parameter to use file name "
+                                                   f"as contig id which can help to fix the problem.")
             self.loci.sort(key=lambda locus: seq_id_to_order[locus.seq_id])
             if self.prms.args["verbose"]:
                 print(f"⦿ {len(self.loci)} {'locus was' if len(self.loci) == 1 else 'loci were'} loaded from genbank "
@@ -638,6 +674,7 @@ class Loci:
 
         """
         try:
+
             for locus in self.loci:
                 for feature in locus.features:
                     if feature.group and self.prms.args["keep_predefined_groups"]:
@@ -647,6 +684,22 @@ class Loci:
             return None
         except Exception as error:
             raise lovis4u.Manager.lovis4uError("Unable to define protein features groups.") from error
+
+    def remove_non_overlapping_features(self) -> None:
+        """Removes features that are not overlapping with visualisation window.
+
+        Returns:
+            None
+        """
+        try:
+            ids_of_non_overlapping_objects = []
+            for locus in self.loci:
+                ids_of_non_overlapping_objects += [obj.feature_id for obj in locus.features if not obj.overlapping]
+                filtered_objects = [obj for obj in locus.features if obj.overlapping]
+                locus.features = filtered_objects
+            self.feature_annotation = self.feature_annotation.drop(ids_of_non_overlapping_objects)
+        except Exception as error:
+            raise lovis4u.Manager.lovis4uError("Unable to clean non overlapping features.") from error
 
     def define_labels_to_be_shown(self):
         """Set feature visaulisation attribute "show_label" based on feature groups.

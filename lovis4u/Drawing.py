@@ -137,16 +137,16 @@ class HomologyTrack(CrossTrack):
                     next_track_same_group_features = [i for i in next_track_features if i["group"] == ctf_group]
                     for ntf in next_track_same_group_features:
                         cty_u = current_track.track_data["feature_upper"]
-                        cty_c = current_track.track_data["feature_upper"] - 0.5 * self.prms.args["feature_height"] * cm
-                        cty_b = current_track.track_data["feature_upper"] - self.prms.args["feature_height"] * cm
+                        cty_c = current_track.track_data["feature_upper"] - 0.5 * self.prms.args["feature_height"] * mm
+                        cty_b = current_track.track_data["feature_upper"] - self.prms.args["feature_height"] * mm
                         nty_u = next_track.track_data["feature_upper"]
-                        nty_c = next_track.track_data["feature_upper"] - 0.5 * self.prms.args["feature_height"] * cm
-                        nty_b = next_track.track_data["feature_upper"] - self.prms.args["feature_height"] * cm
+                        nty_c = next_track.track_data["feature_upper"] - 0.5 * self.prms.args["feature_height"] * mm
+                        nty_b = next_track.track_data["feature_upper"] - self.prms.args["feature_height"] * mm
                         ct_arrow_len = min(
-                            self.prms.args["feature_height"] * cm * self.prms.args["feature_arrow_length"],
+                            self.prms.args["feature_height"] * mm * self.prms.args["feature_arrow_length"],
                             (ctf["coordinates"]["end"] - ctf["coordinates"]["start"]))
                         nt_arrow_len = min(
-                            self.prms.args["feature_height"] * cm * self.prms.args["feature_arrow_length"],
+                            self.prms.args["feature_height"] * mm * self.prms.args["feature_arrow_length"],
                             (ntf["coordinates"]["end"] - ntf["coordinates"]["start"]))
                         canvas.setLineCap(0)
                         canvas.setLineJoin(1)
@@ -233,7 +233,8 @@ class LocusVis(Track):
 
         """
         try:
-            feature_height = self.prms.args["feature_height"] * cm
+            y_track_bottom = self.layout["current_y_coordinate"]  - self.track_data["track_height"]
+            feature_height = self.prms.args["feature_height"] * mm
             y_feature_upper = self.layout["current_y_coordinate"] - (self.track_data["n_label_rows"] *
                                                                      self.track_data["f_label_height"] *
                                                                      (1 + self.prms.args["feature_label_gap"]))
@@ -243,17 +244,29 @@ class LocusVis(Track):
             # Sequence label
             canvas.setFillColorRGB(*lovis4u.Methods.get_colour_rgba("locus_label_colour", self.prms))
             canvas.setFont(self.prms.args["locus_label_description_font_face"], self.prms.args["locus_label_font_size"])
-            if self.prms.args["locus_label_style"] == "full" and len(self.track_data["locus_label"]) == 2:
-                label_bottom = y_feature_upper - self.prms.args["locus_label_height"]
-                canvas.drawRightString(self.layout["locus_label_right_border"], label_bottom,
-                                       self.track_data["locus_label"][1])
-                label_bottom = y_feature_bottom
-            else:
-                label_bottom = y_feature_bottom + (feature_height - self.prms.args["locus_label_height"]) * 0.5
-            if self.prms.args["locus_label_style"] != "description":
+            if self.prms.args["locus_label_position"] == "left":
+                if self.prms.args["locus_label_style"] == "full" and self.track_data["locus_description"]:
+                    label_bottom = y_feature_upper - self.prms.args["locus_label_height"]
+                    canvas.drawRightString(self.layout["locus_label_right_border"], label_bottom,
+                                           self.track_data["locus_description"])
+                    label_bottom = y_feature_bottom
+                else:
+                    label_bottom = y_feature_bottom + (feature_height - self.prms.args["locus_label_height"]) * 0.5
+                    label = self.track_data["locus_description"]
+                if self.prms.args["locus_label_style"] != "description":
+                    label = self.track_data["locus_id"]
+                    canvas.setFont(self.prms.args["locus_label_id_font_face"], self.prms.args["locus_label_font_size"])
+                canvas.drawRightString(self.layout["locus_label_right_border"], label_bottom, label)
+            elif self.prms.args["locus_label_position"] == "bottom":
+                label_bottom = y_track_bottom
+                current_left = self.layout["locus_label_left_border"]
+                if self.prms.args["locus_label_style"] == "full" and self.track_data["locus_description"]:
+                    canvas.drawString(current_left, label_bottom, self.track_data["locus_description"])
+                    current_left += self.track_data["locus_description_width"] + self.track_data["two_space_width"]
                 canvas.setFont(self.prms.args["locus_label_id_font_face"], self.prms.args["locus_label_font_size"])
-            canvas.drawRightString(self.layout["locus_label_right_border"], label_bottom,
-                                   self.track_data["locus_label"][0])
+                canvas.drawString(current_left, label_bottom, self.track_data["locus_id"])
+                current_left += self.track_data["locus_id_width"] + self.track_data["two_space_width"]
+                canvas.drawString(current_left, label_bottom, self.track_data["text_coordinates"])
 
             # Middle line
             if self.prms.args["draw_middle_line"]:
@@ -274,8 +287,8 @@ class LocusVis(Track):
                     canvas.setFillColorRGB(*matplotlib.colors.hex2color(feature_colour),
                                            self.prms.args["category_annotation_alpha"])
                     canvas.setLineJoin(1)
-                    y_upper_sausage = y_feature_bottom - self.prms.args["feature_bottom_gap"] * cm
-                    y_bottom_sausage = y_upper_sausage - self.prms.args["category_annotation_line_width"] * cm
+                    y_upper_sausage = y_feature_bottom - self.prms.args["feature_bottom_gap"] * mm
+                    y_bottom_sausage = y_upper_sausage - self.prms.args["category_annotation_line_width"] * mm
                     for ffr in ff_region:
                         p = canvas.beginPath()
                         p.moveTo(ffr[0], y_bottom_sausage)
@@ -318,13 +331,20 @@ class LocusVis(Track):
                             p.moveTo(fx_center, ls + y_feature_upper)
                             p.lineTo(fx_center, le + y_feature_upper)
                         canvas.drawPath(p, stroke=1, fill=0)
+                        l_start = f_data["coordinates"]["start"]
+                        l_end = min(f_data["coordinates"]["end"], fx_center + self.track_data["feature_label_gap"])
+                        l_end = f_data["coordinates"]["end"]
+                        ly = y_feature_upper + f_data["label_y_bottom"] - self.track_data["feature_label_gap"] * 0.5
+                        canvas.line(l_start, ly, l_end, ly)
                     else:
                         overlapping = min(f_data["coordinates"]["end"], f_data["label_position"][1]) - (
                             max(f_data["coordinates"]["start"], f_data["label_position"][0]))
-                        if overlapping / (f_data["label_position"][1] - f_data["label_position"][0]) < 0.5:
+                        if overlapping / (f_data["label_position"][1] - f_data["label_position"][0]) < 1:
                             l_start = max(f_data["coordinates"]["start"], fx_center -
                                           self.track_data["feature_label_gap"])
+                            l_start = f_data["coordinates"]["start"]
                             l_end = min(f_data["coordinates"]["end"], fx_center + self.track_data["feature_label_gap"])
+                            l_end = f_data["coordinates"]["end"]
                             ly = y_feature_upper + f_data["label_y_bottom"] - self.track_data["feature_label_gap"] * 0.5
                             canvas.line(l_start, ly, l_end, ly)
             # Axis ticks
@@ -335,10 +355,10 @@ class LocusVis(Track):
                 canvas.setFillColorRGB(*lovis4u.Methods.get_colour_rgba("x_axis_line_colour", self.prms))
                 canvas.setFont(self.prms.args["x_axis_ticks_labels_font_face"],
                                self.track_data["x_axis_annotation"]["label_size"])
-                axis_line_y_coordinate = y_feature_bottom - self.prms.args["feature_bottom_gap"] * cm
-                axis_tick_height = self.prms.args["x_axis_ticks_height"] * cm
+                axis_line_y_coordinate = y_feature_bottom - self.prms.args["feature_bottom_gap"] * mm
+                axis_tick_height = self.prms.args["x_axis_ticks_height"] * mm
                 axis_tick_label_y_coordinate = axis_line_y_coordinate - self.prms.args["x_axis_ticks_height"] * \
-                                               1.3 * cm - self.prms.args["x_axis_ticks_labels_height"] * cm
+                                               1.3 * mm - self.prms.args["x_axis_ticks_labels_height"] * mm
                 for ati in range(len(self.track_data["x_axis_annotation"]["axis_tics_position"])):
                     tick_coordinate = self.track_data["x_axis_annotation"]["axis_tics_position"][ati]
                     tick_label_position = self.track_data["x_axis_annotation"]["tics_labels_coordinates"][ati]
@@ -466,7 +486,7 @@ class ScaleVis(Track):
             canvas.setLineCap(0)
             canvas.setLineJoin(1)
             if self.track_data["style"] == "fancy":
-                tick_height = self.prms.args["scale_line_label_height"] * cm * 0.7
+                tick_height = self.track_data["scale_line_label_height"]
 
                 p = canvas.beginPath()
                 p.moveTo(self.track_data["coordinates"][0], y_center - 0.5 * tick_height)
@@ -480,7 +500,7 @@ class ScaleVis(Track):
                 p.lineTo(middle_line_x_position + 0.5 * self.track_data["scale_line_label_width"] +
                          self.track_data["space_width"], y_center)
             else:
-                tick_height = self.prms.args["scale_line_tics_height"] * cm
+                tick_height = self.prms.args["scale_line_tics_height"] * mm
 
                 p = canvas.beginPath()
                 p.moveTo(self.track_data["coordinates"][0], y_upper - tick_height)
@@ -492,7 +512,7 @@ class ScaleVis(Track):
             canvas.drawPath(p, stroke=1, fill=0)
             canvas.setFillColorRGB(*lovis4u.Methods.get_colour_rgba("scale_line_colour", self.prms))
             canvas.setFont(self.prms.args["scale_line_label_font_face"],
-                           self.track_data["scale_label_font_size"])
+                           self.track_data["scale_line_label_font_size"])
             canvas.drawCentredString(middle_line_x_position, y_bottom, self.track_data["scale_label"])
             return None
         except Exception as error:
@@ -542,7 +562,7 @@ class ColorLegendVis(Track):
                 canvas.setFillColorRGB(*matplotlib.colors.hex2color(label_dict["colour"]),
                                        self.prms.args["category_annotation_alpha"])
                 canvas.rect(label_dict["label_x"], yl, label_dict["label_width"],
-                            self.track_data["line_height"], fill=1, stroke=0)
+                            self.track_data["line_width"], fill=1, stroke=0)
                 canvas.setFillColorRGB(*lovis4u.Methods.get_colour_rgba("colour_legend_label_colour", self.prms))
                 canvas.drawString(label_dict["label_x"], yt, label_dict["label"])
             return None

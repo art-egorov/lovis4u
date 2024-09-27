@@ -26,7 +26,7 @@
 ![visex](img/lovis4u_default_hl_A4p2.png){loading=lazy width="100%" }  
 
 
-See the [gallery page](https://art-egorov.github.io/ilund4u/Gallery/gallery) for more examples
+See the [gallery page](https://art-egorov.github.io/lovis4u/Gallery/gallery/) for more examples
 
 ## Installation
 

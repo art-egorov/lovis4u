@@ -1,6 +1,6 @@
 sequence_id	length	coordinates	circular	description	order	group	initial_order
-RefSeq_NC_005056.1	32684	1:32684:1	1	Escherichia phage Wphi	0	1	3
-RefSeq_NC_049461.1	31834	1:31834:1	1	Bacteriophage R18C	1	1	1
-RefSeq_NC_001895.1	33593	1:33593:1	1	Enterobacteria phage P2	2	1	0
-RefSeq_NC_049457.1	33807	1:33807:1	1	Escherichia phage vB_EcoM-12474III	3	1	4
-RefSeq_NC_028943.1	29237	1:29237:1	1	Escherichia phage pro483	4	1	2
+NC_005056.1	32684	1:32684:1	1	Escherichia phage Wphi	0	1	4
+NC_049457.1	33807	1:33807:1	1	Escherichia phage vB_EcoM-12474III	1	1	2
+NC_001895.1	33593	1:33593:1	1	Enterobacteria phage P2	2	1	1
+NC_049461.1	31834	1:31834:1	1	Bacteriophage R18C	3	1	0
+NC_028943.1	29237	1:29237:1	1	Escherichia phage pro483	4	1	3

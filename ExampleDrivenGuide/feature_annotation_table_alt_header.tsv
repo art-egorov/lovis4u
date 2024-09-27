@@ -1,6 +1,6 @@
 feature_id	locus_id	coordinates	feature_type	name	group	group_type	category	fill_colour	stroke_colour	show_label
-RefSeq_NC_001895.1_CDS_0001	RefSeq_NC_001895.1	64:2286:1	CDS	nicking at origin of replication	RefSeq_NC_005056.1_CDS_0001	conserved	"DNA, RNA and nucleotide metabolism"	default	default	0
-RefSeq_NC_001895.1_CDS_0002	RefSeq_NC_001895.1	2283:2612:1	CDS	hypothetical protein	RefSeq_NC_005056.1_CDS_0002	conserved	unknown function	default	default	0
-RefSeq_NC_001895.1_CDS_0003	RefSeq_NC_001895.1	2651:3412:-1	CDS	hypothetical protein	RefSeq_NC_001895.1_CDS_0003	variable	unknown function	#aa9b35	default	0
-RefSeq_NC_001895.1_CDS_0004	RefSeq_NC_001895.1	3587:5347:-1	CDS	hypothetical protein	RefSeq_NC_001895.1_CDS_0004	variable	unknown function	#f4767a	default	0
-RefSeq_NC_001895.1_CDS_0005	RefSeq_NC_001895.1	5347:5517:-1	CDS	hypothetical protein	RefSeq_NC_001895.1_CDS_0005	variable	unknown function	#f47763	default	0
+NC_001895.1_CDS_0001	NC_001895.1	64:2286:1	CDS	nicking at origin of replication	NC_005056.1_CDS_0001	conserved	"DNA, RNA and nucleotide metabolism"	default	default	0
+NC_001895.1_CDS_0002	NC_001895.1	2283:2612:1	CDS	hypothetical protein	NC_005056.1_CDS_0002	intermediate	unknown function	default	default	0
+NC_001895.1_CDS_0003	NC_001895.1	2651:3412:-1	CDS	hypothetical protein	NC_001895.1_CDS_0003	variable	unknown function	#f165db	default	0
+NC_001895.1_CDS_0004	NC_001895.1	3587:5347:-1	CDS	hypothetical protein	NC_001895.1_CDS_0004	variable	unknown function	#95a134	default	0
+NC_001895.1_CDS_0005	NC_001895.1	5347:5517:-1	CDS	hypothetical protein	NC_001895.1_CDS_0005	variable	unknown function	#9e9e34	default	0

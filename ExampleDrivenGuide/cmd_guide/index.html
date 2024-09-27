@@ -217,6 +217,18 @@
   
 
 
+  <li class="md-tabs__item">
+    <a href="../../Gallery/gallery/" class="md-tabs__link">
+      Gallery
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
   
   
   
@@ -252,6 +264,18 @@
   <li class="md-tabs__item">
     <a href="../../VersionLog/versions/" class="md-tabs__link">
       Version log
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../FAQ/FAQ.md" class="md-tabs__link">
+      FAQ
     </a>
   </li>
 
@@ -424,8 +448,22 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#configuration-files" class="md-nav__link">
+    Configuration files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example-run-with-default-parameters" class="md-nav__link">
     Example run with default parameters
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-parameters-for-basic-runs" class="md-nav__link">
+    Useful parameters for basic runs
   </a>
   
 </li>
@@ -445,11 +483,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#other-features" class="md-nav__link">
-    Other features
+  <a href="#other-lovis4u-features" class="md-nav__link">
+    Other LoVis4u features
   </a>
   
-    <nav class="md-nav" aria-label="Other features">
+    <nav class="md-nav" aria-label="Other LoVis4u features">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -460,8 +498,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#using-a-scale-line-instead-of-individual-x-axis" class="md-nav__link">
-    Using a scale line instead of individual x-axis
+  <a href="#individual-x-axis-and-locus-label-position" class="md-nav__link">
+    Individual x-axis and locus label position
   </a>
   
 </li>
@@ -474,8 +512,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#specifying-figure-width" class="md-nav__link">
-    Specifying figure width
+  <a href="#visualisation-of-a-single-sequence" class="md-nav__link">
+    Visualisation of a single sequence
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specifying-figure-width-and-more-compact-visualisation" class="md-nav__link">
+    Specifying figure width and more compact visualisation.
   </a>
   
 </li>
@@ -500,22 +545,37 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../Gallery/gallery/" class="md-nav__link">
+        Gallery
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
     
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_4">
+        <label class="md-nav__link" for="__nav_5">
           Parameters
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Parameters" data-md-level="1">
-        <label class="md-nav__title" for="__nav_4">
+        <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           Parameters
         </label>
@@ -566,18 +626,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_5">
+        <label class="md-nav__link" for="__nav_6">
           API
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="API" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
+        <label class="md-nav__title" for="__nav_6">
           <span class="md-nav__icon md-icon"></span>
           API
         </label>
@@ -632,6 +692,21 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FAQ/FAQ.md" class="md-nav__link">
+        FAQ
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -655,9 +730,10 @@
 <p><strong>If you work on a Linux machine:</strong> after installation you should run: <code>lovis4u --linux</code><br />
 This command replaces the tool path (for MMseqs2) in the pre-made config files from the MacOS version (default) to the Linux version.
 If you run this command for fun and want to change it back you can use <code>lovis4u --mac</code>.</p>
-<p><ins>For demonstration we will use pharokka generated gff files with the sequences of five Enterobacteria phages.
+<p><ins>For demonstration we will use pharokka generated gff files with the sequences of five Enterobacteria P2-like phages.
 Gff files are stored at: lovis4u_data/guide/gff_files.</ins>    <br />
 The main difference between pharokka generated gff files and regular gff3 (for ex. which you can download from the NCBI) is that in addition to the annotation rows the annotation contains the corresponding nucleotide sequence in fasta format.</p>
+<hr />
 <h3 id="building-compatible-gff-files-based-on-nucleotide-sequences">Building compatible gff files based on nucleotide sequences</h3>
 <p>If your query set of sequences for visualisation contains only nucleotide fasta files, below we will provide the efficient way of using <a href="https://pharokka.readthedocs.io/en/latest/">pharokka</a> (phage annotation pipeline) and <a href="https://github.com/tseemann/prokka">prokka</a> (prokaryotic genome annotation pipeline) for preparing gff files compatible with LoVis4u. </p>
 <h4 id="using-pharokka-for-annotation-of-phage-genomes">Using pharokka for annotation of phage genomes</h4>
@@ -679,6 +755,23 @@ We recommend to merge multiple sequences to one file and using meta mode since i
 Then you can move generated gff files to one folder using:
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">for</span><span class="w"> </span>f<span class="w"> </span><span class="k">in</span><span class="w"> </span>prokka/*<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nv">fb</span><span class="o">=</span><span class="k">$(</span>basename<span class="w"> </span><span class="nv">$f</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span>mv<span class="w">  </span><span class="nv">$f</span>/<span class="nv">$fb</span>.gff<span class="w"> </span>prokka_gffs/<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>parallel
 </span></code></pre></div></p>
+<hr />
+<h2 id="configuration-files">Configuration files</h2>
+<p>LoVis4u has a set of editable configuration files with parameters already adjusted for different tasks and page layout:</p>
+<ul>
+<li><strong>A4p1</strong> - adjusted for one-column portrait A4 page layout. Figure width - 90mm.</li>
+<li><strong>A4p2</strong> - adjusted for two-column portrait A4 page layout. Figure width - 190mm.</li>
+<li><strong>A4L</strong> - adjusted for landscape A4 page layout. Figure width - 240mm.</li>
+<li><strong>standard</strong> - flexible width length, scale - 0.05 mm per nucleotide with minimal width - 80mm. </li>
+</ul>
+<details class="card_hearts">
+<summary><strong>A4 page layout examples</strong></summary>
+<p><a href="img/A4_page.pdf" target="_blank"><strong><em>Corresponding PDF file</em></strong></a>
+<a class="glightbox" href="img/A4_page.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="a4page" loading="lazy" src="img/A4_page.png" width="100%" /></a> </p>
+</details>
+<p>By default, <strong>standard</strong> configuration file is used. You can change it simply by using <code>-c\--config</code> parameter. For example, to use A4p2 config file use: <code>lovis4u [other arguments] -c A4p2</code>. Below you can find examples with sample data.</p>
+<p>If you want to edit some config parameters you can first download <em>lovis4u_data</em> folder (see above) to your working directory with <code>lovis4u --data</code> command. In the folder you can find all configuration files. You can then edit any parameters and its name there and specify path to it using the same <code>-c\--config path_to_new_file.cfg</code> parameter. Even if you break something there, you can always download default config files again with the same <code>lovis4u --data</code> command.</p>
+<hr />
 <h2 id="example-run-with-default-parameters">Example run with default parameters</h2>
 <p>Let's start with running lovis4u without using any optional arguments. The only mandatory argument is a folder path containing pharokka generated gff (<code>-gff</code>) files or genbank files (<code>-gb</code>).   </p>
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files
@@ -701,25 +794,38 @@ Then you can move generated gff files to one folder using:
 </ul>
 </details>
 <p><a class="glightbox" href="img/lovis4u_default_1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f1" loading="lazy" src="img/lovis4u_default_1.png" width="100%" /></a>  </p>
-<p><strong>By default, lovis4u uses the following data pre-processing steps:</strong></p>
+<details class="card_hearts">
+<summary><strong>lovis4u data pre-processing steps</strong></summary>
+<p><strong>By default, lovis4u uses the following data pre-processing steps:</strong>  <br />
+(For details see the Pipeline description page)</p>
 <ol>
-<li>The full length of each input sequence is taken for analysis (this can be adjusted using the locus annotation table, see below).. </li>
-<li>All proteins annotated to be encoded on input sequences are used as input for MMseqs2 clustering (can be deactivated with --mmseqs-off parameter). MMseqs2 arguments can be adjusted using config file. Proteins clustered together are considered to be a set of homologues. Based these results, the "group" attribute of each CDS is set.</li>
-<li>Taking into account the information about the set of homologues from the previous step, lovis4u applies similarity based hierarchical clustering of proteomes, which it uses to find the optimal order for visualisation and sets the "group" attribute for each locus. The purpose is to group together only related proteomes (keeping the average proteome set similarity &gt; ~80%). This step can be skipped with the <code>-cl-off, --clust_loci-off</code> parameter.</li>
-<li>Defining the feature attribute "group_type". This allows the use of parameters that refer to a particular set of feature groups (e.g. set colour or show labels only for "group_type" = "variable"). By default it sets group_type "variable" for CDS features that are found in less than 0.25 of loci within the locus group, and "conserved" for others that are less variable. </li>
-<li>Setting feature colour based on the feature "group" attribute (can be deactivated with -sgc-off or --set-group-colour-off). By default loVis4u sets distinct colours only for features with group_type "variable". You can change this with -sgcf or --set-group-colour-for. For example, if you want to set colour only for features with group_type "conserved", run <code>--set-group-colour-for conserved</code>. </li>
-<li>Defining labels to be shown. By default, lovis4u shows all labels for "variable" features and only the first occurrence for "conserved" features. You can show all labels with <code>--show-all-feature-labels</code> or specify group types for which all labels will be shown with <code>-sflf, --show-feature-label-for &lt;classes&gt;</code>. Additionally, by default lovis4u ignores the following labels: hypothetical protein, unknown protein. The list of ignored labels can be set with <code>-ifl, --ignored-feature-labels &lt;feature_label1 [feature_label2 ...]&gt;</code>. The list with this argument can be left empty to not filter out labels by their name.</li>
+<li>The full length of each input sequence is taken for analysis (this can be adjusted using the locus annotation   table, see below).. </li>
+<li>All proteins annotated to be encoded on input sequences are used as input for MMseqs2 clustering (can be    deactivated with --mmseqs-off parameter). MMseqs2 arguments can be adjusted using config file. Proteins clustered   together are considered to be a set of homologues. Based these results, the "group" attribute of each CDS is set.</li>
+<li>Taking into account the information about the set of homologues from the previous step, lovis4u applies     similarity based hierarchical clustering of proteomes, which it uses to find the optimal order for visualisation and    sets the "group" attribute for each locus. The purpose is to group together only related proteomes (keeping the     average proteome set similarity &gt; ~80%). This step can be skipped with the <code>-cl-off, --clust_loci-off</code> parameter.</li>
+<li>Defining the feature attribute "group_type". This allows the use of parameters that refer to a particular set of    feature groups (e.g. set colour or show labels only for "group_type" = "variable"). By default it sets group_type   "variable" for CDS features that are found in less than 0.25 of loci within the locus group, and "conserved" for    proteins encoded in more than 0.75 of loci within a group. Others are "intermediate" </li>
+<li>Setting feature colour based on the feature "group" attribute (can be deactivated with -sgc-off or --set-group- colour-off). By default loVis4u sets distinct colours only for features with group_type "variable". You can change  this with -sgcf or --set-group-colour-for. For example, if you want to set colour only for features with group_type     "conserved", run <code>--set-group-colour-for conserved</code>. </li>
+<li>Defining labels to be shown. By default, lovis4u shows all labels for "variable" features and only the first    occurrence for "conserved" features. You can show all labels with <code>--show-all-feature-labels</code> or specify group types    for which all labels will be shown with <code>-sflf, --show-feature-label-for &lt;classes&gt;</code>. Additionally, by default lovis4u   ignores the following labels: hypothetical protein, unknown protein. The list of ignored labels can be set with <code>-  ifl, --ignored-feature-labels &lt;feature_label1 [feature_label2 ...]&gt;</code>. The list with this argument can be left empty     to not filter out labels by their name.</li>
 </ol>
+</details>
+<h2 id="useful-parameters-for-basic-runs">Useful parameters for basic runs</h2>
 <p><strong>The following parameters are particularly useful for basic runs:</strong></p>
 <ul>
 <li><code>--reorient_loci</code> - Auto re-orient loci (set new strands) if they are not matched.  This function tries to maximise co-orientation of homologous features.</li>
 <li><code>-hl</code>, <code>--homology-links</code> - Draw homology link track (Sankey graph).</li>
+<li>`</li>
 <li><code>-o &lt;name&gt;</code> - Output dir name.  </li>
+<li><code>-c &lt;name&gt;</code> - Name of the configuration file.</li>
+<li><code>c</code> - Set category colour for features and plot category colour legend (Initially designed for pharokka generated gff files, see more detailed description below).</li>
 </ul>
-<p>While loci in our test set are already correctly orientated, let's add -hl parameter to update the output.</p>
-<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w">  </span>-hl<span class="w"> </span>-o<span class="w"> </span>lovis4u_output
+<p>While loci in our test set are already correctly orientated, let's add <code>-hl</code> parameter to draw homology line track and select configuration file for two-column A4 page layout with <code>-c A4p2</code> parameter. Output will be adjusted for publication figure (for instance, in terms of font sizes and figure width set as 190mm). In addition we will plot functional categories of CDSs with <code>--set-category-colour</code> parameter. </p>
+<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p2<span class="w"> </span>-o<span class="w"> </span>lovis4u_output<span class="w"> </span>
 </span></code></pre></div>
-<a class="glightbox" href="img/lovis4u_default_hl.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f2" loading="lazy" src="img/lovis4u_default_hl.png" width="100%" /></a>  </p>
+<a class="glightbox" href="img/lovis4u_default_hl_A4p2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f2" loading="lazy" src="img/lovis4u_default_hl_A4p2.png" width="100%" /></a>  </p>
+<p>Alternatively, we can select A4L configuration file adjusted for A4 page landscape layout:</p>
+<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w">  </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4L<span class="w"> </span>-o<span class="w"> </span>lovis4u_output
+</span></code></pre></div>
+<a class="glightbox" href="img/lovis4u_default_hl_A4L.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f2_A4L" loading="lazy" src="img/lovis4u_default_hl_A4L.png" width="100%" /></a>  </p>
+<p>As you can see, the style is slightly different since more available space is expected and font size and object sizes adjusted for 240 mm width. For instance, we have individual x-axis for each track (which can be activated in any run with <code>-sxa</code>, <code>--show-x-axis</code> parameter). Also, position of sequence label is on the left, not in the bottom, which also can be easily changed with <code>-llp</code>, <code>--locus-label-position</code> parameter (e.g. <code>-llp left</code> or <code>-llp bottom</code>).</p>
 <h2 id="using-the-locus-annotation-table">Using the locus annotation table</h2>
 <p>As mentioned above, the full length of each locus is taken for visualisation by default. However, you can also specify the sub-coordinates of multiple regions for each locus to be shown. The coordinates together with other information about each locus can be specified in the locus annotation table and used as input with  <code>-laf</code> or <code>--locus-annotation-file</code> parameter. </p>
 <p>Additionally, after each run lovis4u saves the <em>locus_annotation_table.tsv</em> with annotation parameters used in this particular run. If no table was specified by input then all annotation columns are set with default values.  </p>
@@ -739,54 +845,54 @@ Then you can move generated gff files to one folder using:
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">RefSeq_NC_005056.1</td>
+<td style="text-align: left;">NC_005056.1</td>
 <td style="text-align: right;">32684</td>
 <td style="text-align: left;">1:32684:1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: left;">Escherichia phage Wphi</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
 </tr>
 <tr>
-<td style="text-align: left;">RefSeq_NC_049461.1</td>
-<td style="text-align: right;">31834</td>
-<td style="text-align: left;">1:31834:1</td>
+<td style="text-align: left;">NC_049457.1</td>
+<td style="text-align: right;">33807</td>
+<td style="text-align: left;">1:33807:1</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: left;">Bacteriophage R18C</td>
+<td style="text-align: left;">Escherichia phage vB_EcoM-12474III</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
 </tr>
 <tr>
-<td style="text-align: left;">RefSeq_NC_001895.1</td>
+<td style="text-align: left;">NC_001895.1</td>
 <td style="text-align: right;">33593</td>
 <td style="text-align: left;">1:33593:1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: left;">Enterobacteria phage P2</td>
 <td style="text-align: right;">2</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">NC_049461.1</td>
+<td style="text-align: right;">31834</td>
+<td style="text-align: left;">1:31834:1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Bacteriophage R18C</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr>
-<td style="text-align: left;">RefSeq_NC_049457.1</td>
-<td style="text-align: right;">33807</td>
-<td style="text-align: left;">1:33807:1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">Escherichia phage vB_EcoM-12474III</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">4</td>
-</tr>
-<tr>
-<td style="text-align: left;">RefSeq_NC_028943.1</td>
+<td style="text-align: left;">NC_028943.1</td>
 <td style="text-align: right;">29237</td>
 <td style="text-align: left;">1:29237:1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: left;">Escherichia phage pro483</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
 </tr>
 </tbody>
 </table>
@@ -804,47 +910,48 @@ Then you can move generated gff files to one folder using:
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">RefSeq_NC_005056.1</td>
+<td style="text-align: left;">NC_005056.1</td>
 <td style="text-align: left;">18320:24320:1,31684:32684:1,1:9360:1</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1</td>
 </tr>
 <tr>
-<td style="text-align: left;">RefSeq_NC_049461.1</td>
+<td style="text-align: left;">NC_049461.1</td>
 <td style="text-align: left;">16745:22745:1,30834:31834:1,1:7016:1</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">1</td>
 </tr>
 <tr>
-<td style="text-align: left;">RefSeq_NC_001895.1</td>
+<td style="text-align: left;">NC_001895.1</td>
 <td style="text-align: left;">18294:24294:1,32593:33593:1,1:8460:1</td>
 <td style="text-align: right;">2</td>
 <td style="text-align: right;">1</td>
 </tr>
 <tr>
-<td style="text-align: left;">RefSeq_NC_049457.1</td>
+<td style="text-align: left;">NC_049457.1</td>
 <td style="text-align: left;">19308:25308:1,32807:33807:1,1:9474:1</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">1</td>
 </tr>
 <tr>
-<td style="text-align: left;">RefSeq_NC_028943.1</td>
+<td style="text-align: left;">NC_028943.1</td>
 <td style="text-align: left;">14839:20839:1,28237:29237:1,1:6321:1</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">1</td>
 </tr>
 </tbody>
 </table>
-<p>Here we specified only the coordinates, order and group for each locus. Order and group are also specified and kept since it is logical to use clustering results defined during the full locus length run, and to turn off a new attempt to cluster sequences. This is done with the <code>-cl-off, --clust_loci-off</code> parameter.   </p>
+<p>Here we specified only the coordinates, order and group for each locus. Order and group are also specified and kept since it is logical to use clustering results defined during the full locus length run, and to turn off a new attempt to cluster sequences. This is done with the <code>-cl-off, --clust_loci-off</code> parameter. </p>
 <p><strong>Format for coordinates specification:</strong> comma-separated list of start:end:strand. Start and end are in 1-based format, strand: 1 for plus strand and -1 for minus.</p>
-<p>The table can be found in the guide folder: <em>lovis4u_data/guide/locus_annotation_table_alt.tsv</em></p>
+<p>The table can be found in the guide folder: <em>lovis4u_data/guide/locus_annotation_table_demo_1.tsv</em></p>
+<p><strong>Important to note:</strong> in order to define classes of proteins ("conserved" (core) or "variable" (accessory)) LoVis4u clusters encoded proteins using MMseqs2 as was described above. When the full length sequences are plotted it is obvious that all proteins are used. However, when you visualise only subsequences of contigs then you have two options: 1) cluster only proteins that are overlapped with the selected region; 2) cluster all proteins including those that are outside of selected regions. By default the second option is used in order to avoid a situation where an ORF is labelled "variable", when in reality it is encoded in each proteome, but outside of the coordinates shown. However, if you need to consider only proteins overlapped with visualisation window, you can force to cluster only them by using <code>-cl-owp</code>, <code>--cluster-only-window-proteins</code> or <em>cluster_all_proteins</em> config parameter setting its value as "False".</p>
 <p>Now we can run: 
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w">  </span>-hl<span class="w"> </span>-o<span class="w"> </span>lovis4u_output<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span>--locus-annotation-file<span class="w"> </span>lovis4u_data/guide/locus_annotation_table_alt.tsv<span class="w"> </span>-cl-off
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w">  </span>-hl<span class="w"> </span>-o<span class="w"> </span>lovis4u_output<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span>--locus-annotation-file<span class="w"> </span>lovis4u_data/guide/locus_annotation_table_demo_1.tsv<span class="w"> </span>-cl-off
 </span></code></pre></div>
-<a class="glightbox" href="img/lovis4u_window_1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f3" loading="lazy" src="img/lovis4u_window_1.png" width="100%" /></a>  </p>
+<a class="glightbox" href="img/lovis4u_window_1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f3" loading="lazy" src="img/lovis4u_window_1.png" width="700px" /></a>  </p>
 <h2 id="using-the-feature-annotation-table">Using the feature annotation table</h2>
-<p>Similarly to the locus annotation table, we can use the the feature annotation table to adjust the feature visualisation parameters. Here, feature usually refers to an open reading frame, each of which has its own ID.  After each run, a feature_annotation_table.tsv file is saved in your output folder. Below you can see header of default table created with default parameter run.</p>
+<p>Similarly to the locus annotation table, we can use the feature annotation table to adjust the feature visualisation parameters. Here, feature usually refers to an open reading frame, each of which has its own ID.  After each run, a feature_annotation_table.tsv file is saved in your output folder. Below you can see header of default table created with default parameter run.</p>
 <table>
 <thead>
 <tr>
@@ -863,12 +970,12 @@ Then you can move generated gff files to one folder using:
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">RefSeq_NC_001895.1_CDS_0001</td>
-<td style="text-align: left;">RefSeq_NC_001895.1</td>
+<td style="text-align: left;">NC_001895.1_CDS_0001</td>
+<td style="text-align: left;">NC_001895.1</td>
 <td style="text-align: left;">64:2286:1</td>
 <td style="text-align: left;">CDS</td>
 <td style="text-align: left;">nicking at origin of replication</td>
-<td style="text-align: left;">RefSeq_NC_005056.1_CDS_0001</td>
+<td style="text-align: left;">NC_005056.1_CDS_0001</td>
 <td style="text-align: left;">conserved</td>
 <td style="text-align: left;">"DNA, RNA and nucleotide metabolism"</td>
 <td style="text-align: left;">default</td>
@@ -876,54 +983,54 @@ Then you can move generated gff files to one folder using:
 <td style="text-align: right;">0</td>
 </tr>
 <tr>
-<td style="text-align: left;">RefSeq_NC_001895.1_CDS_0002</td>
-<td style="text-align: left;">RefSeq_NC_001895.1</td>
+<td style="text-align: left;">NC_001895.1_CDS_0002</td>
+<td style="text-align: left;">NC_001895.1</td>
 <td style="text-align: left;">2283:2612:1</td>
 <td style="text-align: left;">CDS</td>
 <td style="text-align: left;">hypothetical protein</td>
-<td style="text-align: left;">RefSeq_NC_005056.1_CDS_0002</td>
-<td style="text-align: left;">conserved</td>
+<td style="text-align: left;">NC_005056.1_CDS_0002</td>
+<td style="text-align: left;">intermediate</td>
 <td style="text-align: left;">unknown function</td>
 <td style="text-align: left;">default</td>
 <td style="text-align: left;">default</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr>
-<td style="text-align: left;">RefSeq_NC_001895.1_CDS_0003</td>
-<td style="text-align: left;">RefSeq_NC_001895.1</td>
+<td style="text-align: left;">NC_001895.1_CDS_0003</td>
+<td style="text-align: left;">NC_001895.1</td>
 <td style="text-align: left;">2651:3412:-1</td>
 <td style="text-align: left;">CDS</td>
 <td style="text-align: left;">hypothetical protein</td>
-<td style="text-align: left;">RefSeq_NC_001895.1_CDS_0003</td>
+<td style="text-align: left;">NC_001895.1_CDS_0003</td>
 <td style="text-align: left;">variable</td>
 <td style="text-align: left;">unknown function</td>
-<td style="text-align: left;">#aa9b35</td>
+<td style="text-align: left;">#f165db</td>
 <td style="text-align: left;">default</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr>
-<td style="text-align: left;">RefSeq_NC_001895.1_CDS_0004</td>
-<td style="text-align: left;">RefSeq_NC_001895.1</td>
+<td style="text-align: left;">NC_001895.1_CDS_0004</td>
+<td style="text-align: left;">NC_001895.1</td>
 <td style="text-align: left;">3587:5347:-1</td>
 <td style="text-align: left;">CDS</td>
 <td style="text-align: left;">hypothetical protein</td>
-<td style="text-align: left;">RefSeq_NC_001895.1_CDS_0004</td>
+<td style="text-align: left;">NC_001895.1_CDS_0004</td>
 <td style="text-align: left;">variable</td>
 <td style="text-align: left;">unknown function</td>
-<td style="text-align: left;">#f4767a</td>
+<td style="text-align: left;">#95a134</td>
 <td style="text-align: left;">default</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr>
-<td style="text-align: left;">RefSeq_NC_001895.1_CDS_0005</td>
-<td style="text-align: left;">RefSeq_NC_001895.1</td>
+<td style="text-align: left;">NC_001895.1_CDS_0005</td>
+<td style="text-align: left;">NC_001895.1</td>
 <td style="text-align: left;">5347:5517:-1</td>
 <td style="text-align: left;">CDS</td>
 <td style="text-align: left;">hypothetical protein</td>
-<td style="text-align: left;">RefSeq_NC_001895.1_CDS_0005</td>
+<td style="text-align: left;">NC_001895.1_CDS_0005</td>
 <td style="text-align: left;">variable</td>
 <td style="text-align: left;">unknown function</td>
-<td style="text-align: left;">#f47763</td>
+<td style="text-align: left;">#9e9e34</td>
 <td style="text-align: left;">default</td>
 <td style="text-align: right;">0</td>
 </tr>
@@ -941,46 +1048,55 @@ Then you can move generated gff files to one folder using:
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">RefSeq_NC_001895.1_CDS_0001</td>
+<td style="text-align: left;">NC_001895.1_CDS_0001</td>
 <td style="text-align: left;">Updated Name :)</td>
 <td style="text-align: left;">#e54e86</td>
 <td style="text-align: right;">1</td>
 </tr>
 </tbody>
 </table>
-<p>This table can be found in the guide folder: <em>lovis4u_data/guide/feature_annotation_table_alt.tsv</em></p>
-<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w">  </span>-hl<span class="w"> </span>-o<span class="w"> </span>lovis4u_output<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span>--locus-annotation-file<span class="w"> </span>lovis4u_data/guide/locus_annotation_table_alt.tsv<span class="w"> </span>-cl-off<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span>--feature-annotation-file<span class="w"> </span>lovis4u_data/guide/feature_annotation_table_alt.tsv
+<p>This table can be found in the guide folder: <em>lovis4u_data/guide/feature_annotation_table_one_row.tsv</em></p>
+<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w">  </span>-hl<span class="w"> </span>-o<span class="w"> </span>lovis4u_output<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span>--locus-annotation-file<span class="w"> </span>lovis4u_data/guide/locus_annotation_table_demo_1.tsv<span class="w"> </span>-cl-off<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span>--feature-annotation-file<span class="w"> </span>lovis4u_data/guide/feature_annotation_table_one_row.tsv
 </span></code></pre></div>
-<a class="glightbox" href="img/lovis4u_updated_name.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f4" loading="lazy" src="img/lovis4u_updated_name.png" width="100%" /></a>  </p>
-<p>Here it is also <strong>important to note</strong> that if you don't use the feature attribute "group_type" defined by the full locus run, then this will be re-defined by mmseqs using on the subset of proteins found only in the specified coordinates given in the locus annotation table. You can deactivate re-definition of group types with <code>--find-variable-off</code> and <code>--mmseqs-off</code>). This avoids a situation where an ORF is labelled "variable", when in reality it is encoded in each proteome, but outside of the coordinates shown.</p>
-<h2 id="other-features">Other features</h2>
+<a class="glightbox" href="img/lovis4u_updated_name.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f4" loading="lazy" src="img/lovis4u_updated_name.png" width="700px" /></a>  </p>
+<h2 id="other-lovis4u-features">Other LoVis4u features</h2>
 <h3 id="category-colour-and-annotation">Category colour and annotation</h3>
-<p>Using the parameter <code>--set-category-colour</code> you can use the functional category annotation column for features. The functional category is shown by coloured lines below each ORF. By default it was designed to parse the PHROGs category annotation for proteins and retrieve information about the category in the "function" qualifiers in Genbank or GFF files (qualifiers used can be changed in config file). However, you can set the category for each CDS using the above feature annotation table and the "category" column. Additionally, you can set the colour codes for your categories using <code>--category-colour-table</code>. For categories that are not found in a table, a random colour will be set. By default, lovis4u uses a pre-made colour table found in <em>lovis4u_data/category_colours.tsv</em>.</p>
-<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-hl<span class="w"> </span>--set-category-colour
+<p>Using the parameter <code>--set-category-colour</code> you can use the functional category annotation column for features. The functional category is shown by coloured lines below each ORF. By default it was designed to parse the PHROGs category annotation for proteins and retrieve information about the category in the "function" qualifiers in Genbank or GFF files (qualifiers used can be changed in config file) that is part of default output with pharokka annotation. However, you can set the category for each CDS using the above feature annotation table and the "category" column. Additionally, you can set the colour codes for your categories using <code>--category-colour-table</code>. For categories that are not found in a table, a random colour will be set. By default, lovis4u uses a pre-made colour table which can be found in <em>lovis4u_data/category_colours.tsv</em>.</p>
+<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-hl<span class="w"> </span>--set-category-colour
 </span></code></pre></div>
 <a class="glightbox" href="img/lovis4u_category_colour.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f5" loading="lazy" src="img/lovis4u_category_colour.png" width="100%" /></a>  </p>
-<h3 id="using-a-scale-line-instead-of-individual-x-axis">Using a scale line instead of individual x-axis</h3>
-<p>Using the parameter <code>--hide-x-axis</code> you can deactivate visualisation of the x-axis for each locus track and instead, if you wish, draw a scale line track below. This is done using with <code>-slt, --scale-line-track</code>.</p>
-<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-hl<span class="w"> </span>--hide-x-axis<span class="w"> </span>--scale-line-track
+<h3 id="individual-x-axis-and-locus-label-position">Individual x-axis and locus label position</h3>
+<p>In most configuration files (except the A4L for A4 landscape layout) LoVis4u indicates coordinates for visualisation inline with locus label. However, if you prefer a locus label to be placed on the left side you can use the following parameter: <code>-llp left</code> or <code>--locus-label-position left</code>.  When left position for label is selected you can choose to draw individual x-axis line for each locus track using the parameter <code>-sxa</code>, <code>--show-x-axis</code>. For example:
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-llp<span class="w"> </span>left<span class="w"> </span>-hl<span class="w"> </span>--show-x-axis
+</span></code></pre></div></p>
+<p><a class="glightbox" href="img/lovis4u_showxaxis.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f61" loading="lazy" src="img/lovis4u_showxaxis.png" width="100%" /></a>  </p>
+<p>Alternatively, if you use, for instance, A4L configuration file for A4 landscape layout in which individual x-axis are shown by default you can change it. Using the parameter <code>--hide-x-axis</code> you can deactivate visualisation of the x-axis for each locus track and instead, if you wish, draw a scale line track below. This is done using with <code>-slt, --scale-line-track</code>. Similarly, you can change locus label position to the bottom with <code>-llp bottom</code> parameter.</p>
+<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-c<span class="w"> </span>A4L<span class="w"> </span>-hl<span class="w"> </span>--hide-x-axis<span class="w"> </span>--scale-line-track<span class="w"> </span>-llp<span class="w"> </span>bottom
 </span></code></pre></div>
 <a class="glightbox" href="img/lovis4u_scale.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f6" loading="lazy" src="img/lovis4u_scale.png" width="100%" /></a>  </p>
 <h3 id="highlighting-conserved-genes-instead-of-variable">Highlighting conserved genes instead of variable</h3>
 <p>For many analysis purposes (e.g. conserved neighbourhood visualisation), it is more useful to colourise conserved gene clusters instead of the variable genes. This can be easily switched in lovis4u using the <code>--set-group-colour-for</code> parameter. Te default is to colour by variable but using <code>--set-group-colour-for conserved</code> will change it to the opposite mode.<br />
 <strong>Note</strong> that if you have other feature group set in your feature annotation table and you want to set auto-colourising for them as well, you can specify them in a space separated list with this argument (e.g. <code>--set-group-colour-for conserved your_group_1 your_group_2</code>).</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-hl<span class="w"> </span>--set-group-colour-for<span class="w"> </span>conserved
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-hl<span class="w"> </span>--set-group-colour-for<span class="w"> </span>conserved
 </span></code></pre></div>
 <p><a class="glightbox" href="img/lovis4u_conserved_colourised.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f7" loading="lazy" src="img/lovis4u_conserved_colourised.png" width="100%" /></a>  </p>
 <p><strong>Note:</strong>By default, the colours for groups are randomly set for each group using the <a href="https://seaborn.pydata.org/tutorial/colour_palettes.html">seaborn husl palette</a>. In the config file you can change to a more intense hsl palette or change the desaturation parameter.</p>
-<h3 id="specifying-figure-width">Specifying figure width</h3>
-<p>Lovis4u tries to set an optimal figure width taking into account the nucleotide size of visualisation window. You can change it in two ways:<br />
-1) Using the <code>--mm-per-nt &lt;float value&gt;</code> argument changing scale which defines given space for each nt cell on canvas. Default: 0.0022 - 0.02, depending on window size.<br />
-2) With <code>-fw, --figure-width &lt;float value [cm]&gt;</code> parameter which defines the total output figure width in cm.  </p>
-<p>Here we demonstrate usage by plotting a compact visualisation of full loci together with <code>--show-first-feature-label-for</code> argument with an empty list, so not labelling the first occurrence of conserved genes. Note that most of the coloured, variable genes are not labeled in this figure as they are annotated as ‘hypothetical protein’, which LoVis4u ignores to make figures more compact and informative.</p>
-<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-hl<span class="w"> </span>-o<span class="w"> </span>width_test<span class="w"> </span>--show-first-feature-label-for<span class="w"> </span>--figure-width<span class="w"> </span><span class="m">7</span>
+<h3 id="visualisation-of-a-single-sequence">Visualisation of a single sequence</h3>
+<p>LoVis4u is able to visualise only one sequence. In that case no special parameters are required. However, if you want to highlight each protein group of homologues with a particular colour (protein sequences still will be clustered) you can use the following parameter: <code>--set-group-colour-for conserved</code> which will highlight conserved genes as in the example above (since if only one sequence is in input then all proteins there are considered as "conserved")</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/single_gff_file<span class="w"> </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p2<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span>--set-group-colour-for<span class="w"> </span>conserved
 </span></code></pre></div>
-<a class="glightbox" href="img/lovis4u_set_width.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f8" loading="lazy" src="img/lovis4u_set_width.png" width="100%" /></a>  </p>
+<p><a class="glightbox" href="img/lovis4u_single_suquence.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f2" loading="lazy" src="img/lovis4u_single_suquence.png" width="100%" /></a>  </p>
+<h3 id="specifying-figure-width-and-more-compact-visualisation">Specifying figure width and more compact visualisation.</h3>
+<p>For the "standard" configuration file Lovis4u tries to set an optimal figure width taking into account the nucleotide size of visualisation window. At the same time, LoVis4u has a set of adjusted configuration file with fixed figure width for one-, two-column, and landscape A4 page layout figures. However, in any case you still can adjust figure width if needed. You can do it in two ways:<br />
+1) Using the <code>--mm-per-nt &lt;float value&gt;</code> argument changing scale which defines given space for each nt cell on canvas. Default: 0.005. 
+2) With <code>-fw, --figure-width &lt;float value [mm]&gt;</code> parameter which defines the total output figure width in mm.  </p>
+<p>Here we demonstrate usage by plotting a compact visualisation of full loci together with <code>--show-first-feature-label-for</code> argument with an empty list, so not labelling the first occurrence of conserved genes. Note that most of the coloured, variable genes are not labeled in this figure as they are annotated as ‘hypothetical protein’, which LoVis4u ignores to make figures more compact and informative. You can deactivate ignoring of these labels by using <code>-ifl</code>, <code>--ignored-feature-labels</code> argument, similarly providing an empty list an argument. </p>
+<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-hl<span class="w"> </span>-o<span class="w"> </span>width_test<span class="w"> </span>--show-first-feature-label-for<span class="w"> </span>--figure-width<span class="w"> </span><span class="m">70</span>
+</span></code></pre></div>
+<a class="glightbox" href="img/lovis4u_set_width.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f8" loading="lazy" src="img/lovis4u_set_width.png" width="500px" /></a>  </p>
 
               
             </article>
@@ -1012,13 +1128,13 @@ Then you can move generated gff files to one folder using:
       
       
         
-        <a href="../../Parameters/cmd_parameters/" class="md-footer__link md-footer__link--next" aria-label="Next: Command-line parameters" rel="next">
+        <a href="../../Gallery/gallery/" class="md-footer__link md-footer__link--next" aria-label="Next: Gallery" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Command-line parameters
+              Gallery
             </div>
           </div>
           <div class="md-footer__button md-icon">

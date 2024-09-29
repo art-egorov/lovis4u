@@ -669,6 +669,9 @@
 </dl>
 <h3 id="optional-arguments-data-processing">Optional arguments | Data processing</h3>
 <dl>
+<dt><code>-ufid, --use-filename-as-id</code></dt>
+<dd>Use filename (wo extension) as track (contig) id instead<br />
+ of the contig id written in the gff/gb file.</dd>
 <dt><code>-laf, --locus-annotation-file &lt;file path&gt;</code></dt>
 <dd>Path to the locus annotation table.
  (See documentation for details)</dd>
@@ -677,6 +680,9 @@
  (See documentation for details)</dd>
 <dt><code>-mmseqs-off, --mmseqs-off</code></dt>
 <dd>Deactivate mmseqs clustering of proteomes of loci.</dd>
+<dt><code>-cl-owp, --cluster-only-window-proteins</code></dt>
+<dd>Cluster only proteins that are overlapped with<br />
+ the visualisation windows, not all.</dd>
 <dt><code>-fv-off, --find-variable-off</code></dt>
 <dd>Deactivate annotation of variable or conserved protein clusters.</dd>
 <dt><code>-cl-off, --clust_loci-off</code></dt>
@@ -704,6 +710,8 @@ dendrogram to define the optimal order.</dd>
  Default table can be found in lovis4u_data folder.</dd>
 <dt><code>-lls, --locus-label-style &lt;id|description|full&gt;</code></dt>
 <dd>Locus label style based on input sequence annotation.</dd>
+<dt><code>-llp, --locus-label-position &lt;left|bottom&gt;</code></dt>
+<dd>Locus label position on figure.</dd>
 <dt><code>-safl, --show-all-feature-labels</code></dt>
 <dd>Display all feature labels.</dd>
 <dt><code>-sflf, --show-feature-label-for  &lt;feature_group1 [feature group2 ...]&gt;</code></dt>
@@ -716,15 +724,17 @@ dendrogram to define the optimal order.</dd>
 <dt><code>-ifl, --ignored-feature-labels &lt;feature_label1 [feature_label2 ...]&gt;</code></dt>
 <dd>Space-separated list of feature names for which label won't be shown.
  [default: hypothetical protein, unknown protein]</dd>
+<dt><code>-sxa, --show-x-axis</code></dt>
+<dd>Plot individual x-axis for each locus track.</dd>
 <dt><code>-hix, --hide-x-axis</code></dt>
 <dd>Do not plot individual x-axis for each locus track.</dd>
 <dt><code>-dml, --draw-middle-line</code></dt>
 <dd>Draw middle line for each locus.</dd>
 <dt><code>-mm-per-nt, --mm-per-nt &lt;float value&gt;</code></dt>
 <dd>Scale which defines given space for each nt cell on canvas.
- [default: auto (0.0022 - 0.02, depending on window size)]</dd>
+ [default: 0.05]</dd>
 <dt><code>-fw, --figure-width &lt;float value&gt;</code></dt>
-<dd>Output figure width in cm.</dd>
+<dd>Output figure width in mm.</dd>
 </dl>
 <h3 id="optional-arguments-additional-tracks">Optional arguments | Additional tracks</h3>
 <dl>
@@ -753,6 +763,9 @@ dendrogram to define the optimal order.</dd>
 <dd>Show program version.</dd>
 <dt><code>--debug</code></dt>
 <dd>Provide detailed stack trace for debugging purposes.</dd>
+<dt><code>--parsing-debug</code></dt>
+<dd>Provide detailed stack trace for debugging purposes <br />
+ for failed reading of gff/gb files.</dd>
 <dt><code>-q, --quiet</code></dt>
 <dd>Don't show progress messages.</dd>
 </dl>

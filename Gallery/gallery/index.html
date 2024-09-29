@@ -456,6 +456,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#visualisation-of-the-basel-collection-of-phages" class="md-nav__link">
+    Visualisation of the Basel collection of phages
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -652,35 +659,46 @@ For description of parameters and modes shown on this page visit the <a href="ht
 </details>
 <h2 id="the-full-length-visualisation-of-loci">The full-length visualisation of loci</h2>
 <h3 id="miltiple-sequences">Miltiple sequences</h3>
-<p><strong>Visualisation with homology lines and category colours. Figure size: two-column of A4 page publication layout [190mm].</strong></p>
+<p><strong>Visualisation with homology lines and category colours. Figure size: two-column of A4 page publication layout (190mm width).</strong></p>
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p2
 </span></code></pre></div>
 <p><a class="glightbox" href="img/lovis4u_default_hl_A4p2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f2" loading="lazy" src="img/lovis4u_default_hl_A4p2.png" width="100%" /></a>  </p>
 <hr />
-<p><strong>Visualisation with homology lines and category colours. Figure. size: compact one-column A4 page visualisation without labelling of conserved proteins [90mm].</strong></p>
+<p><strong>Visualisation with homology lines and category colours. Compact one-column A4 page figure without labelling of conserved proteins (90mm width).</strong></p>
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span>--show-first-feature-label-for<span class="w">  </span>-c<span class="w"> </span>A4p1
 </span></code></pre></div>
 <p><a class="glightbox" href="img/lovis4u_full_length_a4p1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f2" loading="lazy" src="img/lovis4u_full_length_a4p1.png" width="500px" /></a>  </p>
 <hr />
 <h3 id="one-sequence">One sequence</h3>
-<p><strong>Visualisation of a single sequence with highlighted protein groups of homologues by different colours. Figure size: two-column A4 page publication layout [190mm].</strong></p>
+<p><strong>Visualisation of a single sequence with highlighted protein groups of homologues by different colours. Two-column A4 page publication layout (190mm width).</strong></p>
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/single_gff_file<span class="w"> </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p2<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span>--set-group-colour-for<span class="w"> </span>conserved
 </span></code></pre></div>
 <p><a class="glightbox" href="img/lovis4u_single_suquence.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f2" loading="lazy" src="img/lovis4u_single_suquence.png" width="100%" /></a>  </p>
 <h2 id="visualisation-of-user-defined-regions">Visualisation of user-defined regions</h2>
-<p><strong>Visualisation of user-defined regions, one region per locus. Figure size: one-column A4 page layout [90mm].</strong></p>
+<p><strong>Visualisation of user-defined regions, one region per locus. One-column A4 page layout (90mm width).</strong></p>
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-c<span class="w"> </span>A4p1<span class="w"> </span>--locus-annotation-file<span class="w"> </span>lovis4u_data/guide/locus_annotation_table_demo_2.tsv<span class="w"> </span><span class="se">\ </span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span>-cl-off<span class="w"> </span>-hl<span class="w"> </span>--set-category-colour
 </span></code></pre></div>
 <p><a class="glightbox" href="img/lovis4u_region_a4p1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f2" loading="lazy" src="img/lovis4u_region_a4p1.png" width="500px" /></a>  </p>
-<p><strong>Visualisation of user-defined regions, two regions per locus. Figure size: two-column of A4 page publication layout [190mm].</strong></p>
+<p><strong>Visualisation of user-defined regions, multiple regions per locus.</strong></p>
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w">  </span>-hl<span class="w"> </span>-o<span class="w"> </span>lovis4u_output_m_loci<span class="w">  </span><span class="se">\</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span>--locus-annotation-file<span class="w"> </span>lovis4u_data/guide/locus_annotation_table_demo_1.tsv<span class="w"> </span>-cl-off<span class="w"> </span>-llp<span class="w"> </span>left<span class="w">  </span>-slt
 </span></code></pre></div>
 <p><a class="glightbox" href="img/lovis4u_regions_multiple.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f2" loading="lazy" src="img/lovis4u_regions_multiple.png" width="800px" /></a>  </p>
 <hr />
+<h2 id="visualisation-of-the-basel-collection-of-phages">Visualisation of the Basel collection of phages</h2>
+<p>For demonstration of LoVis4u's capabilities (and because it is fun), I applied it to the entire Basel collection of 78 <em>Escherichia coli</em> phages (see <a href="https://doi.org/10.1371/journal.pbio.3001424">Maffei et.al. PLOS Biology</a>).</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/BaselCollection<span class="w">  </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p2<span class="w"> </span>-fw<span class="w"> </span><span class="m">500</span>
+</span></code></pre></div>
+<p><a href="img/lovis4u_Basel.pdf" target="_blank"><strong><em>LoVis4u PDF file of the visualisation</em></strong></a></p>
+<details class="card_hearts">
+<summary><strong>Raster image</strong></summary>
+<p><a class="glightbox" href="img/lovis4u_Basel.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="a4page1" loading="lazy" src="img/lovis4u_Basel.png" width="100%" /></a> </p>
+</details>
+<p>This run also highlights one of LoVis4u key features—its ability to detect clusters of similar proteomes within the input data. Beyond visualisation, LoVis4u generates a matrix of pairwise proteome similarity (see the pipeline description page). The visualisation of this matrix for the Basel collection appears as follows:</p>
+<p><a class="glightbox" href="img/Heatmap.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f2" loading="lazy" src="img/Heatmap.png" width="650px" /></a>  </p>
 
               
             </article>

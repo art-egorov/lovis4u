@@ -100,7 +100,7 @@ class Parameters:
         parser.add_argument("-o", dest="output_dir", type=str, default=None)
         parser.add_argument("--pdf-name", dest="pdf-name", type=str, default="lovis4u.pdf")
         parser.add_argument("-c", dest="config_file", type=str, default="standard")
-        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.0.9")
+        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.0.9.1")
         parser.add_argument("-q", "--quiet", dest="verbose", default=True, action="store_false")
         parser.add_argument("--parsing-debug", "-parsing-debug", dest="parsing_debug", action="store_true")
         parser.add_argument("--debug", "-debug", dest="debug", action="store_true")
@@ -261,7 +261,7 @@ class CanvasManager:
             annotated_descriptions = [i.description for i in loci.loci if i.description]
             if not annotated_descriptions and self.prms.args["locus_label_style"] != "id":
                 if self.prms.args["verbose"]:
-                    print("○  Warning message: the annotation lacks description. Locus label style is "
+                    print("○ Warning message: the annotation lacks description. Locus label style is "
                           "changed to 'id'")
                 self.prms.args["locus_label_style"] = "id"
             if self.prms.args["locus_label_position"] == "left":

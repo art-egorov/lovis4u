@@ -28,6 +28,11 @@
 :    Path to a folder containing genbank files.
 
 ### Optional arguments | Data processing
+
+`-ufid, --use-filename-as-id`
+:    Use filename (wo extension) as track (contig) id instead  
+     of the contig id written in the gff/gb file.
+
 `-laf, --locus-annotation-file <file path>`
 :    Path to the locus annotation table.
      (See documentation for details)
@@ -38,6 +43,10 @@
 
 `-mmseqs-off, --mmseqs-off`
 :   Deactivate mmseqs clustering of proteomes of loci.
+
+`-cl-owp, --cluster-only-window-proteins`
+:    Cluster only proteins that are overlapped with  
+     the visualisation windows, not all.
 
 `-fv-off, --find-variable-off`
 :    Deactivate annotation of variable or conserved protein clusters.
@@ -73,6 +82,9 @@
 `-lls, --locus-label-style <id|description|full>`
 :    Locus label style based on input sequence annotation.
 
+`-llp, --locus-label-position <left|bottom>`
+:    Locus label position on figure.
+
 `-safl, --show-all-feature-labels`
 :    Display all feature labels.
 
@@ -89,6 +101,9 @@
 :    Space-separated list of feature names for which label won't be shown.
      [default: hypothetical protein, unknown protein]
 
+`-sxa, --show-x-axis`
+:    Plot individual x-axis for each locus track.
+
 `-hix, --hide-x-axis`
 :    Do not plot individual x-axis for each locus track.
 
@@ -97,10 +112,10 @@
 
 `-mm-per-nt, --mm-per-nt <float value>`
 :   Scale which defines given space for each nt cell on canvas.
-     [default: auto (0.0022 - 0.02, depending on window size)]
+     [default: 0.05]
 
 `-fw, --figure-width <float value>`
-:    Output figure width in cm.
+:    Output figure width in mm.
 
 ### Optional arguments | Additional tracks
 `-hl, --homology-links`
@@ -132,6 +147,10 @@
 
 `--debug`
 :    Provide detailed stack trace for debugging purposes.
+
+`--parsing-debug`
+:    Provide detailed stack trace for debugging purposes   
+     for failed reading of gff/gb files.
 
 `-q, --quiet`	
 :    Don't show progress messages.

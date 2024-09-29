@@ -652,7 +652,7 @@ class Loci:
             num_of_proteins = len(mmseqs_clustering_results.index)
             if self.prms.args["verbose"]:
                 print(f"⦿ {num_of_unique_clusters} clusters for {num_of_proteins} proteins were found with mmseqs\n"
-                      f"    mmseqs clustering results were saved to "
+                      f"\tmmseqs clustering results were saved to "
                       f"{os.path.join(mmseqs_output_folder, 'mmseqs_clustering.tsv')}", file=sys.stdout)
             return mmseqs_clustering_results
         except Exception as error:
@@ -697,6 +697,10 @@ class Loci:
                 ids_of_non_overlapping_objects += [obj.feature_id for obj in locus.features if not obj.overlapping]
                 filtered_objects = [obj for obj in locus.features if obj.overlapping]
                 locus.features = filtered_objects
+            if ids_of_non_overlapping_objects:
+                print("○ Warning message: LoVis4u clusters all proteins by default to define their classes"
+                      "\n\t('variable' or 'conserved'), including those outside the visualisation window."
+                      "\n\tTo cluster only proteins within the visualised area, use the -cl-owp parameter.")
             self.feature_annotation = self.feature_annotation.drop(ids_of_non_overlapping_objects)
         except Exception as error:
             raise lovis4u.Manager.lovis4uError("Unable to clean non overlapping features.") from error

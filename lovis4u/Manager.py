@@ -141,11 +141,9 @@ class Parameters:
 
         """
         try:
+            initial_path = ""
             if path in ["standard", "A4p1", "A4p2", "A4L"]:
-                print(f"○ Loaded configuration file: '{path}'. List of available: "
-                      f"standard (auto-size),\n\tA4p1 (A4 page one-column [90mm]), A4p2 (A4 page two-column [190mm]), "
-                      f"and A4L (A4 landscape [240mm]).\n\tUse -c/--config <name> parameter for choosing.",
-                      file=sys.stdout)
+                initial_path = path
                 path = os.path.join(os.path.dirname(__file__), "lovis4u_data", f"{path}.cfg")
             config = configs.load(path).get_config()
             internal_dir = os.path.dirname(__file__)
@@ -175,6 +173,11 @@ class Parameters:
 
             if os.path.exists(self.args["output_dir"]):
                 if self.args["verbose"]:
+                    if initial_path:
+                        print(f"○ Loaded configuration file: '{path}'. List of available: "
+                              f"standard (auto-size),\n\tA4p1 (A4 page one-column [90mm]), A4p2 (A4 page two-column"
+                              f" [190mm]), and A4L (A4 landscape [240mm]).\n\tUse -c/--config <name> parameter "
+                              f"for choosing.", file=sys.stdout)
                     print("○ Warning: the output folder already exists. Results will be rewritten (without removal "
                           "other files in this folder)", file=sys.stdout)
             self.args["locus_label_description_font_face"] = self.args[f"locus_label_description_font_face_" \

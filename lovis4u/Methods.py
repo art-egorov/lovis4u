@@ -29,7 +29,7 @@ def adjust_paths(to: str) -> None:
 
     """
     internal_dir = os.path.join(os.path.dirname(__file__), "lovis4u_data")
-    config_files = ["standard.cfg"]
+    config_files = ["standard.cfg", "A4L.cfg", "A4p1.cfg", "A4p2.cfg"]
     for config_file in config_files:
         config_file_path = os.path.join(internal_dir, config_file)
         with open(config_file_path, "r+") as config:

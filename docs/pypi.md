@@ -14,7 +14,7 @@
 **Python version:** >= 3.8  
 **OS-level dependencies:** MMseqs2 (included in the package)  
 **License:** WTFPL  
-**Version:** 0.0.9 (September 2024)
+**Version:** 0.0.9.3 (October 2024)
 
 
 **Detailed documentation with user guide is available at [LoVis4u Homepage](https://art-egorov.github.io/lovis4u/)**

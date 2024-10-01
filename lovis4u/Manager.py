@@ -100,7 +100,7 @@ class Parameters:
         parser.add_argument("-o", dest="output_dir", type=str, default=None)
         parser.add_argument("--pdf-name", dest="pdf-name", type=str, default="lovis4u.pdf")
         parser.add_argument("-c", dest="config_file", type=str, default="standard")
-        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.0.9.1")
+        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.0.9.3")
         parser.add_argument("-q", "--quiet", dest="verbose", default=True, action="store_false")
         parser.add_argument("--parsing-debug", "-parsing-debug", dest="parsing_debug", action="store_true")
         parser.add_argument("--debug", "-debug", dest="debug", action="store_true")
@@ -174,7 +174,7 @@ class Parameters:
             if os.path.exists(self.args["output_dir"]):
                 if self.args["verbose"]:
                     if initial_path:
-                        print(f"○ Loaded configuration file: '{path}'. List of available: "
+                        print(f"○ Loaded configuration file: '{initial_path}'. List of available: "
                               f"standard (auto-size),\n\tA4p1 (A4 page one-column [90mm]), A4p2 (A4 page two-column"
                               f" [190mm]), and A4L (A4 landscape [240mm]).\n\tUse -c/--config <name> parameter "
                               f"for choosing.", file=sys.stdout)

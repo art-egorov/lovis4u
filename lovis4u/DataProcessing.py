@@ -420,7 +420,7 @@ class Loci:
                                                    f"as contig id which can help to fix the problem.")
             self.loci.sort(key=lambda locus: seq_id_to_order[locus.seq_id])
             if self.prms.args["verbose"]:
-                print(f"⦿ {len(self.loci)} {'locus was' if len(self.loci) == 1 else 'loci were'} loaded from genbank "
+                print(f"⦿ {len(self.loci)} {'locus was' if len(self.loci) == 1 else 'loci were'} loaded from the gff "
                       f"files folder", file=sys.stdout)
             return None
         except Exception as error:
@@ -493,12 +493,16 @@ class Loci:
                                   f" find any from the alternative list: "
                                   f"{','.join(self.prms.args['genbank_id_alternative_source'])}"
                                   f", but they also weren't found.")  # add about cmd parameter
-                    features_ids = [i.qualifiers[id_source][0] for i in gb_CDSs]
+                    features_ids = [i.qualifiers[id_source][0] for i in gb_CDSs if id_source in i.qualifiers]
                     if len(features_ids) != len(set(features_ids)):
                         print(f"GB file {gb_record} contains duplicated feature ids while"
                                                            f" only unique are allowed.")
-
                     for gb_feature in gb_CDSs:
+                        if id_source not in gb_feature.qualifiers:
+                            print(f"    ○ Warning: genbank CDS feature for {gb_file} located at {gb_feature.location} "
+                                  f"was skipped\n    since it does not have id qualifier {id_source} found for other "
+                                  f"features.\n    it could be a case of zero length ORF. ", file=sys.stdout)
+                            continue
                         feature_id = gb_feature.qualifiers[id_source][0].replace("|", "_")
                         transl_table = self.prms.args["default_transl_table"]
                         if "transl_table" in gb_feature.qualifiers.keys():
@@ -550,13 +554,13 @@ class Loci:
             seq_id_to_order = self.locus_annotation["order"].to_dict()
             loci_ids = [l.seq_id for l in self.loci]
             if len(loci_ids) != len(set(loci_ids)):
-                raise lovis4u.Manager.lovis4uError(f"The input gff files have duplicated contig ids.\n\t"
+                raise lovis4u.Manager.lovis4uError(f"The input gb files have duplicated contig ids. "
                                                    f"You can use `--use-filename-as-id` parameter to use file name "
                                                    f"as contig id which can help to fix the problem.")
             self.loci.sort(key=lambda locus: seq_id_to_order[locus.seq_id])
             if self.prms.args["verbose"]:
-                print(f"⦿ {len(self.loci)} {'locus was' if len(self.loci) == 1 else 'loci were'} loaded from genbank "
-                      f"files folder", file=sys.stdout)
+                print(f"⦿ {len(self.loci)} {'locus was' if len(self.loci) == 1 else 'loci were'} loaded from the "
+                      f"genbank files folder", file=sys.stdout)
             return None
         except Exception as error:
             raise lovis4u.Manager.lovis4uError("Unable to load loci from gb folder.") from error
@@ -656,7 +660,9 @@ class Loci:
                       f"{os.path.join(mmseqs_output_folder, 'mmseqs_clustering.tsv')}", file=sys.stdout)
             return mmseqs_clustering_results
         except Exception as error:
-            raise lovis4u.Manager.lovis4uError("Unable to run mmseqs clustering.") from error
+            raise lovis4u.Manager.lovis4uError("Unable to run mmseqs clustering. In case you use a linux machine"
+                                               ",  have you run a post-install 'lovis4u --linux` command to switch to"
+                                               " the linux mmseqs binary?") from error
 
     def define_feature_groups(self, dataframe: pd.DataFrame, group_column_name: str = "cluster") -> None:
         """Set features attribute "group" based on input dataframe.

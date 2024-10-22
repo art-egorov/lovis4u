@@ -248,6 +248,42 @@ lovis4u -gff lovis4u_data/guide/single_gff_file -hl --set-category-colour -c A4p
 ![f2](cmd_guide/img/lovis4u_single_suquence.png){loading=lazy width="100%" }  
 
 
+### Visualisation of non-coding features and control of their labels
+
+Starting with 0.0.10 version, LoVis4u is able to parse non-coding features like tRNAs, tmRNAs, and pseudogenes. They do not contribute to the sequence clustering, however, tRNAs with the same anti-codon are considered as members of the same group and can be connected by homology lines. In addition, by default, non-coding features are not labeled. They are shown with a special polygon - CDS-like but additionally embedded into rectangle and without fill colour. 
+
+For demonstration of such feature in a sample data we have a loci from Bas01 and Bas03 phages that encode tRNAs. 
+
+```sh
+lovis4u -gff lovis4u_data/guide/BaselSubset -laf lovis4u_data/guide/locus_annotation_table_trnas.tsv \
+     -hl --set-category-colour -c A4p1
+``` 
+
+![fn](cmd_guide/img/lovis4u_trnas_wo_label.png){loading=lazy width="500px" }  
+
+
+As you can see, we do not have labels by default (since usually there are clusters of tRNAs and in the most cases hard to display many labels on a very short locus and it is not very informative. Instead, there is a category colour for each type of non-coding feature. 
+
+However, if you want to put labels, you can do it. Firstly, if you want to show labels for all non-coding features you can use `-snl`. `--show-noncoding-labels` command.
+
+```sh
+lovis4u -gff lovis4u_data/guide/BaselSubset -laf lovis4u_data/guide/locus_annotation_table_trnas.tsv \
+     -hl --set-category-colour -c A4p1 --show-noncoding-labels
+``` 
+
+![fn](cmd_guide/img/lovis4u_trnas_all_labels.png){loading=lazy width="500px" }  
+
+Both phages have tRNAs with the same anticodon and then have the same "group" (analogue of homologous group for proteins). In that case or similar situation it can be logical to show labels only on first occurrence as it's done for conserved proteins. To do that, you can use `-sfnl, --show-first-noncoding-label` 
+
+
+```sh
+lovis4u -gff lovis4u_data/guide/BaselSubset -laf lovis4u_data/guide/locus_annotation_table_trnas.tsv \
+     -hl --set-category-colour -c A4p1 --show-first-noncoding-label
+``` 
+ 
+![fn](cmd_guide/img/lovis4u_trnas_first_label.png){loading=lazy width="500px" }  
+
+
 ### Specifying figure width and more compact visualisation.
 
 For the "standard" configuration file Lovis4u tries to set an optimal figure width taking into account the nucleotide size of visualisation window. At the same time, LoVis4u has a set of adjusted configuration file with fixed figure width for one-, two-column, and landscape A4 page layout figures. However, in any case you still can adjust figure width if needed. You can do it in two ways:  

@@ -79,6 +79,17 @@ lovis4u -gff lovis4u_data/guide/gff_files  -hl -o lovis4u_output_m_loci  \
 
 ![f2](gallery/img/lovis4u_regions_multiple.png){loading=lazy width="800px" }  
 
+### Non-coding features
+
+**Visualisation of loci with non-coding features (tRNAs) and displaying their labels.**
+
+```sh
+lovis4u -gff lovis4u_data/guide/BaselSubset -laf lovis4u_data/guide/locus_annotation_table_trnas.tsv \
+     -hl --set-category-colour -c A4p1 --show-first-noncoding-label
+``` 
+ 
+![fn](gallery/img/lovis4u_trnas_first_label.png){loading=lazy width="530px" }  
+
 ---
 
 

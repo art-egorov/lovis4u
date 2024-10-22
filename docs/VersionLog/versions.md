@@ -1,7 +1,10 @@
 # Version log
 
-* **Ver 0.0.10** - 22 October 2024
-	- Visualisation and parsing of non-CDS features (tRNAs, tmRNAs, pseudogene..) is added!
+* **Ver 0.0.10.1** - 22 October 2024
+	- `-snl, --show-noncoding-labels` and `-sfnl, --show-first-noncoding-label` paraemetrs are added for controlling non-coding feature labels.
+
+* Ver 0.0.10 - 22 October 2024
+	- Visualisation and parsing of non-coding features (tRNAs, tmRNAs, pseudogene..) is added!
 	- New parameter `-alip, --add-locus-id-prefix` is added in order to process the duplication feature problem.
 
 * Ver 0.0.9.3 - 1 October 2024 

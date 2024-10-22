@@ -91,6 +91,10 @@ class Parameters:
                             type=str, default=None)
         parser.add_argument("-ifl", "--ignored-feature-labels", dest="feature_labels_to_ignore", nargs="*",
                             type=str, default=None)
+        parser.add_argument("-snl", "--show-noncoding-labels", dest="show_noncoding_labels", action="store_true",
+                            default = None)
+        parser.add_argument("-sfnl", "--show-first-noncoding-label", dest="show_first_noncoding_label",
+                            action="store_true", default = None)
         parser.add_argument("-hl", "--homology-links", dest="homology-track", action="store_true")
         parser.add_argument("-slt", "--scale-line-track", dest="draw_scale_line_track", action="store_true",
                             default=None)
@@ -102,7 +106,7 @@ class Parameters:
         parser.add_argument("-o", dest="output_dir", type=str, default=None)
         parser.add_argument("--pdf-name", dest="pdf-name", type=str, default="lovis4u.pdf")
         parser.add_argument("-c", dest="config_file", type=str, default="standard")
-        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.0.10")
+        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.0.10.1")
         parser.add_argument("-q", "--quiet", dest="verbose", default=True, action="store_false")
         parser.add_argument("--parsing-debug", "-parsing-debug", dest="parsing_debug", action="store_true")
         parser.add_argument("--debug", "-debug", dest="debug", action="store_true")
@@ -168,6 +172,7 @@ class Parameters:
                         config["root"][ktl] = [config["root"][ktl]]
                     else:
                         config["root"][ktl] = []
+                config["root"][ktl] = list(config["root"][ktl])
             self.args.update(config["root"])
             self.load_palette()
             self.load_fonts()
@@ -187,6 +192,10 @@ class Parameters:
                                                                        f"{self.args['locus_label_position']}"]
             self.args["locus_label_id_font_face"] = self.args[f"locus_label_id_font_face_" \
                                                               f"{self.args['locus_label_position']}"]
+            if self.args["show_noncoding_labels"]:
+                self.args["feature_group_types_to_show_label"].append("noncoding")
+            if self.args["show_first_noncoding_label"]:
+                self.args["feature_group_types_to_show_label_on_first_occurrence"].append("noncoding")
             # Check conflicts
             if self.args["draw_individual_x_axis"] and self.args["locus_label_position"] == "bottom":
                 raise lovis4uError("Individual x-axis cannot be plotted when locus label position"

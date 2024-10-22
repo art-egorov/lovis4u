@@ -399,6 +399,27 @@ class LocusVis(Track):
         canvas.setLineCap(0)
         canvas.setLineWidth(self.prms.args["feature_stroke_width"])
         arrow_length = min(height * self.prms.args["feature_arrow_length"], (x_end - x_start))
+        p_noncoding = canvas.beginPath()
+        if feature_type != "CDS":
+            p_noncoding.moveTo(x_start, y_center + height / 2)
+            p_noncoding.lineTo(x_end, y_center + height / 2)
+            if not right_out:
+                p_noncoding.lineTo(x_end, y_center - height / 2)
+            else:
+                p_noncoding.moveTo(x_end, y_center - height / 2)
+            p_noncoding.lineTo(x_start, y_center - height / 2)
+            if not left_out:
+                p_noncoding.lineTo(x_start, y_center + height / 2)
+            if not left_out and not right_out:
+                p_noncoding.close()
+            stroke, fill = 0, 0
+            if stroke_colour:
+                canvas.setStrokeColorRGB(*stroke_colour)
+                stroke = 1
+            if fill_colour:
+                canvas.setFillColorRGB(*fill_colour)
+                fill = 1
+            canvas.drawPath(p_noncoding, stroke=stroke, fill=fill)
         p = canvas.beginPath()
         if orientation == 1:
             if right_out:
@@ -414,11 +435,6 @@ class LocusVis(Track):
                 p.lineTo(x_start, y_center - height / 2)
                 if not left_out:
                     p.lineTo(x_start, y_center + height / 2)
-                if feature_type != "CDS":
-                    p.moveTo(x_end - arrow_length, y_center + height / 2)
-                    p.lineTo(x_end, y_center + height / 2)
-                    p.lineTo(x_end, y_center - height / 2)
-                    p.lineTo(x_end - arrow_length, y_center - height / 2)
         elif orientation == -1:
             if left_out:
                 p.moveTo(x_start, y_center - height / 2)
@@ -433,11 +449,6 @@ class LocusVis(Track):
                 p.lineTo(x_end, y_center - height / 2)
                 if not right_out:
                     p.lineTo(x_end, y_center + height / 2)
-                if feature_type != "CDS":
-                    p.moveTo(x_start + arrow_length, y_center + height / 2)
-                    p.lineTo(x_start, y_center + height / 2)
-                    p.lineTo(x_start, y_center - height / 2)
-                    p.lineTo(x_start + arrow_length, y_center - height / 2)
         if left_out and right_out:
             p.moveTo(x_start, y_center + height / 2)
             p.lineTo(x_end, y_center + height / 2)

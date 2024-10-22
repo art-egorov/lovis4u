@@ -100,6 +100,13 @@
       only for the first occurrence of feature homologues group.
      [default: shell/core]
 
+`-snl, --show-noncoding-labels`
+:    Show all labels for non-coding features. [default: False]
+
+`-sfnl, --show-first-noncoding-label`
+:    Show labels only for the first occurrence for non-coding features.
+     [default: False]
+
 `-ifl, --ignored-feature-labels <feature_label1 [feature_label2 ...]>`
 :    Space-separated list of feature names for which label won't be shown.
      [default: hypothetical protein, unknown protein]

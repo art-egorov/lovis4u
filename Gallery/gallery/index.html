@@ -454,6 +454,19 @@
     Visualisation of user-defined regions
   </a>
   
+    <nav class="md-nav" aria-label="Visualisation of user-defined regions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#non-coding-features" class="md-nav__link">
+    Non-coding features
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -687,10 +700,16 @@ For description of parameters and modes shown on this page visit the <a href="ht
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span>--locus-annotation-file<span class="w"> </span>lovis4u_data/guide/locus_annotation_table_demo_1.tsv<span class="w"> </span>-cl-off<span class="w"> </span>-llp<span class="w"> </span>left<span class="w">  </span>-slt
 </span></code></pre></div>
 <p><a class="glightbox" href="img/lovis4u_regions_multiple.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f2" loading="lazy" src="img/lovis4u_regions_multiple.png" width="800px" /></a>  </p>
+<h3 id="non-coding-features">Non-coding features</h3>
+<p><strong>Visualisation of loci with non-coding features (tRNAs) and displaying their labels.</strong></p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/BaselSubset<span class="w"> </span>-laf<span class="w"> </span>lovis4u_data/guide/locus_annotation_table_trnas.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">     </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p1<span class="w"> </span>--show-first-noncoding-label
+</span></code></pre></div>
+<p><a class="glightbox" href="cmd_guide/img/lovis4u_trnas_first_label.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="fn" loading="lazy" src="cmd_guide/img/lovis4u_trnas_first_label.png" width="530px" /></a>  </p>
 <hr />
 <h2 id="visualisation-of-the-basel-collection-of-phages">Visualisation of the Basel collection of phages</h2>
 <p>For demonstration of LoVis4u's capabilities (and because it is fun), I applied it to the entire Basel collection of 78 <em>Escherichia coli</em> phages (see <a href="https://doi.org/10.1371/journal.pbio.3001424">Maffei et.al. PLOS Biology</a>).</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/BaselCollection<span class="w">  </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p2<span class="w"> </span>-fw<span class="w"> </span><span class="m">500</span>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/BaselCollection<span class="w">  </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p2<span class="w"> </span>-fw<span class="w"> </span><span class="m">500</span>
 </span></code></pre></div>
 <p><a href="img/lovis4u_Basel.pdf" target="_blank"><strong><em>LoVis4u PDF file of the visualisation</em></strong></a></p>
 <details class="card_hearts">

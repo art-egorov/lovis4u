@@ -519,6 +519,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#visualisation-of-non-coding-features-and-control-of-their-labels" class="md-nav__link">
+    Visualisation of non-coding features and control of their labels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#specifying-figure-width-and-more-compact-visualisation" class="md-nav__link">
     Specifying figure width and more compact visualisation.
   </a>
@@ -1089,12 +1096,30 @@ Then you can move generated gff files to one folder using:
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span>--set-group-colour-for<span class="w"> </span>conserved
 </span></code></pre></div>
 <p><a class="glightbox" href="img/lovis4u_single_suquence.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f2" loading="lazy" src="img/lovis4u_single_suquence.png" width="100%" /></a>  </p>
+<h3 id="visualisation-of-non-coding-features-and-control-of-their-labels">Visualisation of non-coding features and control of their labels</h3>
+<p>Starting with 0.0.10 version, LoVis4u is able to parse non-coding features like tRNAs, tmRNAs, and pseudogenes. They do not contribute to the sequence clustering, however, tRNAs with the same anti-codon are considered as members of the same group and can be connected by homology lines. In addition, by default, non-coding features are not labeled. They are shown with a special polygon - CDS-like but additionally embedded into rectangle and without fill colour. </p>
+<p>For demonstration of such feature in a sample data we have a loci from Bas01 and Bas03 phages that encode tRNAs. </p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/BaselSubset<span class="w"> </span>-laf<span class="w"> </span>lovis4u_data/guide/locus_annotation_table_trnas.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">     </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p1
+</span></code></pre></div>
+<p><a class="glightbox" href="img/lovis4u_trnas_wo_label.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="fn" loading="lazy" src="img/lovis4u_trnas_wo_label.png" width="500px" /></a>  </p>
+<p>As you can see, we do not have labels by default (since usually there are clusters of tRNAs and in the most cases hard to display many labels on a very short locus and it is not very informative. Instead, there is a category colour for each type of non-coding feature. </p>
+<p>However, if you want to put labels, you can do it. Firstly, if you want to show labels for all non-coding features you can use <code>-snl</code>. <code>--show-noncoding-labels</code> command.</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/BaselSubset<span class="w"> </span>-laf<span class="w"> </span>lovis4u_data/guide/locus_annotation_table_trnas.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">     </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p1<span class="w"> </span>--show-noncoding-labels
+</span></code></pre></div>
+<p><a class="glightbox" href="img/lovis4u_trnas_all_labels.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="fn" loading="lazy" src="img/lovis4u_trnas_all_labels.png" width="500px" /></a>  </p>
+<p>Both phages have tRNAs with the same anticodon and then have the same "group" (analogue of homologous group for proteins). In that case or similar situation it can be logical to show labels only on first occurrence as it's done for conserved proteins. To do that, you can use <code>-sfnl, --show-first-noncoding-label</code> </p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/BaselSubset<span class="w"> </span>-laf<span class="w"> </span>lovis4u_data/guide/locus_annotation_table_trnas.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">     </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p1<span class="w"> </span>--show-first-noncoding-label
+</span></code></pre></div>
+<p><a class="glightbox" href="img/lovis4u_trnas_first_label.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="fn" loading="lazy" src="img/lovis4u_trnas_first_label.png" width="500px" /></a>  </p>
 <h3 id="specifying-figure-width-and-more-compact-visualisation">Specifying figure width and more compact visualisation.</h3>
 <p>For the "standard" configuration file Lovis4u tries to set an optimal figure width taking into account the nucleotide size of visualisation window. At the same time, LoVis4u has a set of adjusted configuration file with fixed figure width for one-, two-column, and landscape A4 page layout figures. However, in any case you still can adjust figure width if needed. You can do it in two ways:<br />
 1) Using the <code>--mm-per-nt &lt;float value&gt;</code> argument changing scale which defines given space for each nt cell on canvas. Default: 0.005. 
 2) With <code>-fw, --figure-width &lt;float value [mm]&gt;</code> parameter which defines the total output figure width in mm.  </p>
 <p>Here we demonstrate usage by plotting a compact visualisation of full loci together with <code>--show-first-feature-label-for</code> argument with an empty list, so not labelling the first occurrence of conserved genes. Note that most of the coloured, variable genes are not labeled in this figure as they are annotated as ‘hypothetical protein’, which LoVis4u ignores to make figures more compact and informative. You can deactivate ignoring of these labels by using <code>-ifl</code>, <code>--ignored-feature-labels</code> argument, similarly providing an empty list an argument. </p>
-<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-hl<span class="w"> </span>-o<span class="w"> </span>width_test<span class="w"> </span>--show-first-feature-label-for<span class="w"> </span>--figure-width<span class="w"> </span><span class="m">70</span>
+<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-hl<span class="w"> </span>-o<span class="w"> </span>width_test<span class="w"> </span>--show-first-feature-label-for<span class="w"> </span>--figure-width<span class="w"> </span><span class="m">70</span>
 </span></code></pre></div>
 <a class="glightbox" href="img/lovis4u_set_width.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f8" loading="lazy" src="img/lovis4u_set_width.png" width="500px" /></a>  </p>
 

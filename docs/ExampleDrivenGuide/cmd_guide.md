@@ -252,7 +252,7 @@ lovis4u -gff lovis4u_data/guide/single_gff_file -hl --set-category-colour -c A4p
 
 Starting with 0.0.10 version, LoVis4u is able to parse non-coding features like tRNAs, tmRNAs, and pseudogenes. They do not contribute to the sequence clustering, however, tRNAs with the same anti-codon are considered as members of the same group and can be connected by homology lines. In addition, by default, non-coding features are not labeled. They are shown with a special polygon - CDS-like but additionally embedded into rectangle and without fill colour. 
 
-For demonstration of such feature in a sample data we have a loci from Bas01 and Bas03 phages that encode tRNAs. 
+For demonstration of such feature in a sample data we have loci from Bas01 and Bas03 phages that encode tRNAs. 
 
 ```sh
 lovis4u -gff lovis4u_data/guide/BaselSubset -laf lovis4u_data/guide/locus_annotation_table_trnas.tsv \

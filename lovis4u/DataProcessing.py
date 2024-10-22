@@ -335,7 +335,8 @@ class Loci:
                     gff_file = gff_file_path
                     gff_records = list(BCBio.GFF.parse(gff_file_path,
                                                        limit_info=dict(gff_type=["CDS", "tRNA","tmRNA", "RNA",
-                                                                                 "pseudogene"])))
+                                                                                 "pseudogene", "rRNA", "misc_RNA",
+                                                                                 "ncRNA", "lncRNA"])))
                     if len(gff_records) != 1:
                         print(f"○ Warning: gff file {gff_file} contains information for more than 1 "
                               f"sequence. File will be skipped.")

@@ -33,6 +33,9 @@
 :    Use filename (wo extension) as track (contig) id instead  
      of the contig id written in the gff/gb file.
 
+`-alip, --add-locus-id-prefix`
+:    Add locus id prefix to each feature id.
+
 `-laf, --locus-annotation-file <file path>`
 :    Path to the locus annotation table.
      (See documentation for details)

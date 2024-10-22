@@ -8,6 +8,7 @@ purple = #B276B2
 brown = #B2912F
 lightgrey = #E2E2E2
 grey = #888888
+dark_grey = #5B5B5B
 fancy_grey = #8B9697
 deepgreen = #556B2F
 black = #000000

@@ -62,6 +62,8 @@ class Parameters:
         mutually_exclusive_group.add_argument("-gb", "--gb", dest="gb", type=str, default=None)
         parser.add_argument("-ufid", "--use-filename-as-id", dest="use_filename_as_contig_id", action="store_true",
                             default=None)
+        parser.add_argument("-alip", "--add-locus-id-prefix", dest="add_locus_id_prefix", action="store_true",
+                            default=None)
         parser.add_argument("-laf", "--locus-annotation-file", dest="locus-annotation", type=str, default=None)
         parser.add_argument("-faf", "--feature-annotation-file", dest="feature-annotation", type=str, default=None)
         parser.add_argument("-mmseqs-off", "--mmseqs-off", dest="mmseqs", action="store_false")
@@ -100,7 +102,7 @@ class Parameters:
         parser.add_argument("-o", dest="output_dir", type=str, default=None)
         parser.add_argument("--pdf-name", dest="pdf-name", type=str, default="lovis4u.pdf")
         parser.add_argument("-c", dest="config_file", type=str, default="standard")
-        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.0.9.3")
+        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.0.10")
         parser.add_argument("-q", "--quiet", dest="verbose", default=True, action="store_false")
         parser.add_argument("--parsing-debug", "-parsing-debug", dest="parsing_debug", action="store_true")
         parser.add_argument("--debug", "-debug", dest="debug", action="store_true")
@@ -158,7 +160,8 @@ class Parameters:
                                                                                 time.strftime("%Y_%m_%d-%H_%M"))
             keys_to_transform_to_list = ["feature_group_types_to_set_colour", "feature_group_types_to_show_label",
                                          "genbank_id_alternative_source", "feature_labels_to_ignore",
-                                         "feature_group_types_to_show_label_on_first_occurrence"]
+                                         "feature_group_types_to_show_label_on_first_occurrence",
+                                         "gff_noncoding_name_alternative_source"]
             for ktl in keys_to_transform_to_list:
                 if isinstance(config["root"][ktl], str):
                     if config["root"][ktl] != "None":
@@ -586,18 +589,24 @@ class LocusLoader(Loader):
             features_taken_nt_coordinates = []
             for feature in locus.features:
                 features_taken_nt_coordinates.append([feature.start, feature.end])
-                if feature.vis_prms["fill_colour"] == "default":
-                    feature.vis_prms["fill_colour"] = lovis4u.Methods.get_colour("feature_default_fill_colour",
-                                                                                 self.prms)
-                if self.prms.args["set_feature_stroke_colour_based_on_fill_colour"] and \
-                        feature.vis_prms["stroke_colour"] == "default":
-                    scale_l = self.prms.args["feature_stroke_colour_relative_lightness"]
-                    feature.vis_prms["stroke_colour"] = lovis4u.Methods.scale_lightness(feature.vis_prms["fill_colour"],
-                                                                                        scale_l)
-                elif not self.prms.args["set_feature_stroke_colour_based_on_fill_colour"] and \
-                        feature.vis_prms["stroke_colour"] == "default":
-                    feature.vis_prms["stroke_colour"] = lovis4u.Methods.get_colour("feature_default_stroke_colour",
-                                                                                   self.prms)
+                feature.vis_prms["type"] = feature.feature_type
+                if feature.feature_type == "CDS":
+                    if feature.vis_prms["fill_colour"] == "default":
+                        feature.vis_prms["fill_colour"] = lovis4u.Methods.get_colour("feature_default_fill_colour",
+                                                                                     self.prms)
+                    if self.prms.args["set_feature_stroke_colour_based_on_fill_colour"] and \
+                            feature.vis_prms["stroke_colour"] == "default":
+                        scale_l = self.prms.args["feature_stroke_colour_relative_lightness"]
+                        feature.vis_prms["stroke_colour"] = lovis4u.Methods.scale_lightness(feature.vis_prms["fill_colour"],
+                                                                                            scale_l)
+                    elif not self.prms.args["set_feature_stroke_colour_based_on_fill_colour"] and \
+                            feature.vis_prms["stroke_colour"] == "default":
+                        feature.vis_prms["stroke_colour"] = lovis4u.Methods.get_colour("feature_default_stroke_colour",
+                                                                                       self.prms)
+                else:
+                    feature.vis_prms["fill_colour"] = None
+                    feature.vis_prms["stroke_colour"] = lovis4u.Methods.get_colour("noncoding_feature_default_"
+                                                                                   "stroke_colour", self.prms)
                 f_label_width = 0
                 if feature.vis_prms["show_label"] and feature.vis_prms["label"]:
                     f_label_width = pdfmetrics.stringWidth(feature.vis_prms["label"],

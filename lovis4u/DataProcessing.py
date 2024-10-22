@@ -36,11 +36,11 @@ import lovis4u.Drawing
 
 
 class Feature:
-    """A Feature object represents a locus' feature (currently only CDS) and its properties.
+    """A Feature object represents a locus' feature and its properties.
 
     Attributes:
         feature_id (str): Feature identifier.
-        feature_type (str): Type of element (e.g. CDS or tRNA). Currently only CDS are supported.
+        feature_type (str): Type of element (e.g. CDS or tRNA).
         start (int): 1-based start genomic coordinate.
         end (int): 1-based end genomic coordinates
         strand (int): Genomic strand (1: plus strand, -1: minus strand).
@@ -333,7 +333,9 @@ class Loci:
             for gff_file_path in gff_files:
                 try:
                     gff_file = gff_file_path
-                    gff_records = list(BCBio.GFF.parse(gff_file_path, limit_info=dict(gff_type=["CDS"])))
+                    gff_records = list(BCBio.GFF.parse(gff_file_path,
+                                                       limit_info=dict(gff_type=["CDS", "tRNA","tmRNA", "RNA",
+                                                                                 "pseudogene"])))
                     if len(gff_records) != 1:
                         print(f"○ Warning: gff file {gff_file} contains information for more than 1 "
                               f"sequence. File will be skipped.")
@@ -367,18 +369,34 @@ class Loci:
                                                            f" only unique are allowed.")
                     for gff_feature in gff_record.features:
                         feature_id = gff_feature.id
-                        if ilund4u_mode:
+                        if ilund4u_mode or self.prms.args["add_locus_id_prefix"]:
                             if gff_record.id not in feature_id:
                                 feature_id = f"{gff_record.id}-{feature_id}"
-                        transl_table = self.prms.args["default_transl_table"]
-                        if "transl_table" in gff_feature.qualifiers.keys():
-                            transl_table = int(gff_feature.qualifiers["transl_table"][0])
-                        name = ""
-                        if self.prms.args["gff_CDS_name_source"] in gff_feature.qualifiers:
-                            name = gff_feature.qualifiers[self.prms.args["gff_CDS_name_source"]][0]
-                        category = ""
-                        if self.prms.args["gff_CDS_category_source"] in gff_feature.qualifiers:
-                            category = ",".join(gff_feature.qualifiers[self.prms.args["gff_CDS_category_source"]])
+                        if gff_feature.type == "CDS":
+                            transl_table = self.prms.args["default_transl_table"]
+                            if "transl_table" in gff_feature.qualifiers.keys():
+                                transl_table = int(gff_feature.qualifiers["transl_table"][0])
+                            name = ""
+                            if self.prms.args["gff_CDS_name_source"] in gff_feature.qualifiers:
+                                name = gff_feature.qualifiers[self.prms.args["gff_CDS_name_source"]][0]
+                            category = ""
+                            if self.prms.args["gff_CDS_category_source"] in gff_feature.qualifiers:
+                                category = ",".join(gff_feature.qualifiers[self.prms.args["gff_CDS_category_source"]])
+                            sequence = gff_feature.translate(record_locus_sequence, table=transl_table,
+                                                             cds=False)[:-1]
+                        else:
+                            name, category = "", ""
+                            if self.prms.args["gff_noncoding_name_source"] in gff_feature.qualifiers:
+                                name = self.prms.args["gff_noncoding_name_source"][0]
+                            else:
+                                for ans in self.prms.args["gff_noncoding_name_alternative_source"]:
+                                    if ans in gff_feature.qualifiers:
+                                        name = gff_feature.qualifiers[ans][0]
+                                        break
+                            if not name:
+                                name = feature_id
+                            category = gff_feature.type
+                            sequence = gff_feature.extract(record_locus_sequence)
                         for coordinate in record_locus.coordinates:
                             overlapping = False
                             start, end = coordinate["start"], coordinate["end"]
@@ -390,14 +408,13 @@ class Loci:
                         self.__update_feature_annotation(feature_id, record_locus.seq_id,
                                                          f"{int(gff_feature.location.start) + 1}:"
                                                          f"{int(gff_feature.location.end)}:{gff_feature.location.strand}",
-                                                         "CDS", category, name)
+                                                         gff_feature.type, category, name)
                         feature_annotation_row = self.feature_annotation.loc[feature_id]
                         feature = Feature(feature_type=feature_annotation_row["feature_type"],
                                           feature_id=feature_id, start=int(gff_feature.location.start) + 1,
                                           end=int(gff_feature.location.end), strand=gff_feature.location.strand,
                                           name=feature_annotation_row["name"],
-                                          sequence=gff_feature.translate(record_locus_sequence, table=transl_table,
-                                                                         cds=False)[:-1],
+                                          sequence=sequence,
                                           group=feature_annotation_row["group"],
                                           group_type=feature_annotation_row["group_type"],
                                           category=feature_annotation_row["category"],
@@ -415,9 +432,15 @@ class Loci:
             seq_id_to_order = self.locus_annotation["order"].to_dict()
             loci_ids = [l.seq_id for l in self.loci]
             if len(loci_ids) != len(set(loci_ids)):
-                raise lovis4u.Manager.lovis4uError(f"The input gff files have duplicated contig ids.\n\t"
+                raise lovis4u.Manager.lovis4uError(f"The input gff files have duplicated contig ids. "
                                                    f"You can use `--use-filename-as-id` parameter to use file name "
                                                    f"as contig id which can help to fix the problem.")
+            feature_ids = [feature.feature_id for locus in self.loci for feature in locus.features]
+            if len(feature_ids) != len(set(feature_ids)):
+                raise lovis4u.Manager.lovis4uError(f"The input gff files have duplicated features ids. "
+                                                   f"You can use `--add-locus-id-prefix` (`-alip`) parameter to add "
+                                                   f"contig id prefix to each feature id which can help to "
+                                                   f"fix the problem.")
             self.loci.sort(key=lambda locus: seq_id_to_order[locus.seq_id])
             if self.prms.args["verbose"]:
                 print(f"⦿ {len(self.loci)} {'locus was' if len(self.loci) == 1 else 'loci were'} loaded from the gff "
@@ -496,24 +519,41 @@ class Loci:
                     features_ids = [i.qualifiers[id_source][0] for i in gb_CDSs if id_source in i.qualifiers]
                     if len(features_ids) != len(set(features_ids)):
                         print(f"GB file {gb_record} contains duplicated feature ids while"
-                                                           f" only unique are allowed.")
-                    for gb_feature in gb_CDSs:
+                              f" only unique are allowed.")
+                    for gb_feature in gb_record.features:
                         if id_source not in gb_feature.qualifiers:
-                            print(f"    ○ Warning: genbank CDS feature for {gb_file} located at {gb_feature.location} "
+                            print(f"    ○ Warning: genbank feature for {gb_file} located at {gb_feature.location} "
                                   f"was skipped\n    since it does not have id qualifier {id_source} found for other "
                                   f"features.\n    it could be a case of zero length ORF. ", file=sys.stdout)
                             continue
                         feature_id = gb_feature.qualifiers[id_source][0].replace("|", "_")
+                        if self.prms.args["add_locus_id_prefix"]:
+                            if gb_record.id not in feature_id:
+                                feature_id = f"{gb_record.id}-{feature_id}"
                         transl_table = self.prms.args["default_transl_table"]
                         if "transl_table" in gb_feature.qualifiers.keys():
                             transl_table = int(gb_feature.qualifiers["transl_table"][0])
                         name = ""
-                        if self.prms.args["genbank_CDS_name_source"] in gb_feature.qualifiers:
-                            name = gb_feature.qualifiers[self.prms.args["genbank_CDS_name_source"]][0]
-                        category = ""
-                        if self.prms.args["genbank_CDS_category_source"] in gb_feature.qualifiers:
-                            category = ",".join(gb_feature.qualifiers[self.prms.args["genbank_CDS_category_source"]])
-
+                        if gb_feature.type == "CDS":
+                            if self.prms.args["genbank_CDS_name_source"] in gb_feature.qualifiers:
+                                name = gb_feature.qualifiers[self.prms.args["genbank_CDS_name_source"]][0]
+                            category = ""
+                            if self.prms.args["genbank_CDS_category_source"] in gb_feature.qualifiers:
+                                category = ",".join(gb_feature.qualifiers[self.prms.args["genbank_CDS_category_source"]])
+                            sequence = gb_feature.translate(record_locus_sequence, table=transl_table, cds=False)[:-1]
+                        else:
+                            name, category = "", ""
+                            if self.prms.args["gff_noncoding_name_source"] in gb_feature.qualifiers:
+                                name = self.prms.args["gff_noncoding_name_source"][0]
+                            else:
+                                for ans in self.prms.args["gff_noncoding_name_alternative_source"]:
+                                    if ans in gb_feature.qualifiers:
+                                        name = gb_feature.qualifiers[ans][0]
+                                        break
+                            if not name:
+                                name = feature_id
+                            category = gb_feature.type
+                            sequence = gb_feature.extract(record_locus_sequence)
                         for coordinate in record_locus.coordinates:
                             overlapping = False
                             start, end = coordinate["start"], coordinate["end"]
@@ -525,23 +565,21 @@ class Loci:
                         self.__update_feature_annotation(feature_id, record_locus.seq_id,
                                                          f"{int(gb_feature.location.start) + 1}:"
                                                          f"{int(gb_feature.location.end)}:"
-                                                         f"{gb_feature.location.strand}", "CDS", category, name)
+                                                         f"{gb_feature.location.strand}", gb_feature.type, category, name)
                         feature_annotation_row = self.feature_annotation.loc[feature_id]
                         feature = Feature(feature_type=feature_annotation_row["feature_type"],
                                           feature_id=feature_id, start=int(gb_feature.location.start) + 1,
                                           end=int(gb_feature.location.end),
                                           strand=gb_feature.location.strand,
                                           name=feature_annotation_row["name"],
-                                          sequence=gb_feature.translate(record_locus_sequence,
-                                                                        table=transl_table,
-                                                                        cds=False)[:-1],
+                                          sequence=sequence,
                                           group=feature_annotation_row["group"],
                                           group_type=feature_annotation_row["group_type"],
                                           category=feature_annotation_row["category"],
                                           vis_prms=dict(fill_colour=feature_annotation_row["fill_colour"],
                                                         stroke_colour=feature_annotation_row["stroke_colour"],
                                                         show_label=feature_annotation_row["show_label"]),
-                                          overlapping = overlapping,
+                                          overlapping=overlapping,
                                           parameters=self.prms)
 
                         record_locus.features.append(feature)
@@ -557,6 +595,12 @@ class Loci:
                 raise lovis4u.Manager.lovis4uError(f"The input gb files have duplicated contig ids. "
                                                    f"You can use `--use-filename-as-id` parameter to use file name "
                                                    f"as contig id which can help to fix the problem.")
+            feature_ids = [feature.feature_id for locus in self.loci for feature in locus.features]
+            if len(feature_ids) != len(set(feature_ids)):
+                raise lovis4u.Manager.lovis4uError(f"The input gb files have duplicated features ids. "
+                                                   f"You can use `--add-locus-id-prefix` (`-alip`) parameter to add "
+                                                   f"contig id prefix to each feature id which can help to "
+                                                   f"fix the problem.")
             self.loci.sort(key=lambda locus: seq_id_to_order[locus.seq_id])
             if self.prms.args["verbose"]:
                 print(f"⦿ {len(self.loci)} {'locus was' if len(self.loci) == 1 else 'loci were'} loaded from the "
@@ -616,7 +660,8 @@ class Loci:
         if self.prms.args["verbose"]:
             print(f"○ Running mmseqs for protein clustering...", file=sys.stdout)
         try:
-            feature_records = [feature.record for locus in self.loci for feature in locus.features]
+            feature_records = [feature.record for locus in self.loci for feature in locus.features if
+                               feature.feature_type == "CDS"]
             temp_input = tempfile.NamedTemporaryFile()
             Bio.SeqIO.write(feature_records, temp_input.name, "fasta")
             if not os.path.exists(self.prms.args["output_dir"]):
@@ -667,7 +712,7 @@ class Loci:
     def define_feature_groups(self, dataframe: pd.DataFrame, group_column_name: str = "cluster") -> None:
         """Set features attribute "group" based on input dataframe.
 
-        By default is designed to use mmseqs_cluster() function results as input. If you already have precomputed
+        By default it is designed to use mmseqs_cluster() function results as input. If you already have precomputed
             feature groups you can set them with feature table.
 
         Arguments:
@@ -685,7 +730,10 @@ class Loci:
                 for feature in locus.features:
                     if feature.group and self.prms.args["keep_predefined_groups"]:
                         continue
-                    feature.group = dataframe.loc[feature.feature_id, group_column_name]
+                    if feature.feature_type == "CDS":
+                        feature.group = dataframe.loc[feature.feature_id, group_column_name]
+                    else:
+                        feature.group = feature.name
                     self.feature_annotation.loc[feature.feature_id, "group"] = feature.group
             return None
         except Exception as error:
@@ -771,7 +819,8 @@ class Loci:
             proteome_sizes = pd.Series(np.zeros(number_of_loci, dtype=int))
             for locus_index in range(number_of_loci):
                 locus = self.loci[locus_index]
-                loci_clusters = [dataframe.loc[feature.feature_id, "cluster"] for feature in locus.features]
+                loci_clusters = [dataframe.loc[feature.feature_id, "cluster"] for feature in locus.features if
+                                 feature.feature_type == "CDS"]
                 loci_clusters_dict[locus_index] = list(set(loci_clusters))
                 proteome_sizes.iloc[locus_index] = len(set(loci_clusters))
                 for l_cl in loci_clusters:
@@ -876,9 +925,12 @@ class Loci:
             for locus in self.loci:
                 locus_group = locus.group
                 for feature in locus.features:
-                    if feature.group_type and self.prms.args["keep_predefined_groups"]:
-                        continue
-                    feature.group_type = cluster_types[locus_group][feature.group]
+                    if feature.feature_type == "CDS":
+                        if feature.group_type and self.prms.args["keep_predefined_groups"]:
+                            continue
+                        feature.group_type = cluster_types[locus_group][feature.group]
+                    else:
+                        feature.group_type = "noncoding"
                     self.feature_annotation.loc[feature.feature_id, "group_type"] = feature.group_type
             return None
         except Exception as error:
@@ -892,11 +944,12 @@ class Loci:
 
         """
         try:
-            feature_groups = set([feature.group for locus in self.loci for feature in locus.features if feature.group])
+            feature_groups = set([feature.group for locus in self.loci for feature in locus.features
+                                  if (feature.group and feature.feature_type == "CDS")])
             if self.prms.args["feature_group_types_to_set_colour"] and \
                     "all" not in self.prms.args["feature_group_types_to_set_colour"]:
                 feature_groups = set([feature.group for locus in self.loci for feature in locus.features
-                                      if feature.group and feature.group_type in
+                                      if feature.group and feature.feature_type == "CDS" and feature.group_type in
                                       self.prms.args["feature_group_types_to_set_colour"]])
             number_of_unique_feature_groups = len(feature_groups)
             if self.prms.args["groups_fill_colour_palette_lib"] == "seaborn":
@@ -912,7 +965,7 @@ class Loci:
             colours_dict = {g: c for g, c in zip(list(feature_groups), colours)}
             for locus in self.loci:
                 for feature in locus.features:
-                    if feature.group in feature_groups:
+                    if feature.group in feature_groups and feature.feature_type == "CDS":
                         if self.prms.args["keep_predefined_colours"] and feature.vis_prms["fill_colour"] != "default":
                             continue
                         feature.vis_prms["fill_colour"] = colours_dict[feature.group]

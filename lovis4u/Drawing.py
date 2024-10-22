@@ -307,13 +307,16 @@ class LocusVis(Track):
                     f_data_copy = copy.deepcopy(f_data)
                     f_data_copy["stroke_colour"] = None
                     f_data_copy["fill_colour"] = (*matplotlib.colors.hex2color(self.prms.args["palette"]["white"]), 1)
-                    self.__plot_cds_feature(canvas, f_data_copy, y_center=y_feature_center, height=feature_height)
+                    self.__plot_feature(canvas, f_data_copy, y_center=y_feature_center, height=feature_height)
             for f_data in self.track_data["features"]:
                 f_data["stroke_colour"] = *matplotlib.colors.hex2color(f_data["stroke_colour"]), self.prms.args[
                     "feature_stroke_colour_alpha"]
-                f_data["fill_colour"] = *matplotlib.colors.hex2color(f_data["fill_colour"]), self.prms.args[
-                    "feature_fill_colour_alpha"]
-                self.__plot_cds_feature(canvas, f_data, y_center=y_feature_center, height=feature_height)
+                if f_data["fill_colour"]:
+                    f_data["fill_colour"] = *matplotlib.colors.hex2color(f_data["fill_colour"]), self.prms.args[
+                        "feature_fill_colour_alpha"]
+                else:
+                    f_data["fill_colour"] = None
+                self.__plot_feature(canvas, f_data, y_center=y_feature_center, height=feature_height)
                 if f_data["label_width"]:
                     canvas.setFillColorRGB(*f_data["stroke_colour"])
                     canvas.setFont(self.prms.args["feature_label_font_face"],
@@ -373,7 +376,7 @@ class LocusVis(Track):
         except Exception as error:
             raise lovis4u.Manager.lovis4uError("Unable to draw a Locus track.") from error
 
-    def __plot_cds_feature(self, canvas: reportlab.pdfgen.canvas.Canvas, feature_data: dict, y_center: float,
+    def __plot_feature(self, canvas: reportlab.pdfgen.canvas.Canvas, feature_data: dict, y_center: float,
                            height: float) -> None:
         """Helper method to plot feature polygone
 
@@ -388,8 +391,10 @@ class LocusVis(Track):
         right_out = feature_data["coordinates"]["rout"]
         fill_colour = feature_data["fill_colour"]
         stroke_colour = feature_data["stroke_colour"]
+        feature_type = feature_data["type"]
         y_center = y_center
         height = height
+
 
         canvas.setLineCap(0)
         canvas.setLineWidth(self.prms.args["feature_stroke_width"])
@@ -409,6 +414,11 @@ class LocusVis(Track):
                 p.lineTo(x_start, y_center - height / 2)
                 if not left_out:
                     p.lineTo(x_start, y_center + height / 2)
+                if feature_type != "CDS":
+                    p.moveTo(x_end - arrow_length, y_center + height / 2)
+                    p.lineTo(x_end, y_center + height / 2)
+                    p.lineTo(x_end, y_center - height / 2)
+                    p.lineTo(x_end - arrow_length, y_center - height / 2)
         elif orientation == -1:
             if left_out:
                 p.moveTo(x_start, y_center - height / 2)
@@ -423,6 +433,11 @@ class LocusVis(Track):
                 p.lineTo(x_end, y_center - height / 2)
                 if not right_out:
                     p.lineTo(x_end, y_center + height / 2)
+                if feature_type != "CDS":
+                    p.moveTo(x_start + arrow_length, y_center + height / 2)
+                    p.lineTo(x_start, y_center + height / 2)
+                    p.lineTo(x_start, y_center - height / 2)
+                    p.lineTo(x_start + arrow_length, y_center - height / 2)
         if left_out and right_out:
             p.moveTo(x_start, y_center + height / 2)
             p.lineTo(x_end, y_center + height / 2)

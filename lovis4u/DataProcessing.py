@@ -319,8 +319,11 @@ class Loci:
             if isinstance(input_f, str):
                 input_folder = input_f
                 if not os.path.exists(input_folder):
-                    raise lovis4u.Manager.lovis4uError(f"Folder {input_folder} does not exist.")
-                gff_files = [os.path.join(input_folder, f) for f in os.listdir(input_folder)]
+                    raise lovis4u.Manager.lovis4uError(f"Folder/file {input_folder} does not exist.")
+                if os.path.isfile(input_f):
+                    gff_files = [input_f]
+                else:
+                    gff_files = [os.path.join(input_folder, f) for f in os.listdir(input_folder)]
             elif isinstance(input_f, list):
                 gff_files = input_f
             else:
@@ -334,7 +337,7 @@ class Loci:
                 try:
                     gff_file = gff_file_path
                     gff_records = list(BCBio.GFF.parse(gff_file_path,
-                                                       limit_info=dict(gff_type=["CDS", "tRNA","tmRNA", "RNA",
+                                                       limit_info=dict(gff_type=["CDS", "tRNA", "tmRNA", "RNA",
                                                                                  "pseudogene", "rRNA", "misc_RNA",
                                                                                  "ncRNA", "lncRNA"])))
                     if len(gff_records) != 1:
@@ -421,7 +424,8 @@ class Loci:
                                           category=feature_annotation_row["category"],
                                           vis_prms=dict(fill_colour=feature_annotation_row["fill_colour"],
                                                         stroke_colour=feature_annotation_row["stroke_colour"],
-                                                        show_label=feature_annotation_row["show_label"]),
+                                                        show_label=feature_annotation_row["show_label"],
+                                                        hmmscan_hit=0),
                                           overlapping=overlapping, parameters=self.prms)
                         record_locus.features.append(feature)
                     self.loci.append(record_locus)
@@ -463,9 +467,12 @@ class Loci:
 
         """
         if not os.path.exists(input_folder):
-            raise lovis4u.Manager.lovis4uError(f"Folder {input_folder} does not exist.")
+            raise lovis4u.Manager.lovis4uError(f"Folder/file {input_folder} does not exist.")
         try:
-            gb_files = [f for f in os.listdir(input_folder)]
+            if os.path.isfile(input_folder):
+                gb_files = [input_folder]
+            else:
+                gb_files = [os.path.join(input_folder, f) for f in os.listdir(input_folder)]
             if not gb_files:
                 raise lovis4u.Manager.lovis4uError(f"Folder {input_folder} does not contain files.")
             if self.prms.args["verbose"]:
@@ -540,7 +547,8 @@ class Loci:
                                 name = gb_feature.qualifiers[self.prms.args["genbank_CDS_name_source"]][0]
                             category = ""
                             if self.prms.args["genbank_CDS_category_source"] in gb_feature.qualifiers:
-                                category = ",".join(gb_feature.qualifiers[self.prms.args["genbank_CDS_category_source"]])
+                                category = ",".join(
+                                    gb_feature.qualifiers[self.prms.args["genbank_CDS_category_source"]])
                             sequence = gb_feature.translate(record_locus_sequence, table=transl_table, cds=False)[:-1]
                         else:
                             name, category = "", ""
@@ -566,7 +574,8 @@ class Loci:
                         self.__update_feature_annotation(feature_id, record_locus.seq_id,
                                                          f"{int(gb_feature.location.start) + 1}:"
                                                          f"{int(gb_feature.location.end)}:"
-                                                         f"{gb_feature.location.strand}", gb_feature.type, category, name)
+                                                         f"{gb_feature.location.strand}", gb_feature.type, category,
+                                                         name)
                         feature_annotation_row = self.feature_annotation.loc[feature_id]
                         feature = Feature(feature_type=feature_annotation_row["feature_type"],
                                           feature_id=feature_id, start=int(gb_feature.location.start) + 1,
@@ -780,10 +789,14 @@ class Loci:
                     if feature.vis_prms["label"] not in self.prms.args["feature_labels_to_ignore"]:
                         if "any" in self.prms.args["feature_group_types_to_show_label"]:
                             feature.vis_prms["show_label"] = 1
-                        elif feature.group_type in self.prms.args["feature_group_types_to_show_label"]:
+                        elif feature.group_type in self.prms.args["feature_group_types_to_show_label"] or \
+                                (feature.vis_prms["hmmscan_hit"] and self.prms.args["show_all_label_for_query_"
+                                                                                    "proteins"]):
                             feature.vis_prms["show_label"] = 1
-                        elif feature.group_type in \
-                                self.prms.args["feature_group_types_to_show_label_on_first_occurrence"]:
+                        elif (feature.group_type in \
+                              self.prms.args["feature_group_types_to_show_label_on_first_occurrence"]) or \
+                                (feature.vis_prms["hmmscan_hit"] and self.prms.args["show_label_on_first_occurrence"
+                                                                                    "_for_query_proteins"]):
                             if feature.group not in added_first_occurrence_labels:
                                 feature.vis_prms["show_label"] = 1
                                 added_first_occurrence_labels.append(feature.group)
@@ -1011,6 +1024,47 @@ class Loci:
             return None
         except Exception as error:
             raise lovis4u.Manager.lovis4uError("Unable to set category colours.") from error
+
+    def pyhmmer_annotation(self) -> None:
+        """Run pyhhmmer hmmscan against a set of databases for additional annotation of hotspot proteins.
+
+        Arguments:
+            proteomes (Proteomes): Proteomes object.
+
+        Returns:
+            None
+
+        """
+        try:
+            if self.prms.args["verbose"]:
+                print(f"○ Preparing data for additional protein annotation with pyhmmer hmmscan...",
+                      file=sys.stdout)
+
+            cds_records = [feature.record for locus in self.loci for feature in locus.features if
+                           feature.feature_type == "CDS"]
+            hmmscan_output_folder = os.path.join(self.prms.args["output_dir"], "hmmscan")
+            if os.path.exists(hmmscan_output_folder):
+                shutil.rmtree(hmmscan_output_folder)
+            os.mkdir(hmmscan_output_folder)
+            hmmscan_input_fasta_file_path = os.path.join(hmmscan_output_folder, "input_proteins.fa")
+            Bio.SeqIO.write(cds_records, hmmscan_input_fasta_file_path, "fasta")
+
+            alignment_table = lovis4u.Methods.run_pyhmmer(hmmscan_input_fasta_file_path, len(cds_records), self.prms)
+            if not alignment_table.empty:
+                found_hits_for = alignment_table.index.to_list()
+                for locus in self.loci:
+                    for feature in locus.features:
+                        if feature.feature_id in found_hits_for:
+                            alignment_table_row = alignment_table.loc[feature.feature_id]
+                            if self.prms.args["update_category_with_database_name"]:
+                                feature.category = alignment_table_row["target_db"]
+                            if self.prms.args["update_protein_name_with_target_name"]:
+                                feature.name = alignment_table_row["target"]
+                                feature.vis_prms["label"] = feature.name
+                            feature.vis_prms["hmmscan_hit"] = 1
+            return None
+        except Exception as error:
+            raise lovis4u.Manager.lovis4uError("Unable to run pyhmmer hmmscan annotation.") from error
 
     def reorient_loci(self, ilund4u_mode: bool = False) -> None:
         """Auto re-orient loci (reset strands) of loci if they are not matched.

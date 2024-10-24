@@ -33,6 +33,17 @@ lovis4u -gff lovis4u_data/guide/gff_files -hl --set-category-colour -c A4p2
 
 ![f2](gallery/img/lovis4u_default_hl_A4p2.png){loading=lazy width="100%" }  
 
+---
+
+**Applying additional functional annotation of proteins using pyhmmer hmmscan. Figure size: two-column of A4 page publication layout (190mm width).**
+
+```sh
+lovis4u -gff lovis4u_data/guide/gff_files -hl --set-category-colour --run-hmmscan -c A4p2
+```
+
+![f2](gallery/img/lovis4u_hmmscan.png){loading=lazy width="100%" }  
+
+
 --- 
 
 **Visualisation with homology lines and category colours. Compact one-column A4 page figure without labelling of conserved proteins (90mm width).**
@@ -49,11 +60,11 @@ lovis4u -gff lovis4u_data/guide/gff_files -hl --set-category-colour \
 
 ### One sequence
 
-**Visualisation of a single sequence with highlighted protein groups of homologues by different colours. Two-column A4 page publication layout (190mm width).**
+**Visualisation of a single sequence with highlighted protein groups of homologues by different colours and additional functional annotation. Two-column A4 page publication layout (190mm width).**
 
 ```sh
-lovis4u -gff lovis4u_data/guide/single_gff_file -hl --set-category-colour -c A4p2 \
-	--set-group-colour-for conserved
+lovis4u -gff lovis4u_data/guide/gff_files/NC_001895.1.gff -hl --set-category-colour -c A4p2 \
+	--set-group-colour-for conserved  --run-hmmscan --defence-models PADLOC
 ```
 
 ![f2](gallery/img/lovis4u_single_suquence.png){loading=lazy width="100%" }  
@@ -95,10 +106,10 @@ lovis4u -gff lovis4u_data/guide/BaselSubset -laf lovis4u_data/guide/locus_annota
 
 ## Visualisation of the Basel collection of phages
 
-For demonstration of LoVis4u's capabilities (and because it is fun), I applied it to the entire Basel collection of 78 *Escherichia coli* phages (see [Maffei et.al. PLOS Biology](https://doi.org/10.1371/journal.pbio.3001424)).
+For demonstration of LoVis4u's capabilities (and because it is fun), I applied it to the entire Basel collection of 78 *Escherichia coli* phages (see [Maffei et.al. PLOS Biology](https://doi.org/10.1371/journal.pbio.3001424)). In addition, we activate pyhmmer functional annotation of proteins.
 
 ```sh
-lovis4u -gff lovis4u_data/guide/BaselCollection  -hl --set-category-colour -c A4p2 -fw 500
+lovis4u -gff lovis4u_data/guide/BaselCollection  -hl --set-category-colour -c A4p2 -fw 500  --run-hmmscan
 ```
 
 [***LoVis4u PDF file of the visualisation***](gallery/img/lovis4u_Basel.pdf){target="_blank"}

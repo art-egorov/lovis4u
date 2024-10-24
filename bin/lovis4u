@@ -30,6 +30,9 @@ try:
     if parameters.args["reorient_loci"]:
         loci.reorient_loci()
 
+    if parameters.args["run_hmmscan_search"]:
+        loci.pyhmmer_annotation()
+
     if parameters.args["set-group-colour"]:
         loci.set_feature_colours_based_on_groups()
 

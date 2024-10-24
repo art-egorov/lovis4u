@@ -32,6 +32,18 @@ Within each proteome cluster we can find homologous protein groups that are enco
 
 For each protein group $g_i$ within a proteome cluster $c$ that consists of $N_c$ proteomes, we the define protein group presence fraction as $f_i =  N_c^{g_i}/N_c$, where $N_c^{g_i}$ is the number of proteomes of $c$ community that contain the $g_i$ protein group. if $f_i \leq 0.25$ $g_i$ group class is set as *"variable"*, if $ 0.25 < f_i < 0.75$ then $g_i$ is *"intermediate"*, and, if $ f_i \geq 0.75 $ we say that $g_i$ is *"conserved"*. 
 
+### Additional functional annotation
+
+For additional annotation of proteins encoded either as cargo of annotated hotspot islands or as flanking genes we use [pyhmmer API](https://pyhmmer.readthedocs.io/en/stable/). The reason of using pyhmmer instead of MMseqs2 sequence vs profile search is that for several databases that are essential for hotspot protein annotation we have only *[hmmer](http://hmmer.org)* database of profiles available without provided MSA or HMM models compatible with hh-suite or MMseqs 🫤. In order to reduce the running time we use only representative proteins of each protein group as a query set for searching. As was defined above, each cluster of proteins is considered as a set of homologues, then, the search results are attributed to each protein group based on its representative sequence.
+
+The list of used databases and their versions or date of retrieval: 
+
+- Antimicrobial resistance genes (AMR): [AMRFinderPlus](https://www.ncbi.nlm.nih.gov/pathogens/antimicrobial-resistance/AMRFinder/): 02.05.2024.2
+- Anti-Defence: [dbAPIS_Acr](https://bcb.unl.edu/dbAPIS/): 19.09.2023
+- Defence systems (DefenseFinder): [DefenseFinder](https://defensefinder.mdmlab.fr): 1.2.4, [CasFinder](https://github.com/macsy-models/CasFinder): 3.1.0;
+- Defence systems (PADLOC): [PADLOC](https://padloc.otago.ac.nz/padloc/systeminformation/): 23.10.2024
+- Virulence factors: [VFDB](http://www.mgc.ac.cn/VFs/) : 10.05.2024
+
 
 ## Feature and Locus annotation tables 
 

@@ -8,8 +8,9 @@ with open("docs/pypi.md", "r") as fh:
 def package_files(directory):
     paths = []
     for (path, directories, filenames) in os.walk(directory):
-        for filename in filenames:
-            paths.append(os.path.join('..', path, filename))
+        if "lovis4u/lovis4u_data/HMMs" not in path:
+            for filename in filenames:
+                paths.append(os.path.join('..', path, filename))
     return paths
 
 
@@ -17,7 +18,7 @@ extra_files = package_files("lovis4u/lovis4u_data")
 extra_files.append("../docs/pypi.md")
 
 setuptools.setup(name="lovis4u",
-                 version="0.0.10.2",
+                 version="0.0.11",
                  python_requires='>=3.8',
                  description="Loci Visualisation Tool.",
                  url="https://art-egorov.github.io/lovis4u/",
@@ -27,7 +28,7 @@ setuptools.setup(name="lovis4u",
                  packages=["lovis4u"],
                  package_data={"lovis4u": extra_files},
                  install_requires=["biopython", "configs", "argparse", "distinctipy", "pandas", "reportlab",
-                                   "bcbio-gff", "matplotlib", "seaborn", "scipy"],
+                                   "bcbio-gff", "matplotlib", "seaborn", "scipy", "pyhmmer", "progress", "requests"],
                  long_description=long_description,
                  long_description_content_type="text/markdown",
                  scripts=["bin/lovis4u"],

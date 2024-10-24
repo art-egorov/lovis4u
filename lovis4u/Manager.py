@@ -57,6 +57,7 @@ class Parameters:
         parser.add_argument("-data", "--data", dest="lovis4u_data", action="store_true")
         parser.add_argument("-linux", "--linux", dest="linux", action="store_true", default=None)
         parser.add_argument("-mac", "--mac", dest="mac", action="store_true", default=None)
+        parser.add_argument("-get-hmms", "--get-hmms", dest="get_hmms", action="store_true")
         mutually_exclusive_group = parser.add_mutually_exclusive_group()
         mutually_exclusive_group.add_argument("-gff", "--gff", dest="gff", type=str, default=None)
         mutually_exclusive_group.add_argument("-gb", "--gb", dest="gb", type=str, default=None)
@@ -67,6 +68,17 @@ class Parameters:
         parser.add_argument("-laf", "--locus-annotation-file", dest="locus-annotation", type=str, default=None)
         parser.add_argument("-faf", "--feature-annotation-file", dest="feature-annotation", type=str, default=None)
         parser.add_argument("-mmseqs-off", "--mmseqs-off", dest="mmseqs", action="store_false")
+        parser.add_argument("-hmmscan", "--run-hmmscan", dest="run_hmmscan_search", action="store_true", default=None)
+        parser.add_argument("-dm", "--defence-models", dest="defence_models",
+                            choices=["both", "DefenseFinder", "PADLOC"], default=None)
+        parser.add_argument("-hmm", "--add-hmm-models", dest="hmm_models", action='append', nargs='*', default=[])
+        parser.add_argument("-omh", "--only-mine-hmms", dest="only_mine_hmms", action="store_true", default=None)
+        parser.add_argument("-kdn", "--keep-default-name", dest="update_protein_name_with_target_name",
+                            action="store_false", default=None)
+        parser.add_argument("-kdc", "--keep-default-category", dest="update_category_with_database_name",
+                            action="store_false", default=None)
+        parser.add_argument("-salq", "--show-all-labels-for-query", dest="show_all_label_for_query_proteins",
+                            action="store_true", default=None)
         parser.add_argument("-cl-owp", "--cluster-only-window-proteins", dest="cluster_all_proteins",
                             action="store_false", default=None)
         parser.add_argument("-fv-off", "--find-variable-off", dest="find-variable", action="store_false")
@@ -92,9 +104,9 @@ class Parameters:
         parser.add_argument("-ifl", "--ignored-feature-labels", dest="feature_labels_to_ignore", nargs="*",
                             type=str, default=None)
         parser.add_argument("-snl", "--show-noncoding-labels", dest="show_noncoding_labels", action="store_true",
-                            default = None)
+                            default=None)
         parser.add_argument("-sfnl", "--show-first-noncoding-label", dest="show_first_noncoding_label",
-                            action="store_true", default = None)
+                            action="store_true", default=None)
         parser.add_argument("-hl", "--homology-links", dest="homology-track", action="store_true")
         parser.add_argument("-slt", "--scale-line-track", dest="draw_scale_line_track", action="store_true",
                             default=None)
@@ -106,7 +118,7 @@ class Parameters:
         parser.add_argument("-o", dest="output_dir", type=str, default=None)
         parser.add_argument("--pdf-name", dest="pdf-name", type=str, default="lovis4u.pdf")
         parser.add_argument("-c", dest="config_file", type=str, default="standard")
-        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.0.10.1")
+        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.0.11")
         parser.add_argument("-q", "--quiet", dest="verbose", default=True, action="store_false")
         parser.add_argument("--parsing-debug", "-parsing-debug", dest="parsing_debug", action="store_true")
         parser.add_argument("--debug", "-debug", dest="debug", action="store_true")
@@ -115,6 +127,9 @@ class Parameters:
         args = vars(args)
         if len(sys.argv[1:]) == 0:
             args["help"] = True
+        args_to_keep = ["locus-annotation", "feature-annotation", "gb", "gff"]
+        filtered_args = {k: v for k, v in args.items() if v is not None or k in args_to_keep}
+        self.cmd_arguments = filtered_args
         if args["lovis4u_data"]:
             lovis4u.Methods.copy_package_data()
             sys.exit()
@@ -124,6 +139,10 @@ class Parameters:
         if args["mac"]:
             lovis4u.Methods.adjust_paths("mac")
             sys.exit()
+        if args["get_hmms"]:
+            self.load_config()
+            lovis4u.Methods.get_HMM_models(self.args)
+            sys.exit()
         if args["help"]:
             help_message_path = os.path.join(os.path.dirname(__file__), "lovis4u_data", "help.txt")
             with open(help_message_path, "r") as help_message:
@@ -131,9 +150,6 @@ class Parameters:
                 sys.exit()
         if not args["gff"] and not args["gb"]:
             raise lovis4u.Manager.lovis4uError("-gff or -gb parameter with folder path should be provided")
-        args_to_keep = ["locus-annotation", "feature-annotation", "gb", "gff"]
-        filtered_args = {k: v for k, v in args.items() if v is not None or k in args_to_keep}
-        self.cmd_arguments = filtered_args
         return None
 
     def load_config(self, path: str = "standard") -> None:
@@ -165,7 +181,7 @@ class Parameters:
             keys_to_transform_to_list = ["feature_group_types_to_set_colour", "feature_group_types_to_show_label",
                                          "genbank_id_alternative_source", "feature_labels_to_ignore",
                                          "feature_group_types_to_show_label_on_first_occurrence",
-                                         "gff_noncoding_name_alternative_source"]
+                                         "gff_noncoding_name_alternative_source", "hmm_config_names", "database_names"]
             for ktl in keys_to_transform_to_list:
                 if isinstance(config["root"][ktl], str):
                     if config["root"][ktl] != "None":
@@ -196,6 +212,22 @@ class Parameters:
                 self.args["feature_group_types_to_show_label"].append("noncoding")
             if self.args["show_first_noncoding_label"]:
                 self.args["feature_group_types_to_show_label_on_first_occurrence"].append("noncoding")
+
+            if self.args["hmm_models"]:
+                if self.args["only_mine_hmms"]:
+                    self.args["hmm_config_names"] = []
+                    self.args["database_names"] = []
+                for hmm_model in self.args["hmm_models"]:
+                    hmm_folder_path = hmm_model[0]
+                    if not os.path.exists(hmm_folder_path):
+                        raise lovis4uError(f"HMM profiles folder {hmm_folder_path} does not exists.")
+                    if len(hmm_model) == 1:
+                        database_name = os.path.basename(hmm_folder_path)
+                    else:
+                        database_name = hmm_model[1]
+                    self.args[f"users_hmm_{database_name}"] = hmm_folder_path
+                    self.args["hmm_config_names"].append(f"users_hmm_{database_name}")
+                    self.args["database_names"].append(database_name)
             # Check conflicts
             if self.args["draw_individual_x_axis"] and self.args["locus_label_position"] == "bottom":
                 raise lovis4uError("Individual x-axis cannot be plotted when locus label position"
@@ -606,8 +638,9 @@ class LocusLoader(Loader):
                     if self.prms.args["set_feature_stroke_colour_based_on_fill_colour"] and \
                             feature.vis_prms["stroke_colour"] == "default":
                         scale_l = self.prms.args["feature_stroke_colour_relative_lightness"]
-                        feature.vis_prms["stroke_colour"] = lovis4u.Methods.scale_lightness(feature.vis_prms["fill_colour"],
-                                                                                            scale_l)
+                        feature.vis_prms["stroke_colour"] = lovis4u.Methods.scale_lightness(
+                            feature.vis_prms["fill_colour"],
+                            scale_l)
                     elif not self.prms.args["set_feature_stroke_colour_based_on_fill_colour"] and \
                             feature.vis_prms["stroke_colour"] == "default":
                         feature.vis_prms["stroke_colour"] = lovis4u.Methods.get_colour("feature_default_stroke_colour",

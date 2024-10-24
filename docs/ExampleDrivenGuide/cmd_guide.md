@@ -13,6 +13,10 @@ The necessary sample data as well as adjustable tool configuration files are pro
 This command replaces the tool path (for MMseqs2) in the pre-made config files from the MacOS version (default) to the Linux version.
 If you run this command for fun and want to change it back you can use `lovis4u --mac`.
 
+**Downloading HMM models:** LoVis4u uses pyhmmer for additional functional annotation of proteins with hmmscan versus a set of databases. You can download these database from our server ([data-sharing.atkinson-lab.com/LoVis4u](https://data-sharing.atkinson-lab.com/LoVis4u/)) by running the following command:  
+`lovis4u --get-hmms`  
+List of databases: AMR: AMRFinderPlus (v. 02.05.2024.2); Anti-defence: dbAPIS_Acr (v. 19.09.2023); Defence: DefenceFinder (v. 1.2.4), CasFinder (v. 3.1.0), PADLOC (v. 22.10.2024); Virulence: VFDB (v. 10.05.2024).
+
 ^^For demonstration we will use pharokka generated gff files with the sequences of five Enterobacteria P2-like phages.
 Gff files are stored at: lovis4u_data/guide/gff_files.^^      
 The main difference between pharokka generated gff files and regular gff3 (for ex. which you can download from the NCBI) is that in addition to the annotation rows the annotation contains the corresponding nucleotide sequence in fasta format.
@@ -117,10 +121,9 @@ Running this command will create an output folder named *lovis4u_{current_date}*
 
 - `--reorient_loci` - Auto re-orient loci (set new strands) if they are not matched.  This function tries to maximise co-orientation of homologous features.
 - `-hl`, `--homology-links` - Draw homology link track (Sankey graph).
-- `
 - `-o <name>` - Output dir name.  
 - `-c <name>` - Name of the configuration file.
-- `c` - Set category colour for features and plot category colour legend (Initially designed for pharokka generated gff files, see more detailed description below).
+- `-scc`,`--set-category-colour`  - Set category colour for features and plot category colour legend (Initially designed for pharokka generated gff files, see more detailed description below).
 
 While loci in our test set are already correctly orientated, let's add `-hl` parameter to draw homology line track and select configuration file for two-column A4 page layout with `-c A4p2` parameter. Output will be adjusted for publication figure (for instance, in terms of font sizes and figure width set as 190mm). In addition we will plot functional categories of CDSs with `--set-category-colour` parameter. 
 
@@ -191,6 +194,45 @@ lovis4u -gff lovis4u_data/guide/gff_files  -hl -o lovis4u_output \
 ```
 ![f4](cmd_guide/img/lovis4u_updated_name.png){loading=lazy width="700px" }  
 
+## Functional annotation of proteins with pyhmmer 
+
+Starting with version 0.0.11, LoVis4u has a module for functional annotation of proteins with pyhmmer hmmscan. By default, the following set of hmm model databases is available: defence (DefenseFinder), defence (PADLOC),virulence (VFDB), anti-defence (dbAPIS), AMR (AMRFinderPlus). They can be downloaded with `lovis4u --get-hmms` command. 
+
+By default, LoVis4u runs pyhmmer hmmscan versus the provided set of hmm models if `-hmmscan`, `--run-hmmscan` option is specified:
+
+```sh
+lovis4u -gff lovis4u_data/guide/gff_files -hl --set-category-colour -c A4p2 --run-hmmscan -o lovis4u_hmmscan
+```
+
+![f4_hmmscan](cmd_guide/img/lovis4u_hmmscan_default.png){loading=lazy width="100%"}
+
+In addition to visualisation, *hmmscan* folder with search results is saved to the output directory. As you can see, LoVis4u replaces category and name attributes of CDSs that have hits with search. You can keep default names (labels) using `-kdn`, `--keep-default-name` parameter and default category with `-kdc`, `--keep-default-category` option. Also, if you want to show all labels for proteins with hits (for instance, DruM2 label is shown only for the first occurrence in the figure above) you can use `-salq`, `--show-all-labels-for-query` parameter.
+
+**Selecting defence system database**
+
+Since for the defence systems we have two databases: PADLOC and DefenseFinder, a user can specify which one to use for annotation, while by default both are used. To do that you can use `-dm`, `--defence-models` parameter with one of the three option: *PADLOC*, *DefenseFinder* or *both*. In case a protein has a hit to both databases, target with lowest e-value is kept.  
+P2 phage is most suitable for demonstration of this parameter since *Tin* proteins model can be found only in PADLOC database, while *Old* protein has a lowest e-value for DefenseFinder database model. To choose only PADLOC database models for search you can use `-dm PADLOC`:
+
+```sh
+lovis4u -gff lovis4u_data/guide/gff_files/NC_001895.1.gff --set-category-colour -c A4p2 \
+   --run-hmmscan -dm PADLOC -o lovis4u_hmmscan_PADLOC
+```
+![f4_hmmscan_p](cmd_guide/img/lovis4u_hmmscan_padloc.png){loading=lazy width="100%"}
+
+Similarly, you can choose to use DefenseFinder models only with `-dm DefenseFinder`. And as we mentioned, in that case annotation of Tin protein is absent.
+
+```sh
+lovis4u -gff lovis4u_data/guide/gff_files/NC_001895.1.gff --set-category-colour -c A4p2 \
+    --run-hmmscan -dm DefenseFinder -o lovis4u_hmmscan_DF
+```
+![f4_hmmscan_df](cmd_guide/img/lovis4u_hmmscan_DF.png){loading=lazy width="100%"}
+
+
+**How to use your own HMM models**
+
+LoVis4u also allows to use your own HMM models. You can specify them using `-hmm, --add-hmm-models <folder_path [name]>` parameter. Folder should contain files in HMMER format (one file per model). Usage: `-hmm path [name]`. Specifying name is optional, by default it will be taken from them folder name. If you want to add multiple hmm databases you can use this argument several times: `-hmm path1 [name1] -hmm path2 [name2] ....`.
+
+Finally, if you want to force to search only against your models excluding default set, you can add `-omh`, `--only-mine-hmms` parameter in addition to `-hmm` option.
 
 ## Other LoVis4u features
 
@@ -250,9 +292,9 @@ lovis4u -gff lovis4u_data/guide/single_gff_file -hl --set-category-colour -c A4p
 
 ### Visualisation of non-coding features and control of their labels
 
-Starting with 0.0.10 version, LoVis4u is able to parse non-coding features like tRNAs, tmRNAs, and pseudogenes. They do not contribute to the sequence clustering, however, tRNAs with the same anti-codon are considered as members of the same group and can be connected by homology lines. In addition, by default, non-coding features are not labeled. They are shown with a special polygon - CDS-like but additionally embedded into rectangle and without fill colour. 
+Starting with 0.0.10 version, LoVis4u is able to parse non-coding features like tRNAs, tmRNAs, and pseudogenes. They do not contribute to the sequence clustering, however, tRNAs with the same anti-codon are considered as members of the same group and can be connected by homology lines. In addition, by default, non-coding features are not labeled. These are shown with a CDS-like polygon with no fill colour, embedded in a box. 
 
-For demonstration of such feature in a sample data we have loci from Bas01 and Bas03 phages that encode tRNAs. 
+For demonstration of such feature in the example below we show tRNA-encoding regions of Bas01 and Bas03 phages.
 
 ```sh
 lovis4u -gff lovis4u_data/guide/BaselSubset -laf lovis4u_data/guide/locus_annotation_table_trnas.tsv \
@@ -262,9 +304,7 @@ lovis4u -gff lovis4u_data/guide/BaselSubset -laf lovis4u_data/guide/locus_annota
 ![fn](cmd_guide/img/lovis4u_trnas_wo_label.png){loading=lazy width="500px" }  
 
 
-As you can see, we do not have labels by default (since usually there are clusters of tRNAs and in the most cases hard to display many labels on a very short locus and it is not very informative. Instead, there is a category colour for each type of non-coding feature. 
-
-However, if you want to put labels, you can do it. Firstly, if you want to show labels for all non-coding features you can use `-snl`. `--show-noncoding-labels` command.
+By default we do not show tRNA name labels since these genes are often found in arrays and visualisation of many labels on a very short locus is challenging. Instead, there is a category colour for each type of non-coding feature. However, if required, tRNA name labels can be turned on. Firstly, if you want to show labels for all non-coding features you can use `-snl`. `--show-noncoding-labels` command.
 
 ```sh
 lovis4u -gff lovis4u_data/guide/BaselSubset -laf lovis4u_data/guide/locus_annotation_table_trnas.tsv \

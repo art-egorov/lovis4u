@@ -10,11 +10,12 @@
 **Supported output**: Static vector graphics (pdf)   
 **Programming language:** Python3   
 **OS:** MacOS, Linux  
-**Python dependencies:** biopython, bcbio-gff, scipy, configs, argparse, pandas, distinctipy, matplotlib, seaborn, reportlab  
+**Python dependencies:** biopython, bcbio-gff, scipy, configs, argparse, pandas, distinctipy, matplotlib, seaborn, reportlab, pyhmmer, progress, requests
 **Python version:** >= 3.8  
 **OS-level dependencies:** MMseqs2 (included in the package)  
 **License:** WTFPL  
-**Version:** 0.0.10 (October 2024)
+**Version:** 0.0.11 (October 2024)
+
 
 
 **Detailed documentation with user guide is available at [LoVis4u Homepage](https://art-egorov.github.io/lovis4u/)**

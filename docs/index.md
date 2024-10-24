@@ -8,11 +8,11 @@
 **Supported output**: Static vector graphics (pdf)   
 **Programming language:** Python3   
 **OS:** MacOS, Linux  
-**Python dependencies:** biopython, bcbio-gff, scipy, configs, argparse, pandas, distinctipy, matplotlib, seaborn, reportlab  
-**Python version:** >= 3.9  
+**Python dependencies:** biopython, bcbio-gff, scipy, configs, argparse, pandas, distinctipy, matplotlib, seaborn, reportlab, pyhmmer, progress, requests
+**Python version:** >= 3.8  
 **OS-level dependencies:** MMseqs2 (included in the package)  
 **License:** WTFPL  
-**Version:** 0.0.10 (October 2024)
+**Version:** 0.0.11 (October 2024)
 
 
 
@@ -23,7 +23,7 @@
 
 **Visualisation example**
 
-![visex](img/lovis4u_default_hl_A4p2.png){loading=lazy width="100%" }  
+![visex](img/lovis4u_hmmscan.png){loading=lazy width="100%" }  
 
 
 See the [gallery page](https://art-egorov.github.io/lovis4u/Gallery/gallery/) for more examples

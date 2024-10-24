@@ -1,6 +1,11 @@
 # Version log
 
-* **Ver 0.0.10.1** - 22 October 2024
+* **Ver 0.0.11** - 22 October 2024
+	- Functional annotation of proteins with pyhmmer hmmscan is now supported!
+	- A set of parameters to control hmmscan annotation is addded. 
+	- Now single file path input instead of folder name with '-gff' and '-gb' parameters is supported.
+
+* Ver 0.0.10.1 - 22 October 2024
 	- `-snl, --show-noncoding-labels` and `-sfnl, --show-first-noncoding-label` paraemetrs are added for controlling non-coding feature labels.
 
 * Ver 0.0.10 - 22 October 2024

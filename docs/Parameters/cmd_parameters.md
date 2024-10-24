@@ -16,6 +16,10 @@
 `--mac`
 :    Replaces the mmseqs path in the pre-made config file from the Linux
 
+`--get-hmms`
+:    Download HMMs (hmmscan format) of defence, anti-defence, virulence,
+     and AMR proteins from our server [data-sharing.atkinson-lab.com]
+
 ### Mandatory arguments
 `-gff <folder>`
 :    Path to a folder containing extended gff files.

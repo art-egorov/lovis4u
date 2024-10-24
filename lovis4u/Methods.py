@@ -15,6 +15,15 @@ import reportlab.pdfbase.ttfonts
 
 import matplotlib.colors
 
+import pandas as pd
+import pyhmmer.plan7
+import pyhmmer.easel
+import pyhmmer
+
+import progress.bar
+
+import requests
+import tarfile
 import lovis4u.Manager
 
 
@@ -128,6 +137,7 @@ def str_height_to_size(height: float, font_type: str) -> float:
     font_size = (1000 * 1.38 * height) / (face.ascent - face.descent)
     return font_size
 
+
 def str_font_size_to_height(font_size: float, font_type: str) -> float:
     """Transform string font size to height.
 
@@ -141,7 +151,7 @@ def str_font_size_to_height(font_size: float, font_type: str) -> float:
     """
 
     face = reportlab.pdfbase.pdfmetrics.getFont(font_type).face
-    height = font_size * (face.ascent - face.descent) / (1000*1.38)
+    height = font_size * (face.ascent - face.descent) / (1000 * 1.38)
     return height
 
 
@@ -262,3 +272,169 @@ def feature_nt_to_x_transform(nt_start: int, nt_end: int, feature_strand: int, l
             x_coordinates["rout"] = right_out
             break
     return x_coordinates
+
+
+def run_pyhmmer(query_fasta: str, query_size: int, prms: lovis4u.Manager.Parameters) -> pd.DataFrame:
+    """Run pyhmmer hmmscan for a set of query proteins
+
+    Arguments:
+        query_fasta (str): Path to a query fasta file.
+        query_size (int): Number of query proteins.
+        prms (LoVis4u.Manager.Parameters): Parameters class object that holds all arguments.
+
+    Returns:
+        pd.DataFrame: Table with hmmscan search results.
+
+    """
+    with pyhmmer.easel.SequenceFile(query_fasta, digital=True) as seqs_file:
+        query_proteins = seqs_file.read_block()
+    num_of_query_proteins = query_size
+
+    databases_cname = prms.args["hmm_config_names"]
+    databases_short_names = prms.args["database_names"]
+
+    databases_names = {"hmm_defence_df": "DefenceFinder and CasFinder databases",
+                       "hmm_defence_padloc": "PADLOC database", "hmm_virulence": "virulence factor database (VFDB)",
+                       "hmm_anti_defence": "anti-prokaryotic immune systems database (dbAPIS)",
+                       "hmm_amr": "AMRFinderPlus Database"}
+    hmmscan_output_folder = os.path.join(prms.args["output_dir"], "hmmscan")
+    alignment_table_rows = []
+    for db_ind, db_name in enumerate(databases_cname):
+        if prms.args["defence_models"] == "DefenseFinder" and db_name == "hmm_defence_padloc":
+            continue
+        if prms.args["defence_models"] == "PADLOC" and db_name == "hmm_defence_df":
+            continue
+        db_alignment_table_rows = []
+        db_shortname = databases_short_names[db_ind]
+        db_path = prms.args[db_name]
+        if databases_cname[db_ind] in databases_names.keys():
+            db_full_name = databases_names[databases_cname[db_ind]]
+        else:
+            db_full_name = db_shortname
+        if not os.path.exists(db_path):
+            print(db_path)
+            print(f"  ⦿ Database {db_full_name} was not found.", file=sys.stdout)
+            continue
+        hmm_files = [fp for fp in os.listdir(db_path) if os.path.splitext(fp)[1].lower() == ".hmm" and fp[0] != "."]
+        hmms = []
+        for hmm_file in hmm_files:
+            hmms.append(pyhmmer.plan7.HMMFile(os.path.join(db_path, hmm_file)).read())
+        if prms.args["verbose"]:
+            print(f"  ⦿ Running pyhmmer hmmscan versus {db_full_name}...", file=sys.stdout)
+            bar = progress.bar.FillingCirclesBar("   ", max=num_of_query_proteins, suffix="%(index)d/%(max)d")
+        for hits in pyhmmer.hmmscan(query_proteins, hmms, E=1e-3, cpus=0):
+            if prms.args["verbose"]:
+                bar.next()
+            for hit in hits:
+                if hit.included:
+                    for domain in hit.domains.reported:
+                        if domain.i_evalue < prms.args["hmmscan_evalue"]:
+                            alignment = domain.alignment
+                            hit_name = hit.name.decode()
+                            hit_description = hit.description
+                            if hit.description:
+                                hit_description = hit_description.decode()
+                                if hit_description == "NA":
+                                    hit_description = ""
+                            else:
+                                hit_description = ""
+
+                            if hit_name != hit_description and hit_name not in hit_description and hit_description:
+                                hname = f"{hit_name} {hit_description}"
+                            elif hit_description:
+                                hname = hit_description
+                            else:
+                                hname = hit_name
+                            alignment_row = dict(query=alignment.target_name.decode(),
+                                                 target_db=db_shortname, target=hname, t_name=hit_name,
+                                                 t_description=hit_description,
+                                                 hit_evalue=hit.evalue, di_evalue=domain.i_evalue,
+                                                 q_from=alignment.target_from, q_to=alignment.target_to,
+                                                 qlen=alignment.target_length, t_from=alignment.hmm_from,
+                                                 t_to=alignment.hmm_to, tlen=alignment.hmm_length)
+                            alignment_row["q_cov"] = round((alignment_row["q_to"] - alignment_row["q_from"]) / \
+                                                           alignment_row["qlen"], 2)
+                            alignment_row["t_cov"] = round((alignment_row["t_to"] - alignment_row["t_from"]) / \
+                                                           alignment_row["tlen"], 2)
+                            if alignment_row["q_cov"] >= prms.args["hmmscan_query_coverage_cutoff"] and \
+                                    alignment_row["t_cov"] >= prms.args["hmmscan_hmm_coverage_cutoff"]:
+                                db_alignment_table_rows.append(alignment_row)
+        if prms.args["verbose"]:
+            bar.finish()
+        alignment_table_rows += db_alignment_table_rows
+        db_alignment_table = pd.DataFrame(db_alignment_table_rows)
+        if not db_alignment_table.empty:
+            db_alignment_table = db_alignment_table.sort_values(by="hit_evalue", ascending=True)
+            db_alignment_table = db_alignment_table.drop_duplicates(subset="query", keep="first").set_index("query")
+            db_alignment_table.to_csv(os.path.join(hmmscan_output_folder, f"{db_shortname}.tsv"), sep="\t",
+                                      index_label="query")
+        n_hits = len(db_alignment_table.index)
+        if prms.args["verbose"]:
+            print(f"    Number of hits: {n_hits}", file=sys.stdout)
+    alignment_table = pd.DataFrame(alignment_table_rows)
+    if not alignment_table.empty:
+        alignment_table = alignment_table.sort_values(by="hit_evalue", ascending=True)
+        alignment_table = alignment_table.drop_duplicates(subset="query", keep="first").set_index("query")
+
+    return alignment_table
+
+def download_file_with_progress(url: str, local_folder: str) -> None:
+    """Function for downloading a particular file from a web server.
+
+    Arguments:
+        url (str): Link to the file.
+        local_folder (str): Path to a folder where file will be saved.
+
+    Returns:
+        None
+
+    """
+    try:
+        response = requests.head(url)
+        file_size = int(response.headers.get('content-length', 0))
+        # Extract the original file name from the URL
+        file_name = os.path.basename(url)
+        local_path = os.path.join(local_folder, file_name)
+        # Stream the file download and show progress bar
+        with requests.get(url, stream=True) as r, open(local_path, 'wb') as f:
+            bar = progress.bar.FillingCirclesBar(" ", max=file_size // 8192, suffix='%(percent)d%%')
+            downloaded_size = 0
+            for chunk in r.iter_content(chunk_size=8192):
+                if chunk:
+                    downloaded_size += len(chunk)
+                    f.write(chunk)
+                    bar.next()
+            bar.finish()
+        # Verify that the file was fully downloaded
+        if downloaded_size != file_size:
+            raise lovis4u.Manager.lovis4uError(f"Downloaded file size ({downloaded_size} bytes) does not match "
+                                               f"expected size ({file_size} bytes).")
+        print(f"⦿ File was saved to {local_path}")
+        if file_name.endswith('.tar.gz'):
+            with tarfile.open(local_path, 'r:gz') as tar:
+                tar.extractall(path=local_folder)
+            print(f"⦿ Folder was successfully unarchived")
+            os.remove(local_path)
+    except Exception as error:
+        raise lovis4u.Manager.lovis4uError(f"Unable to get file from the {url}.") from error
+
+
+def get_HMM_models(parameters) -> None:
+    """Download HMM models
+
+    Returns:
+        None
+
+    """
+    try:
+        url =  parameters["hmm_models_url"]
+        internal_dir = os.path.join(os.path.dirname(__file__), "lovis4u_data")
+        if os.path.exists(os.path.join(internal_dir, "HMMs")):
+            print(f"○ HMMs folder already exists and will be rewritten...", file=sys.stdout)
+        # Add checking if it's already downloaded
+        print(f"○ Downloading HMM models...\n"
+              f"  Source: {url}", file=sys.stdout)
+        download_file_with_progress(url, internal_dir)
+        return None
+    except Exception as error:
+        raise lovis4u.Manager.lovis4uError(f"Unable to download HMM models.") from error

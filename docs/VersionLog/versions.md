@@ -1,6 +1,6 @@
 # Version log
 
-* **Ver 0.0.11** - 22 October 2024
+* **Ver 0.0.11** - 24 October 2024
 	- Functional annotation of proteins with pyhmmer hmmscan is now supported!
 	- A set of parameters to control hmmscan annotation is addded. 
 	- Now single file path input instead of folder name with '-gff' and '-gb' parameters is supported.

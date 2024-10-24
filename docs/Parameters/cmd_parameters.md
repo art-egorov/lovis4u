@@ -51,6 +51,35 @@
 `-mmseqs-off, --mmseqs-off`
 :   Deactivate mmseqs clustering of proteomes of loci.
 
+`-hmmscan, --run-hmmscan`
+:    Run hmmscan search for additional functional annotation.
+
+`-dm, --defence-models <DefenseFinder|PADLOC|both>`
+:    Choose which defence system database to use for hmmscan search
+     [default: both (DefenseFinder and PADLOC)]
+
+`-hmm, --add-hmm-models <folder_path [name]>`
+:    Add your own hmm models database for hmmscan search. Folder should
+     contain files in HMMER format (one file per model). Usage: -hmm path [name].
+     Specifying name is optional, by default it will be taken from them folder name.
+     If you want to add multiple hmm databases you can use this argument several
+     times: -hmm path1 -hmm path2.
+
+`-omh, --only-mine-hmms`
+:    Force to use only models defined by user with -hmm, --add-hmm-models parameter.
+
+`-kdn, --keep-default-name`
+:    Keep default names and labels for proteins that have hits with
+     hmmscan search. [default: name is replaced with target hmm model name]
+
+`-kdc, --keep-default-category`
+:    Keep default category for proteins that have hits with hmmscan
+     search. [default: category is replaced with database name]
+
+`-salq, --show-all-labels-for-query`
+:    Force to show all labels for proteins that have hits to any database with hmmscan search.
+    [default: False]
+
 `-cl-owp, --cluster-only-window-proteins`
 :    Cluster only proteins that are overlapped with  
      the visualisation windows, not all.

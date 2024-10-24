@@ -404,6 +404,19 @@
     Defining protein group classes
   </a>
   
+    <nav class="md-nav" aria-label="Defining protein group classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#additional-functional-annotation" class="md-nav__link">
+    Additional functional annotation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -638,6 +651,16 @@ The meaning of <span class="arithmatex">\(w_{ij}\)</span> is average value of tw
 <h2 id="defining-protein-group-classes">Defining protein group classes</h2>
 <p>Within each proteome cluster we can find homologous protein groups that are encoded in different fractions of the proteomes. Those that are found in the majority of proteomes we call <em>“conserved”</em> (equivalent to “core” in pan-genome analyses). Those protein groups that are found in a relatively small fraction of proteomes then we call <em>“variable”</em> (equivalent to “cloud” in pan-genome analyses). Finally, those protein groups that are neither very variable nor very conserved, we refer to as <em>“intermediate”</em>  (“shell” in pan-genome analyses).</p>
 <p>For each protein group <span class="arithmatex">\(g_i\)</span> within a proteome cluster <span class="arithmatex">\(c\)</span> that consists of <span class="arithmatex">\(N_c\)</span> proteomes, we the define protein group presence fraction as <span class="arithmatex">\(f_i =  N_c^{g_i}/N_c\)</span>, where <span class="arithmatex">\(N_c^{g_i}\)</span> is the number of proteomes of <span class="arithmatex">\(c\)</span> community that contain the <span class="arithmatex">\(g_i\)</span> protein group. if <span class="arithmatex">\(f_i \leq 0.25\)</span> <span class="arithmatex">\(g_i\)</span> group class is set as <em>"variable"</em>, if $ 0.25 &lt; f_i &lt; 0.75$ then <span class="arithmatex">\(g_i\)</span> is <em>"intermediate"</em>, and, if $ f_i \geq 0.75 $ we say that <span class="arithmatex">\(g_i\)</span> is <em>"conserved"</em>. </p>
+<h3 id="additional-functional-annotation">Additional functional annotation</h3>
+<p>For additional annotation of proteins encoded either as cargo of annotated hotspot islands or as flanking genes we use <a href="https://pyhmmer.readthedocs.io/en/stable/">pyhmmer API</a>. The reason of using pyhmmer instead of MMseqs2 sequence vs profile search is that for several databases that are essential for hotspot protein annotation we have only <em><a href="http://hmmer.org">hmmer</a></em> database of profiles available without provided MSA or HMM models compatible with hh-suite or MMseqs 🫤. In order to reduce the running time we use only representative proteins of each protein group as a query set for searching. As was defined above, each cluster of proteins is considered as a set of homologues, then, the search results are attributed to each protein group based on its representative sequence.</p>
+<p>The list of used databases and their versions or date of retrieval: </p>
+<ul>
+<li>Antimicrobial resistance genes (AMR): <a href="https://www.ncbi.nlm.nih.gov/pathogens/antimicrobial-resistance/AMRFinder/">AMRFinderPlus</a>: 02.05.2024.2</li>
+<li>Anti-Defence: <a href="https://bcb.unl.edu/dbAPIS/">dbAPIS_Acr</a>: 19.09.2023</li>
+<li>Defence systems (DefenseFinder): <a href="https://defensefinder.mdmlab.fr">DefenseFinder</a>: 1.2.4, <a href="https://github.com/macsy-models/CasFinder">CasFinder</a>: 3.1.0;</li>
+<li>Defence systems (PADLOC): <a href="https://padloc.otago.ac.nz/padloc/systeminformation/">PADLOC</a>: 23.10.2024</li>
+<li>Virulence factors: <a href="http://www.mgc.ac.cn/VFs/">VFDB</a> : 10.05.2024</li>
+</ul>
 <h2 id="feature-and-locus-annotation-tables">Feature and Locus annotation tables</h2>
 <p>The results of sequence clustering and information about proteins are saved as feature and locus annotation tables. They also cal be used as input if you have pre-defined values. See the example-driven guide for the details.</p>
 <hr />

@@ -654,6 +654,9 @@
  version [default] to the Linux version.</dd>
 <dt><code>--mac</code></dt>
 <dd>Replaces the mmseqs path in the pre-made config file from the Linux</dd>
+<dt><code>--get-hmms</code></dt>
+<dd>Download HMMs (hmmscan format) of defence, anti-defence, virulence,
+ and AMR proteins from our server [data-sharing.atkinson-lab.com]</dd>
 </dl>
 <h3 id="mandatory-arguments">Mandatory arguments</h3>
 <dl>
@@ -682,6 +685,28 @@
  (See documentation for details)</dd>
 <dt><code>-mmseqs-off, --mmseqs-off</code></dt>
 <dd>Deactivate mmseqs clustering of proteomes of loci.</dd>
+<dt><code>-hmmscan, --run-hmmscan</code></dt>
+<dd>Run hmmscan search for additional functional annotation.</dd>
+<dt><code>-dm, --defence-models &lt;DefenseFinder|PADLOC|both&gt;</code></dt>
+<dd>Choose which defence system database to use for hmmscan search
+ [default: both (DefenseFinder and PADLOC)]</dd>
+<dt><code>-hmm, --add-hmm-models &lt;folder_path [name]&gt;</code></dt>
+<dd>Add your own hmm models database for hmmscan search. Folder should
+ contain files in HMMER format (one file per model). Usage: -hmm path [name].
+ Specifying name is optional, by default it will be taken from them folder name.
+ If you want to add multiple hmm databases you can use this argument several
+ times: -hmm path1 -hmm path2.</dd>
+<dt><code>-omh, --only-mine-hmms</code></dt>
+<dd>Force to use only models defined by user with -hmm, --add-hmm-models parameter.</dd>
+<dt><code>-kdn, --keep-default-name</code></dt>
+<dd>Keep default names and labels for proteins that have hits with
+ hmmscan search. [default: name is replaced with target hmm model name]</dd>
+<dt><code>-kdc, --keep-default-category</code></dt>
+<dd>Keep default category for proteins that have hits with hmmscan
+ search. [default: category is replaced with database name]</dd>
+<dt><code>-salq, --show-all-labels-for-query</code></dt>
+<dd>Force to show all labels for proteins that have hits to any database with hmmscan search.
+[default: False]</dd>
 <dt><code>-cl-owp, --cluster-only-window-proteins</code></dt>
 <dd>Cluster only proteins that are overlapped with<br />
  the visualisation windows, not all.</dd>

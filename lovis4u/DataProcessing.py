@@ -631,6 +631,8 @@ class Loci:
         try:
             if not os.path.exists(self.prms.args["output_dir"]):
                 os.mkdir(self.prms.args["output_dir"])
+            locus_ids = [locus.seq_id for locus in self.loci ]
+            self.locus_annotation = self.locus_annotation.loc[self.locus_annotation.index.isin(locus_ids)]
             file_path = os.path.join(self.prms.args["output_dir"], "locus_annotation_table.tsv")
             self.locus_annotation.to_csv(file_path, sep="\t", index_label="sequence_id")
             if self.prms.args["verbose"]:
@@ -651,6 +653,8 @@ class Loci:
         try:
             if not os.path.exists(self.prms.args["output_dir"]):
                 os.mkdir(self.prms.args["output_dir"])
+            feature_ids = [feature.feature_id for locus in self.loci for feature in locus.features]
+            self.feature_annotation = self.feature_annotation.loc[self.feature_annotation.index.isin(feature_ids)]
             file_path = os.path.join(self.prms.args["output_dir"], "feature_annotation_table.tsv")
             self.feature_annotation.to_csv(file_path, sep="\t", index_label="feature_id")
             if self.prms.args["verbose"]:

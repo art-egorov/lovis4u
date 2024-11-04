@@ -208,10 +208,16 @@ lovis4u -gff lovis4u_data/guide/gff_files -hl --set-category-colour -c A4p2 --ru
 
 In addition to visualisation, *hmmscan* folder with search results is saved to the output directory. As you can see, LoVis4u replaces category and name attributes of CDSs that have hits with search. You can keep default names (labels) using `-kdn`, `--keep-default-name` parameter and default category with `-kdc`, `--keep-default-category` option. Also, if you want to show all labels for proteins with hits (for instance, DruM2 label is shown only for the first occurrence in the figure above) you can use `-salq`, `--show-all-labels-for-query` parameter.
 
+In addition to visualisation, the *hmmscan* folder with search results is saved to the output directory. LoVis4u replaces the category and name attributes of CDSs that have hits. You can keep the default names (labels) using the `-kdn`, `--keep-default-name` parameter and the default category with `-kdc`, `--keep-default-category` option. Also, if you want to show all labels for the proteins with hits (for instance, the DruM2 label is shown only for the first occurrence in the figure above) you can use the `-salq`, `--show-all-labels-for-query` parameter.
+
 **Selecting defence system database**
 
 Since for the defence systems we have two databases: PADLOC and DefenseFinder, a user can specify which one to use for annotation, while by default both are used. To do that you can use `-dm`, `--defence-models` parameter with one of the three option: *PADLOC*, *DefenseFinder* or *both*. In case a protein has a hit to both databases, target with lowest e-value is kept.  
 P2 phage is most suitable for demonstration of this parameter since *Tin* proteins model can be found only in PADLOC database, while *Old* protein has a lowest e-value for DefenseFinder database model. To choose only PADLOC database models for search you can use `-dm PADLOC`:
+
+Since we have two defence system databases: PADLOC and DefenseFinder, it is possible to specify which to use for annotation (by default both are used). This is done with the `-dm`, `--defence-models` parameter with one of the three options: PADLOC, DefenseFinder or both. In case a protein has a hit to both databases, the target with the lowest e-value is kept.  
+The P2 phage and its Tin/Old hotspot defence island is a good example for demonstrating this parameter since the Tin protein model is only in the PADLOC database, while the Old protein has a lowest e-value for the DefenseFinder database model. To choose only PADLOC database models for search you can use `-dm PADLOC`:
+
 
 ```sh
 lovis4u -gff lovis4u_data/guide/gff_files/NC_001895.1.gff --set-category-colour -c A4p2 \
@@ -219,7 +225,7 @@ lovis4u -gff lovis4u_data/guide/gff_files/NC_001895.1.gff --set-category-colour 
 ```
 ![f4_hmmscan_p](cmd_guide/img/lovis4u_hmmscan_padloc.png){loading=lazy width="100%"}
 
-Similarly, you can choose to use DefenseFinder models only with `-dm DefenseFinder`. And as we mentioned, in that case annotation of Tin protein is absent.
+Similarly, you can choose to use DefenseFinder models only with `-dm DefenseFinder`. As mentioned above, in that case the Tin annotation is absent.
 
 ```sh
 lovis4u -gff lovis4u_data/guide/gff_files/NC_001895.1.gff --set-category-colour -c A4p2 \
@@ -230,9 +236,9 @@ lovis4u -gff lovis4u_data/guide/gff_files/NC_001895.1.gff --set-category-colour 
 
 **How to use your own HMM models**
 
-LoVis4u also allows to use your own HMM models. You can specify them using `-hmm, --add-hmm-models <folder_path [name]>` parameter. Folder should contain files in HMMER format (one file per model). Usage: `-hmm path [name]`. Specifying name is optional, by default it will be taken from them folder name. If you want to add multiple hmm databases you can use this argument several times: `-hmm path1 [name1] -hmm path2 [name2] ....`.
+LoVis4u also allows the use of your own HMM models. You can specify these using `-hmm, --add-hmm-models <folder_path [name]>`. The folder should contain files in HMMER format (one file per model). Usage: `-hmm path [name]`. Specifying the name is optional; by default it will be taken from the folder name. If you want to add multiple HMM databases you can use this argument mulitple times: `-hmm path1 [name1] -hmm path2 [name2] ...`.
 
-Finally, if you want to force to search only against your models excluding default set, you can add `-omh`, `--only-mine-hmms` parameter in addition to `-hmm` option.
+Finally, if you want to search only against your models excluding default set, you can add `-omh, --only-mine-hmms` parameter in addition to `-hmm` option.
 
 ## Other LoVis4u features
 

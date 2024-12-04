@@ -267,7 +267,10 @@ def feature_nt_to_x_transform(nt_start: int, nt_end: int, feature_strand: int, l
                 nt_end = coordinate["end"]
             x_coordinates = region_nt_to_x_transform(nt_start, nt_end, locus, layout)
             x_coordinates["center"] = (x_coordinates["start"] + x_coordinates["end"]) / 2
-            x_coordinates["orient"] = feature_strand * coordinate["strand"]
+            try:
+                x_coordinates["orient"] = feature_strand * coordinate["strand"]
+            except:
+                x_coordinates["orient"] = 1
             x_coordinates["lout"] = left_out
             x_coordinates["rout"] = right_out
             break

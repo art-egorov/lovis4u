@@ -1,6 +1,9 @@
 # Version log
 
-* **Ver 0.0.12** - 4 December 2024
+* **Ver 0.0.13** - 19 December 2024
+	- Bug with parsing folder containing genbank files is fixed.
+
+* Ver 0.0.12 - 4 December 2024
 	- Minor bug related to non-coding features without specified orientation is fixed.
 
 * Ver 0.0.11 - 24 October 2024

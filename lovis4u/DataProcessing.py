@@ -333,10 +333,9 @@ class Loci:
                 raise lovis4u.Manager.lovis4uError(f"Folder {input_f} does not contain files.")
             if self.prms.args["verbose"]:
                 print(f"○ Reading gff file{'s' if len(gff_files) > 1 else ''}...", file=sys.stdout)
-            for gff_file_path in gff_files:
+            for gff_file in gff_files:
                 try:
-                    gff_file = gff_file_path
-                    gff_records = list(BCBio.GFF.parse(gff_file_path,
+                    gff_records = list(BCBio.GFF.parse(gff_file,
                                                        limit_info=dict(gff_type=["CDS", "tRNA", "tmRNA", "RNA",
                                                                                  "pseudogene", "rRNA", "misc_RNA",
                                                                                  "ncRNA", "lncRNA"])))
@@ -479,8 +478,7 @@ class Loci:
                 print(f"○ Reading gb file{'s' if len(gb_files) > 1 else ''}...", file=sys.stdout)
             for gb_file in gb_files:
                 try:
-                    gb_file_path = os.path.join(input_folder, gb_file)
-                    gb_records = list(Bio.SeqIO.parse(gb_file_path, "genbank"))
+                    gb_records = list(Bio.SeqIO.parse(gb_file, "genbank"))
                     if len(gb_records) != 1:
                         print(f"○ Warning: gb file {gb_file} contains information for more than 1 "
                               f"sequence. File will be skipped.")
@@ -588,7 +586,8 @@ class Loci:
                                           category=feature_annotation_row["category"],
                                           vis_prms=dict(fill_colour=feature_annotation_row["fill_colour"],
                                                         stroke_colour=feature_annotation_row["stroke_colour"],
-                                                        show_label=feature_annotation_row["show_label"]),
+                                                        show_label=feature_annotation_row["show_label"],
+                                                        hmmscan_hit=0),
                                           overlapping=overlapping,
                                           parameters=self.prms)
 

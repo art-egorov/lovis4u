@@ -14,7 +14,7 @@
 **Python version:** >= 3.8  
 **OS-level dependencies:** MMseqs2 (included in the package)  
 **License:** WTFPL  
-**Version:** 0.0.12 (December 2024)
+**Version:** 0.0.13 (December 2024)
 
 
 

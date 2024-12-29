@@ -1,6 +1,9 @@
 # Version log
 
-* **Ver 0.0.13** - 19 December 2024
+* **Ver 0.0.14** - 29 December 2024
+	- An issue with visualisation of feature lables for single locus without mmseqs clustering is was fixed. 
+
+* Ver 0.0.13 - 19 December 2024
 	- Bug with parsing folder containing genbank files is fixed.
 
 * Ver 0.0.12 - 4 December 2024

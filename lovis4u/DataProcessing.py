@@ -295,7 +295,7 @@ class Loci:
             stroke_colour = lovis4u.Methods.scale_lightness(self.feature_annotation.loc[feature_id]["fill_colour"],
                                                             self.prms.args["feature_stroke_colour_relative_lightness"])
         default_values = dict(locus_id=locus_id, coordinates=coordinates, feature_type=feature_type,
-                              name=name, group="", group_type="", category=category, fill_colour="default",
+                              name=name, group="", group_type="undefined", category=category, fill_colour="default",
                               stroke_colour=stroke_colour,
                               show_label=show_label)
         self.feature_annotation.loc[feature_id] = self.feature_annotation.loc[feature_id].fillna(default_values)
@@ -800,7 +800,7 @@ class Loci:
                               self.prms.args["feature_group_types_to_show_label_on_first_occurrence"]) or \
                                 (feature.vis_prms["hmmscan_hit"] and self.prms.args["show_label_on_first_occurrence"
                                                                                     "_for_query_proteins"]):
-                            if feature.group not in added_first_occurrence_labels:
+                            if feature.group not in added_first_occurrence_labels or len(self.loci) == 1:
                                 feature.vis_prms["show_label"] = 1
                                 added_first_occurrence_labels.append(feature.group)
                     else:

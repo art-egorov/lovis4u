@@ -69,6 +69,14 @@ lovis4u -gff lovis4u_data/guide/gff_files/NC_001895.1.gff -hl --set-category-col
 
 ![f2](gallery/img/lovis4u_single_suquence.png){loading=lazy width="100%" }  
 
+**Visualisation of a single sequence with GC content and GC skews tracks. Two-column A4 page publication layout (190mm width).**
+
+```sh
+ lovis4u -gff lovis4u_data/guide/gff_files/NC_001895.1.gff -hl --set-category-colour -c A4p2 \
+    -gc -gc_skew
+```
+![f212](gallery/img/lovis4u_single_suquence_with_GC.png){loading=lazy width="100%" } 
+
 ## Visualisation of user-defined regions
 
 **Visualisation of user-defined regions, one region per locus. One-column A4 page layout (90mm width).**
@@ -103,6 +111,32 @@ lovis4u -gff lovis4u_data/guide/BaselSubset -laf lovis4u_data/guide/locus_annota
 
 ---
 
+## Visualisation of genomic signal tracks from sequencing experiments
+
+Starting with version 0.1.0, LoVis4u supports visualisation of genomic signal tracks from sequencing experiments using bedGraph file as input for a single track. We will demonstrate this functionality using three DNA sequencing coverage profiles for BASEL collection phage Bas01.
+
+**Visualisation of a single genome with GC content, GC skews tracks and three bedgraph track profiles. Two-column A4 page publication layout (190mm width).**
+
+```sh
+ lovis4u -gff lovis4u_data/guide/BaselCollection/Bas01.gff -c A4p2 -scc -gc -gc_skew \ 
+	-bg lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_WT.bedGraph lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_1.bedGraph lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_2.bedGraph \
+	-bgl "Bas01 WT | DNA-Seq" "Bas01 E1 | DNA-Seq" "Bas01 E2 | DNA-Seq"
+```
+
+![f_bg2](gallery/img/lovis4u_bg_files_advanced.png){loading=lazy width="100%"}
+
+**Visualisation of a single genome with GC content, GC skews tracks and three bedgraph track profiles. Multiple windows per image. Two-column A4 page publication layout (190mm width).**
+
+```sh
+lovis4u -gff lovis4u_data/guide/BaselCollection/Bas01.gff -c A4p2 -scc -gc -gc_skew \
+ -bg lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_WT.bedGraph lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_1.bedGraph lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_2.bedGraph \ 
+-bgl "Bas01 WT | DNA-Seq" "Bas01 E1 | DNA-Seq" "Bas01 E2 | DNA-Seq" \ 
+ -w Bas01:1:15000:1,Bas01:16000:31000:1 
+```
+![f_bg2](gallery/img/lovis4u_bg_files_advanced_windows.png){loading=lazy width="100%"}
+
+
+---
 
 ## Visualisation of the Basel collection of phages
 

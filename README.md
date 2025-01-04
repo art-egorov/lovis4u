@@ -14,7 +14,7 @@
 **Python version:** >= 3.8  
 **OS-level dependencies:** MMseqs2 (included in the package)  
 **License:** WTFPL  
-**Version:** 0.0.14 (December 2024)
+**Version:** 0.1.0 (January 2024)
 
 **Detailed documentation with user guide is available at [LoVis4u Homepage](https://art-egorov.github.io/lovis4u/)**
 
@@ -22,9 +22,14 @@
 **Pipeline:**
 <img  src="docs/img/lovis4u_pipeline.png" width="100%"/>
 
-**Visualisation example:**
+**Visualisation example (comparative gemomics)**
 
 <img  src="docs/img/lovis4u_hmmscan.png" width="100%"/>
+
+**Visualisation example (genomic signal tracks from sequencing experiments)**
+
+<img  src="docs/img/lovis4u_bg_files_advanced.png" width="100%"/>
+
 
 See the [gallery page](https://art-egorov.github.io/lovis4u/Gallery/gallery/) for more examples.
 

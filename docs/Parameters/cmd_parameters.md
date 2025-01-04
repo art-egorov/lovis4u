@@ -32,6 +32,26 @@
 :    Path to a folder containing genbank files.
 
 ### Optional arguments | Data processing
+`-w, --windows <locus_id1:start1:end1:strand [locus_id1:start1:end1:strand ...]>`
+:    Specify window of visualisation (coordinates) for a locus or multiple loci
+
+`-bg, --bedgraphs <bedgraph_file1 [bedgraph_file2 ...]>`
+:    Path to bedgraph files to plot coverage profiles.
+     ! Can be applied only for single locus.
+
+`-bgl, --bedgraph-labels <bedgraph_label1 [bedgraph_label2 ...]>`
+:    List of labels for bedgraph tracks (order the same as order of bedgraph files)
+     By default basename of files will be used.
+
+`-bgc, --bedgraph-colours <bedgraph_colour1 [bedgraph_colour2 ...]>`
+:    List of colours for bedgraph tracks (order the same as order of bedgraph files)
+    Each value can be either HEX code of colour name (e.g. pink, blue, etc (from the palette file))
+
+`-gc, --gc-track`
+:    Show GC content track. ! Can be applied only for single locus.
+
+`-gc_skew, --gc_skew-track`
+:    Show GC skew track. ! Can be applied only for single locus.
 
 `-ufid, --use-filename-as-id`
 :    Use filename (wo extension) as track (contig) id instead  

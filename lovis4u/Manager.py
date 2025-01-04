@@ -61,6 +61,14 @@ class Parameters:
         mutually_exclusive_group = parser.add_mutually_exclusive_group()
         mutually_exclusive_group.add_argument("-gff", "--gff", dest="gff", type=str, default=None)
         mutually_exclusive_group.add_argument("-gb", "--gb", dest="gb", type=str, default=None)
+        parser.add_argument("-w", "--window", dest="windows", nargs="*", type=str, default=[])
+        parser.add_argument("-bg", "--bedgraphs", dest="bedgraph_files", nargs="*", type=str, default=[])
+        parser.add_argument("-bgl", "--bedgraph-labels", dest="bedgraph_labels", nargs="*", type=str, default=[])
+        parser.add_argument("-bgc", "--bedgraph-colours", dest="bedgraph_track_colours", nargs="*", type=str,
+                            default=None)
+        parser.add_argument("-gc", "--gc-track", dest="add_gc_track", action="store_true")
+        parser.add_argument("-gc_skew", "--gc-skew_track", dest="add_gc_skew_track", action="store_true")
+
         parser.add_argument("-ufid", "--use-filename-as-id", dest="use_filename_as_contig_id", action="store_true",
                             default=None)
         parser.add_argument("-alip", "--add-locus-id-prefix", dest="add_locus_id_prefix", action="store_true",
@@ -88,7 +96,7 @@ class Parameters:
         parser.add_argument("-lls", "--locus-label-style", dest="locus_label_style",
                             choices=["id", "description", "full"], default=None)
         parser.add_argument("-llp", "--locus-label-position", dest="locus_label_position",
-                            choices=["left", "bottom"], default=None)
+                            choices=["left", "bottom", "top_left", "top_center"], default=None)
         parser.add_argument("-sgc-off", "--set-group-colour-off", dest="set-group-colour", action="store_false")
         parser.add_argument("-sgcf", "--set-group-colour-for", dest="feature_group_types_to_set_colour", nargs="*",
                             type=str, default=None)
@@ -118,7 +126,7 @@ class Parameters:
         parser.add_argument("-o", dest="output_dir", type=str, default=None)
         parser.add_argument("--pdf-name", dest="pdf-name", type=str, default="lovis4u.pdf")
         parser.add_argument("-c", dest="config_file", type=str, default="standard")
-        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.0.14")
+        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.1.0")
         parser.add_argument("-q", "--quiet", dest="verbose", default=True, action="store_false")
         parser.add_argument("--parsing-debug", "-parsing-debug", dest="parsing_debug", action="store_true")
         parser.add_argument("--debug", "-debug", dest="debug", action="store_true")
@@ -204,10 +212,7 @@ class Parameters:
                               f"for choosing.", file=sys.stdout)
                     print("○ Warning: the output folder already exists. Results will be rewritten (without removal "
                           "other files in this folder)", file=sys.stdout)
-            self.args["locus_label_description_font_face"] = self.args[f"locus_label_description_font_face_" \
-                                                                       f"{self.args['locus_label_position']}"]
-            self.args["locus_label_id_font_face"] = self.args[f"locus_label_id_font_face_" \
-                                                              f"{self.args['locus_label_position']}"]
+
             if self.args["show_noncoding_labels"]:
                 self.args["feature_group_types_to_show_label"].append("noncoding")
             if self.args["show_first_noncoding_label"]:
@@ -232,6 +237,7 @@ class Parameters:
             if self.args["draw_individual_x_axis"] and self.args["locus_label_position"] == "bottom":
                 raise lovis4uError("Individual x-axis cannot be plotted when locus label position"
                                    " set as 'bottom'.")
+
             return None
         except Exception as error:
             raise lovis4uError("Unable to parse the specified config file. Please check your config file "
@@ -311,6 +317,22 @@ class CanvasManager:
                     print("○ Warning message: the annotation lacks description. Locus label style is "
                           "changed to 'id'")
                 self.prms.args["locus_label_style"] = "id"
+
+            if self.prms.args["locus_label_position"] == "auto":
+                if len(loci.loci) > 1:
+                    self.prms.args["locus_label_position"] = "bottom"
+                    if self.prms.args["draw_individual_x_axis"] == "auto":
+                        self.prms.args["draw_individual_x_axis"] = False
+                else:
+                    self.prms.args["locus_label_position"] = "top_center"
+                    if self.prms.args["draw_individual_x_axis"] == "auto":
+                        self.prms.args["draw_individual_x_axis"] = True
+                        self.prms.args["draw_scale_line_track"] = False
+            self.prms.args["locus_label_id_font_face"] = self.prms.args[f"locus_label_id_font_face_" \
+                                                                        f"{self.prms.args['locus_label_position']}"]
+
+            self.prms.args["locus_label_description_font_face"] = self.prms.args[f"locus_label_description_font_face_" \
+                                                                                 f"{self.prms.args['locus_label_position']}"]
             if self.prms.args["locus_label_position"] == "left":
                 if self.prms.args["locus_label_style"] == "full":
                     label_height = self.prms.args["feature_height"] * mm * 0.4
@@ -318,13 +340,12 @@ class CanvasManager:
                     label_height = min(1, self.prms.args["locus_label_size"]) * self.prms.args["feature_height"] * mm
                 label_font_size = lovis4u.Methods.str_height_to_size(label_height,
                                                                      self.prms.args["locus_label_id_font_face"])
-            elif self.prms.args["locus_label_position"] == "bottom":
-                label_font_size = self.prms.args["bottom_locus_label_font_size"]
+            else:
+                label_font_size = self.prms.args[f"locus_label_font_size_" \
+                                                 f"{self.prms.args['locus_label_position']}"]
                 label_height = lovis4u.Methods.str_font_size_to_height(label_font_size,
                                                                        self.prms.args["locus_label_id_font_face"])
-            else:
-                raise lovis4u.Manager.lovis4uError("Locus label position parameter should be either 'bottom' "
-                                                   "or 'left'.")
+
             self.prms.args["locus_label_height"] = label_height
             self.prms.args["locus_label_font_size"] = label_font_size
             max_id_string_width = max([pdfmetrics.stringWidth(i.seq_id, self.prms.args["locus_label_id_font_face"],
@@ -349,7 +370,7 @@ class CanvasManager:
                     figure_width_for_loci = self.prms.args["figure_width"] * mm - max_label_string_width - \
                                             2 * self.prms.args["margin"] * mm \
                                             - self.prms.args["gap_after_locus_label"] * mm
-                elif self.prms.args["locus_label_position"] == "bottom":
+                else:
                     figure_width_for_loci = self.prms.args["figure_width"] * mm - 2 * self.prms.args["margin"] * mm
                 self.prms.args["mm_per_nt"] = mm * figure_width_for_loci / self.layout["total_nt_width"]
             else:
@@ -372,11 +393,12 @@ class CanvasManager:
                                                          self.prms.args["gap_after_locus_label"] * mm
                 self.layout["loci_tracks_right_border"] = self.layout["loci_tracks_left_border"] + \
                                                           max_loci_region_length
-            elif self.prms.args["locus_label_position"] == "bottom":
+            else:
                 self.layout["loci_tracks_left_border"] = self.prms.args["margin"] * mm
                 self.layout["loci_tracks_right_border"] = self.layout["loci_tracks_left_border"] + \
                                                           max_loci_region_length
             self.layout["figure_width"] = self.layout["loci_tracks_right_border"] + self.prms.args["margin"] * mm
+            self.layout["figure_x_middle_position"] = self.layout["figure_width"] / 2
             self.layout["figure_height"] = self.prms.args["margin"] * mm
             return None
         except Exception as error:
@@ -405,6 +427,60 @@ class CanvasManager:
             return None
         except Exception as error:
             raise lovis4u.Manager.lovis4uError("Unable to add loci tracks to the canvas.") from error
+
+    def add_coverage_profiles_tracks(self, coverage_profiles, loci) -> None:
+        """Add coverage profiles tracks to your canvas.
+
+        Arguments:
+            coverage_profiles (lovis4u.DataProcessing.CoverageProfiles): CoverageProfiles object.
+            loci (lovis4u.DataProcessing.Loci): Loci object with information about sequences and features.
+
+
+        Returns:
+            None
+        """
+        try:
+            if len(loci.loci) > 1:
+                raise lovis4u.Manager.lovis4uError("Unable to plot coverage profile track(s) for multiple loci.")
+            locus = loci.loci[0]
+            for b_index, bedgraph_profile in enumerate(coverage_profiles.bedgraphs):
+                profile_loader = BedGraphProfileLoader(self.prms)
+                profile_loader.prepare_track_specific_data(self.layout.copy(), bedgraph_profile, b_index, locus)
+                profile_track_height = profile_loader.calculate_track_height()
+                self.layout["figure_height"] += profile_track_height + self.prms.args["gap"] * mm
+                profile_track = profile_loader.create_track()
+                self.tracks.append(profile_track)
+            if self.prms.args["verbose"]:
+                print(f"⦿ {len(coverage_profiles.bedgraphs)} bedgraph tracks were added to the canvas", file=sys.stdout)
+            return None
+        except Exception as error:
+            raise lovis4u.Manager.lovis4uError("Unable to add coverage profile tracks to the canvas.") from error
+
+    def add_property_track(self, loci, property_name="gc") -> None:
+        """Add property track to your canvas.
+
+        Arguments:
+            loci (lovis4u.DataProcessing.Loci): Loci object with information about sequences and features.
+            property_name (str): Name of the property to plot (gc or gc_skew)
+
+        Returns:
+            None
+        """
+        try:
+            if len(loci.loci) > 1:
+                raise lovis4u.Manager.lovis4uError("Unable to plot locus property track(s) for multiple loci.")
+            locus = loci.loci[0]
+            property_loader = SequencePropertyLoader(self.prms)
+            property_loader.prepare_track_specific_data(self.layout.copy(), locus, property_name=property_name)
+            property_track_height = property_loader.calculate_track_height()
+            self.layout["figure_height"] += property_track_height + self.prms.args["gap"] * mm
+            property_track = property_loader.create_track()
+            self.tracks.append(property_track)
+            if self.prms.args["verbose"]:
+                print(f"⦿ {property_name} track was added to the canvas", file=sys.stdout)
+            return None
+        except Exception as error:
+            raise lovis4u.Manager.lovis4uError("Unable to add property track to the canvas.") from error
 
     def add_categories_colour_legend_track(self, loci) -> None:
         """Add categories colour legend tracks to your canvas.
@@ -589,35 +665,40 @@ class LocusLoader(Loader):
             layout["inverse_y_coordinate"] = layout["figure_height"]
             track_data = dict()
             self.track_data = track_data
+
             track_data["locus_id_width"] = pdfmetrics.stringWidth(locus.seq_id,
                                                                   self.prms.args["locus_label_id_font_face"],
                                                                   self.prms.args["locus_label_font_size"])
             two_space_width = pdfmetrics.stringWidth("  ", self.prms.args["locus_label_id_font_face"],
                                                      self.prms.args["locus_label_font_size"])
-            track_data["two_space_width"] = two_space_width
             track_data["locus_id"] = locus.seq_id
+            track_data["two_space_width"] = two_space_width
             track_data["locus_description"] = locus.description
             if locus.description:
-                track_data["locus_description_width"] = pdfmetrics.stringWidth(locus.description,
-                                                                               self.prms.args["locus_label_description"
-                                                                                              "_font_face"],
-                                                                               self.prms.args["locus_label_font_size"])
-            if self.prms.args["locus_label_position"] == "bottom":
+                track_data["locus_description_width"] = \
+                    pdfmetrics.stringWidth(locus.description, self.prms.args["locus_label_description_font_face"],
+                                           self.prms.args["locus_label_font_size"])
+            if self.prms.args["locus_label_position"] != "left":
+                track_data["locus_id"] += ":"
+                track_data["locus_id_width"] += track_data["two_space_width"] / 2
                 txt_coordinates = []
                 for i in range(len(locus.coordinates)):
                     cc = locus.coordinates[i].copy()
-                    cc_txt = f"{cc['start']}:{cc['end']}{'(+)' if cc['strand'] == 1 else '(-)'}"
+                    cc_txt = f"{cc['start']:,}-{cc['end']:,} {'(+)' if cc['strand'] == 1 else '(-)'}"
                     if i > 0 and locus.circular:
                         if cc["start"] == 1 and locus.coordinates[i - 1]["end"] == locus.length:
-                            txt_coordinates[-1] = f"{locus.coordinates[i - 1]['start']}:{cc['end']}" \
+                            txt_coordinates[-1] = f"{locus.coordinates[i - 1]['start']:,}-{cc['end']:,} " \
                                                   f"{'(+)' if cc['strand'] == 1 else '(-)'}"
                             continue
                     txt_coordinates.append(cc_txt)
-                track_data["text_coordinates"] = ", ".join(txt_coordinates)
-                track_data["text_coordinates_width"] = pdfmetrics.stringWidth(locus.description,
-                                                                              self.prms.args[
-                                                                                  "locus_label_id_font_face"],
-                                                                              self.prms.args["locus_label_font_size"])
+                track_data["text_coordinates"] = "; ".join(txt_coordinates)
+                track_data["text_coordinates_width"] = \
+                    pdfmetrics.stringWidth(track_data["text_coordinates"], self.prms.args["locus_label_id_font_face"],
+                                           self.prms.args["locus_label_font_size"])
+
+            if self.prms.args["locus_label_position"] == "top_center":
+                track_data["ruler_label_height"] = lovis4u.Methods.str_font_size_to_height(
+                    self.prms.args["ruler_label_font_size"], self.prms.args["ruler_label_font_face"])
 
             track_data["f_label_font_size"] = self.prms.args["feature_label_font_size"]
             track_data["f_label_height"] = lovis4u.Methods.str_font_size_to_height(
@@ -761,6 +842,20 @@ class LocusLoader(Loader):
                             label_line_coordinates.append([ll_start, label_line_upper])
                             fvd["label_line_coordinates"] = label_line_coordinates
             track_data["n_label_rows"] = sum([1 for k, v in taken_label_coordinates.items() if v])
+            # Visualisation regions
+            track_data["coordinates_of_regions"] = []
+            for coordinate in locus.coordinates:
+                cdict = lovis4u.Methods.region_nt_to_x_transform(coordinate["start"], coordinate["end"],
+                                                                 locus, layout)
+                cdict.update(dict(start_nt=coordinate["start"], end_nt=coordinate["end"],
+                                  length=coordinate["end"] - coordinate["start"] + 1))
+
+                if self.prms.args["locus_label_position"] == "top_center":
+                    cdict["ruler_label"] = f"{cdict['length']:,} bp"
+                    cdict["ruler_label_width"] = pdfmetrics.stringWidth(cdict["ruler_label"],
+                                                                        self.prms.args["ruler_label_font_face"],
+                                                                        self.prms.args["ruler_label_font_size"])
+                track_data["coordinates_of_regions"].append(cdict)
             # Managing middle line indicating locus borders
             if self.prms.args["draw_middle_line"]:
                 regions_for_middle_line = [[c["start"], c["end"]] for c in locus.coordinates]
@@ -868,6 +963,10 @@ class LocusLoader(Loader):
                                  self.prms.args["category_annotation_line_width"]) * mm
             if self.prms.args["locus_label_position"] == "bottom":
                 track_height += self.prms.args["locus_label_height"] + self.prms.args["feature_bottom_gap"] * mm
+            if self.prms.args["locus_label_position"] == "top_left":
+                track_height += self.prms.args["locus_label_height"] * 1.5
+            if self.prms.args["locus_label_position"] == "top_center":
+                track_height += self.prms.args["locus_label_height"] * 1.5 + self.track_data["ruler_label_height"] * 1.5
 
             self.track_data["track_height"] = track_height
             return track_height
@@ -1089,6 +1188,279 @@ class CategoriesColorLegendLoader(Loader):
         except Exception as error:
             raise lovis4u.Manager.lovis4uError("Unable to create a categories colour legend track track object.") \
                 from error
+
+
+class SequencePropertyLoader(Loader):
+    """A SequencePropertyLoader object prepares data for visualisation of sequence features like GC content
+
+    Attributes:
+        prms (Parameters): Parameters' class object.
+        layout (dict): Layout built by CanvasManager's define_layout() method.
+        track_data (dict): Track specific data that will be sent to the Drawing module.
+
+    """
+
+    def __init__(self, parameters):
+        """Create a SequencePropertyLoader object.
+
+        Arguments:
+            parameters (Parameters): Parameters' class object that holds config and cmd arguments.
+
+        """
+        super().__init__(parameters)
+
+    def prepare_track_specific_data(self, layout: dict, locus, property_name: str) -> None:
+        """Prepare SequencePropertyLoader specific data.
+
+        Attributes:
+            layout (dict): Layout built by CanvasManager's define_layout() method.
+            locus (lovis4u.DataProcessing.Locus): corresponding locus object.
+
+        Returns:
+            None
+
+        """
+        try:
+            self.layout = layout
+            track_data = dict()
+            self.track_data = track_data
+            property_values = locus.calculate_sequence_property(window_size=self.prms.args["property_window_length"],
+                                                                property_name=property_name)
+            average_value = sum(property_values) / len(property_values)
+            vis_regions = []
+            min_property_values = []
+            max_property_values = []
+            for coordinate in locus.coordinates:
+                nt_start = coordinate["start"]
+                nt_end = coordinate["end"]
+                nt_width = nt_end - nt_start + 1
+                canvas_start = lovis4u.Methods.nt_to_x_transform(nt_start, locus, layout, "start")
+                canvas_end = lovis4u.Methods.nt_to_x_transform(nt_end, locus, layout, "end")
+                canvas_width = abs(canvas_end - canvas_start)
+                region_values = property_values[nt_start:nt_end - 1]
+                if coordinate["strand"] == -1:
+                    region_values = region_values[::-1]
+                bin_width = canvas_width / nt_width
+
+                if bin_width < self.prms.args["min_bin_width_property"] * mm:
+                    scale = self.prms.args["min_bin_width_property"] * mm / bin_width
+                    aggregation_length = round(len(region_values) / scale)
+                    scale_adj = len(region_values) / aggregation_length
+                    region_values_aggregated = []
+                    aggregation_unit = scale_adj
+                    aggregated_sum = 0
+                    for nt_coverage in region_values:
+                        if aggregation_unit > 1:
+                            aggregated_sum += nt_coverage
+                            aggregation_unit -= 1
+                        elif aggregation_unit == 1:
+                            region_values_aggregated.append(aggregated_sum + nt_coverage)
+                            aggregated_sum = 0
+                            aggregation_unit = scale_adj
+                        elif 0 < aggregation_unit < 1:
+                            region_values_aggregated.append(aggregated_sum + nt_coverage * aggregation_unit)
+                            aggregated_sum = nt_coverage * (1 - aggregation_unit)
+                            aggregation_unit = scale_adj - (1 - aggregation_unit)
+                    if 1:
+                        normalised_region_values = [i / scale_adj for i in region_values_aggregated]
+                        region_values_aggregated = normalised_region_values
+                    region_values = region_values_aggregated
+                    bin_width = canvas_width / len(region_values_aggregated)
+
+                max_property_values.append(max(region_values))
+                min_property_values.append(min(region_values))
+
+                vis_regions.append(dict(nt_start=nt_start, nt_end=nt_end, nt_width=nt_width, bin_width=bin_width,
+                                        canvas_start=canvas_start, canvas_end=canvas_end, canvas_width=canvas_width,
+                                        region_values=region_values))
+            labels_dict = dict(gc="GC content (%)", gc_skew="GC skew (G-C)/(G+C)")
+            track_data["label_text"] = labels_dict[property_name]
+
+            track_data["vis_regions"] = vis_regions
+            absolute_max = max(max_property_values)
+            absolute_min = min(min_property_values)
+            max_deviation_from_the_average = max([abs(average_value - absolute_max), abs(average_value - absolute_min)])
+            track_data["y_span"] = 2 * max_deviation_from_the_average
+            track_data["y_average"] = average_value
+            track_data["y_min"] = average_value - max_deviation_from_the_average
+            track_data["y_max"] = average_value + max_deviation_from_the_average
+            track_data["y_scale"] = mm * self.prms.args["property_track_height"] / track_data["y_span"]
+            track_data["positive_colour"] = self.prms.args["palette"][self.prms.args[f"property_{property_name}_" \
+                                                                                     f"positive_colour"]]
+            track_data["negative_colour"] = self.prms.args["palette"][self.prms.args[f"property_{property_name}_" \
+                                                                                     f"negative_colour"]]
+            track_data["label_height"] = lovis4u.Methods.str_font_size_to_height(
+                self.prms.args["property_label_font_size"], self.prms.args["property_label_font_face"])
+            track_data["axis_labels_height"] = lovis4u.Methods.str_font_size_to_height(
+                self.prms.args["property_axis_font_size"], self.prms.args["property_axis_font_face"])
+
+            return None
+        except Exception as error:
+            raise lovis4u.Manager.lovis4uError("Unable to prepare property profile track specific data.") from error
+
+    def calculate_track_height(self):
+        """Calculate bedgraph track height to define layout.
+
+        Returns:
+            float: track height.
+
+        """
+        try:
+            track_height = self.prms.args["property_track_height"] * mm
+            self.track_data["track_height"] = track_height
+            return track_height
+        except Exception as error:
+            raise lovis4u.Manager.lovis4uError("Unable to calculate a property track height.") from error
+
+    def create_track(self):
+        """Initialise a PropertyVis track object.
+
+        Returns:
+            lovis4u.Drawing.PropertyVis: visualisation track.
+
+        """
+        try:
+            return lovis4u.Drawing.PropertyVis(self.layout, self.track_data, self.prms)
+        except Exception as error:
+            raise lovis4u.Manager.lovis4uError("Unable to create a scale track object.") from error
+
+
+class BedGraphProfileLoader(Loader):
+    """A BedGraphProfileLoader object prepares data for a categories colour coverage track Drawing object.
+
+    Attributes:
+        prms (Parameters): Parameters' class object.
+        layout (dict): Layout built by CanvasManager's define_layout() method.
+        track_data (dict): Track specific data that will be sent to the Drawing module.
+
+    """
+
+    def __init__(self, parameters):
+        """Create a BedGraphProfileLoader object.
+
+        Arguments:
+            parameters (Parameters): Parameters' class object that holds config and cmd arguments.
+
+        """
+        super().__init__(parameters)
+
+    def prepare_track_specific_data(self, layout: dict, profile, profile_index: int, locus) -> None:
+        """Prepare BedGraphProfileLoader specific data.
+
+        Attributes:
+            layout (dict): Layout built by CanvasManager's define_layout() method.
+            profile (lovis4u.DataProcessing.BedGraph): BedGraph object with information about bedgraph profile.
+            profile_index (int): index of the current profile across all bedgraph tracks.
+            locus (lovis4u.DataProcessing.Locus): corresponding locus object.
+
+        Returns:
+            None
+
+        """
+        try:
+            self.layout = layout
+            track_data = dict()
+            self.track_data = track_data
+
+            vis_regions = []
+            max_coverage_values = []
+            for coordinate in locus.coordinates:
+                nt_start = coordinate["start"]
+                nt_end = coordinate["end"]
+                nt_width = nt_end - nt_start + 1
+                canvas_start = lovis4u.Methods.nt_to_x_transform(nt_start, locus, layout, "start")
+                canvas_end = lovis4u.Methods.nt_to_x_transform(nt_end, locus, layout, "end")
+                canvas_width = abs(canvas_end - canvas_start)
+                region_coverage = profile.coverage[locus.seq_id][nt_start:nt_end - 1].to_list()
+                if coordinate["strand"] == -1:
+                    region_coverage = region_coverage[::-1]
+                bin_width = canvas_width / nt_width
+
+                if bin_width < self.prms.args["min_bin_width"] * mm:
+                    scale = self.prms.args["min_bin_width"] * mm / bin_width
+                    aggregation_length = round(len(region_coverage) / scale)
+                    scale_adj = len(region_coverage) / aggregation_length
+                    region_coverage_aggregated = []
+                    aggregation_unit = scale_adj
+                    aggregated_sum = 0
+                    for nt_coverage in region_coverage:
+                        if aggregation_unit > 1:
+                            aggregated_sum += nt_coverage
+                            aggregation_unit -= 1
+                        elif aggregation_unit == 1:
+                            region_coverage_aggregated.append(aggregated_sum + nt_coverage)
+                            aggregated_sum = 0
+                            aggregation_unit = scale_adj
+                        elif 0 < aggregation_unit < 1:
+                            region_coverage_aggregated.append(aggregated_sum + nt_coverage * aggregation_unit)
+                            aggregated_sum = nt_coverage * (1 - aggregation_unit)
+                            aggregation_unit = scale_adj - (1 - aggregation_unit)
+                    if self.prms.args["normalise_aggregation"]:
+                        normalised_region_coverage = [i / scale_adj for i in region_coverage_aggregated]
+                        region_coverage_aggregated = normalised_region_coverage
+                    region_coverage = region_coverage_aggregated
+                    bin_width = canvas_width / len(region_coverage_aggregated)
+
+                max_coverage_values.append(max(region_coverage))
+
+                vis_regions.append(dict(nt_start=nt_start, nt_end=nt_end, nt_width=nt_width, bin_width=bin_width,
+                                        canvas_start=canvas_start, canvas_end=canvas_end, canvas_width=canvas_width,
+                                        region_coverage=region_coverage))
+
+            track_data["label_text"] = os.path.splitext(os.path.basename(profile.filepath))[0]
+            if "bedgraph_labels" in self.prms.args.keys():
+                if profile_index < len(self.prms.args["bedgraph_labels"]):
+                    track_data["label_text"] = self.prms.args["bedgraph_labels"][profile_index]
+
+            track_data["vis_regions"] = vis_regions
+            absolute_max = max(max_coverage_values)
+            track_data["y_span"] = absolute_max
+            track_data["y_min"], track_data["y_max"] = 0, round(absolute_max, 1)
+            track_data["y_scale"] = mm * self.prms.args["bedgraph_track_height"] / absolute_max
+            colour_value = self.prms.args["bedgraph_track_colours"][
+                profile_index % len(self.prms.args["bedgraph_track_colours"])]
+            if "#" == colour_value[0]:
+                track_data["colour"] = colour_value
+            elif colour_value in self.prms.args["palette"].keys():
+                track_data["colour"] = self.prms.args["palette"][colour_value]
+            else:
+                raise lovis4u.Manager.lovis4uError(f"Unable to parse specified bedgraph track colour value:"
+                                                   f" {colour_value}.")
+            track_data["label_height"] = lovis4u.Methods.str_font_size_to_height(
+                self.prms.args["bedgraph_label_font_size"], self.prms.args["bedgraph_label_font_face"])
+            track_data["axis_labels_height"] = lovis4u.Methods.str_font_size_to_height(
+                self.prms.args["bedgraph_axis_font_size"], self.prms.args["bedgraph_axis_font_face"])
+
+            return None
+        except Exception as error:
+            raise lovis4u.Manager.lovis4uError("Unable to prepare bedgraph profile track specific data.") \
+                from error
+
+    def calculate_track_height(self):
+        """Calculate bedgraph track height to define layout.
+
+        Returns:
+            float: track height.
+
+        """
+        try:
+            track_height = self.prms.args["bedgraph_track_height"] * mm
+            self.track_data["track_height"] = track_height
+            return track_height
+        except Exception as error:
+            raise lovis4u.Manager.lovis4uError("Unable to calculate a bedgraph track height.") from error
+
+    def create_track(self):
+        """Initialise a ProfileVis track object.
+
+        Returns:
+            lovis4u.Drawing.ProfileVis: visualisation track.
+
+        """
+        try:
+            return lovis4u.Drawing.ProfileVis(self.layout, self.track_data, self.prms)
+        except Exception as error:
+            raise lovis4u.Manager.lovis4uError("Unable to create a scale track object.") from error
 
 
 class Canvas:

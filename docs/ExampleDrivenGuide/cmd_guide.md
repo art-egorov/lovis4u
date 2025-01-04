@@ -124,6 +124,7 @@ Running this command will create an output folder named *lovis4u_{current_date}*
 - `-o <name>` - Output dir name.  
 - `-c <name>` - Name of the configuration file.
 - `-scc`,`--set-category-colour`  - Set category colour for features and plot category colour legend (Initially designed for pharokka generated gff files, see more detailed description below).
+- `-w, --windows <locus_id1:start1:end1:strand [locus_id1:start1:end1:strand ...]>` - Specify window of visualisation (coordinates) for a locus or multiple loci.
 
 While loci in our test set are already correctly orientated, let's add `-hl` parameter to draw homology line track and select configuration file for two-column A4 page layout with `-c A4p2` parameter. Output will be adjusted for publication figure (for instance, in terms of font sizes and figure width set as 190mm). In addition we will plot functional categories of CDSs with `--set-category-colour` parameter. 
 
@@ -240,6 +241,54 @@ LoVis4u also allows the use of your own HMM models. You can specify these using 
 
 Finally, if you want to search only against your models excluding default set, you can add `-omh, --only-mine-hmms` parameter in addition to `-hmm` option.
 
+## Visualisation of genomic signal tracks from sequencing experiments
+
+### Basic usage
+
+Starting with version 0.1.0, LoVis4u supports visualisation of genomic signal tracks from sequencing experiments using bedGraph file as input for a single track. We will demonstrate this functionality using three DNA sequencing coverage profiles for BASEL collection phage Bas01. To specify path to bedgraph files you can use argument `-bg, --bedgraphs <bedgraph_file1 [bedgraph_file2 ...]>` which takes space separated list of file paths as input.
+
+```sh
+lovis4u -gff lovis4u_data/guide/BaselCollection/Bas01.gff -c A4p2 \ 
+	-bg lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_WT.bedGraph lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_1.bedGraph lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_2.bedGraph
+```
+![f_bg1](cmd_guide/img/lovis4u_bg_files_default.png){loading=lazy width="100%"}
+
+### User-defined labels and colours and GC content tracks
+
+By default, basename of the corresponding file is used as track label, but you can manually specify labels using `-bgl, --bedgraph-labels <bedgraph_label1 [bedgraph_label2 ...]>` which takes as input space separated list of labels with the same order as input files. In addition, it can be useful to visualise GC content and GC skew in parallel with signal tracks. You can add GC content and GC skew tracks by using parameters `-gc` and `-gc_skew`. Finally, we will add visualisation of functional categories using `-scc` argument.
+
+```sh
+ lovis4u -gff lovis4u_data/guide/BaselCollection/Bas01.gff -c A4p2 -scc -gc -gc_skew \ 
+	-bg lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_WT.bedGraph lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_1.bedGraph lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_2.bedGraph \
+	-bgl "Bas01 WT | DNA-Seq" "Bas01 E1 | DNA-Seq" "Bas01 E2 | DNA-Seq"
+```
+
+![f_bg2](cmd_guide/img/lovis4u_bg_files_advanced.png){loading=lazy width="100%"}
+
+You can also specify colours for your coverage profiles using  `-bgc, --bedgraph-colours <bedgraph_colour1 [bedgraph_colour2 ...]>` argument (which acts similarly to the bedgraph label argument. Here you can specify colours either by HEX code or by name which present in the palette file. If length of colour list is less than number of bedgraph profiles then they will be used circularly (particularly, if one colour is specified then only it will be used). Below we will demonstrate usage with specified HEX colour codes with `-bgc #CDEE40 #E96C0C #8BD4F7`.
+
+```sh
+ lovis4u -gff lovis4u_data/guide/BaselCollection/Bas01.gff -c A4p2 -scc -gc -gc_skew \ 
+	-bg lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_WT.bedGraph lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_1.bedGraph lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_2.bedGraph \
+	-bgl "Bas01 WT | DNA-Seq" "Bas01 E1 | DNA-Seq" "Bas01 E2 | DNA-Seq" \
+	-bgc #CDEE40 #E96C0C #8BD4F7
+```
+
+![f_bg2](cmd_guide/img/lovis4u_bg_files_advanced_new_colours.png){loading=lazy width="100%"}
+
+### User-defined window
+
+In addition to locus annotation table, you can specify window(s) for visualisation using command-line argument `-w, --windows`. Format:  `-w, --windows <locus_id1:start1:end1:strand [locus_id1:start1:end1:strand ...]>`. For instance, if you want to show single region for our locus you can use: `-w Bas01:1:15000:1`. If you want to show multiple regions for this locus you can specify them within one comma separated string; for instance: `-w Bas01:1:15000:1,Bas01:16000:31000:1`. Space separation in this argument can be used if you have multiple loci in visualisation and want to define window for several of them.
+
+```sh
+lovis4u -gff lovis4u_data/guide/BaselCollection/Bas01.gff -c A4p2 -scc -gc -gc_skew \
+ -bg lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_WT.bedGraph lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_1.bedGraph lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_2.bedGraph \ 
+-bgl "Bas01 WT | DNA-Seq" "Bas01 E1 | DNA-Seq" "Bas01 E2 | DNA-Seq" \ 
+ -w Bas01:1:15000:1,Bas01:16000:31000:1 
+```
+![f_bg2](cmd_guide/img/lovis4u_bg_files_advanced_windows.png){loading=lazy width="100%"}
+
+
 ## Other LoVis4u features
 
 ### Category colour and annotation 
@@ -286,15 +335,37 @@ lovis4u -gff lovis4u_data/guide/gff_files -hl --set-group-colour-for conserved
 
 ### Visualisation of a single sequence
 
-LoVis4u is able to visualise only one sequence. In that case no special parameters are required. However, if you want to highlight each protein group of homologues with a particular colour (protein sequences still will be clustered) you can use the following parameter: `--set-group-colour-for conserved` which will highlight conserved genes as in the example above (since if only one sequence is in input then all proteins there are considered as "conserved")
+LoVis4u is able to visualise only one sequence. In that case no special parameters are required. However, if you want to highlight each protein group of homologues with a particular colour (protein sequences still will be clustered) you can use the following parameter: `--set-group-colour-for undefined` which will highlight all genes for single sequence (default value for protein group class is "undefined" which can be changed after clustering and calculating fractions for each gene group within a cluster of proteomes if multiple loci are used for input).
 
 ```sh
-lovis4u -gff lovis4u_data/guide/single_gff_file -hl --set-category-colour -c A4p2 \
-	--set-group-colour-for conserved
+lovis4u -gff lovis4u_data/guide/gff_files/NC_001895.1.gff -hl --set-category-colour -c A4p2 \
+	--set-group-colour-for undefined
 ```
 
-![f2](cmd_guide/img/lovis4u_single_suquence.png){loading=lazy width="100%" }  
+![f2](cmd_guide/img/lovis4u_single_suquence.png){loading=lazy width="100%" } 
 
+Starting with version 0.1.0, new tracks for visualisation of GC and GC skew were added. They can be added simply by using parameters `-gc` and `-gc_skew`.
+
+```sh
+ lovis4u -gff lovis4u_data/guide/gff_files/NC_001895.1.gff -hl --set-category-colour -c A4p2 \
+    -gc -gc_skew
+```
+![f212](cmd_guide/img/lovis4u_single_suquence_with_GC.png){loading=lazy width="100%" } 
+
+
+### Specifying window for visualisation (coordinates) 
+
+In addition to locus annotation table, you can specify window(s) for visualisation using command-line argument `-w, --windows`. Format:  `-w, --windows <locus_id1:start1:end1:strand [locus_id1:start1:end1:strand ...]>`. For instance, if you want to show single region for our locus from the last example you can use: `-w NC_001895.1:1:15000:1`. If you want to show multiple regions for this locus you can specify them within one comma separated string. For instance: `-w NC_001895.1:1:15000:1,NC_001895.1:16000:30000:1`
+
+```sh
+ lovis4u -gff lovis4u_data/guide/gff_files/NC_001895.1.gff -hl --set-category-colour -c A4p2 \
+    -gc -gc_skew \ 
+	-w NC_001895.1:1:15000:1,NC_001895.1:16000:30000:1
+```
+
+![f212](cmd_guide/img/lovis4u_single_suquence_with_GC_windows.png){loading=lazy width="100%" } 
+
+This argument works even if you use miltople loci. In that case you can specify their coordinate separating arguments by space. For instance: `-w NC_001895.1:1:15000:1 Locus_id_1:1:20000:1 Locus_id_2:1000:20000:1 ...`
 
 ### Visualisation of non-coding features and control of their labels
 

@@ -16,6 +16,7 @@ import os
 
 import Bio.Align.AlignInfo
 import Bio.Data.CodonTable
+import Bio.SeqUtils
 import Bio.SeqRecord
 import Bio.GenBank
 import Bio.AlignIO
@@ -122,8 +123,9 @@ class Locus:
 
     """
 
-    def __init__(self, seq_id: str, coordinates: list, description: str, length: int, circular: bool,
-                 features: list, order: int, parameters: lovis4u.Manager.Parameters, group: typing.Union[int, str] = 1):
+    def __init__(self, seq_id: str, coordinates: list, description: str, sequence: Bio.Seq.Seq, length: int,
+                 circular: bool, features: list, order: int, parameters: lovis4u.Manager.Parameters,
+                 group: typing.Union[int, str] = 1):
         """Create a Locus object.
 
         Arguments:
@@ -131,6 +133,7 @@ class Locus:
             coordinates (list): List of regions to be shown. Each region format: dict with keys: start, end, strand and
                 corresponding 1-based start, end coordinates and strand (1: plus strand, -1: minus strand).
             description (str): Sequence description that can be used to label locus.
+            sequence (Bio.Seq.Seq): Locus Sequence.
             length (int): full length of the locus independent on region that should be plotted.
             circular (bool): Bool value whether locus is circular or not. It defines whether you have gap or not passing
                 1 value on the final figure.
@@ -160,6 +163,7 @@ class Locus:
                                                    f" ({length} nt).")
 
         self.description = description
+        self.sequence = sequence
         self.length = length
         self.circular = circular
         self.features = features
@@ -167,6 +171,31 @@ class Locus:
         self.group = group
         self.category_colours = dict()
         self.prms = parameters
+
+    def calculate_sequence_property(self, window_size: int = 29, property_name: str = "gc") -> list:
+        """Method to calculate gc content or gc skew
+
+        Returns:
+            list: list with corresponding values for each nucleotide
+
+        """
+        try:
+            result_list = []
+            locus_length = len(self.sequence)
+            for i in range(locus_length):
+                start = (i - window_size // 2) % locus_length
+                end = (i + window_size // 2 + 1) % locus_length
+                if start < end:
+                    window_seq = self.sequence[start:end]
+                else:
+                    window_seq = self.sequence[start:] + self.sequence[:end]
+                if property_name == "gc":
+                    result_list.append(Bio.SeqUtils.gc_fraction(window_seq) * 100)
+                elif property_name == "gc_skew":
+                    result_list.append(Bio.SeqUtils.GC_skew(window_seq, len(window_seq))[0])
+            return result_list
+        except Exception as error:
+            raise lovis4u.Manager.lovis4uError("Unable to calculate gc content for a sequence.") from error
 
 
 class Loci:
@@ -182,7 +211,7 @@ class Loci:
 
     """
 
-    def __init__(self, parameters=lovis4u.Manager.Parameters):
+    def __init__(self, parameters: lovis4u.Manager.Parameters):
         """Create a Loci object.
 
         Arguments:
@@ -258,8 +287,19 @@ class Loci:
         """
         if record_id not in self.locus_annotation.index:
             self.locus_annotation.loc[record_id] = {col: None for col in self.locus_annotation.columns}
-
-        default_values = dict(length=record_length, coordinates=f"1:{record_length}:1",
+        if self.prms.args["windows"]:
+            coordinates = []
+            for window in self.prms.args["windows"]:
+                subwindows = window.strip().split(",")
+                for subwindow in subwindows:
+                    subwindow_split = subwindow.strip().split(":")
+                    if len(subwindow_split) == 4 and subwindow_split[0] == record_id:
+                        coordinate = ":".join(subwindow_split[1:])
+                        coordinates.append(coordinate)
+            coordinates = ",".join(coordinates)
+        else:
+            coordinates = f"1:{record_length}:1"
+        default_values = dict(length=record_length, coordinates=coordinates,
                               description=record_description, circular=1, order=len(self.loci), group=1)
         self.locus_annotation.loc[record_id] = self.locus_annotation.loc[record_id].fillna(default_values)
         return None
@@ -335,10 +375,11 @@ class Loci:
                 print(f"○ Reading gff file{'s' if len(gff_files) > 1 else ''}...", file=sys.stdout)
             for gff_file in gff_files:
                 try:
-                    gff_records = list(BCBio.GFF.parse(gff_file,
-                                                       limit_info=dict(gff_type=["CDS", "tRNA", "tmRNA", "RNA",
-                                                                                 "pseudogene", "rRNA", "misc_RNA",
-                                                                                 "ncRNA", "lncRNA"])))
+                    gff_records = list(BCBio.GFF.parse(gff_file, limit_info=dict(gff_type=["CDS", "tRNA", "tmRNA",
+                                                                                           "RNA",
+                                                                                           "pseudogene", "rRNA",
+                                                                                           "misc_RNA",
+                                                                                           "ncRNA", "lncRNA"])))
                     if len(gff_records) != 1:
                         print(f"○ Warning: gff file {gff_file} contains information for more than 1 "
                               f"sequence. File will be skipped.")
@@ -363,6 +404,7 @@ class Loci:
                                    locus_annotation_row["coordinates"].split(",")]
                     record_locus = Locus(seq_id=gff_record.id, coordinates=coordinates,
                                          description=locus_annotation_row["description"],
+                                         sequence=Bio.SeqRecord.SeqRecord(seq=record_locus_sequence, id=gff_record.id),
                                          circular=locus_annotation_row["circular"],
                                          length=locus_annotation_row["length"], parameters=self.prms, features=[],
                                          order=locus_annotation_row["order"])
@@ -500,6 +542,7 @@ class Loci:
                                    locus_annotation_row["coordinates"].split(",")]
                     record_locus = Locus(seq_id=gb_record.id, coordinates=coordinates,
                                          description=locus_annotation_row["description"],
+                                         sequence=Bio.SeqRecord.SeqRecord(seq=record_locus_sequence, id=gb_record.id),
                                          circular=locus_annotation_row["circular"],
                                          length=locus_annotation_row["length"], parameters=self.prms, features=[],
                                          order=locus_annotation_row["order"])
@@ -630,7 +673,7 @@ class Loci:
         try:
             if not os.path.exists(self.prms.args["output_dir"]):
                 os.mkdir(self.prms.args["output_dir"])
-            locus_ids = [locus.seq_id for locus in self.loci ]
+            locus_ids = [locus.seq_id for locus in self.loci]
             self.locus_annotation = self.locus_annotation.loc[self.locus_annotation.index.isin(locus_ids)]
             file_path = os.path.join(self.prms.args["output_dir"], "locus_annotation_table.tsv")
             self.locus_annotation.to_csv(file_path, sep="\t", index_label="sequence_id")
@@ -1149,3 +1192,109 @@ class Loci:
             return loci_sizes
         except Exception as error:
             raise lovis4u.Manager.lovis4uError("Unable to get loci lengths.") from error
+
+    def get_contig_sizes(self):
+        """Helper method to get a dictionary with contig sizes for bedgraph file parsing
+
+        Returns:
+            dict: dictionary with contig sizes
+        """
+        try:
+            contig_sizes = dict()
+            for index, row in self.locus_annotation.iterrows():
+                contig_sizes[index] = row["length"]
+            return contig_sizes
+        except Exception as error:
+            raise lovis4u.Manager.lovis4uError("Unable to get contig sizes dict.") from error
+
+
+class BedGraph:
+    """A BedGraph object holds information and process bedgraph files with coverage.
+
+    Attributes:
+        filepath (str): path to a bedgraph file
+        contig_sizes (dict): Dictionary with contig sizes
+        coverage (dict):  Dictionary with format: key - contig id, value - pd.Series with coverage counts.
+        parameters (lovis4u.Manager.Parameters): Parameters' class object that holds config and cmd arguments.
+
+    """
+
+    def __init__(self, filepath: str, contig_sizes: dict, parameters: lovis4u.Manager.Parameters):
+        """Create a BedGraph object
+
+        Arguments:
+            filepath (str): path to a bedgraph file.
+            contig_sizes:  Dictionary with format: key - contig id, value - full length of the corresponding contig.
+            parameters (lovis4u.Manager.Parameters): Parameters' class object that holds config and cmd arguments.
+
+        """
+        self.filepath = filepath
+        self.prms = parameters
+        self.contig_sizes = contig_sizes
+        self.coverage = self.__read_file()
+
+    def __read_file(self):
+        """Read correspnding bedgraph file.
+
+        Returns:
+            coverage (dict):  Dictionary with format: key - contig id, value - pd.Series with coverage counts.
+        """
+        try:
+            coverage = dict()
+            for contig_id, length in self.contig_sizes.items():
+                coverage[contig_id] = pd.Series(np.zeros(length, dtype=int))
+
+            with open(self.filepath, "r") as bedgraph:
+                for line in bedgraph:
+                    contig, start, end, counts = line.strip().split("\t")
+                    if contig in coverage.keys():
+                        coverage[contig][int(start):int(end)] = int(counts)
+
+            ids_to_remove = [contig_id for contig_id, cov in coverage.items() if cov.sum() == 0]
+            for contig_id in ids_to_remove:
+                del coverage[contig_id]
+
+            return coverage
+        except Exception as error:
+            raise lovis4u.Manager.lovis4uError(f"Unable to read {self.filepath} bedgraph file.") from error
+
+    def get_window_coverage(self, contig, start, end):
+        """Get coverage for a particular window.
+
+        Arguments:
+            contig (str): contig id
+            start (int): start coordinate (0-based)
+            end (int): end coordinate (0-based)
+        """
+        try:
+            window_coverage = self.coverage[contig][start:end]
+            return window_coverage
+        except Exception as error:
+            raise lovis4u.Manager.lovis4uError(f"Unable to extract window coverage {contig, start, end} for "
+                                               f"{self.filepath} bedgraph file.") from error
+
+
+class CoverageProfiles:
+    """A CoverageProfiles object holds information about a set of bedgraph profiles
+
+    Attributes:
+            bedgraph_files (list): list with paths to bedgraph files.
+            contig_sizes:  Dictionary with format: key - contig id, value - full length of the corresponding contig.
+            bedgraphs (list): list with BedGraph objects
+            parameters (lovis4u.Manager.Parameters): Parameters' class object that holds config and cmd arguments.
+
+    """
+
+    def __init__(self, bedgraph_files: list, contig_sizes: dict, parameters: lovis4u.Manager.Parameters):
+        """Create a CoverageProfiles object
+
+        Arguments:
+            bedgraph_files (list): list with paths to bedgraph files.
+            parameters (lovis4u.Manager.Parameters): Parameters' class object that holds config and cmd arguments.
+            contig_sizes:  Dictionary with format: key - contig id, value - full length of the corresponding contig.
+
+        """
+        self.bedgraph_files = bedgraph_files
+        self.prms = parameters
+        self.contig_sizes = contig_sizes
+        self.bedgraphs = [BedGraph(filepath, contig_sizes, parameters) for filepath in bedgraph_files]

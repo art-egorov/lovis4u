@@ -1,5 +1,6 @@
 ##gff-version 3
 ##sequence-region Bas01 1 50126
+##description Escherichia phage AugustePiccard
 Bas01	PHANOTATE_1.5.1	CDS	1	1569	-20123724212.54013	+	0	ID=Bas01_CDS_0001;transl_table=11;phrog=38;top_hit=p428778 VI_10880;locus_tag=Bas01_CDS_0001;function=head and packaging;product=terminase large subunit
 Bas01	PHANOTATE_1.5.1	CDS	1713	2108	-749.9529458699918	+	0	ID=Bas01_CDS_0002;transl_table=11;phrog=4578;top_hit=p180900 VI_03586;locus_tag=Bas01_CDS_0002;function=DNA, RNA and nucleotide metabolism;product=HNH endonuclease
 Bas01	PHANOTATE_1.5.1	CDS	2180	2560	-13414.033459683875	+	0	ID=Bas01_CDS_0003;transl_table=11;phrog=14592;top_hit=NC_007291_p35;locus_tag=Bas01_CDS_0003;function=head and packaging;product=virion structural protein

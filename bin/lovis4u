@@ -18,6 +18,11 @@ try:
         loci.load_loci_from_extended_gff(parameters.args["gff"])
     elif parameters.args["gb"]:
         loci.load_loci_from_gb(parameters.args["gb"])
+
+    if parameters.args["bedgraph_files"]:
+        coverage_profiles = lovis4u.DataProcessing.CoverageProfiles(parameters.args["bedgraph_files"],
+                                                                    loci.get_contig_sizes(), parameters)
+
     if parameters.args["mmseqs"]:
         mmseqs_clustering_results = loci.mmseqs_cluster()
         loci.define_feature_groups(mmseqs_clustering_results)
@@ -46,6 +51,12 @@ try:
     canvas_manager = lovis4u.Manager.CanvasManager(parameters)
     canvas_manager.define_layout(loci)
     canvas_manager.add_loci_tracks(loci)
+    if parameters.args["add_gc_track"]:
+        canvas_manager.add_property_track(loci, property_name="gc")
+    if parameters.args["add_gc_skew_track"]:
+        canvas_manager.add_property_track(loci, property_name="gc_skew")
+    if parameters.args["bedgraph_files"]:
+        canvas_manager.add_coverage_profiles_tracks(coverage_profiles, loci)
     if parameters.args["draw_scale_line_track"]:
         canvas_manager.add_scale_line_track()
     if parameters.args["set-category-colour"]:

@@ -1,6 +1,11 @@
 # Version log
 
-* **Ver 0.0.14** - 29 December 2024
+* **Ver 0.1.0** - 4 January 2024
+	- Visualisation of genomic signal tracks from sequencing expeirments is now supported!
+	- Multiple features and styles for single locus visualisation are introduced (GC content, GC skew, novel styles for label)
+	- Multiple parameters are introduced, including `-w, --windows` that allows to specify coordinates for visualisation more easily.
+
+* Ver 0.0.14 - 29 December 2024
 	- An issue with visualisation of feature lables for single locus without mmseqs clustering is was fixed. 
 
 * Ver 0.0.13 - 19 December 2024

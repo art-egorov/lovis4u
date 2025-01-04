@@ -490,6 +490,40 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#visualisation-of-genomic-signal-tracks-from-sequencing-experiments" class="md-nav__link">
+    Visualisation of genomic signal tracks from sequencing experiments
+  </a>
+  
+    <nav class="md-nav" aria-label="Visualisation of genomic signal tracks from sequencing experiments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    Basic usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-defined-labels-and-colours-and-gc-content-tracks" class="md-nav__link">
+    User-defined labels and colours and GC content tracks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-defined-window" class="md-nav__link">
+    User-defined window
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#other-lovis4u-features" class="md-nav__link">
     Other LoVis4u features
   </a>
@@ -521,6 +555,13 @@
           <li class="md-nav__item">
   <a href="#visualisation-of-a-single-sequence" class="md-nav__link">
     Visualisation of a single sequence
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specifying-window-for-visualisation-coordinates" class="md-nav__link">
+    Specifying window for visualisation (coordinates)
   </a>
   
 </li>
@@ -832,6 +873,7 @@ Then you can move generated gff files to one folder using:
 <li><code>-o &lt;name&gt;</code> - Output dir name.  </li>
 <li><code>-c &lt;name&gt;</code> - Name of the configuration file.</li>
 <li><code>-scc</code>,<code>--set-category-colour</code>  - Set category colour for features and plot category colour legend (Initially designed for pharokka generated gff files, see more detailed description below).</li>
+<li><code>-w, --windows &lt;locus_id1:start1:end1:strand [locus_id1:start1:end1:strand ...]&gt;</code> - Specify window of visualisation (coordinates) for a locus or multiple loci.</li>
 </ul>
 <p>While loci in our test set are already correctly orientated, let's add <code>-hl</code> parameter to draw homology line track and select configuration file for two-column A4 page layout with <code>-c A4p2</code> parameter. Output will be adjusted for publication figure (for instance, in terms of font sizes and figure width set as 190mm). In addition we will plot functional categories of CDSs with <code>--set-category-colour</code> parameter. </p>
 <p><div class="language-sh highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p2<span class="w"> </span>-o<span class="w"> </span>lovis4u_output<span class="w"> </span>
@@ -1102,49 +1144,91 @@ The P2 phage and its Tin/Old hotspot defence island is a good example for demons
 <p><strong>How to use your own HMM models</strong></p>
 <p>LoVis4u also allows the use of your own HMM models. You can specify these using <code>-hmm, --add-hmm-models &lt;folder_path [name]&gt;</code>. The folder should contain files in HMMER format (one file per model). Usage: <code>-hmm path [name]</code>. Specifying the name is optional; by default it will be taken from the folder name. If you want to add multiple HMM databases you can use this argument mulitple times: <code>-hmm path1 [name1] -hmm path2 [name2] ...</code>.</p>
 <p>Finally, if you want to search only against your models excluding default set, you can add <code>-omh, --only-mine-hmms</code> parameter in addition to <code>-hmm</code> option.</p>
+<h2 id="visualisation-of-genomic-signal-tracks-from-sequencing-experiments">Visualisation of genomic signal tracks from sequencing experiments</h2>
+<h3 id="basic-usage">Basic usage</h3>
+<p>Starting with version 0.1.0, LoVis4u supports visualisation of genomic signal tracks from sequencing experiments using bedGraph file as input for a single track. We will demonstrate this functionality using three DNA sequencing coverage profiles for BASEL collection phage Bas01. To specify path to bedgraph files you can use argument <code>-bg, --bedgraphs &lt;bedgraph_file1 [bedgraph_file2 ...]&gt;</code> which takes space separated list of file paths as input.</p>
+<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/BaselCollection/Bas01.gff<span class="w"> </span>-c<span class="w"> </span>A4p2<span class="w"> </span><span class="se">\ </span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span>-bg<span class="w"> </span>lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_WT.bedGraph<span class="w"> </span>lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_1.bedGraph<span class="w"> </span>lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_2.bedGraph
+</span></code></pre></div>
+<a class="glightbox" href="img/lovis4u_bg_files_default.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f_bg1" loading="lazy" src="img/lovis4u_bg_files_default.png" width="100%" /></a></p>
+<h3 id="user-defined-labels-and-colours-and-gc-content-tracks">User-defined labels and colours and GC content tracks</h3>
+<p>By default, basename of the corresponding file is used as track label, but you can manually specify labels using <code>-bgl, --bedgraph-labels &lt;bedgraph_label1 [bedgraph_label2 ...]&gt;</code> which takes as input space separated list of labels with the same order as input files. In addition, it can be useful to visualise GC content and GC skew in parallel with signal tracks. You can add GC content and GC skew tracks by using parameters <code>-gc</code> and <code>-gc_skew</code>. Finally, we will add visualisation of functional categories using <code>-scc</code> argument.</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="w"> </span>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/BaselCollection/Bas01.gff<span class="w"> </span>-c<span class="w"> </span>A4p2<span class="w"> </span>-scc<span class="w"> </span>-gc<span class="w"> </span>-gc_skew<span class="w"> </span><span class="se">\ </span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span>-bg<span class="w"> </span>lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_WT.bedGraph<span class="w"> </span>lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_1.bedGraph<span class="w"> </span>lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_2.bedGraph<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span>-bgl<span class="w"> </span><span class="s2">&quot;Bas01 WT | DNA-Seq&quot;</span><span class="w"> </span><span class="s2">&quot;Bas01 E1 | DNA-Seq&quot;</span><span class="w"> </span><span class="s2">&quot;Bas01 E2 | DNA-Seq&quot;</span>
+</span></code></pre></div>
+<p><a class="glightbox" href="img/lovis4u_bg_files_advanced.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f_bg2" loading="lazy" src="img/lovis4u_bg_files_advanced.png" width="100%" /></a></p>
+<p>You can also specify colours for your coverage profiles using  <code>-bgc, --bedgraph-colours &lt;bedgraph_colour1 [bedgraph_colour2 ...]&gt;</code> argument (which acts similarly to the bedgraph label argument. Here you can specify colours either by HEX code or by name which present in the palette file. If length of colour list is less than number of bedgraph profiles then they will be used circularly (particularly, if one colour is specified then only it will be used). Below we will demonstrate usage with specified HEX colour codes with <code>-bgc #CDEE40 #E96C0C #8BD4F7</code>.</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="w"> </span>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/BaselCollection/Bas01.gff<span class="w"> </span>-c<span class="w"> </span>A4p2<span class="w"> </span>-scc<span class="w"> </span>-gc<span class="w"> </span>-gc_skew<span class="w"> </span><span class="se">\ </span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span>-bg<span class="w"> </span>lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_WT.bedGraph<span class="w"> </span>lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_1.bedGraph<span class="w"> </span>lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_2.bedGraph<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span>-bgl<span class="w"> </span><span class="s2">&quot;Bas01 WT | DNA-Seq&quot;</span><span class="w"> </span><span class="s2">&quot;Bas01 E1 | DNA-Seq&quot;</span><span class="w"> </span><span class="s2">&quot;Bas01 E2 | DNA-Seq&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span>-bgc<span class="w"> </span><span class="c1">#CDEE40 #E96C0C #8BD4F7</span>
+</span></code></pre></div>
+<p><a class="glightbox" href="img/lovis4u_bg_files_advanced_new_colours.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f_bg2" loading="lazy" src="img/lovis4u_bg_files_advanced_new_colours.png" width="100%" /></a></p>
+<h3 id="user-defined-window">User-defined window</h3>
+<p>In addition to locus annotation table, you can specify window(s) for visualisation using command-line argument <code>-w, --windows</code>. Format:  <code>-w, --windows &lt;locus_id1:start1:end1:strand [locus_id1:start1:end1:strand ...]&gt;</code>. For instance, if you want to show single region for our locus you can use: <code>-w Bas01:1:15000:1</code>. If you want to show multiple regions for this locus you can specify them within one comma separated string; for instance: <code>-w Bas01:1:15000:1,Bas01:16000:31000:1</code>. Space separation in this argument can be used if you have multiple loci in visualisation and want to define window for several of them.</p>
+<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/BaselCollection/Bas01.gff<span class="w"> </span>-c<span class="w"> </span>A4p2<span class="w"> </span>-scc<span class="w"> </span>-gc<span class="w"> </span>-gc_skew<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w"> </span>-bg<span class="w"> </span>lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_WT.bedGraph<span class="w"> </span>lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_1.bedGraph<span class="w"> </span>lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_2.bedGraph<span class="w"> </span><span class="se">\ </span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>-bgl<span class="w"> </span><span class="s2">&quot;Bas01 WT | DNA-Seq&quot;</span><span class="w"> </span><span class="s2">&quot;Bas01 E1 | DNA-Seq&quot;</span><span class="w"> </span><span class="s2">&quot;Bas01 E2 | DNA-Seq&quot;</span><span class="w"> </span><span class="se">\ </span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w"> </span>-w<span class="w"> </span>Bas01:1:15000:1,Bas01:16000:31000:1<span class="w"> </span>
+</span></code></pre></div>
+<a class="glightbox" href="img/lovis4u_bg_files_advanced_windows.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f_bg2" loading="lazy" src="img/lovis4u_bg_files_advanced_windows.png" width="100%" /></a></p>
 <h2 id="other-lovis4u-features">Other LoVis4u features</h2>
 <h3 id="category-colour-and-annotation">Category colour and annotation</h3>
 <p>Using the parameter <code>--set-category-colour</code> you can use the functional category annotation column for features. The functional category is shown by coloured lines below each ORF. By default it was designed to parse the PHROGs category annotation for proteins and retrieve information about the category in the "function" qualifiers in Genbank or GFF files (qualifiers used can be changed in config file) that is part of default output with pharokka annotation. However, you can set the category for each CDS using the above feature annotation table and the "category" column. Additionally, you can set the colour codes for your categories using <code>--category-colour-table</code>. For categories that are not found in a table, a random colour will be set. By default, lovis4u uses a pre-made colour table which can be found in <em>lovis4u_data/category_colours.tsv</em>.</p>
-<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-hl<span class="w"> </span>--set-category-colour
+<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-hl<span class="w"> </span>--set-category-colour
 </span></code></pre></div>
 <a class="glightbox" href="img/lovis4u_category_colour.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f5" loading="lazy" src="img/lovis4u_category_colour.png" width="100%" /></a>  </p>
 <h3 id="individual-x-axis-and-locus-label-position">Individual x-axis and locus label position</h3>
 <p>In most configuration files (except the A4L for A4 landscape layout) LoVis4u indicates coordinates for visualisation inline with locus label. However, if you prefer a locus label to be placed on the left side you can use the following parameter: <code>-llp left</code> or <code>--locus-label-position left</code>.  When left position for label is selected you can choose to draw individual x-axis line for each locus track using the parameter <code>-sxa</code>, <code>--show-x-axis</code>. For example:
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-llp<span class="w"> </span>left<span class="w"> </span>-hl<span class="w"> </span>--show-x-axis
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-llp<span class="w"> </span>left<span class="w"> </span>-hl<span class="w"> </span>--show-x-axis
 </span></code></pre></div></p>
 <p><a class="glightbox" href="img/lovis4u_showxaxis.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f61" loading="lazy" src="img/lovis4u_showxaxis.png" width="100%" /></a>  </p>
 <p>Alternatively, if you use, for instance, A4L configuration file for A4 landscape layout in which individual x-axis are shown by default you can change it. Using the parameter <code>--hide-x-axis</code> you can deactivate visualisation of the x-axis for each locus track and instead, if you wish, draw a scale line track below. This is done using with <code>-slt, --scale-line-track</code>. Similarly, you can change locus label position to the bottom with <code>-llp bottom</code> parameter.</p>
-<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-c<span class="w"> </span>A4L<span class="w"> </span>-hl<span class="w"> </span>--hide-x-axis<span class="w"> </span>--scale-line-track<span class="w"> </span>-llp<span class="w"> </span>bottom
+<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-c<span class="w"> </span>A4L<span class="w"> </span>-hl<span class="w"> </span>--hide-x-axis<span class="w"> </span>--scale-line-track<span class="w"> </span>-llp<span class="w"> </span>bottom
 </span></code></pre></div>
 <a class="glightbox" href="img/lovis4u_scale.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f6" loading="lazy" src="img/lovis4u_scale.png" width="100%" /></a>  </p>
 <h3 id="highlighting-conserved-genes-instead-of-variable">Highlighting conserved genes instead of variable</h3>
 <p>For many analysis purposes (e.g. conserved neighbourhood visualisation), it is more useful to colourise conserved gene clusters instead of the variable genes. This can be easily switched in lovis4u using the <code>--set-group-colour-for</code> parameter. Te default is to colour by variable but using <code>--set-group-colour-for conserved</code> will change it to the opposite mode.<br />
 <strong>Note</strong> that if you have other feature group set in your feature annotation table and you want to set auto-colourising for them as well, you can specify them in a space separated list with this argument (e.g. <code>--set-group-colour-for conserved your_group_1 your_group_2</code>).</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-hl<span class="w"> </span>--set-group-colour-for<span class="w"> </span>conserved
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-hl<span class="w"> </span>--set-group-colour-for<span class="w"> </span>conserved
 </span></code></pre></div>
 <p><a class="glightbox" href="img/lovis4u_conserved_colourised.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f7" loading="lazy" src="img/lovis4u_conserved_colourised.png" width="100%" /></a>  </p>
 <p><strong>Note:</strong>By default, the colours for groups are randomly set for each group using the <a href="https://seaborn.pydata.org/tutorial/colour_palettes.html">seaborn husl palette</a>. In the config file you can change to a more intense hsl palette or change the desaturation parameter.</p>
 <h3 id="visualisation-of-a-single-sequence">Visualisation of a single sequence</h3>
-<p>LoVis4u is able to visualise only one sequence. In that case no special parameters are required. However, if you want to highlight each protein group of homologues with a particular colour (protein sequences still will be clustered) you can use the following parameter: <code>--set-group-colour-for conserved</code> which will highlight conserved genes as in the example above (since if only one sequence is in input then all proteins there are considered as "conserved")</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/single_gff_file<span class="w"> </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p2<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span>--set-group-colour-for<span class="w"> </span>conserved
+<p>LoVis4u is able to visualise only one sequence. In that case no special parameters are required. However, if you want to highlight each protein group of homologues with a particular colour (protein sequences still will be clustered) you can use the following parameter: <code>--set-group-colour-for undefined</code> which will highlight all genes for single sequence (default value for protein group class is "undefined" which can be changed after clustering and calculating fractions for each gene group within a cluster of proteomes if multiple loci are used for input).</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files/NC_001895.1.gff<span class="w"> </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p2<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span>--set-group-colour-for<span class="w"> </span>undefined
 </span></code></pre></div>
-<p><a class="glightbox" href="img/lovis4u_single_suquence.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f2" loading="lazy" src="img/lovis4u_single_suquence.png" width="100%" /></a>  </p>
+<p><a class="glightbox" href="img/lovis4u_single_suquence.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f2" loading="lazy" src="img/lovis4u_single_suquence.png" width="100%" /></a> </p>
+<p>Starting with version 0.1.0, new tracks for visualisation of GC and GC skew were added. They can be added simply by using parameters <code>-gc</code> and <code>-gc_skew</code>.</p>
+<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="w"> </span>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files/NC_001895.1.gff<span class="w"> </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p2<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span>-gc<span class="w"> </span>-gc_skew
+</span></code></pre></div>
+<a class="glightbox" href="img/lovis4u_single_suquence_with_GC.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f212" loading="lazy" src="img/lovis4u_single_suquence_with_GC.png" width="100%" /></a> </p>
+<h3 id="specifying-window-for-visualisation-coordinates">Specifying window for visualisation (coordinates)</h3>
+<p>In addition to locus annotation table, you can specify window(s) for visualisation using command-line argument <code>-w, --windows</code>. Format:  <code>-w, --windows &lt;locus_id1:start1:end1:strand [locus_id1:start1:end1:strand ...]&gt;</code>. For instance, if you want to show single region for our locus from the last example you can use: <code>-w NC_001895.1:1:15000:1</code>. If you want to show multiple regions for this locus you can specify them within one comma separated string. For instance: <code>-w NC_001895.1:1:15000:1,NC_001895.1:16000:30000:1</code></p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="w"> </span>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files/NC_001895.1.gff<span class="w"> </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p2<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span>-gc<span class="w"> </span>-gc_skew<span class="w"> </span><span class="se">\ </span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">    </span>-w<span class="w"> </span>NC_001895.1:1:15000:1,NC_001895.1:16000:30000:1
+</span></code></pre></div>
+<p><a class="glightbox" href="img/lovis4u_single_suquence_with_GC_windows.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f212" loading="lazy" src="img/lovis4u_single_suquence_with_GC_windows.png" width="100%" /></a> </p>
+<p>This argument works even if you use miltople loci. In that case you can specify their coordinate separating arguments by space. For instance: <code>-w NC_001895.1:1:15000:1 Locus_id_1:1:20000:1 Locus_id_2:1000:20000:1 ...</code></p>
 <h3 id="visualisation-of-non-coding-features-and-control-of-their-labels">Visualisation of non-coding features and control of their labels</h3>
 <p>Starting with 0.0.10 version, LoVis4u is able to parse non-coding features like tRNAs, tmRNAs, and pseudogenes. They do not contribute to the sequence clustering, however, tRNAs with the same anti-codon are considered as members of the same group and can be connected by homology lines. In addition, by default, non-coding features are not labeled. These are shown with a CDS-like polygon with no fill colour, embedded in a box. </p>
 <p>For demonstration of such feature in the example below we show tRNA-encoding regions of Bas01 and Bas03 phages.</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/BaselSubset<span class="w"> </span>-laf<span class="w"> </span>lovis4u_data/guide/locus_annotation_table_trnas.tsv<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">     </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p1
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/BaselSubset<span class="w"> </span>-laf<span class="w"> </span>lovis4u_data/guide/locus_annotation_table_trnas.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">     </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p1
 </span></code></pre></div>
 <p><a class="glightbox" href="img/lovis4u_trnas_wo_label.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="fn" loading="lazy" src="img/lovis4u_trnas_wo_label.png" width="500px" /></a>  </p>
 <p>By default we do not show tRNA name labels since these genes are often found in arrays and visualisation of many labels on a very short locus is challenging. Instead, there is a category colour for each type of non-coding feature. However, if required, tRNA name labels can be turned on. Firstly, if you want to show labels for all non-coding features you can use <code>-snl</code>. <code>--show-noncoding-labels</code> command.</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/BaselSubset<span class="w"> </span>-laf<span class="w"> </span>lovis4u_data/guide/locus_annotation_table_trnas.tsv<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">     </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p1<span class="w"> </span>--show-noncoding-labels
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/BaselSubset<span class="w"> </span>-laf<span class="w"> </span>lovis4u_data/guide/locus_annotation_table_trnas.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">     </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p1<span class="w"> </span>--show-noncoding-labels
 </span></code></pre></div>
 <p><a class="glightbox" href="img/lovis4u_trnas_all_labels.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="fn" loading="lazy" src="img/lovis4u_trnas_all_labels.png" width="500px" /></a>  </p>
 <p>Both phages have tRNAs with the same anticodon and then have the same "group" (analogue of homologous group for proteins). In that case or similar situation it can be logical to show labels only on first occurrence as it's done for conserved proteins. To do that, you can use <code>-sfnl, --show-first-noncoding-label</code> </p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/BaselSubset<span class="w"> </span>-laf<span class="w"> </span>lovis4u_data/guide/locus_annotation_table_trnas.tsv<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">     </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p1<span class="w"> </span>--show-first-noncoding-label
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/BaselSubset<span class="w"> </span>-laf<span class="w"> </span>lovis4u_data/guide/locus_annotation_table_trnas.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">     </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p1<span class="w"> </span>--show-first-noncoding-label
 </span></code></pre></div>
 <p><a class="glightbox" href="img/lovis4u_trnas_first_label.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="fn" loading="lazy" src="img/lovis4u_trnas_first_label.png" width="500px" /></a>  </p>
 <h3 id="specifying-figure-width-and-more-compact-visualisation">Specifying figure width and more compact visualisation.</h3>
@@ -1152,7 +1236,7 @@ The P2 phage and its Tin/Old hotspot defence island is a good example for demons
 1) Using the <code>--mm-per-nt &lt;float value&gt;</code> argument changing scale which defines given space for each nt cell on canvas. Default: 0.005. 
 2) With <code>-fw, --figure-width &lt;float value [mm]&gt;</code> parameter which defines the total output figure width in mm.  </p>
 <p>Here we demonstrate usage by plotting a compact visualisation of full loci together with <code>--show-first-feature-label-for</code> argument with an empty list, so not labelling the first occurrence of conserved genes. Note that most of the coloured, variable genes are not labeled in this figure as they are annotated as ‘hypothetical protein’, which LoVis4u ignores to make figures more compact and informative. You can deactivate ignoring of these labels by using <code>-ifl</code>, <code>--ignored-feature-labels</code> argument, similarly providing an empty list an argument. </p>
-<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-hl<span class="w"> </span>-o<span class="w"> </span>width_test<span class="w"> </span>--show-first-feature-label-for<span class="w"> </span>--figure-width<span class="w"> </span><span class="m">70</span>
+<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-hl<span class="w"> </span>-o<span class="w"> </span>width_test<span class="w"> </span>--show-first-feature-label-for<span class="w"> </span>--figure-width<span class="w"> </span><span class="m">70</span>
 </span></code></pre></div>
 <a class="glightbox" href="img/lovis4u_set_width.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f8" loading="lazy" src="img/lovis4u_set_width.png" width="500px" /></a>  </p>
 

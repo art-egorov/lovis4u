@@ -470,6 +470,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#visualisation-of-genomic-signal-tracks-from-sequencing-experiments" class="md-nav__link">
+    Visualisation of genomic signal tracks from sequencing experiments
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#visualisation-of-the-basel-collection-of-phages" class="md-nav__link">
     Visualisation of the Basel collection of phages
   </a>
@@ -694,27 +701,48 @@ For description of parameters and modes shown on this page visit the <a href="ht
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span>--set-group-colour-for<span class="w"> </span>conserved<span class="w">  </span>--run-hmmscan<span class="w"> </span>--defence-models<span class="w"> </span>PADLOC
 </span></code></pre></div>
 <p><a class="glightbox" href="img/lovis4u_single_suquence.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f2" loading="lazy" src="img/lovis4u_single_suquence.png" width="100%" /></a>  </p>
+<p><strong>Visualisation of a single sequence with GC content and GC skews tracks. Two-column A4 page publication layout (190mm width).</strong></p>
+<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w"> </span>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files/NC_001895.1.gff<span class="w"> </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p2<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span>-gc<span class="w"> </span>-gc_skew
+</span></code></pre></div>
+<a class="glightbox" href="img/lovis4u_single_suquence_with_GC.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f212" loading="lazy" src="img/lovis4u_single_suquence_with_GC.png" width="100%" /></a> </p>
 <h2 id="visualisation-of-user-defined-regions">Visualisation of user-defined regions</h2>
 <p><strong>Visualisation of user-defined regions, one region per locus. One-column A4 page layout (90mm width).</strong></p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-c<span class="w"> </span>A4p1<span class="w"> </span>--locus-annotation-file<span class="w"> </span>lovis4u_data/guide/locus_annotation_table_demo_2.tsv<span class="w"> </span><span class="se">\ </span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span>-cl-off<span class="w"> </span>-hl<span class="w"> </span>--set-category-colour
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w"> </span>-c<span class="w"> </span>A4p1<span class="w"> </span>--locus-annotation-file<span class="w"> </span>lovis4u_data/guide/locus_annotation_table_demo_2.tsv<span class="w"> </span><span class="se">\ </span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span>-cl-off<span class="w"> </span>-hl<span class="w"> </span>--set-category-colour
 </span></code></pre></div>
 <p><a class="glightbox" href="img/lovis4u_region_a4p1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f2" loading="lazy" src="img/lovis4u_region_a4p1.png" width="500px" /></a>  </p>
 <p><strong>Visualisation of user-defined regions, multiple regions per locus.</strong></p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w">  </span>-hl<span class="w"> </span>-o<span class="w"> </span>lovis4u_output_m_loci<span class="w">  </span><span class="se">\</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span>--locus-annotation-file<span class="w"> </span>lovis4u_data/guide/locus_annotation_table_demo_1.tsv<span class="w"> </span>-cl-off<span class="w"> </span>-llp<span class="w"> </span>left<span class="w">  </span>-slt
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/gff_files<span class="w">  </span>-hl<span class="w"> </span>-o<span class="w"> </span>lovis4u_output_m_loci<span class="w">  </span><span class="se">\</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span>--locus-annotation-file<span class="w"> </span>lovis4u_data/guide/locus_annotation_table_demo_1.tsv<span class="w"> </span>-cl-off<span class="w"> </span>-llp<span class="w"> </span>left<span class="w">  </span>-slt
 </span></code></pre></div>
 <p><a class="glightbox" href="img/lovis4u_regions_multiple.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f2" loading="lazy" src="img/lovis4u_regions_multiple.png" width="800px" /></a>  </p>
 <h3 id="non-coding-features">Non-coding features</h3>
 <p><strong>Visualisation of loci with non-coding features (tRNAs) and displaying their labels.</strong></p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/BaselSubset<span class="w"> </span>-laf<span class="w"> </span>lovis4u_data/guide/locus_annotation_table_trnas.tsv<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">     </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p1<span class="w"> </span>--show-first-noncoding-label
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/BaselSubset<span class="w"> </span>-laf<span class="w"> </span>lovis4u_data/guide/locus_annotation_table_trnas.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">     </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p1<span class="w"> </span>--show-first-noncoding-label
 </span></code></pre></div>
 <p><a class="glightbox" href="img/lovis4u_trnas_first_label.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="fn" loading="lazy" src="img/lovis4u_trnas_first_label.png" width="530px" /></a>  </p>
 <hr />
+<h2 id="visualisation-of-genomic-signal-tracks-from-sequencing-experiments">Visualisation of genomic signal tracks from sequencing experiments</h2>
+<p>Starting with version 0.1.0, LoVis4u supports visualisation of genomic signal tracks from sequencing experiments using bedGraph file as input for a single track. We will demonstrate this functionality using three DNA sequencing coverage profiles for BASEL collection phage Bas01.</p>
+<p><strong>Visualisation of a single genome with GC content, GC skews tracks and three bedgraph track profiles. Two-column A4 page publication layout (190mm width).</strong></p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="w"> </span>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/BaselCollection/Bas01.gff<span class="w"> </span>-c<span class="w"> </span>A4p2<span class="w"> </span>-scc<span class="w"> </span>-gc<span class="w"> </span>-gc_skew<span class="w"> </span><span class="se">\ </span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span>-bg<span class="w"> </span>lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_WT.bedGraph<span class="w"> </span>lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_1.bedGraph<span class="w"> </span>lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_2.bedGraph<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span>-bgl<span class="w"> </span><span class="s2">&quot;Bas01 WT | DNA-Seq&quot;</span><span class="w"> </span><span class="s2">&quot;Bas01 E1 | DNA-Seq&quot;</span><span class="w"> </span><span class="s2">&quot;Bas01 E2 | DNA-Seq&quot;</span>
+</span></code></pre></div>
+<p><a class="glightbox" href="cmd_guide/img/lovis4u_bg_files_advanced.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f_bg2" loading="lazy" src="cmd_guide/img/lovis4u_bg_files_advanced.png" width="100%" /></a></p>
+<p><strong>Visualisation of a single genome with GC content, GC skews tracks and three bedgraph track profiles. Multiple windows per image. Two-column A4 page publication layout (190mm width).</strong></p>
+<p><div class="language-sh highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/BaselCollection/Bas01.gff<span class="w"> </span>-c<span class="w"> </span>A4p2<span class="w"> </span>-scc<span class="w"> </span>-gc<span class="w"> </span>-gc_skew<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w"> </span>-bg<span class="w"> </span>lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_WT.bedGraph<span class="w"> </span>lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_1.bedGraph<span class="w"> </span>lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_2.bedGraph<span class="w"> </span><span class="se">\ </span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>-bgl<span class="w"> </span><span class="s2">&quot;Bas01 WT | DNA-Seq&quot;</span><span class="w"> </span><span class="s2">&quot;Bas01 E1 | DNA-Seq&quot;</span><span class="w"> </span><span class="s2">&quot;Bas01 E2 | DNA-Seq&quot;</span><span class="w"> </span><span class="se">\ </span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w"> </span>-w<span class="w"> </span>Bas01:1:15000:1,Bas01:16000:31000:1<span class="w"> </span>
+</span></code></pre></div>
+<a class="glightbox" href="cmd_guide/img/lovis4u_bg_files_advanced_windows.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="f_bg2" loading="lazy" src="cmd_guide/img/lovis4u_bg_files_advanced_windows.png" width="100%" /></a></p>
+<hr />
 <h2 id="visualisation-of-the-basel-collection-of-phages">Visualisation of the Basel collection of phages</h2>
 <p>For demonstration of LoVis4u's capabilities (and because it is fun), I applied it to the entire Basel collection of 78 <em>Escherichia coli</em> phages (see <a href="https://doi.org/10.1371/journal.pbio.3001424">Maffei et.al. PLOS Biology</a>). In addition, we activate pyhmmer functional annotation of proteins.</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/BaselCollection<span class="w">  </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p2<span class="w"> </span>-fw<span class="w"> </span><span class="m">500</span><span class="w">  </span>--run-hmmscan
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>lovis4u<span class="w"> </span>-gff<span class="w"> </span>lovis4u_data/guide/BaselCollection<span class="w">  </span>-hl<span class="w"> </span>--set-category-colour<span class="w"> </span>-c<span class="w"> </span>A4p2<span class="w"> </span>-fw<span class="w"> </span><span class="m">500</span><span class="w">  </span>--run-hmmscan
 </span></code></pre></div>
 <p><a href="img/lovis4u_Basel.pdf" target="_blank"><strong><em>LoVis4u PDF file of the visualisation</em></strong></a></p>
 <details class="card_hearts">

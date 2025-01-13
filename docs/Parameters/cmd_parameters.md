@@ -35,12 +35,16 @@
 `-w, --windows <locus_id1:start1:end1:strand [locus_id1:start1:end1:strand ...]>`
 :    Specify window of visualisation (coordinates) for a locus or multiple loci
 
-`-bg, --bedgraphs <bedgraph_file1 [bedgraph_file2 ...]>`
-:    Path to bedgraph files to plot coverage profiles.
-     ! Can be applied only for single locus.
+`-bg, --bedgraphs <bedGraph_file1 [bedgGaph_file2 ...]>`
+:    Space separated list of paths to bedGraph files to plot coverage profiles.
+     (>=1 file) ! Can be applied only for single locus.
+
+`-bw, --bigwigs <bigWig_file1 [bigWig_file2 ...]>`
+:    Space separated list of paths to bigWig files to plot coverage profiles.
+     (>=1 file) ! Can be applied only for single locus.
 
 `-bgl, --bedgraph-labels <bedgraph_label1 [bedgraph_label2 ...]>`
-:    List of labels for bedgraph tracks (order the same as order of bedgraph files)
+:    List of labels for bedgraph/bigwig tracks (order the same as order of bedgraph/bigwig files)
      By default basename of files will be used.
 
 `-bgc, --bedgraph-colours <bedgraph_colour1 [bedgraph_colour2 ...]>`

@@ -47,8 +47,10 @@ def adjust_paths(to: str) -> None:
                     os.system(f"unzip -q -d {os.path.join(internal_dir, 'bin/')} "
                               f"{os.path.join(internal_dir, 'bin/mmseqs_linux.zip')}")
                 config_txt = re.sub(r"mmseqs_mac/bin/mmseqs", "mmseqs_linux/bin/mmseqs", config.read())
+                config_txt = re.sub(r"ucsc_mac/bigWigToBedGraph", "ucsc_linux/bigWigToBedGraph", config_txt)
             else:
                 config_txt = re.sub(r"mmseqs_linux/bin/mmseqs", "mmseqs_mac/bin/mmseqs", config.read())
+                config_txt = re.sub(r"ucsc_linux/bigWigToBedGraph", "ucsc_mac/bigWigToBedGraph", config_txt)
             config.seek(0)
             config.truncate()
             config.write(config_txt)

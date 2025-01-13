@@ -1,5 +1,8 @@
 # Version log
 
+* **Ver 0.1.1** - 14 January 2024
+	- Support of bigWig files for coverage profiles input with `-bw` parameter.
+
 * **Ver 0.1.0** - 4 January 2024
 	- Visualisation of genomic signal tracks from sequencing expeirments is now supported!
 	- Multiple features and styles for single locus visualisation are introduced (GC content, GC skew, novel styles for label)

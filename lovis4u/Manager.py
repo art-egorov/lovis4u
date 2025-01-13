@@ -63,6 +63,7 @@ class Parameters:
         mutually_exclusive_group.add_argument("-gb", "--gb", dest="gb", type=str, default=None)
         parser.add_argument("-w", "--window", dest="windows", nargs="*", type=str, default=[])
         parser.add_argument("-bg", "--bedgraphs", dest="bedgraph_files", nargs="*", type=str, default=[])
+        parser.add_argument("-bw", "--bigwigs", dest="bigwig_files", nargs="*", type=str, default=[])
         parser.add_argument("-bgl", "--bedgraph-labels", dest="bedgraph_labels", nargs="*", type=str, default=[])
         parser.add_argument("-bgc", "--bedgraph-colours", dest="bedgraph_track_colours", nargs="*", type=str,
                             default=None)
@@ -126,7 +127,7 @@ class Parameters:
         parser.add_argument("-o", dest="output_dir", type=str, default=None)
         parser.add_argument("--pdf-name", dest="pdf-name", type=str, default="lovis4u.pdf")
         parser.add_argument("-c", dest="config_file", type=str, default="standard")
-        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.1.0")
+        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.1.1")
         parser.add_argument("-q", "--quiet", dest="verbose", default=True, action="store_false")
         parser.add_argument("--parsing-debug", "-parsing-debug", dest="parsing_debug", action="store_true")
         parser.add_argument("--debug", "-debug", dest="debug", action="store_true")
@@ -451,7 +452,7 @@ class CanvasManager:
                 profile_track = profile_loader.create_track()
                 self.tracks.append(profile_track)
             if self.prms.args["verbose"]:
-                print(f"⦿ {len(coverage_profiles.bedgraphs)} bedgraph tracks were added to the canvas", file=sys.stdout)
+                print(f"⦿ {len(coverage_profiles.bedgraphs)} coverage track(s) were added to the canvas", file=sys.stdout)
             return None
         except Exception as error:
             raise lovis4u.Manager.lovis4uError("Unable to add coverage profile tracks to the canvas.") from error

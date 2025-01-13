@@ -1219,7 +1219,7 @@ class BedGraph:
 
     """
 
-    def __init__(self, filepath: str, contig_sizes: dict, parameters: lovis4u.Manager.Parameters):
+    def __init__(self, filepath: str, contig_sizes: dict, parameters: lovis4u.Manager.Parameters, isbigWig=False):
         """Create a BedGraph object
 
         Arguments:
@@ -1231,29 +1231,32 @@ class BedGraph:
         self.filepath = filepath
         self.prms = parameters
         self.contig_sizes = contig_sizes
-        self.coverage = self.__read_file()
+        self.coverage = self.__read_file(isbigWig)
 
-    def __read_file(self):
+    def __read_file(self, isbigWig):
         """Read correspnding bedgraph file.
 
         Returns:
             coverage (dict):  Dictionary with format: key - contig id, value - pd.Series with coverage counts.
         """
         try:
+            if isbigWig:
+                temp_file_bedgraph = tempfile.NamedTemporaryFile()
+                os.system(f"{self.prms.args['bigWigToBedGraph_binary']} {self.filepath} {temp_file_bedgraph.name}")
+                old_name = self.filepath
+                self.filepath = temp_file_bedgraph.name
             coverage = dict()
             for contig_id, length in self.contig_sizes.items():
                 coverage[contig_id] = pd.Series(np.zeros(length, dtype=int))
-
             with open(self.filepath, "r") as bedgraph:
                 for line in bedgraph:
                     contig, start, end, counts = line.strip().split("\t")
                     if contig in coverage.keys():
                         coverage[contig][int(start):int(end)] = int(counts)
-
+            self.filepath = old_name
             ids_to_remove = [contig_id for contig_id, cov in coverage.items() if cov.sum() == 0]
             for contig_id in ids_to_remove:
                 del coverage[contig_id]
-
             return coverage
         except Exception as error:
             raise lovis4u.Manager.lovis4uError(f"Unable to read {self.filepath} bedgraph file.") from error
@@ -1285,16 +1288,21 @@ class CoverageProfiles:
 
     """
 
-    def __init__(self, bedgraph_files: list, contig_sizes: dict, parameters: lovis4u.Manager.Parameters):
+    def __init__(self, contig_sizes: dict, parameters: lovis4u.Manager.Parameters, bedgraph_files: list = [],
+                 bigwig_files: list = []):
         """Create a CoverageProfiles object
 
         Arguments:
             bedgraph_files (list): list with paths to bedgraph files.
+            bigwig_files (list): list with paths to bigwig files.
             parameters (lovis4u.Manager.Parameters): Parameters' class object that holds config and cmd arguments.
             contig_sizes:  Dictionary with format: key - contig id, value - full length of the corresponding contig.
 
         """
         self.bedgraph_files = bedgraph_files
+        self.bigwig_files = bigwig_files
         self.prms = parameters
         self.contig_sizes = contig_sizes
-        self.bedgraphs = [BedGraph(filepath, contig_sizes, parameters) for filepath in bedgraph_files]
+        self.bedgraphs = []
+        self.bedgraphs += [BedGraph(filepath, contig_sizes, parameters, isbigWig = False) for filepath in bedgraph_files]
+        self.bedgraphs += [BedGraph(filepath, contig_sizes, parameters, isbigWig = True) for filepath in bigwig_files]

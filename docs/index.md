@@ -2,17 +2,20 @@
 # ![logo](img/lovis4u_logo.png){loading=lazy width="265" }  
 ## Description
 
-**LoVis4u** is a bioinformatics tool for **Lo**cus **Vis**ualisation.
+## Description
 
-**Supported input**: Genbank, gff3 with sequence    
+**LoVis4u** is a bioinformatics tool for **Lo**cus **Vis**ualisation and coverage profiles from sequencing experiments.
+
+**Supported genome annotation input**: Genbank, gff3 with sequence    
+**Supported coverage profile input**: bedGraph, bigWig  
 **Supported output**: Static vector graphics (pdf)   
 **Programming language:** Python3   
 **OS:** MacOS, Linux  
 **Python dependencies:** biopython, bcbio-gff, scipy, configs, pandas, distinctipy, matplotlib, seaborn, reportlab, pyhmmer, progress, requests  
 **Python version:** >= 3.8  
-**OS-level dependencies:** MMseqs2 (included in the package)  
+**OS-level dependencies:** MMseqs2, bigWigToBedGraph (included in the package)  
 **License:** WTFPL  
-**Version:** 0.1.0 (January 2024)
+**Version:** 0.1.1 (January 2024)
 
 
 

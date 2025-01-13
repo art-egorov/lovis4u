@@ -247,6 +247,8 @@ Finally, if you want to search only against your models excluding default set, y
 
 Starting with version 0.1.0, LoVis4u supports visualisation of genomic signal tracks from sequencing experiments using bedGraph file as input for a single track. We will demonstrate this functionality using three DNA sequencing coverage profiles for BASEL collection phage Bas01. To specify path to bedgraph files you can use argument `-bg, --bedgraphs <bedgraph_file1 [bedgraph_file2 ...]>` which takes space separated list of file paths as input.
 
+**Note** that starting with version 0.1.1 you can use ***bigWig*** files as input as well. The usage and all other commands kept the same, you just need to provide list of paths with `-bw, -bigwigs` parameter, instead of `-bg`.
+
 ```sh
 lovis4u -gff lovis4u_data/guide/BaselCollection/Bas01.gff -c A4p2 \ 
 	-bg lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_WT.bedGraph lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_1.bedGraph lovis4u_data/guide/bedgraphs/Bas01_DNA-Seq_2.bedGraph

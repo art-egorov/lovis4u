@@ -674,11 +674,14 @@
 <dl>
 <dt><code>-w, --windows &lt;locus_id1:start1:end1:strand [locus_id1:start1:end1:strand ...]&gt;</code></dt>
 <dd>Specify window of visualisation (coordinates) for a locus or multiple loci</dd>
-<dt><code>-bg, --bedgraphs &lt;bedgraph_file1 [bedgraph_file2 ...]&gt;</code></dt>
-<dd>Path to bedgraph files to plot coverage profiles.
- ! Can be applied only for single locus.</dd>
+<dt><code>-bg, --bedgraphs &lt;bedGraph_file1 [bedgGaph_file2 ...]&gt;</code></dt>
+<dd>Space separated list of paths to bedGraph files to plot coverage profiles.
+ (&gt;=1 file) ! Can be applied only for single locus.</dd>
+<dt><code>-bw, --bigwigs &lt;bigWig_file1 [bigWig_file2 ...]&gt;</code></dt>
+<dd>Space separated list of paths to bigWig files to plot coverage profiles.
+ (&gt;=1 file) ! Can be applied only for single locus.</dd>
 <dt><code>-bgl, --bedgraph-labels &lt;bedgraph_label1 [bedgraph_label2 ...]&gt;</code></dt>
-<dd>List of labels for bedgraph tracks (order the same as order of bedgraph files)
+<dd>List of labels for bedgraph/bigwig tracks (order the same as order of bedgraph/bigwig files)
  By default basename of files will be used.</dd>
 <dt><code>-bgc, --bedgraph-colours &lt;bedgraph_colour1 [bedgraph_colour2 ...]&gt;</code></dt>
 <dd>List of colours for bedgraph tracks (order the same as order of bedgraph files)

@@ -1173,7 +1173,7 @@ class Loci:
         except Exception as error:
             raise lovis4u.Manager.lovis4uError("Unable to define variable feature groups.") from error
 
-    def get_loci_lengths_and_n_of_regions(self) -> list[list[int]]:
+    def get_loci_lengths_and_n_of_regions(self) -> list:
         """Get loci lengths and number of regions.
 
         Returns:
@@ -1253,7 +1253,8 @@ class BedGraph:
                     contig, start, end, counts = line.strip().split("\t")
                     if contig in coverage.keys():
                         coverage[contig][int(start):int(end)] = int(counts)
-            self.filepath = old_name
+            if isbigWig:
+                self.filepath = old_name
             ids_to_remove = [contig_id for contig_id, cov in coverage.items() if cov.sum() == 0]
             for contig_id in ids_to_remove:
                 del coverage[contig_id]

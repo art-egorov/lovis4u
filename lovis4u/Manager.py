@@ -58,6 +58,7 @@ class Parameters:
         parser.add_argument("-linux", "--linux", dest="linux", action="store_true", default=None)
         parser.add_argument("-mac", "--mac", dest="mac", action="store_true", default=None)
         parser.add_argument("-get-hmms", "--get-hmms", dest="get_hmms", action="store_true")
+        parser.add_argument("-smp", "--set-mmseqs-path", dest="set_mmseqs_path", type=str, default=None)
         mutually_exclusive_group = parser.add_mutually_exclusive_group()
         mutually_exclusive_group.add_argument("-gff", "--gff", dest="gff", type=str, default=None)
         mutually_exclusive_group.add_argument("-gb", "--gb", dest="gb", type=str, default=None)
@@ -151,6 +152,9 @@ class Parameters:
         if args["get_hmms"]:
             self.load_config()
             lovis4u.Methods.get_HMM_models(self.args)
+            sys.exit()
+        if args["set_mmseqs_path"]:
+            lovis4u.Methods.set_mmseqs_path(to = args["set_mmseqs_path"])
             sys.exit()
         if args["help"]:
             help_message_path = os.path.join(os.path.dirname(__file__), "lovis4u_data", "help.txt")

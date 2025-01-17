@@ -417,6 +417,7 @@ class Loci:
                         if ilund4u_mode or self.prms.args["add_locus_id_prefix"]:
                             if gff_record.id not in feature_id:
                                 feature_id = f"{gff_record.id}-{feature_id}"
+                            feature_id = feature_id.replace(" ", "_")
                         if gff_feature.type == "CDS":
                             transl_table = self.prms.args["default_transl_table"]
                             if "transl_table" in gff_feature.qualifiers.keys():
@@ -1247,12 +1248,12 @@ class BedGraph:
                 self.filepath = temp_file_bedgraph.name
             coverage = dict()
             for contig_id, length in self.contig_sizes.items():
-                coverage[contig_id] = pd.Series(np.zeros(length, dtype=int))
+                coverage[contig_id] = pd.Series(np.zeros(length, dtype=float))
             with open(self.filepath, "r") as bedgraph:
                 for line in bedgraph:
                     contig, start, end, counts = line.strip().split("\t")
                     if contig in coverage.keys():
-                        coverage[contig][int(start):int(end)] = int(counts)
+                        coverage[contig][int(start):int(end)] = float(counts)
             if isbigWig:
                 self.filepath = old_name
             ids_to_remove = [contig_id for contig_id, cov in coverage.items() if cov.sum() == 0]

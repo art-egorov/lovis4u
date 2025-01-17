@@ -13,6 +13,8 @@ The necessary sample data as well as adjustable tool configuration files are pro
 This command replaces the tool path (for MMseqs2) in the pre-made config files from the MacOS version (default) to the Linux version.
 If you run this command for fun and want to change it back you can use `lovis4u --mac`.
 
+**Alternatively, you can specify your own mmseqs path** using `-smp, --set-mmseqs-path <path>`. Argument Can be either full path to the binary mmseqs, "default_mac", or "default_linux". In case if mmseqs is installed in the system and available without specifying its path, you can run `-smp mmseqs`.
+
 **Downloading HMM models:** LoVis4u uses pyhmmer for additional functional annotation of proteins with hmmscan versus a set of databases. You can download these database from our server ([data-sharing.atkinson-lab.com/LoVis4u](https://data-sharing.atkinson-lab.com/LoVis4u/)) by running the following command:  
 `lovis4u --get-hmms`  
 List of databases: AMR: AMRFinderPlus (v. 02.05.2024.2); Anti-defence: dbAPIS_Acr (v. 19.09.2023); Defence: DefenceFinder (v. 1.2.4), CasFinder (v. 3.1.0), PADLOC (v. 22.10.2024); Virulence: VFDB (v. 10.05.2024).

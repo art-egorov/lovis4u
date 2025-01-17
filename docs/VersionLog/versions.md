@@ -1,5 +1,9 @@
 # Version log
 
+* **Ver 0.1.2** - 17 January 2024
+	- A bug with reading non-integer count bedGraph files is fixed.
+	- New parameter `-smp, --set-mmseqs-path <path>` to specify user's mmseqs path is introduced.
+
 * **Ver 0.1.1** - 14 January 2024
 	- Support of bigWig files for coverage profiles input with `-bw` parameter.
 

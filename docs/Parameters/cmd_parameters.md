@@ -16,6 +16,12 @@
 `--mac`
 :    Replaces the mmseqs path in the pre-made config file from the Linux
 
+`-smp, --set-mmseqs-path <path>`
+:	Specify mmseqs path that will be used by LoVis4u. Can be either full path
+    to the binary mmseqs, "default_mac", or "default_linux". In case if mmseqs
+    is installed in the system and available without specifying its path, you can
+    run "-smp mmseqs" and this should work.
+
 `--get-hmms`
 :    Download HMMs (hmmscan format) of defence, anti-defence, virulence,
      and AMR proteins from our server [data-sharing.atkinson-lab.com]

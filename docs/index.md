@@ -15,7 +15,7 @@
 **Python version:** >= 3.8  
 **OS-level dependencies:** MMseqs2, bigWigToBedGraph (included in the package)  
 **License:** WTFPL  
-**Version:** 0.1.1 (January 2024)
+**Version:** 0.1.2 (January 2024)
 
 
 

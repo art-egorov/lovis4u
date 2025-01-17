@@ -58,6 +58,37 @@ def adjust_paths(to: str) -> None:
     return None
 
 
+def set_mmseqs_path(to: str) -> None:
+    """Change paths in the internal config files for mmseqs binary
+
+    Arguments:
+        to (str): default_mac | default_linux| your path
+
+    Returns:
+        None
+
+    """
+    internal_dir = os.path.join(os.path.dirname(__file__), "lovis4u_data")
+    config_files = ["standard.cfg", "A4L.cfg", "A4p1.cfg", "A4p2.cfg"]
+    for config_file in config_files:
+        config_file_path = os.path.join(internal_dir, config_file)
+        with open(config_file_path, "r+") as config:
+            if to == "default_mac":
+                config_txt = re.sub(r"^mmseqs_binary\s*=.*", "mmseqs_binary = {internal}/bin/mmseqs_mac/bin/mmseqs",
+                                    config.read(), flags=re.MULTILINE)
+            elif to == "default_linux":
+                config_txt = re.sub(r"^mmseqs_binary\s*=.*", "mmseqs_binary = {internal}/bin/mmseqs_linux/bin/mmseqs",
+                                    config.read(), flags=re.MULTILINE)
+            else:
+                config_txt = re.sub(r"^mmseqs_binary\s*=.*", f"mmseqs_binary = {to}", config.read(), flags=re.MULTILINE)
+                print(to)
+            config.seek(0)
+            config.truncate()
+            config.write(config_txt)
+    print(f"⚙ mmseqs path was changed to {to}")
+    return None
+
+
 def copy_package_data() -> None:
     """Copy the lovis4u package data folder to your current dir.
 
@@ -383,6 +414,7 @@ def run_pyhmmer(query_fasta: str, query_size: int, prms: lovis4u.Manager.Paramet
 
     return alignment_table
 
+
 def download_file_with_progress(url: str, local_folder: str) -> None:
     """Function for downloading a particular file from a web server.
 
@@ -432,7 +464,7 @@ def get_HMM_models(parameters) -> None:
 
     """
     try:
-        url =  parameters["hmm_models_url"]
+        url = parameters["hmm_models_url"]
         internal_dir = os.path.join(os.path.dirname(__file__), "lovis4u_data")
         if os.path.exists(os.path.join(internal_dir, "HMMs")):
             print(f"○ HMMs folder already exists and will be rewritten...", file=sys.stdout)

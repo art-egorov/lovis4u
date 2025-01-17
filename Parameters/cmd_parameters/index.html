@@ -654,6 +654,11 @@
  version [default] to the Linux version.</dd>
 <dt><code>--mac</code></dt>
 <dd>Replaces the mmseqs path in the pre-made config file from the Linux</dd>
+<dt><code>-smp, --set-mmseqs-path &lt;path&gt;</code></dt>
+<dd>Specify mmseqs path that will be used by LoVis4u. Can be either full path
+to the binary mmseqs, "default_mac", or "default_linux". In case if mmseqs
+is installed in the system and available without specifying its path, you can
+run "-smp mmseqs" and this should work.</dd>
 <dt><code>--get-hmms</code></dt>
 <dd>Download HMMs (hmmscan format) of defence, anti-defence, virulence,
  and AMR proteins from our server [data-sharing.atkinson-lab.com]</dd>

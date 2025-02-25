@@ -24,8 +24,7 @@
 ## Reference
 
 If you find LoVis4u useful, please cite:  
-Artyom. A. Egorov, Gemma C. Atkinson, **LoVis4u: Locus Visualisation tool for comparative genomics**, *bioRxiv 2024.09.11.612399; doi: [10.1101/2024.09.11.612399](https://doi.org/10.1101/2024.09.11.612399)*
-
+Artyom. A. Egorov, Gemma C. Atkinson, **LoVis4u: a locus visualization tool for comparative genomics and coverage profiles **, *NAR Genomics and Bioinformatics, Volume 7, Issue 1, March 2025, lqaf009, doi: [10.1093/nargab/lqaf009](https://doi.org/10.1093/nargab/lqaf009)*
 ## Contact
 
 Please contact us by e-mail _artem**dot**egorov**AT**med**dot**lu**dot**se_ or use [Issues](https://github.com/art-egorov/lovis4u/issues?q=) to report any technical problems.  

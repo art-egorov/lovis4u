@@ -1,6 +1,5 @@
 
 # ![logo](img/lovis4u_logo.png){loading=lazy width="265" }  
-## Description
 
 ## Description
 

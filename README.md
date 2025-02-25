@@ -4,8 +4,6 @@
 
 ## Description
 
-## Description
-
 **LoVis4u** is a bioinformatics tool for **Lo**cus **Vis**ualisation and coverage profiles from sequencing experiments.
 
 **Supported genome annotation input**: Genbank, gff3 with sequence    

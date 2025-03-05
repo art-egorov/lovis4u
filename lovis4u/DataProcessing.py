@@ -987,7 +987,8 @@ class Loci:
                 locus_group = locus.group
                 for feature in locus.features:
                     if feature.feature_type == "CDS":
-                        if feature.group_type and self.prms.args["keep_predefined_groups"]:
+                        if (feature.group_type and feature.group_type != "undefined") and \
+                                self.prms.args["keep_predefined_groups"]:
                             continue
                         feature.group_type = cluster_types[locus_group][feature.group]
                     else:
@@ -1306,5 +1307,5 @@ class CoverageProfiles:
         self.prms = parameters
         self.contig_sizes = contig_sizes
         self.bedgraphs = []
-        self.bedgraphs += [BedGraph(filepath, contig_sizes, parameters, isbigWig = False) for filepath in bedgraph_files]
-        self.bedgraphs += [BedGraph(filepath, contig_sizes, parameters, isbigWig = True) for filepath in bigwig_files]
+        self.bedgraphs += [BedGraph(filepath, contig_sizes, parameters, isbigWig=False) for filepath in bedgraph_files]
+        self.bedgraphs += [BedGraph(filepath, contig_sizes, parameters, isbigWig=True) for filepath in bigwig_files]

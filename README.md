@@ -15,7 +15,7 @@
 **Python version:** >= 3.8  
 **OS-level dependencies:** MMseqs2, bigWigToBedGraph (included in the package)  
 **License:** WTFPL  
-**Version:** 0.1.2 (January 2024)
+**Version:** 0.1.3 (March 2025)
 
 **Detailed documentation with user guide is available at [LoVis4u Homepage](https://art-egorov.github.io/lovis4u/)**
 

@@ -898,8 +898,11 @@ class Loci:
                 norm_factors = pd.Series(0.5 * (locus_size + proteome_sizes) / (locus_size * proteome_sizes),
                                          index=counts.index)
                 weights = counts.mul(norm_factors)
-                similarity_matrix.iloc[locus_index] = weights
-            symmetric_distance_matrix = 1 - similarity_matrix
+                similarity_matrix.iloc[:, locus_index] = weights
+
+            distance_matrix = 1 - similarity_matrix
+            symmetric_distance_matrix = (
+                                                    distance_matrix + distance_matrix.T) / 2  # could be sometimes problem due to precision error?
             np.fill_diagonal(symmetric_distance_matrix.values, 0)
             linkage_matrix = scipy.cluster.hierarchy.linkage(
                 scipy.spatial.distance.squareform(symmetric_distance_matrix),
@@ -908,8 +911,7 @@ class Loci:
             if not one_cluster:
                 clusters = pd.Series(scipy.cluster.hierarchy.fcluster(linkage_matrix,
                                                                       self.prms.args["clustering_h_value"],
-                                                                      criterion="distance"),
-                                     index=loci_ids)
+                                                                      criterion="distance"), index=loci_ids)
                 for locus in self.loci:
                     locus.group = clusters[locus.seq_id]
                     self.locus_annotation.loc[locus.seq_id, "group"] = locus.group

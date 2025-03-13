@@ -1,16 +1,19 @@
 # Version log
 
-* **Ver 0.1.3** - 5 March 2025
+* **Ver 0.1.4** - 13 March 2025
+	- An issue with sequence clustering was fixed.
+
+* Ver 0.1.3 - 5 March 2025
 	- A bug with CDS group type and colour assignment was fixed. 
 
 * Ver 0.1.2 - 17 January 2025
 	- A bug with reading non-integer count bedGraph files is fixed.
 	- New parameter `-smp, --set-mmseqs-path <path>` to specify user's mmseqs path is introduced.
 
-* **Ver 0.1.1** - 14 January 2025
+* Ver 0.1.1 - 14 January 2025
 	- Support of bigWig files for coverage profiles input with `-bw` parameter.
 
-* **Ver 0.1.0** - 4 January 2025
+* Ver 0.1.0 - 4 January 2025
 	- Visualisation of genomic signal tracks from sequencing expeirments is now supported!
 	- Multiple features and styles for single locus visualisation are introduced (GC content, GC skew, novel styles for label)
 	- Multiple parameters are introduced, including `-w, --windows` that allows to specify coordinates for visualisation more easily.

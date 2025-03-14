@@ -1,7 +1,7 @@
 # Version log
 
-* **Ver 0.1.4** - 13 March 2025
-	- An issue with sequence clustering was fixed.
+* **Ver 0.1.4.1** - 14 March 2025
+	- An issue with reading files without any features is fixed.
 
 * Ver 0.1.3 - 5 March 2025
 	- A bug with CDS group type and colour assignment was fixed. 

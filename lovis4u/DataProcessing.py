@@ -409,6 +409,10 @@ class Loci:
                                          length=locus_annotation_row["length"], parameters=self.prms, features=[],
                                          order=locus_annotation_row["order"])
                     features_ids = [i.id for i in gff_record.features]
+                    if len(features_ids) == 0:
+                            print(f"○ Warning: gff file {gff_file} does not contain any features. "
+                                  f"File will be skipped.")
+                            continue
                     if len(features_ids) != len(set(features_ids)):
                         raise lovis4u.Manager.lovis4uError(f"Gff file {gff_file} contains duplicated feature ids while"
                                                            f" only unique are allowed.")
@@ -890,22 +894,21 @@ class Loci:
             loci_ids = [locus.seq_id for locus in self.loci]
             similarity_matrix = pd.DataFrame(0.0, index=loci_ids, columns=loci_ids)
             for locus_index in range(number_of_loci):
-                counts = pd.Series(np.zeros(number_of_loci, dtype=int))
+                counts = pd.Series(np.zeros(number_of_loci, dtype=float))
                 for cluster in loci_clusters_dict[locus_index]:
                     js = proteins_loci_dict[cluster]
                     counts.iloc[js] += 1
                 locus_size = proteome_sizes[locus_index]
-                norm_factors = pd.Series(0.5 * (locus_size + proteome_sizes) / (locus_size * proteome_sizes),
-                                         index=counts.index)
+                norm_factors = pd.Series(np.where((locus_size != 0) & (proteome_sizes != 0),
+                                                  0.5 * (locus_size + proteome_sizes) / (locus_size * proteome_sizes),
+                                                  0), index=counts.index)
                 weights = counts.mul(norm_factors)
                 similarity_matrix.iloc[:, locus_index] = weights
 
             distance_matrix = 1 - similarity_matrix
-            symmetric_distance_matrix = (
-                                                    distance_matrix + distance_matrix.T) / 2  # could be sometimes problem due to precision error?
-            np.fill_diagonal(symmetric_distance_matrix.values, 0)
+            np.fill_diagonal(distance_matrix.values, 0)
             linkage_matrix = scipy.cluster.hierarchy.linkage(
-                scipy.spatial.distance.squareform(symmetric_distance_matrix),
+                scipy.spatial.distance.squareform(distance_matrix),
                 method="average")
             dendrogram = scipy.cluster.hierarchy.dendrogram(linkage_matrix, no_plot=True)
             if not one_cluster:
@@ -1029,7 +1032,7 @@ class Loci:
             colours_dict = {g: c for g, c in zip(list(feature_groups), colours)}
             for locus in self.loci:
                 for feature in locus.features:
-                    if feature.group in feature_groups and feature.feature_type == "CDS":
+                    if feature.group in feature_groups and feature.feature_type == "CDS" and feature.group_type in self.prms.args["feature_group_types_to_set_colour"]:
                         if self.prms.args["keep_predefined_colours"] and feature.vis_prms["fill_colour"] != "default":
                             continue
                         feature.vis_prms["fill_colour"] = colours_dict[feature.group]

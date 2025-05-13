@@ -81,6 +81,12 @@
 `-mmseqs-off, --mmseqs-off`
 :   Deactivate mmseqs clustering of proteomes of loci.
 
+`-mmsi, --mmseqs-min-seq-id <float>`
+:    MMSeqs2 parameter for minimal sequence identity during clustering.
+
+`-mc, --mmseqs-coverage <float>`
+:    MMSeqs2 parameter for minimal coverage during clustering.
+
 `-hmmscan, --run-hmmscan`
 :    Run hmmscan search for additional functional annotation.
 

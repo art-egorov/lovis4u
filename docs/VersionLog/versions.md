@@ -1,6 +1,9 @@
 # Version log
 
-* **Ver 0.1.4.1** - 14 March 2025
+* **Ver 0.1.5** - 13 May 2025
+	- New command line parameters to control mmseqs run are added.
+
+* Ver 0.1.4.1 - 14 March 2025
 	- An issue with reading files without any features is fixed.
 
 * Ver 0.1.3 - 5 March 2025

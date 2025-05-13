@@ -803,8 +803,8 @@ class PropertyVis(Track):
                     current_fill_path = path_fill_positive if current_state == "positive" else path_fill_negative
                     if current_state != previous_state:
                         if previous_fill_path:
-                            previous_fill_path.lineTo(current_x - vis_region["bin_width"], y_middle)
-                            previous_stroke_path.lineTo(current_x - vis_region["bin_width"], y_middle)
+                            previous_fill_path.lineTo(current_x , y_middle)
+                            previous_stroke_path.lineTo(current_x, y_middle)
                         current_fill_path.lineTo(current_x, y_middle)
                         current_stroke_path.moveTo(current_x, y_middle)
                     current_fill_path.lineTo(current_x, y_bottom + bin_height)

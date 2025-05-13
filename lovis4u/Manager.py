@@ -78,6 +78,9 @@ class Parameters:
         parser.add_argument("-laf", "--locus-annotation-file", dest="locus-annotation", type=str, default=None)
         parser.add_argument("-faf", "--feature-annotation-file", dest="feature-annotation", type=str, default=None)
         parser.add_argument("-mmseqs-off", "--mmseqs-off", dest="mmseqs", action="store_false")
+        parser.add_argument("-mmsi", "--mmseqs-min-seq-id", dest="mmseqs_min_seq_id", type=float, default=None)
+        parser.add_argument("-mc", "--mmseqs-coverage", dest="mmseqs_c", type=float, default=None)
+        parser.add_argument("-mstc", "--mmseqs-target-cov", dest="mmseqs_search_tcov", type=float, default=None)
         parser.add_argument("-hmmscan", "--run-hmmscan", dest="run_hmmscan_search", action="store_true", default=None)
         parser.add_argument("-dm", "--defence-models", dest="defence_models",
                             choices=["both", "DefenseFinder", "PADLOC"], default=None)
@@ -128,7 +131,7 @@ class Parameters:
         parser.add_argument("-o", dest="output_dir", type=str, default=None)
         parser.add_argument("--pdf-name", dest="pdf-name", type=str, default="lovis4u.pdf")
         parser.add_argument("-c", dest="config_file", type=str, default="standard")
-        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.1.4.1")
+        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.1.5")
         parser.add_argument("-q", "--quiet", dest="verbose", default=True, action="store_false")
         parser.add_argument("--parsing-debug", "-parsing-debug", dest="parsing_debug", action="store_true")
         parser.add_argument("--debug", "-debug", dest="debug", action="store_true")

@@ -17,7 +17,7 @@ If you run this command for fun and want to change it back you can use `lovis4u 
 
 **Downloading HMM models:** LoVis4u uses pyhmmer for additional functional annotation of proteins with hmmscan versus a set of databases. You can download these database from our server ([data-sharing.atkinson-lab.com/LoVis4u](https://data-sharing.atkinson-lab.com/LoVis4u/)) by running the following command:  
 `lovis4u --get-hmms`  
-List of databases: AMR: AMRFinderPlus (v. 02.05.2024.2); Anti-defence: dbAPIS_Acr (v. 19.09.2023); Defence: DefenceFinder (v. 1.2.4), CasFinder (v. 3.1.0), PADLOC (v. 22.10.2024); Virulence: VFDB (v. 10.05.2024).
+List of databases: AMR: AMRFinderPlus (v. 02.05.2024.2); Anti-defence: dbAPIS_Acr (v. 17.08.2025); Defence: DefenceFinder (v. 2.0.2), CasFinder (v. 3.1.0), PADLOC (v. 22.10.2024); Virulence: VFDB (v. 10.05.2024).
 
 ^^For demonstration we will use pharokka generated gff files with the sequences of five Enterobacteria P2-like phages.
 Gff files are stored at: lovis4u_data/guide/gff_files.^^      
@@ -121,12 +121,14 @@ Running this command will create an output folder named *lovis4u_{current_date}*
 
 **The following parameters are particularly useful for basic runs:**
 
-- `--reorient_loci` - Auto re-orient loci (set new strands) if they are not matched.  This function tries to maximise co-orientation of homologous features.
+- `-rol, --reorient_loci` - Auto re-orient loci (set new strands) if they are not matched.  This function tries to maximise co-orientation of homologous features.
 - `-hl`, `--homology-links` - Draw homology link track (Sankey graph).
 - `-o <name>` - Output dir name.  
 - `-c <name>` - Name of the configuration file.
 - `-scc`,`--set-category-colour`  - Set category colour for features and plot category colour legend (Initially designed for pharokka generated gff files, see more detailed description below).
+- `-align, --align-loci` - If a conserved protein with homologues present in all loci exists, then LoVis4u automatically defines the visualisation window starting from that protein family.
 - `-w, --windows <locus_id1:start1:end1:strand [locus_id1:start1:end1:strand ...]>` - Specify window of visualisation (coordinates) for a locus or multiple loci.
+- `-wp, --window-by-proteins <protein_id1 protein_id2>` - Specify window of visualisation by protein id from any locus. If homologues of these proteins are encoded by each locus, then coordinates of visualisation will be defined automatically. If you want to start visualisation from a particular protein (to rotate loci), you can specify its id for start and end ('-wp protein_id1 protein_id1').
 
 While loci in our test set are already correctly orientated, let's add `-hl` parameter to draw homology line track and select configuration file for two-column A4 page layout with `-c A4p2` parameter. Output will be adjusted for publication figure (for instance, in terms of font sizes and figure width set as 190mm). In addition we will plot functional categories of CDSs with `--set-category-colour` parameter. 
 
@@ -291,6 +293,54 @@ lovis4u -gff lovis4u_data/guide/BaselCollection/Bas01.gff -c A4p2 -scc -gc -gc_s
  -w Bas01:1:15000:1,Bas01:16000:31000:1 
 ```
 ![f_bg2](cmd_guide/img/lovis4u_bg_files_advanced_windows.png){loading=lazy width="100%"}
+
+## How define visualisation window without locus annotation tables
+
+Firstly, you can specify nucleotide coordinates for the window using the parameter `-w, --windows <locus_id1:start1:end1:strand [locus_id1:start1:end1:strand ...]>`. See the section above for examples. 
+
+Starting with version 0.1.6 there is a new parameter to specify visualisation window by protein id.
+
+### Visualisation window by protein ids
+
+In case you want to show window/region located between two particular protein families you can use parameter `-wp, --window-by-proteins <protein_id1 protein_id2>` that takes as argument two protein ids. If homologues of these proteins are encoded by each locus, then coordinates of visualisation will be defined automatically. In case these proteins are not fully conserved, then you will get a warning message that coordinates cannot be defined. Since LoVis4u will defined the protein family (protein_group) of the given protein ids, it doesn't matter protein id from which particular lcus will be send. 
+
+Let's look at the example. In the following command I want to show region between terminase small subunit and integrase protein in test data of P2-like phages.
+
+```sh
+lovis4u -gff lovis4u_data/guide/gff_files -wp NC_001895.1_CDS_0011 NC_001895.1_CDS_0042  -hl --set-category-colour   -c A4p2 -o lovis4u_output_wp
+```
+![f_wp1](cmd_guide/img/lovis4u_wp_parameter_1.png){loading=lazy width="100%"}
+
+### Rotation of loci by protein id
+
+The same parameter can be used to rotate loci based on a given protein family. In that case you can specify the same protein_id both for start and end coordinates. For instance, if I want to start visualiasation of all loci from the terminase small subunit, I can use `-wp NC_001895.1_CDS_0011 NC_001895.1_CDS_0011`
+
+```sh
+lovis4u -gff lovis4u_data/guide/gff_files -wp NC_001895.1_CDS_0011 NC_001895.1_CDS_0011  -hl --set-category-colour   -c A4p2 -o lovis4u_output_ps
+```
+
+![f_wp2](cmd_guide/img/lovis4u_wp_parameter_1.png){loading=lazy width="100%"}
+
+## Automatically align all loci 
+
+Starting with version 0.1.6, LoVis4u can align all loci automatically with a new parameter `-align`. If a conserved protein with homologues present in all loci exists, then LoVis4u automatically defines the visualisation window starting from that protein family and changes orientation of loci if strands don't match.
+
+Firstly, let's look at the default run with unalined phage sequences:
+
+```sh
+lovis4u -gff lovis4u_data/guide/unailigned_gffs -hl -scc   -c A4p2 -o lovis4u_output_unalined
+```
+
+![f_un](cmd_guide/img/lovis4u_unalined_ex.png){loading=lazy width="100%"}
+
+Then, we can simply add `-align` to get a proper figure to compare loci
+
+```sh
+lovis4u -gff lovis4u_data/guide/unailigned_gffs -align -hl -scc -c A4p2 -o lovis4u_output_unalined
+```
+
+![f_al](cmd_guide/img/lovis4u_alined_ex.png){loading=lazy width="100%"}
+
 
 
 ## Other LoVis4u features

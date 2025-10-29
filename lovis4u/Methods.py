@@ -355,6 +355,7 @@ def run_pyhmmer(query_fasta: str, query_size: int, prms: lovis4u.Manager.Paramet
         hmms = []
         for hmm_file in hmm_files:
             hmms.append(pyhmmer.plan7.HMMFile(os.path.join(db_path, hmm_file)).read())
+            #hmms = pyhmmer.plan7.HMMFile(os.path.join(db_path, hmm_file)) # attention
         if prms.args["verbose"]:
             print(f"  ⦿ Running pyhmmer hmmscan versus {db_full_name}...", file=sys.stdout)
             bar = progress.bar.FillingCirclesBar("   ", max=num_of_query_proteins, suffix="%(index)d/%(max)d")

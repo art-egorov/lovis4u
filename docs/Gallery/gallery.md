@@ -98,7 +98,37 @@ lovis4u -gff lovis4u_data/guide/gff_files  -hl -o lovis4u_output_m_loci  \
 
 ![f2](gallery/img/lovis4u_regions_multiple.png){loading=lazy width="800px" }  
 
-### Non-coding features
+**Visualisation of user-defined window based on protein ids**
+
+In case you want to show window/region located between two particular protein families you can use parameter `-wp, --window-by-proteins <protein_id1 protein_id2>` that takes as argument two protein ids. If homologues of these proteins are encoded by each locus, then coordinates of visualisation will be defined automatically. 
+
+```sh
+lovis4u -gff lovis4u_data/guide/gff_files -wp NC_001895.1_CDS_0011 NC_001895.1_CDS_0042  -hl --set-category-colour   -c A4p2 -o lovis4u_output_wp
+```
+![f_wp1](gallery/img/lovis4u_wp_parameter_1.png){loading=lazy width="100%"}
+
+
+## Auto alignment of loci 
+
+Starting with version 0.1.6, LoVis4u can align all loci automatically with a new parameter `-align` if a conserved protein with homologues present in all loci exists.
+
+Firstly, let's look at the default run with unalined phage sequences:
+
+```sh
+lovis4u -gff lovis4u_data/guide/unailigned_gffs -hl -scc   -c A4p2 -o lovis4u_output_unalineds
+```
+
+![f_un](gallery/img/lovis4u_unalined_ex.png){loading=lazy width="100%"}
+
+Then, we can simply add `-align` to get a proper figure to compare loci
+
+```sh
+lovis4u -gff lovis4u_data/guide/unailigned_gffs -align -hl -scc -c A4p2 -o lovis4u_output_unalined
+```
+![f_al](gallery/img/lovis4u_alined_ex.png){loading=lazy width="100%"}
+
+
+## Non-coding features
 
 **Visualisation of loci with non-coding features (tRNAs) and displaying their labels.**
 

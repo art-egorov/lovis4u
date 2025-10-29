@@ -63,6 +63,8 @@ class Parameters:
         mutually_exclusive_group.add_argument("-gff", "--gff", dest="gff", type=str, default=None)
         mutually_exclusive_group.add_argument("-gb", "--gb", dest="gb", type=str, default=None)
         parser.add_argument("-w", "--window", dest="windows", nargs="*", type=str, default=[])
+        parser.add_argument("-wp", "--window-by-proteins", dest="window_by_protein_id", nargs=2, type=str, default=[])
+        parser.add_argument("-align", "--align-loci", dest="align_loci", action="store_true")
         parser.add_argument("-bg", "--bedgraphs", dest="bedgraph_files", nargs="*", type=str, default=[])
         parser.add_argument("-bw", "--bigwigs", dest="bigwig_files", nargs="*", type=str, default=[])
         parser.add_argument("-bgl", "--bedgraph-labels", dest="bedgraph_labels", nargs="*", type=str, default=[])
@@ -97,7 +99,7 @@ class Parameters:
         parser.add_argument("-fv-off", "--find-variable-off", dest="find-variable", action="store_false")
         parser.add_argument("-cl-off", "--clust_loci-off", dest="clust_loci", action="store_false")
         parser.add_argument("-oc", "--one-cluster", dest="one_cluster", action="store_true", default=None)
-        parser.add_argument("-reorient_loci", "--reorient_loci", dest="reorient_loci", action="store_true")
+        parser.add_argument("-rol", "--reorient_loci", dest="reorient_loci", action="store_true")
         parser.add_argument("-lls", "--locus-label-style", dest="locus_label_style",
                             choices=["id", "description", "full"], default=None)
         parser.add_argument("-llp", "--locus-label-position", dest="locus_label_position",
@@ -131,7 +133,7 @@ class Parameters:
         parser.add_argument("-o", dest="output_dir", type=str, default=None)
         parser.add_argument("--pdf-name", dest="pdf-name", type=str, default="lovis4u.pdf")
         parser.add_argument("-c", dest="config_file", type=str, default="standard")
-        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.1.5")
+        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.1.6")
         parser.add_argument("-q", "--quiet", dest="verbose", default=True, action="store_false")
         parser.add_argument("--parsing-debug", "-parsing-debug", dest="parsing_debug", action="store_true")
         parser.add_argument("--debug", "-debug", dest="debug", action="store_true")
@@ -157,7 +159,7 @@ class Parameters:
             lovis4u.Methods.get_HMM_models(self.args)
             sys.exit()
         if args["set_mmseqs_path"]:
-            lovis4u.Methods.set_mmseqs_path(to = args["set_mmseqs_path"])
+            lovis4u.Methods.set_mmseqs_path(to=args["set_mmseqs_path"])
             sys.exit()
         if args["help"]:
             help_message_path = os.path.join(os.path.dirname(__file__), "lovis4u_data", "help.txt")
@@ -459,7 +461,8 @@ class CanvasManager:
                 profile_track = profile_loader.create_track()
                 self.tracks.append(profile_track)
             if self.prms.args["verbose"]:
-                print(f"⦿ {len(coverage_profiles.bedgraphs)} coverage track(s) were added to the canvas", file=sys.stdout)
+                print(f"⦿ {len(coverage_profiles.bedgraphs)} coverage track(s) were added to the canvas",
+                      file=sys.stdout)
             return None
         except Exception as error:
             raise lovis4u.Manager.lovis4uError("Unable to add coverage profile tracks to the canvas.") from error
@@ -693,11 +696,6 @@ class LocusLoader(Loader):
                 for i in range(len(locus.coordinates)):
                     cc = locus.coordinates[i].copy()
                     cc_txt = f"{cc['start']:,}-{cc['end']:,} {'(+)' if cc['strand'] == 1 else '(-)'}"
-                    if i > 0 and locus.circular:
-                        if cc["start"] == 1 and locus.coordinates[i - 1]["end"] == locus.length:
-                            txt_coordinates[-1] = f"{locus.coordinates[i - 1]['start']:,}-{cc['end']:,} " \
-                                                  f"{'(+)' if cc['strand'] == 1 else '(-)'}"
-                            continue
                     txt_coordinates.append(cc_txt)
                 track_data["text_coordinates"] = "; ".join(txt_coordinates)
                 track_data["text_coordinates_width"] = \

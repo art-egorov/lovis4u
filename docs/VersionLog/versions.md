@@ -1,6 +1,11 @@
 # Version log
 
-* **Ver 0.1.5** - 13 May 2025
+* **Ver 0.1.6** - 29 October 2025
+	- Update of the HMM models
+	- `-wp` parameter to specify visualisation window by protein ids is added.
+	- `-align` parameter to automatially align all loci is added.
+
+* А Ver 0.1.5 - 13 May 2025
 	- New command line parameters to control mmseqs run are added.
 
 * Ver 0.1.4.1 - 14 March 2025

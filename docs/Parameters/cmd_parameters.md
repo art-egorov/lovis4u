@@ -41,6 +41,15 @@
 `-w, --windows <locus_id1:start1:end1:strand [locus_id1:start1:end1:strand ...]>`
 :    Specify window of visualisation (coordinates) for a locus or multiple loci
 
+`-wp, --window-by-proteins <protein_id1 protein_id2>`
+:    Specify window by protein id from any locus. If homologues of these proteins
+    are encoded by each locus, then coordinates of visualisation will be defined automatically.
+    If you want to start visualisation from a particular protein (to rotate loci), you can 	specify it for start and end ('-wp protein_id1 protein_id1')
+
+`-align, --align-loci`
+:    If a conserved protein with homologues present in all loci exists, then LoVis4u
+     automatically defines the visualisation window starting from that protein family.
+
 `-bg, --bedgraphs <bedGraph_file1 [bedgGaph_file2 ...]>`
 :    Space separated list of paths to bedGraph files to plot coverage profiles.
      (>=1 file) ! Can be applied only for single locus.
@@ -131,7 +140,7 @@
 :    Consider all sequences to be members of one cluster but use clustering
     dendrogram to define the optimal order.
 
-`-reorient_loci, --reorient_loci`
+`-rol, --reorient_loci`
 :    Auto re-orient loci (set new strands) if they are not matched.
      (Function tries to maximise co-orientation of homologous features.)
 

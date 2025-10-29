@@ -410,9 +410,9 @@ class Loci:
                                          order=locus_annotation_row["order"])
                     features_ids = [i.id for i in gff_record.features]
                     if len(features_ids) == 0:
-                            print(f"○ Warning: gff file {gff_file} does not contain any features. "
-                                  f"File will be skipped.")
-                            continue
+                        print(f"○ Warning: gff file {gff_file} does not contain any features. "
+                              f"File will be skipped.")
+                        continue
                     if len(features_ids) != len(set(features_ids)):
                         raise lovis4u.Manager.lovis4uError(f"Gff file {gff_file} contains duplicated feature ids while"
                                                            f" only unique are allowed.")
@@ -773,7 +773,7 @@ class Loci:
     def define_feature_groups(self, dataframe: pd.DataFrame, group_column_name: str = "cluster") -> None:
         """Set features attribute "group" based on input dataframe.
 
-        By default it is designed to use mmseqs_cluster() function results as input. If you already have precomputed
+        By default, it is designed to use mmseqs_cluster() function results as input. If you already have precomputed
             feature groups you can set them with feature table.
 
         Arguments:
@@ -799,6 +799,71 @@ class Loci:
             return None
         except Exception as error:
             raise lovis4u.Manager.lovis4uError("Unable to define protein features groups.") from error
+
+    def define_coordinates_by_proteins(self, start_protein_id, end_protein_id):
+        try:
+            start_protein_group = self.feature_annotation.at[start_protein_id, "group"]
+            start_group_features = self.feature_annotation[self.feature_annotation["group"] == start_protein_group]
+            if len(start_group_features["locus_id"].to_list()) < len(self.loci):
+                print(f"○ Warning: homologues of the start protein {start_protein_id} are not encoded by all loci."
+                      f"\n   defining of the start position will be skipped")
+                return None
+            elif len(start_group_features["locus_id"].to_list()) > len(self.loci):
+                print(f"○ Warning: homologues of the start protein {start_protein_id} are encoded in some loci multiple"
+                      f" times.\n   defining of the start position will be skipped")
+                return None
+            end_protein_group = self.feature_annotation.at[end_protein_id, "group"]
+            end_group_features = self.feature_annotation[self.feature_annotation["group"] == end_protein_group]
+            if len(end_group_features["locus_id"].to_list()) < len(self.loci):
+                print(f"○ Warning: homologues of the end protein {end_protein_id} are not encoded by all loci."
+                      f"\n  defining of the start position will be skipped")
+                return None
+            elif len(end_group_features["locus_id"].to_list()) > len(self.loci):
+                print(f"○ Warning: homologues of the end protein {end_protein_id} are encoded in some loci multiple"
+                      f" times.\n   defining of the start position will be skipped")
+                return None
+            for locus in self.loci:
+                locus_id = locus.seq_id
+                start_gene_coordinate = start_group_features.loc[
+                    start_group_features["locus_id"] == locus_id, "coordinates"].iloc[0].split(":")
+                end_gene_coordinate = end_group_features.loc[
+                    end_group_features["locus_id"] == locus_id, "coordinates"].iloc[0].split(":")
+                if start_gene_coordinate != end_gene_coordinate:
+                    if int(start_gene_coordinate[0]) < int(end_gene_coordinate[1]):
+                        new_locus_coordinates = [f"{start_gene_coordinate[0]}:{end_gene_coordinate[1]}:1"]
+                    else:
+                        new_locus_coordinates = [f"{start_gene_coordinate[0]}:{locus.length}:1",
+                                                 f"{1}:{end_gene_coordinate[1]}:1"]
+                else:
+                    if int(start_gene_coordinate[0]) == 1:
+                        continue
+                    if int(start_gene_coordinate[2]) == -1:
+                        start_gene_coordinate[0], start_gene_coordinate[1] = start_gene_coordinate[1], \
+                        start_gene_coordinate[0]
+                    new_locus_coordinates = [f"{start_gene_coordinate[0]}:{locus.length}:1",
+                                             f"{1}:{int(start_gene_coordinate[0]) - 1}:1"]
+                locus_dicts = [dict(zip(["start", "end", "strand"], map(int, c.split(":")))) for c in
+                               new_locus_coordinates]
+                locus.coordinates = locus_dicts
+                locus.size = 0
+                for coordinate in locus_dicts:
+                    locus.size += abs(coordinate["end"] - coordinate["start"] + 1)
+                self.locus_annotation.loc[locus_id, "coordinates"] = ",".join(new_locus_coordinates)
+                for feature in locus.features:
+                    overlapping = False
+                    for coordinate in locus_dicts:
+                        start, end = int(coordinate["start"]), int(coordinate["end"])
+                        if start <= feature.start <= end or start <= feature.end <= end:
+                            overlapping = True
+                    feature.overlapping = overlapping
+            if start_protein_id != end_protein_id:
+                print(f"⦿ Coordinates were adjusted to show the windows between homologues of "
+                      f"{start_protein_id} and {end_protein_id} proteins.", file=sys.stdout)
+            else:
+                print(f"⦿ Coordinates were adjusted to start visualisation with homologues of "
+                      f"{start_protein_id} protein.", file=sys.stdout)
+        except Exception as error:
+            raise lovis4u.Manager.lovis4uError("Unable to define coordinates based on the protein groups.") from error
 
     def remove_non_overlapping_features(self) -> None:
         """Removes features that are not overlapping with visualisation window.
@@ -970,11 +1035,13 @@ class Loci:
                 int)
             loci_clusters_cutoff_v[loci_clusters_cutoff_v == 0] = 1
             cluster_types = collections.defaultdict(dict)
+            cluster_total_freq = dict()
             for cluster in set(mmseqs_results["cluster"].to_list()):
                 cluster_proteins = mmseqs_results[mmseqs_results["cluster"] == cluster].index
                 cluster_loci = [locus for locus in self.loci if
                                 any(feature.feature_id in cluster_proteins for feature in locus.features)]
                 cluster_loci_groups = [locus.group for locus in cluster_loci]
+                cluster_total_freq[cluster] = len(cluster_loci) / len(self.loci)
                 for cluster_locus_group in cluster_loci_groups:
                     current_group_cluster_loci = [locus.seq_id for locus in cluster_loci if
                                                   locus.group == cluster_locus_group]
@@ -992,6 +1059,7 @@ class Loci:
                 locus_group = locus.group
                 for feature in locus.features:
                     if feature.feature_type == "CDS":
+                        feature.global_freq = cluster_total_freq[feature.group]
                         if (feature.group_type and feature.group_type != "undefined") and \
                                 self.prms.args["keep_predefined_groups"]:
                             continue
@@ -1032,7 +1100,8 @@ class Loci:
             colours_dict = {g: c for g, c in zip(list(feature_groups), colours)}
             for locus in self.loci:
                 for feature in locus.features:
-                    if feature.group in feature_groups and feature.feature_type == "CDS" and feature.group_type in self.prms.args["feature_group_types_to_set_colour"]:
+                    if feature.group in feature_groups and feature.feature_type == "CDS" and feature.group_type in \
+                            self.prms.args["feature_group_types_to_set_colour"]:
                         if self.prms.args["keep_predefined_colours"] and feature.vis_prms["fill_colour"] != "default":
                             continue
                         feature.vis_prms["fill_colour"] = colours_dict[feature.group]
@@ -1179,6 +1248,27 @@ class Loci:
             return None
         except Exception as error:
             raise lovis4u.Manager.lovis4uError("Unable to define variable feature groups.") from error
+
+    def auto_align_loci(self) -> None:
+        """Auto align loci based on conserved genes within each group
+
+        Returns:
+            None
+        """
+        try:
+            print(f"○ Trying to align loci...")
+            conserved_feature_found = False
+            for feature in self.loci[0].features:
+                if feature.global_freq == 1:
+                    conserved_feature_found = True
+                    self.define_coordinates_by_proteins(feature.feature_id, feature.feature_id)
+                    self.reorient_loci()
+                    break
+            if not conserved_feature_found:
+                print(f"○ Warning: conserved feature across all sequences was not detected. Auto alignment of loci "
+                      f"cannot be performed.")
+        except Exception as error:
+            raise lovis4u.Manager.lovis4uError("Unable to auto align loci.") from error
 
     def get_loci_lengths_and_n_of_regions(self) -> list:
         """Get loci lengths and number of regions.

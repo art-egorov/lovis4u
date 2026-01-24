@@ -1,6 +1,9 @@
 # Version log
 
-* **Ver 0.1.6** - 29 October 2025
+* **Ver 0.1.7** - 25 January 2026
+	- pyhmmer version control included in setup.py
+
+* Ver 0.1.6 - 29 October 2025
 	- Update of the HMM models
 	- `-wp` parameter to specify visualisation window by protein ids is added.
 	- `-align` parameter to automatially align all loci is added.

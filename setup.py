@@ -17,7 +17,7 @@ extra_files = package_files("lovis4u/lovis4u_data")
 extra_files.append("../docs/pypi.md")
 
 setuptools.setup(name="lovis4u",
-                 version="0.1.6",
+                 version="0.1.7",
                  python_requires='>=3.8',
                  description="Loci Visualisation Tool.",
                  url="https://art-egorov.github.io/lovis4u/",
@@ -27,7 +27,7 @@ setuptools.setup(name="lovis4u",
                  packages=["lovis4u"],
                  package_data={"lovis4u": extra_files},
                  install_requires=["biopython", "configs", "distinctipy", "pandas", "reportlab", "bcbio-gff",
-                                   "matplotlib", "seaborn", "scipy", "pyhmmer", "progress", "requests"],
+                                   "matplotlib", "seaborn", "scipy", "pyhmmer >=0.12.0", "progress", "requests"],
                  long_description=long_description,
                  long_description_content_type="text/markdown",
                  scripts=["bin/lovis4u"],

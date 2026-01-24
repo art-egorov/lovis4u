@@ -354,8 +354,9 @@ def run_pyhmmer(query_fasta: str, query_size: int, prms: lovis4u.Manager.Paramet
         hmm_files = [fp for fp in os.listdir(db_path) if os.path.splitext(fp)[1].lower() == ".hmm" and fp[0] != "."]
         hmms = []
         for hmm_file in hmm_files:
-            hmms.append(pyhmmer.plan7.HMMFile(os.path.join(db_path, hmm_file)).read())
-            #hmms = pyhmmer.plan7.HMMFile(os.path.join(db_path, hmm_file)) # attention
+            with pyhmmer.plan7.HMMFile(os.path.join(db_path, hmm_file)) as hmm_file:
+                hmms.append(hmm_file.read()) 
+            # hmms = pyhmmer.plan7.HMMFile(os.path.join(db_path, hmm_file)) # attention
         if prms.args["verbose"]:
             print(f"  ⦿ Running pyhmmer hmmscan versus {db_full_name}...", file=sys.stdout)
             bar = progress.bar.FillingCirclesBar("   ", max=num_of_query_proteins, suffix="%(index)d/%(max)d")
@@ -367,10 +368,10 @@ def run_pyhmmer(query_fasta: str, query_size: int, prms: lovis4u.Manager.Paramet
                     for domain in hit.domains.reported:
                         if domain.i_evalue < prms.args["hmmscan_evalue"]:
                             alignment = domain.alignment
-                            hit_name = hit.name.decode()
+                            hit_name = hit.name
                             hit_description = hit.description
                             if hit.description:
-                                hit_description = hit_description.decode()
+                                hit_description = hit_description
                                 if hit_description == "NA":
                                     hit_description = ""
                             else:
@@ -382,7 +383,7 @@ def run_pyhmmer(query_fasta: str, query_size: int, prms: lovis4u.Manager.Paramet
                                 hname = hit_description
                             else:
                                 hname = hit_name
-                            alignment_row = dict(query=alignment.target_name.decode(),
+                            alignment_row = dict(query=alignment.target_name,
                                                  target_db=db_shortname, target=hname, t_name=hit_name,
                                                  t_description=hit_description,
                                                  hit_evalue=hit.evalue, di_evalue=domain.i_evalue,

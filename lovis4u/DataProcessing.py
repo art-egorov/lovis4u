@@ -804,6 +804,8 @@ class Loci:
         try:
             start_protein_group = self.feature_annotation.at[start_protein_id, "group"]
             start_group_features = self.feature_annotation[self.feature_annotation["group"] == start_protein_group]
+            current_ids = [l.seq_id for l in self.loci]
+            start_group_features = start_group_features[start_group_features["locus_id"].isin(current_ids)]
             if len(start_group_features["locus_id"].to_list()) < len(self.loci):
                 print(f"○ Warning: homologues of the start protein {start_protein_id} are not encoded by all loci."
                       f"\n   defining of the start position will be skipped")
@@ -814,6 +816,8 @@ class Loci:
                 return None
             end_protein_group = self.feature_annotation.at[end_protein_id, "group"]
             end_group_features = self.feature_annotation[self.feature_annotation["group"] == end_protein_group]
+            end_group_features = end_group_features[end_group_features["locus_id"].isin(current_ids)]
+            print(end_group_features)
             if len(end_group_features["locus_id"].to_list()) < len(self.loci):
                 print(f"○ Warning: homologues of the end protein {end_protein_id} are not encoded by all loci."
                       f"\n  defining of the start position will be skipped")
@@ -1148,7 +1152,7 @@ class Loci:
             raise lovis4u.Manager.lovis4uError("Unable to set category colours.") from error
 
     def pyhmmer_annotation(self) -> None:
-        """Run pyhhmmer hmmscan against a set of databases for additional annotation of hotspot proteins.
+        """Run pyhhmmer hmmsearch against a set of databases for additional annotation of hotspot proteins.
 
         Arguments:
             proteomes (Proteomes): Proteomes object.
@@ -1159,7 +1163,7 @@ class Loci:
         """
         try:
             if self.prms.args["verbose"]:
-                print(f"○ Preparing data for additional protein annotation with pyhmmer hmmscan...",
+                print(f"○ Preparing data for additional protein annotation with pyhmmer h...",
                       file=sys.stdout)
 
             cds_records = [feature.record for locus in self.loci for feature in locus.features if

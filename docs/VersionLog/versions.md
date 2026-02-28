@@ -1,6 +1,9 @@
 # Version log
 
-* **Ver 0.1.7** - 25 January 2026
+* **Ver 0.1.8** - 28 January 2026
+	- Read-only numpy error for distance matrix is fixed
+
+* Ver 0.1.7 - 25 January 2026
 	- pyhmmer version control included in setup.py
 
 * Ver 0.1.6 - 29 October 2025

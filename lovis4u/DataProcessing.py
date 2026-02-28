@@ -8,6 +8,7 @@ import distinctipy
 import subprocess
 import tempfile
 import typing
+from scipy.spatial import distance_matrix
 import seaborn
 import random
 import shutil
@@ -975,7 +976,9 @@ class Loci:
                 similarity_matrix.iloc[:, locus_index] = weights
 
             distance_matrix = 1 - similarity_matrix
-            np.fill_diagonal(distance_matrix.values, 0)
+            dm = distance_matrix.to_numpy(copy=True)
+            np.fill_diagonal(dm, 0)
+            distance_matrix.iloc[:, :] = dm
             linkage_matrix = scipy.cluster.hierarchy.linkage(
                 scipy.spatial.distance.squareform(distance_matrix),
                 method="average")

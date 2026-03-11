@@ -438,7 +438,7 @@ class Loci:
                         else:
                             name, category = "", ""
                             if self.prms.args["gff_noncoding_name_source"] in gff_feature.qualifiers:
-                                name = self.prms.args["gff_noncoding_name_source"][0]
+                                name = gff_feature.qualifiers[self.prms.args["gff_noncoding_name_source"]][0]
                             else:
                                 for ans in self.prms.args["gff_noncoding_name_alternative_source"]:
                                     if ans in gff_feature.qualifiers:
@@ -818,7 +818,6 @@ class Loci:
             end_protein_group = self.feature_annotation.at[end_protein_id, "group"]
             end_group_features = self.feature_annotation[self.feature_annotation["group"] == end_protein_group]
             end_group_features = end_group_features[end_group_features["locus_id"].isin(current_ids)]
-            print(end_group_features)
             if len(end_group_features["locus_id"].to_list()) < len(self.loci):
                 print(f"○ Warning: homologues of the end protein {end_protein_id} are not encoded by all loci."
                       f"\n  defining of the start position will be skipped")
@@ -861,12 +860,13 @@ class Loci:
                         if start <= feature.start <= end or start <= feature.end <= end:
                             overlapping = True
                     feature.overlapping = overlapping
-            if start_protein_id != end_protein_id:
-                print(f"⦿ Coordinates were adjusted to show the windows between homologues of "
-                      f"{start_protein_id} and {end_protein_id} proteins.", file=sys.stdout)
-            else:
-                print(f"⦿ Coordinates were adjusted to start visualisation with homologues of "
-                      f"{start_protein_id} protein.", file=sys.stdout)
+            if self.prms.args["verbose"]:
+                if start_protein_id != end_protein_id:
+                    print(f"⦿ Coordinates were adjusted to show the windows between homologues of "
+                        f"{start_protein_id} and {end_protein_id} proteins.", file=sys.stdout)
+                else:
+                    print(f"⦿ Coordinates were adjusted to start visualisation with homologues of "
+                        f"{start_protein_id} protein.", file=sys.stdout)
         except Exception as error:
             raise lovis4u.Manager.lovis4uError("Unable to define coordinates based on the protein groups.") from error
 
@@ -1046,7 +1046,8 @@ class Loci:
             for cluster in set(mmseqs_results["cluster"].to_list()):
                 cluster_proteins = mmseqs_results[mmseqs_results["cluster"] == cluster].index
                 cluster_loci = [locus for locus in self.loci if
-                                any(feature.feature_id in cluster_proteins for feature in locus.features)]
+                                any(feature.feature_id in cluster_proteins for feature in locus.features)] # adjust here later
+                                
                 cluster_loci_groups = [locus.group for locus in cluster_loci]
                 cluster_total_freq[cluster] = len(cluster_loci) / len(self.loci)
                 for cluster_locus_group in cluster_loci_groups:
@@ -1077,6 +1078,27 @@ class Loci:
             return None
         except Exception as error:
             raise lovis4u.Manager.lovis4uError("Unable to define variable feature groups.") from error
+
+    def define_global_frequencies(self) -> None:
+        """Define protein group frequencies (FOR API) 
+
+        Returns:
+            None
+
+        """
+        try:
+            all_groups = set([feature.group for locus in self.loci for feature in locus.features if feature.feature_type == "CDS"])
+            cluster_total_freq = dict()
+            for group in all_groups:
+                group_loci = [locus for locus in self.loci if any(feature.group == group for feature in locus.features)]
+                cluster_total_freq[group] = len(group_loci) / len(self.loci)
+            for locus in self.loci:
+                for feature in locus.features:
+                    if feature.feature_type == "CDS":
+                        feature.global_freq = cluster_total_freq[feature.group]
+            return None
+        except Exception as error:
+            raise lovis4u.Manager.lovis4uError("Unable to calculate feature global frequencies.") from error
 
     def set_feature_colours_based_on_groups(self) -> None:
         """Define features fill colour based on corresponding feature group and group types.
@@ -1263,10 +1285,16 @@ class Loci:
             None
         """
         try:
-            print(f"○ Trying to align loci...")
+            if self.prms.args["verbose"]:
+                print(f"○ Trying to align loci...")
             conserved_feature_found = False
             for feature in self.loci[0].features:
-                if feature.global_freq == 1:
+                if feature.feature_type != "CDS":
+                    continue
+                if feature.global_freq == 1.0:
+                    loci_with_feature = [locus for locus in self.loci for f in locus.features if feature.group == f.group]
+                    if len(loci_with_feature) != len(self.loci):
+                        continue
                     conserved_feature_found = True
                     self.define_coordinates_by_proteins(feature.feature_id, feature.feature_id)
                     self.reorient_loci()

@@ -1,4 +1,4 @@
-LoVis4u (version 0.1.8):
+LoVis4u (version 0.1.9):
 Home page and documentation: https://github.com/art-egorov/lovis4u
 The Atkinson Lab 4U | AE
 -------------------------------
@@ -75,7 +75,7 @@ COMMAND-LINE PARAMETERS
     Deactivate mmseqs clustering of proteomes of loci.
 -mmsi, --mmseqs-min-seq-id <float>
     MMSeqs2 parameter for minimal sequence identity during clustering.
-    [default: 0.3]
+    [default: 0.4]
 -mc, --mmseqs-coverage <float>
     MMSeqs2 parameter for minimal coverage during clustering.
     [default: 0.75]

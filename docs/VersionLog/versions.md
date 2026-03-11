@@ -1,6 +1,10 @@
 # Version log
 
-* **Ver 0.1.8** - 28 January 2026
+* **Ver 0.1.9** - 11 March 2026
+	- Error with non-coding feature label parsing is fixed
+	- Default parameters are adjusted
+
+* Ver 0.1.8 - 28 January 2026
 	- Read-only numpy error for distance matrix is fixed
 
 * Ver 0.1.7 - 25 January 2026

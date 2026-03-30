@@ -1,6 +1,10 @@
 # Version log
 
-* **Ver 0.1.9** - 11 March 2026
+* **Ver 0.2.0** - 30 March 2026
+	- GC, GC skew tracks bug for multiple regions and negative strand is fixed
+	- Feature of defining window by protein ids was updated
+
+* Ver 0.1.9 - 11 March 2026
 	- Error with non-coding feature label parsing is fixed
 	- Default parameters are adjusted
 

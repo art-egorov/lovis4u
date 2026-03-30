@@ -133,7 +133,7 @@ class Parameters:
         parser.add_argument("-o", dest="output_dir", type=str, default=None)
         parser.add_argument("--pdf-name", dest="pdf-name", type=str, default="lovis4u.pdf")
         parser.add_argument("-c", dest="config_file", type=str, default="standard")
-        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.1.9")
+        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.2.0")
         parser.add_argument("-q", "--quiet", dest="verbose", default=True, action="store_false")
         parser.add_argument("--parsing-debug", "-parsing-debug", dest="parsing_debug", action="store_true")
         parser.add_argument("--debug", "-debug", dest="debug", action="store_true")
@@ -1239,13 +1239,16 @@ class SequencePropertyLoader(Loader):
             for coordinate in locus.coordinates:
                 nt_start = coordinate["start"]
                 nt_end = coordinate["end"]
-                nt_width = nt_end - nt_start + 1
+                nt_width = abs(nt_end - nt_start) + 1
                 canvas_start = lovis4u.Methods.nt_to_x_transform(nt_start, locus, layout, "start")
                 canvas_end = lovis4u.Methods.nt_to_x_transform(nt_end, locus, layout, "end")
                 canvas_width = abs(canvas_end - canvas_start)
                 region_values = property_values[nt_start:nt_end - 1]
                 if coordinate["strand"] == -1:
                     region_values = region_values[::-1]
+                    if property_name == "gc_skew":
+                        region_values = [-i for i in region_values]
+                        average_value = -average_value
                 bin_width = canvas_width / nt_width
 
                 if bin_width < self.prms.args["min_bin_width_property"] * mm:
@@ -1276,12 +1279,11 @@ class SequencePropertyLoader(Loader):
                 max_property_values.append(max(region_values))
                 min_property_values.append(min(region_values))
 
-                vis_regions.append(dict(nt_start=nt_start, nt_end=nt_end, nt_width=nt_width, bin_width=bin_width,
+                vis_regions.append(dict(nt_start=nt_start, nt_end=nt_end, strand = coordinate["strand"], nt_width=nt_width, bin_width=bin_width,
                                         canvas_start=canvas_start, canvas_end=canvas_end, canvas_width=canvas_width,
                                         region_values=region_values))
             labels_dict = dict(gc="GC content (%)", gc_skew="GC skew (G-C)/(G+C)")
             track_data["label_text"] = labels_dict[property_name]
-
             track_data["vis_regions"] = vis_regions
             absolute_max = max(max_property_values)
             absolute_min = min(min_property_values)

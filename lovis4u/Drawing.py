@@ -789,7 +789,7 @@ class PropertyVis(Track):
             canvas.setLineCap(0)
             canvas.setLineWidth(self.prms.args["property_track_stroke_line_width"])
             for vis_region in self.track_data["vis_regions"]:
-                current_x = vis_region["canvas_start"]
+                current_x = min(vis_region["canvas_start"], vis_region["canvas_end"])
                 path_stroke_positive, path_stroke_negative = canvas.beginPath(), canvas.beginPath()
                 path_fill_positive, path_fill_negative = canvas.beginPath(), canvas.beginPath()
                 path_fill_positive.moveTo(vis_region["canvas_start"], y_middle)
@@ -811,7 +811,7 @@ class PropertyVis(Track):
                     current_fill_path.lineTo(current_x + vis_region["bin_width"], y_bottom + bin_height)
                     current_stroke_path.lineTo(current_x, y_bottom + bin_height)
                     current_stroke_path.lineTo(current_x + vis_region["bin_width"], y_bottom + bin_height)
-                    current_x += vis_region["bin_width"]
+                    current_x += vis_region["bin_width"] 
                     previous_state = current_state
                     previous_fill_path = current_fill_path
                     previous_stroke_path = current_stroke_path
@@ -822,10 +822,12 @@ class PropertyVis(Track):
                     lovis4u.Methods.scale_lightness(self.track_data["negative_colour"], 0.8)), 1)
                 canvas.drawPath(path_stroke_negative, stroke=1, fill=0)
 
-                path_fill_positive.lineTo(vis_region["canvas_end"], y_middle)
-                path_fill_negative.lineTo(vis_region["canvas_end"], y_middle)
-                path_fill_positive.lineTo(vis_region["canvas_start"], y_middle)
-                path_fill_negative.lineTo(vis_region["canvas_start"], y_middle)
+                max_end = max(vis_region["canvas_start"], vis_region["canvas_end"])
+                min_start = min(vis_region["canvas_start"], vis_region["canvas_end"])   
+                path_fill_positive.lineTo(max_end, y_middle)
+                path_fill_negative.lineTo(max_end, y_middle)
+                path_fill_positive.lineTo(min_start, y_middle)
+                path_fill_negative.lineTo(min_start, y_middle)
                 path_fill_positive.close()
                 path_fill_negative.close()
                 canvas.setFillColorRGB(*matplotlib.colors.hex2color(self.track_data["positive_colour"]),

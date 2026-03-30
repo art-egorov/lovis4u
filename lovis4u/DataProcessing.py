@@ -804,6 +804,7 @@ class Loci:
     def define_coordinates_by_proteins(self, start_protein_id, end_protein_id):
         try:
             start_protein_group = self.feature_annotation.at[start_protein_id, "group"]
+            strand_of_start_protein = int(self.feature_annotation.loc[start_protein_id, "coordinates"].split(":")[2])
             start_group_features = self.feature_annotation[self.feature_annotation["group"] == start_protein_group]
             current_ids = [l.seq_id for l in self.loci]
             start_group_features = start_group_features[start_group_features["locus_id"].isin(current_ids)]
@@ -816,6 +817,7 @@ class Loci:
                       f" times.\n   defining of the start position will be skipped")
                 return None
             end_protein_group = self.feature_annotation.at[end_protein_id, "group"]
+            strand_of_end_protein = int(self.feature_annotation.loc[end_protein_id, "coordinates"].split(":")[2])
             end_group_features = self.feature_annotation[self.feature_annotation["group"] == end_protein_group]
             end_group_features = end_group_features[end_group_features["locus_id"].isin(current_ids)]
             if len(end_group_features["locus_id"].to_list()) < len(self.loci):
@@ -832,12 +834,18 @@ class Loci:
                     start_group_features["locus_id"] == locus_id, "coordinates"].iloc[0].split(":")
                 end_gene_coordinate = end_group_features.loc[
                     end_group_features["locus_id"] == locus_id, "coordinates"].iloc[0].split(":")
+                strand_to_set = 1
+                if int(start_gene_coordinate[2]) != strand_of_start_protein:
+                    start_gene_coordinate, end_gene_coordinate = end_gene_coordinate, start_gene_coordinate
+                    strand_to_set = -1
                 if start_gene_coordinate != end_gene_coordinate:
                     if int(start_gene_coordinate[0]) < int(end_gene_coordinate[1]):
-                        new_locus_coordinates = [f"{start_gene_coordinate[0]}:{end_gene_coordinate[1]}:1"]
+                        new_locus_coordinates = [f"{start_gene_coordinate[0]}:{end_gene_coordinate[1]}:{strand_to_set}"]
                     else:
-                        new_locus_coordinates = [f"{start_gene_coordinate[0]}:{locus.length}:1",
-                                                 f"{1}:{end_gene_coordinate[1]}:1"]
+                        new_locus_coordinates = [f"{start_gene_coordinate[0]}:{locus.length}:{strand_to_set}",
+                                                 f"{1}:{end_gene_coordinate[1]}:{strand_to_set}"]
+                        if strand_to_set == -1:
+                            new_locus_coordinates = new_locus_coordinates[::-1]
                 else:
                     if int(start_gene_coordinate[0]) == 1:
                         continue

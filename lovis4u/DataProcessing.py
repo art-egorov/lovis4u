@@ -1382,7 +1382,14 @@ class BedGraph:
         try:
             if isbigWig:
                 temp_file_bedgraph = tempfile.NamedTemporaryFile()
-                os.system(f"{self.prms.args['bigWigToBedGraph_binary']} {self.filepath} {temp_file_bedgraph.name}")
+                subprocess.run(
+                    [
+                        self.prms.args['bigWigToBedGraph_binary'],
+                        self.filepath,
+                        temp_file_bedgraph.name,
+                    ],
+                    check=True,
+                )
                 old_name = self.filepath
                 self.filepath = temp_file_bedgraph.name
             coverage = dict()

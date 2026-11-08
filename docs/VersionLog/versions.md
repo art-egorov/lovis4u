@@ -1,6 +1,10 @@
 # Version log
 
-* **Ver 0.2.0** - 30 March 2026
+* **Ver 0.2.0** - 8 November 2026
+	- lovis4u data copying to user's folder adjusted
+	- Minor adjustment of default configuration parameters
+
+* Ver 0.2.0 - 30 March 2026
 	- GC, GC skew tracks bug for multiple regions and negative strand is fixed
 	- Feature of defining window by protein ids was updated
 

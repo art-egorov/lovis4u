@@ -1,4 +1,4 @@
-LoVis4u (version 0.2.0):
+LoVis4u (version 0.2.1):
 Home page and documentation: https://github.com/art-egorov/lovis4u
 The Atkinson Lab 4U | AE
 -------------------------------

@@ -1,0 +1,23 @@
+category	colour
+"DNA, RNA and nucleotide metabolism"	#DECF3F
+connector	#5DA5DA
+head and packaging	#3D729B
+integration and excision	#FAA43A
+lysis	#F15854
+"moron, auxiliary metabolic gene and host takeover"	#F17CB0
+other	#B2912F
+tail	#60BD68
+transcription regulation	#B276B2
+unknown function	#9B9CA0
+defence (DefenseFinder)	#5E008A
+defence (PADLOC)	#44007D
+virulence	#800000
+anti-defence	#0A5A6A
+AMR	#B83900
+tRNA	#000000
+tmRNA	#520054
+pseudogene	#454545
+RNA	#484848
+ncRNA	#484848
+rRNA	#296517
+misc_RNA	#654B17

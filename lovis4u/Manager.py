@@ -1,6 +1,7 @@
 """
 This module provides managing classes and methods for the tool.
 """
+import pandas as pd
 import collections
 import statistics
 import argparse
@@ -83,6 +84,7 @@ class Parameters:
         parser.add_argument("-mmsi", "--mmseqs-min-seq-id", dest="mmseqs_min_seq_id", type=float, default=None)
         parser.add_argument("-mc", "--mmseqs-coverage", dest="mmseqs_c", type=float, default=None)
         parser.add_argument("-mstc", "--mmseqs-target-cov", dest="mmseqs_search_tcov", type=float, default=None)
+        parser.add_argument("-pclt", "--protein-clusters-table", dest="protein_clusters_table", type=str, default="")
         parser.add_argument("-hmmscan", "--run-hmmscan", dest="run_hmmscan_search", action="store_true", default=None)
         parser.add_argument("-dm", "--defence-models", dest="defence_models",
                             choices=["both", "DefenseFinder", "PADLOC"], default=None)
@@ -121,19 +123,20 @@ class Parameters:
         parser.add_argument("-snl", "--show-noncoding-labels", dest="show_noncoding_labels", action="store_true",
                             default=None)
         parser.add_argument("-sfnl", "--show-first-noncoding-label", dest="show_first_noncoding_label",
-                            action="store_true", default=None)
+                            action="store_true", default=False)
         parser.add_argument("-hl", "--homology-links", dest="homology-track", action="store_true")
         parser.add_argument("-slt", "--scale-line-track", dest="draw_scale_line_track", action="store_true",
                             default=None)
         parser.add_argument("-sxa", "--show-x-axis", dest="draw_individual_x_axis", action="store_true", default=None)
         parser.add_argument("-hix", "--hide-x-axis", dest="draw_individual_x_axis", action="store_false", default=None)
         parser.add_argument("-dml", "--draw-middle-line", dest="draw_middle_line", action="store_true", default=None)
+        parser.add_argument("-hrf", "--highlighted-region-file", dest="highlighted_region_file", type=str, default="")
         parser.add_argument("-mm-per-nt", "--mm-per-nt", dest="mm_per_nt", type=float, default=None)
         parser.add_argument("-fw", "--figure-width", dest="figure_width", type=float, default=None)
         parser.add_argument("-o", dest="output_dir", type=str, default=None)
         parser.add_argument("--pdf-name", dest="pdf-name", type=str, default="lovis4u.pdf")
         parser.add_argument("-c", dest="config_file", type=str, default="standard")
-        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.2.0")
+        parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.2.1")
         parser.add_argument("-q", "--quiet", dest="verbose", default=True, action="store_false")
         parser.add_argument("--parsing-debug", "-parsing-debug", dest="parsing_debug", action="store_true")
         parser.add_argument("--debug", "-debug", dest="debug", action="store_true")
@@ -750,6 +753,28 @@ class LocusLoader(Loader):
                                                     feature_vis_data["coordinates"]["start"]
                 feature_vis_data["group"] = feature.group
                 track_data["features"].append(feature_vis_data)
+            track_data["highlighted_region_features"] = []
+            if self.prms.args["highlighted_region_file"]:
+                highlighted_region_file = pd.read_table(self.prms.args["highlighted_region_file"], sep="\t")
+                highlighted_region_file_locus = highlighted_region_file[highlighted_region_file["locus_id"] == locus.seq_id]
+                for _, row in highlighted_region_file_locus.iterrows():
+                    cf_coordinates = dict(zip(["start", "end", "strand"], map(int, row["coordinates"].split(":"))))
+                    overlapping = False
+                    for coordinate in locus.coordinates:
+                        start, end = int(coordinate["start"]), int(coordinate["end"])
+                        if start <= cf_coordinates["start"] <= end or start <= cf_coordinates["end"] <= end:
+                            overlapping = True
+                    if overlapping:
+                        cf_dict = dict(coordinates = lovis4u.Methods.feature_nt_to_x_transform(cf_coordinates["start"], cf_coordinates["end"], cf_coordinates["strand"], locus, layout, long_range = True))
+                        if "colour" in row:
+                            cf_dict["colour"] = row["colour"]
+                        else:
+                            cf_dict["colour"] = "#000000"
+                        if "height_coef" in row and not pd.isna(row["height_coef"]):
+                            cf_dict["height_coef"] = row["height_coef"]
+                        track_data["highlighted_region_features"].append(cf_dict)
+
+                
             # Managing category visualisation
             feature_cateregories = set([feature.category for feature in locus.features if feature.category])
             track_data["functions_coordinates"] = None
@@ -1422,6 +1447,8 @@ class BedGraphProfileLoader(Loader):
 
             track_data["vis_regions"] = vis_regions
             absolute_max = max(max_coverage_values)
+            if absolute_max == 0:
+                absolute_max = 1
             track_data["y_span"] = absolute_max
             track_data["y_min"], track_data["y_max"] = 0, round(absolute_max, 1)
             track_data["y_scale"] = mm * self.prms.args["bedgraph_track_height"] / absolute_max

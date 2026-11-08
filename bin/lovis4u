@@ -27,10 +27,14 @@ try:
     if parameters.args["mmseqs"]:
         mmseqs_clustering_results = loci.mmseqs_cluster()
         loci.define_feature_groups(mmseqs_clustering_results)
+    if parameters.args["protein_clusters_table"]:
+        mmseqs_clustering_results = loci.load_and_process_predefined_protein_clusters(parameters.args["protein_clusters_table"])
+        loci.define_feature_groups(mmseqs_clustering_results)
+    if parameters.args["protein_clusters_table"] or parameters.args["mmseqs"]:
         if parameters.args["clust_loci"]:
-            loci.cluster_sequences(mmseqs_clustering_results, one_cluster=parameters.args["one_cluster"])
+                loci.cluster_sequences(mmseqs_clustering_results, one_cluster=parameters.args["one_cluster"])
         if parameters.args["find-variable"]:
-            loci.find_variable_feature_groups(mmseqs_clustering_results)
+                loci.find_variable_feature_groups(mmseqs_clustering_results)
     if parameters.args["align_loci"]:
         loci.auto_align_loci()
     if parameters.args["window_by_protein_id"] and not parameters.args["align_loci"]:

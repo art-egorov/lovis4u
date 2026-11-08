@@ -101,7 +101,7 @@ def copy_package_data() -> None:
         internal_dir = os.path.join(os.path.dirname(__file__), "lovis4u_data")
         if os.path.exists(users_dir):
             raise lovis4u.Manager.lovis4uError("lovis4u_data folder already exists.")
-        shutil.copytree(internal_dir, users_dir, ignore=shutil.ignore_patterns("help*", ".*"))
+        shutil.copytree(internal_dir, users_dir, ignore=shutil.ignore_patterns("help*", ".*", "HMMs"))
         print("⚙ lovis4u_data folder was copied to the current working directory", file=sys.stdout)
         return None
     except Exception as error:
@@ -259,17 +259,19 @@ def region_nt_to_x_transform(nt_start: int, nt_end: int, locus, layout: dict) ->
         dict: Dictionary with corresponding start and end page coordinates.
 
     """
+    x_start, x_end = None, None
+    strands = set(c["strand"] for c in locus.coordinates)
+    if len(strands) == 1 and strands.pop() == -1:
+        nt_start, nt_end = nt_end, nt_start
     for coordinate in locus.coordinates:
-        if coordinate["start"] <= nt_start <= coordinate["end"] and coordinate["start"] <= nt_end <= coordinate["end"]:
-            if coordinate["strand"] == -1:
-                nt_start, nt_end = nt_end, nt_start
+        if coordinate["start"] <= nt_start <= coordinate["end"]:
             x_start = nt_to_x_transform(nt_start, locus, layout, "start")
+        if coordinate["start"] <= nt_end <= coordinate["end"]:
             x_end = nt_to_x_transform(nt_end, locus, layout, "end")
-            break
     return dict(start=x_start, end=x_end)
 
 
-def feature_nt_to_x_transform(nt_start: int, nt_end: int, feature_strand: int, locus, layout: dict) -> dict:
+def feature_nt_to_x_transform(nt_start: int, nt_end: int, feature_strand: int, locus, layout: dict, long_range = False) -> dict:
     """Transform feature coordinates to x page coordinates.
 
     Arguments:
@@ -283,7 +285,17 @@ def feature_nt_to_x_transform(nt_start: int, nt_end: int, feature_strand: int, l
         dict: Dictionary with corresponding start and end page coordinates.
 
     """
+
+    if long_range:
+        transform_quick = region_nt_to_x_transform(nt_start, nt_end, locus, layout)
+        if transform_quick["start"] and transform_quick["end"] and len(set(c["strand"] for c in locus.coordinates)) == 1:
+            transform_quick["orient"] = feature_strand * locus.coordinates[0]["strand"]
+            transform_quick["lout"] = False
+            transform_quick["center"] = (transform_quick["start"] + transform_quick["end"]) / 2
+            transform_quick["rout"] = False
+            return transform_quick
     left_out, right_out = False, False
+    x_coordinates = None
     for coordinate in locus.coordinates:
         if coordinate["start"] <= nt_start <= coordinate["end"] or coordinate["start"] <= nt_end <= coordinate["end"]:
             if nt_start < coordinate["start"]:
@@ -299,14 +311,14 @@ def feature_nt_to_x_transform(nt_start: int, nt_end: int, feature_strand: int, l
                     left_out = True
                 nt_end = coordinate["end"]
             x_coordinates = region_nt_to_x_transform(nt_start, nt_end, locus, layout)
-            x_coordinates["center"] = (x_coordinates["start"] + x_coordinates["end"]) / 2
-            try:
-                x_coordinates["orient"] = feature_strand * coordinate["strand"]
-            except:
-                x_coordinates["orient"] = 1
-            x_coordinates["lout"] = left_out
-            x_coordinates["rout"] = right_out
-            break
+            if x_coordinates["start"] and x_coordinates["end"]:
+                x_coordinates["center"] = (x_coordinates["start"] + x_coordinates["end"]) / 2
+                try:
+                    x_coordinates["orient"] = feature_strand * coordinate["strand"]
+                except:
+                    x_coordinates["orient"] = 1
+                x_coordinates["lout"] = left_out
+                x_coordinates["rout"] = right_out
     return x_coordinates
 
 
@@ -355,7 +367,8 @@ def run_pyhmmer(query_fasta: str, query_size: int, prms: lovis4u.Manager.Paramet
         hmms = []
         for hmm_file in hmm_files:
             with pyhmmer.plan7.HMMFile(os.path.join(db_path, hmm_file)) as hmm_file:
-                hmms.append(hmm_file.read()) 
+                all_file_hmms = list(hmm_file)
+                hmms += all_file_hmms
             # hmms = pyhmmer.plan7.HMMFile(os.path.join(db_path, hmm_file)) # attention
         if prms.args["verbose"]:
             print(f"  ⦿ Running pyhmmer hmmscan versus {db_full_name}...", file=sys.stdout)

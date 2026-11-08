@@ -320,8 +320,8 @@ class LocusVis(Track):
                 canvas.setFillColorRGB(*lovis4u.Methods.get_colour_rgba("x_axis_line_colour", self.prms))
                 p = canvas.beginPath()
                 for md_line_coordinates in self.track_data["middle_line_coordinates"]:
-                    p.moveTo(md_line_coordinates["start"], y_feature_center)
-                    p.lineTo(md_line_coordinates["end"], y_feature_center)
+                        p.moveTo(md_line_coordinates["start"], y_feature_center)
+                        p.lineTo(md_line_coordinates["end"], y_feature_center)
                 canvas.drawPath(p, stroke=1, fill=0)
 
             # Category annotation
@@ -394,6 +394,16 @@ class LocusVis(Track):
                             l_end = f_data["coordinates"]["end"]
                             ly = y_feature_upper + f_data["label_y_bottom"] - self.track_data["feature_label_gap"] * 0.5
                             canvas.line(l_start, ly, l_end, ly)
+            for hr in self.track_data["highlighted_region_features"]:
+                f_data = hr
+                f_data["stroke_colour"] =  *matplotlib.colors.hex2color(f_data["colour"]), 1
+                f_data["fill_colour"] =  *matplotlib.colors.hex2color(f_data["colour"]), 0.1
+                f_data["type"] = "highlighted_region"
+                height_coef = 1.1
+                if "height_coef" in f_data:
+                    height_coef = f_data["height_coef"]
+                self.__plot_feature(canvas, f_data, y_center=y_feature_center, height=feature_height*height_coef)
+
             # Axis ticks
             if self.prms.args["draw_individual_x_axis"]:
                 canvas.setLineWidth(self.prms.args["x_axis_line_width"])

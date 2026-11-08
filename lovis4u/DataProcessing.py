@@ -323,7 +323,6 @@ class Loci:
         """
         if feature_id not in self.feature_annotation.index:
             self.feature_annotation.loc[feature_id] = {col: None for col in self.feature_annotation.columns}
-
         if self.feature_annotation.loc[feature_id]["group_type"] in self.prms.args["feature_group_types_to_show_label"] \
                 or "all" in self.prms.args["feature_group_types_to_show_label"]:
             show_label = 1
@@ -335,8 +334,14 @@ class Loci:
                 self.feature_annotation.loc[feature_id]["fill_colour"] != "default":
             stroke_colour = lovis4u.Methods.scale_lightness(self.feature_annotation.loc[feature_id]["fill_colour"],
                                                             self.prms.args["feature_stroke_colour_relative_lightness"])
+        if feature_type == "CDS":
+            fgroup = ""
+            group_type = "undefined"
+        else:
+            fgroup = name
+            group_type = "noncoding"
         default_values = dict(locus_id=locus_id, coordinates=coordinates, feature_type=feature_type,
-                              name=name, group="", group_type="undefined", category=category, fill_colour="default",
+                              name=name, group=fgroup, group_type=group_type, category=category, fill_colour="default",
                               stroke_colour=stroke_colour,
                               show_label=show_label)
         self.feature_annotation.loc[feature_id] = self.feature_annotation.loc[feature_id].fillna(default_values)
@@ -377,7 +382,7 @@ class Loci:
             for gff_file in gff_files:
                 try:
                     gff_records = list(BCBio.GFF.parse(gff_file, limit_info=dict(gff_type=["CDS", "tRNA", "tmRNA",
-                                                                                           "RNA",
+                                                                                           "RNA", "att",
                                                                                            "pseudogene", "rRNA",
                                                                                            "misc_RNA",
                                                                                            "ncRNA", "lncRNA"])))
@@ -576,6 +581,8 @@ class Loci:
                         print(f"GB file {gb_record} contains duplicated feature ids while"
                               f" only unique are allowed.")
                     for gb_feature in gb_record.features:
+                        if gb_feature.type == "gene": # to check
+                            continue
                         if id_source not in gb_feature.qualifiers:
                             print(f"    ○ Warning: genbank feature for {gb_file} located at {gb_feature.location} "
                                   f"was skipped\n    since it does not have id qualifier {id_source} found for other "
@@ -600,7 +607,7 @@ class Loci:
                         else:
                             name, category = "", ""
                             if self.prms.args["gff_noncoding_name_source"] in gb_feature.qualifiers:
-                                name = self.prms.args["gff_noncoding_name_source"][0]
+                                name = gb_feature.qualifiers[self.prms.args["gff_noncoding_name_source"]][0]
                             else:
                                 for ans in self.prms.args["gff_noncoding_name_alternative_source"]:
                                     if ans in gb_feature.qualifiers:
@@ -770,6 +777,28 @@ class Loci:
             raise lovis4u.Manager.lovis4uError("Unable to run mmseqs clustering. In case you use a linux machine"
                                                ",  have you run a post-install 'lovis4u --linux` command to switch to"
                                                " the linux mmseqs binary?") from error
+    def load_and_process_predefined_protein_clusters(self, table_path: str):
+        """Load and process table with pre-defined protein clusters
+
+        Arguments:
+            table_path (str): path to the mmseqs-like cluster table (two columns, first - cluster_id; second - protein_id)
+
+        Returns:
+            dict: dictionary with protein cluster id as key and corresponding list of protein ids as item.
+
+        """
+        try:
+            predefined_cluster_results = pd.read_table(table_path, sep="\t", header=None,
+                                                       names=["cluster", "protein_id"])
+            predefined_cluster_results = predefined_cluster_results.set_index("protein_id")
+            num_of_unique_clusters = len(set(predefined_cluster_results["cluster"].to_list()))
+            num_of_proteins = len(predefined_cluster_results.index)
+            if self.prms.args["verbose"]:
+                print(f"⦿ {num_of_unique_clusters} clusters for {num_of_proteins} proteins were pre-defined")
+            return predefined_cluster_results
+        except Exception as error:
+            raise lovis4u.Manager.lovis4uError("Unable to process table with pre-defined protein clusters.") from error
+
 
     def define_feature_groups(self, dataframe: pd.DataFrame, group_column_name: str = "cluster") -> None:
         """Set features attribute "group" based on input dataframe.
@@ -919,13 +948,11 @@ class Loci:
                         if "any" in self.prms.args["feature_group_types_to_show_label"]:
                             feature.vis_prms["show_label"] = 1
                         elif feature.group_type in self.prms.args["feature_group_types_to_show_label"] or \
-                                (feature.vis_prms["hmmscan_hit"] and self.prms.args["show_all_label_for_query_"
-                                                                                    "proteins"]):
+                                (feature.vis_prms["hmmscan_hit"] and self.prms.args["show_all_label_for_query_proteins"]):
                             feature.vis_prms["show_label"] = 1
                         elif (feature.group_type in \
                               self.prms.args["feature_group_types_to_show_label_on_first_occurrence"]) or \
-                                (feature.vis_prms["hmmscan_hit"] and self.prms.args["show_label_on_first_occurrence"
-                                                                                    "_for_query_proteins"]):
+                                (feature.vis_prms["hmmscan_hit"] and self.prms.args["show_label_on_first_occurrence_for_query_proteins"]):
                             if feature.group not in added_first_occurrence_labels or len(self.loci) == 1:
                                 feature.vis_prms["show_label"] = 1
                                 added_first_occurrence_labels.append(feature.group)
@@ -1217,9 +1244,11 @@ class Loci:
                             alignment_table_row = alignment_table.loc[feature.feature_id]
                             if self.prms.args["update_category_with_database_name"]:
                                 feature.category = alignment_table_row["target_db"]
+                                self.feature_annotation.loc[feature.feature_id, "category"] = feature.category
                             if self.prms.args["update_protein_name_with_target_name"]:
                                 feature.name = alignment_table_row["target"]
                                 feature.vis_prms["label"] = feature.name
+                                self.feature_annotation.loc[feature.feature_id, "name"] = feature.name
                             feature.vis_prms["hmmscan_hit"] = 1
             return None
         except Exception as error:
@@ -1296,6 +1325,9 @@ class Loci:
             if self.prms.args["verbose"]:
                 print(f"○ Trying to align loci...")
             conserved_feature_found = False
+            if len (self.loci) < 2:
+                print(f"○ Warning: there is only one locus, auto alignment of loci cannot be performed.")
+                return None
             for feature in self.loci[0].features:
                 if feature.feature_type != "CDS":
                     continue
@@ -1396,8 +1428,6 @@ class BedGraph:
             if isbigWig:
                 self.filepath = old_name
             ids_to_remove = [contig_id for contig_id, cov in coverage.items() if cov.sum() == 0]
-            for contig_id in ids_to_remove:
-                del coverage[contig_id]
             return coverage
         except Exception as error:
             raise lovis4u.Manager.lovis4uError(f"Unable to read {self.filepath} bedgraph file.") from error
